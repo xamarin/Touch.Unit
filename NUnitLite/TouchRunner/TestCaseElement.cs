@@ -1,0 +1,62 @@
+// TestCaseElement.cs: MonoTouch.Dialog element for TestCase
+//
+// Authors:
+//	Sebastien Pouliot  <sebastien@xamarin.com>
+//
+// Copyright 2011 Xamarin Inc. All rights reserved
+
+using System;
+using MonoTouch.Dialog;
+using MonoTouch.UIKit;
+
+using NUnitLite;
+using NUnitLite.Runner;
+using NUnit.Framework;
+
+namespace MonoTouch.NUnit.UI {
+	
+	class TestCaseElement : TestElement {
+		
+		TimeSpan time;
+		
+		public TestCaseElement (TestCase testCase, TouchRunner runner)
+			: base (testCase, runner)
+		{
+			Caption = testCase.Name;
+			Value = "NotExecuted";
+			this.Tapped += delegate {
+				 Run ();
+			};
+		}
+		
+		public TestCase TestCase {
+			get { return Test as TestCase; }
+		}
+		
+		public void Run ()
+		{
+			DateTime start = DateTime.UtcNow;
+			Result = TestCase.Run (Runner);
+			time = (DateTime.UtcNow - start);
+			Update ();
+		}
+		
+		public override void Update ()
+		{
+			Value = Result.Message;
+			if (Result.IsError) {
+				Value = Result.Message ?? "Unknown error";
+				DetailColor = UIColor.Red;
+			} else if (Result.IsFailure) {
+				// Value = "Failed at assertion #" + Assert.Counter;
+				DetailColor = UIColor.Red;
+			} else if (Result.IsSuccess) {
+				int counter = Assert.Counter;
+				Value = String.Format ("Success! {0} ms for {1} assertion{2}",
+					time.TotalMilliseconds, counter,
+					counter == 1 ? String.Empty : "s");
+				DetailColor = DarkGreen;
+			}
+		}
+	}
+}
