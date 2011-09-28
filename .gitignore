@@ -1,0 +1,5 @@
+.DS_Store
+*.pidb
+*.userprefs
+bin/
+obj/
