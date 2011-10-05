@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using MonoTouch.AddressBookUI;
 using MonoTouch.Foundation;
+using MonoTouch.MapKit;
 using NUnit.Framework;
 
 namespace MonoTouchFixtures {
@@ -31,6 +32,14 @@ namespace MonoTouchFixtures {
 			using (var xw = XmlWriter.Create (System.IO.Stream.Null))
 				ds.WriteObject (xw, new int [] { 1, 2, 3 });
 			// the above should not throw System.Runtime.Serialization.SerializationException
+		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=769
+		public void Bug769_UnregistredDelegate ()
+		{
+			Assert.NotNull (new MKMapViewDelegate ());
+			// the above should not throw an Exception
 		}
 		
 		[Test]
