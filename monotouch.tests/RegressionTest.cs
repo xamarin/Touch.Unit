@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Xml;
@@ -58,6 +60,17 @@ namespace MonoTouchFixtures {
 		{
 			ABPeoplePickerNavigationController picker = new ABPeoplePickerNavigationController ();
 			Assert.NotNull (picker.AddressBook); // no NRE should occur
+		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=1144
+		[ExpectedException (typeof (NotSupportedException))]
+		public void Bug1144_LinkedAway ()
+		{
+			Socket socket = new Socket (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP); 
+			IAsyncResult ias = socket.BeginConnect (IPAddress.Loopback, 4201, null, null);
+			ias.AsyncWaitHandle.WaitOne (15, true);
+			// emitContext == true should behave identically whether the app is linked (throws) or not (bug)
 		}
 	}
 }
