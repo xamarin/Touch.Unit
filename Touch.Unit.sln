@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoTouch.NUnitLite", "NUni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "monotouch.tests", "monotouch.tests\monotouch.tests.csproj", "{20E71273-1306-477D-964D-A7FAFE20196D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch.Server", "Touch.Server\Touch.Server.csproj", "{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -85,6 +87,22 @@ Global
 		{9A9B24AF-1103-43D4-8EC0-9EC0155322FC}.Release|iPhone.Build.0 = Release|Any CPU
 		{9A9B24AF-1103-43D4-8EC0-9EC0155322FC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9A9B24AF-1103-43D4-8EC0-9EC0155322FC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AdHoc|iPhone.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AdHoc|iPhone.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AdHoc|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AdHoc|iPhoneSimulator.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AppStore|iPhone.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AppStore|iPhone.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AppStore|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.AppStore|iPhoneSimulator.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhone.Build.0 = Release|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
+		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Touch.Unit.csproj
