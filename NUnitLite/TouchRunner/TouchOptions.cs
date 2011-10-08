@@ -58,7 +58,7 @@ namespace NUnitLite {
 				
 				var defaults = NSUserDefaults.StandardUserDefaults;
 				defaults.SetBool (EnableNetwork, "network.enabled");
-				defaults.SetString (HostName, "network.host.name");
+				defaults.SetString (HostName ?? String.Empty, "network.host.name");
 				defaults.SetInt (HostPort, "network.host.port");
 			};
 			
