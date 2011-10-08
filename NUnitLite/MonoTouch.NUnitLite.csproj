@@ -260,14 +260,8 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.6.0\src\NUnitLite\Runner\CommandLineOptions.cs">
       <Link>NUnitLite\Runner\CommandLineOptions.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-0.6.0\src\NUnitLite\Runner\ConsoleWriter.cs">
-      <Link>NUnitLite\Runner\ConsoleWriter.cs</Link>
-    </Compile>
     <Compile Include="..\..\NUnitLite\NUnitLite-0.6.0\src\NUnitLite\Runner\ResultSummary.cs">
       <Link>NUnitLite\Runner\ResultSummary.cs</Link>
-    </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-0.6.0\src\NUnitLite\Runner\TcpWriter.cs">
-      <Link>NUnitLite\Runner\TcpWriter.cs</Link>
     </Compile>
     <Compile Include="..\..\NUnitLite\NUnitLite-0.6.0\src\NUnitLite\Runner\TestLoader.cs">
       <Link>NUnitLite\Runner\TestLoader.cs</Link>
@@ -279,6 +273,8 @@
     <Compile Include="TouchRunner\TestElement.cs" />
     <Compile Include="TouchRunner\TestSuiteElement.cs" />
     <Compile Include="TouchRunner\TouchRunner.cs" />
+    <Compile Include="TouchRunner\TcpTextWriter.cs" />
+    <Compile Include="TouchRunner\TouchOptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />

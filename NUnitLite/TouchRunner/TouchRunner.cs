@@ -6,6 +6,7 @@
 // Copyright 2011 Xamarin Inc. All rights reserved
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -20,6 +21,7 @@ namespace MonoTouch.NUnit.UI {
 	public class TouchRunner : TestListener {
 		
 		UIWindow window;
+		TouchOptions options;
 		
 		public TouchRunner (UIWindow window)
 		{
@@ -27,6 +29,7 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("window");
 			
 			this.window = window;
+			options = new TouchOptions ();
 		}
 
 		public UINavigationController NavigationController {
@@ -55,9 +58,9 @@ namespace MonoTouch.NUnit.UI {
 			menu.Add (main);
 			
 			Section options = new Section () {
-				new StringElement ("Run", Run),
-				new StringElement ("Options...", Options),
-				new StringElement ("Credits...", Credits)
+				new StringElement ("Run Everything", Run),
+				new StyledStringElement ("Options", Options) { Accessory = UITableViewCellAccessory.DisclosureIndicator },
+				new StyledStringElement ("Credits", Credits) { Accessory = UITableViewCellAccessory.DisclosureIndicator }
 			};
 			menu.Add (options);
 			
@@ -69,20 +72,72 @@ namespace MonoTouch.NUnit.UI {
 		
 		void Run ()
 		{
-			foreach (TestSuite ts in suites)
-				suite_elements [ts].Run ();
+			OpenWriter ("Run Everything");
+			try {
+				foreach (TestSuite ts in suites)
+					suite_elements [ts].Run ();
+			}
+			finally {
+				CloseWriter ();
+			}
 		}
-		
+				
 		void Options ()
 		{
-			// send results to...
+			NavigationController.PushViewController (options.GetViewController (), true);				
 		}
 		
 		void Credits ()
 		{
-			// monotouch.dialog, nunitlite, xamarin
+			var title = new MultilineElement ("Touch.Unit Runner\nCopyright 2011 Xamarin Inc.\nAll rights reserved.\n\nAuthor: Sebastien Pouliot");
+			title.Alignment = UITextAlignment.Center;
+			
+			var root = new RootElement ("Credits") {
+				new Section () { title },
+				new Section () {
+					new HtmlElement ("About Xamarin", "http://www.xamarin.com"),
+					new HtmlElement ("About MonoTouch", "http://ios.xamarin.com"),
+					new HtmlElement ("About MonoTouch.Dialog", "https://github.com/migueldeicaza/MonoTouch.Dialog"),
+					new HtmlElement ("About NUnitLite", "http://www.nunitlite.org")
+				}
+			};
+				
+			var dv = new DialogViewController (root, true);
+			NavigationController.PushViewController (dv, true);				
 		}
-
+		
+		#region writer
+		
+		public TextWriter Writer { get; set; }
+		
+		public void OpenWriter (string message)
+		{
+			DateTime now = DateTime.Now;
+			if (options.ShowUseNetworkLogger) {
+				Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, options.HostName, options.HostPort);
+				Writer = new TcpTextWriter (options.HostName, options.HostPort);
+			} else {
+				Writer = Console.Out;
+			}
+			
+			Writer.WriteLine ("[Runner executing:\t{0}]", message);
+			Writer.WriteLine ("[MonoTouch Version:\t{0}]", MonoTouch.Constants.Version);
+			UIDevice device = UIDevice.CurrentDevice;
+			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
+			
+			// FIXME: add more data about the device
+			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, Linker options)
+		}
+		
+		public void CloseWriter ()
+		{
+			Writer.Close ();
+			Writer = null;
+		}
+		
+		#endregion
+		
 		Dictionary<TestSuite, DialogViewController> suites_dvc = new Dictionary<TestSuite, DialogViewController> ();
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
 		Dictionary<TestCase, TestCaseElement> case_elements = new Dictionary<TestCase, TestCaseElement> ();
@@ -119,7 +174,9 @@ namespace MonoTouch.NUnit.UI {
 			if (section.Count > 1) {
 				Section options = new Section () {
 					new StringElement ("Run all", delegate () {
+						OpenWriter (suite.Name);
 						Run (suite);
+						CloseWriter ();
 					})
 				};
 				root.Add (options);
@@ -135,7 +192,7 @@ namespace MonoTouch.NUnit.UI {
 			case_elements.Add (test, tce);
 			return tce;
 		}
-		
+				
 		void Run (TestSuite suite)
 		{
 			suite_elements [suite].Run ();
@@ -143,7 +200,14 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void TestStarted (ITest test)
 		{
+			if (test is TestSuite) {
+				Writer.WriteLine ();
+				time.Push (DateTime.UtcNow);
+				Writer.WriteLine (test.Name);
+			}
 		}
+		
+		Stack<DateTime> time = new Stack<DateTime> ();
 			
 		public void TestFinished (TestResult result)
 		{
@@ -154,6 +218,36 @@ namespace MonoTouch.NUnit.UI {
 				TestCase tc = result.Test as TestCase;
 				if (tc != null)
 					case_elements [tc].Update (result);
+			}
+			
+			if (result.Test is TestSuite) {
+				if (!result.IsError && !result.IsFailure && !result.IsSuccess && !result.Executed)
+					Writer.WriteLine ("\t[INFO] {0}", result.Message);
+				
+				var diff = DateTime.UtcNow - time.Pop ();
+				Writer.WriteLine ("{0} : {1} ms", result.Test.Name, diff.TotalMilliseconds);
+			} else {
+				if (result.IsSuccess) {
+					Writer.Write ("\t{0} ", result.Executed ? "[PASS]" : "[IGNORED]");
+				} else if (result.IsFailure || result.IsError) {
+					Writer.Write ("\t[FAIL] ");
+				} else {
+					Writer.Write ("\t[INFO] ");
+				}
+				Writer.Write (result.Test.Name);
+				
+				string message = result.Message;
+				if (!String.IsNullOrEmpty (message)) {
+					Writer.Write (" : {0}", message.Replace ("\r\n", "\\r\\n"));
+				}
+				Writer.WriteLine ();
+						
+				string stacktrace = result.StackTrace;
+				if (!String.IsNullOrEmpty (result.StackTrace)) {
+					string[] lines = stacktrace.Split (new char [] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+					foreach (string line in lines)
+						Writer.WriteLine ("\t\t{0}", line);
+				}
 			}
 		}
 	}

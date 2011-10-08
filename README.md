@@ -1,10 +1,22 @@
-HOWTO
+# Touch.Unit
+
+<div align="centre">touch.unit : because I like my code public and my mistakes private</div>
+
+
+## History
+
+[[I searched, I did not find|http://stackoverflow.com/q/7065071/220643]], [[I made|http://spouliot.wordpress.com/2011/09/28/unit-testing-and-monotouch/]].
+
+
+## How To
 
 1. Clone all the required code from github.com
 
-$ git clone git://github.com/spouliot/MonoTouch.Dialog.git
-$ git clone git://github.com/spouliot/NUnitLite.git
-$ git clone git://github.com/spouliot/Touch.Unit.git
+	$ git clone git://github.com/spouliot/MonoTouch.Dialog.git
+
+	$ git clone git://github.com/spouliot/NUnitLite.git
+
+	$ git clone git://github.com/spouliot/Touch.Unit.git
 
 2. Launch MonoDevelop (2.6 or later)
 
@@ -13,10 +25,9 @@ $ git clone git://github.com/spouliot/Touch.Unit.git
 4. Run / Debug / Add Tests / Enjoy
 
 
-TODO
+## Todo List
 
-* add option to connect (socket) to a server and send all the execution
-logs there (e.g. safe keeping if crashing)
+* ease automation
 
 * add a detail screen (to see more things in case of errors)
 
