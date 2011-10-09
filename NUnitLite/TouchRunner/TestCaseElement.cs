@@ -28,6 +28,16 @@ namespace MonoTouch.NUnit.UI {
 				Runner.OpenWriter (Test.FullName);
 				Run ();
 				Runner.CloseWriter ();
+				// display more details on (any) failure
+				if (!Result.IsSuccess) {
+					var root = new RootElement ("Results") {
+						new Section () {
+							new TestResultElement (Result)
+						}
+					};
+					var dvc = new DialogViewController (root, true);
+					runner.NavigationController.PushViewController (dvc, true);
+				}
 			};
 		}
 		
