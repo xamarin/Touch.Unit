@@ -32,7 +32,7 @@ namespace MonoTouch.NUnit.UI {
 				};
 			} else {
 				DetailColor = UIColor.Orange;
-				Value = "No test found inside the assembly";
+				Value = "No test was found inside this suite";
 			}
 		}
 		
