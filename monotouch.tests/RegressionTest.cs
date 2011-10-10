@@ -9,6 +9,7 @@ using Mono.Data.Sqlite;
 using MonoTouch.AddressBookUI;
 using MonoTouch.Foundation;
 using MonoTouch.MapKit;
+using MonoTouch.UIKit;
 using NUnit.Framework;
 
 namespace MonoTouchFixtures {
@@ -55,6 +56,20 @@ namespace MonoTouchFixtures {
 			Assert.NotNull (new MKMapViewDelegate ());
 			// the above should not throw an Exception
 		}
+
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=865
+		public void Bug865_CanOpenUrl ()
+		{
+			Assert.False (UIApplication.SharedApplication.CanOpenUrl (null), "null");
+			// the above should not throw an ArgumentNullException
+			// and that's important because NSUrl.FromString and NSUrl.ctor(string) differs
+			const string bad_tel = "tel://1800 023 009";
+			Assert.Null (NSUrl.FromString (bad_tel), "bad url"); 
+			NSUrl url = new NSUrl (bad_tel);
+			Assert.NotNull (url, "ctor, bad url");
+			Assert.That (url.Handle, Is.EqualTo (IntPtr.Zero), "null handle");
+		}
 		
 		[Test]
 		// issue indirectly found when trying:  http://bugzilla.xamarin.com/show_bug.cgi?id=928
@@ -83,6 +98,14 @@ namespace MonoTouchFixtures {
 			IAsyncResult ias = socket.BeginConnect (IPAddress.Loopback, 4201, null, null);
 			ias.AsyncWaitHandle.WaitOne (15, true);
 			// emitContext == true should behave identically whether the app is linked (throws) or not (bug)
+		}
+
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=1387
+		public void Bug1387_UIEdgeInsets_ToString ()
+		{
+			var insets = new MonoTouch.UIKit.UIEdgeInsets (1, 2, 3, 4);
+			Assert.That (insets.ToString (), Is.Not.EqualTo ("MonoTouch.UIKit.UIEdgeInsets"));
 		}
 	}
 }
