@@ -4,9 +4,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization;
+using System.Threading;
 using System.Xml;
 using Mono.Data.Sqlite;
 using MonoTouch.AddressBookUI;
+using MonoTouch.CoreAnimation;
 using MonoTouch.Foundation;
 using MonoTouch.MapKit;
 using MonoTouch.UIKit;
@@ -47,6 +49,26 @@ namespace MonoTouchFixtures {
 			c.Update += (sender, e) => {};
 			// the above should not crash
 			c.Close ();
+		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=234
+		public void Bug234_Interlocked ()
+		{
+			string str = null;
+			Assert.Null (Interlocked.Exchange (ref str, "one"), "Exchange");
+			// the above should not crash with System.ExecutionEngineException
+			Assert.That (str, Is.EqualTo ("one"), "one");
+		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=328
+		public void Bug328_CompletionBlock ()
+		{
+			CATransaction.Begin ();
+			CATransaction.CompletionBlock = delegate {};
+			// the above should not crash with a MonoTouchException
+			CATransaction.Commit ();
 		}
 		
 		[Test]
