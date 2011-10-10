@@ -263,6 +263,7 @@
     <Compile Include="TouchRunner\TouchRunner.cs" />
     <Compile Include="TouchRunner\TcpTextWriter.cs" />
     <Compile Include="TouchRunner\TouchOptions.cs" />
+    <Compile Include="TouchRunner\TestResultElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />
