@@ -8,9 +8,12 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Reflection;
+using System.Threading;
 
 using MonoTouch.Dialog;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 using NUnitLite;
@@ -31,6 +34,9 @@ namespace MonoTouch.NUnit.UI {
 			this.window = window;
 			options = new TouchOptions ();
 		}
+		
+		public bool AutoStart { get; set; }
+		public bool TerminateAfterExecution { get; set; }
 
 		public UINavigationController NavigationController {
 			get { return (UINavigationController) window.RootViewController; }
@@ -67,6 +73,18 @@ namespace MonoTouch.NUnit.UI {
 			var dv = new DialogViewController (menu) {
 				Autorotate = true
 			};
+			
+			// AutoStart running the tests (with either the supplied 'writer' or the options)
+			if (AutoStart) {
+				ThreadPool.QueueUserWorkItem (delegate {
+					window.BeginInvokeOnMainThread (delegate {
+						Run ();
+						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
+						if (TerminateAfterExecution)
+							throw new Exception ("Ending Touch.Unit process");
+					});
+				});
+			}
 			return dv;
 		}
 		
@@ -113,11 +131,14 @@ namespace MonoTouch.NUnit.UI {
 		public void OpenWriter (string message)
 		{
 			DateTime now = DateTime.Now;
-			if (options.ShowUseNetworkLogger) {
-				Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, options.HostName, options.HostPort);
-				Writer = new TcpTextWriter (options.HostName, options.HostPort);
-			} else {
-				Writer = Console.Out;
+			// let the application provide it's own TextWriter to ease automation with AutoStart property
+			if (Writer == null) {
+				if (options.ShowUseNetworkLogger) {
+					Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, options.HostName, options.HostPort);
+					Writer = new TcpTextWriter (options.HostName, options.HostPort);
+				} else {
+					Writer = Console.Out;
+				}
 			}
 			
 			Writer.WriteLine ("[Runner executing:\t{0}]", message);
@@ -125,8 +146,9 @@ namespace MonoTouch.NUnit.UI {
 			UIDevice device = UIDevice.CurrentDevice;
 			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
 			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
-			
 			// FIXME: add more data about the device
+			
+			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
 			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, Linker options)
 		}
 		
