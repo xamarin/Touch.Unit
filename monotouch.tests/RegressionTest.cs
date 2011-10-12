@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
@@ -61,6 +62,17 @@ namespace MonoTouchFixtures {
 			Assert.That (str, Is.EqualTo ("one"), "one");
 		}
 		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=300
+		// http://stackoverflow.com/questions/6517736/monotouch-crash-dictionary-firstordefault-type-initializer-predicateof
+		public void Bug300_Linker_PredicateOf ()
+		{
+			Dictionary<string, DateTime> queued = new Dictionary<string, DateTime> ();
+			KeyValuePair<string, DateTime> valuePair = queued.FirstOrDefault ();
+			// above should not crash with System.ExecutionEngineException
+			Assert.NotNull (valuePair);
+		}
+
 		[Test]
 		// http://bugzilla.xamarin.com/show_bug.cgi?id=328
 		public void Bug328_CompletionBlock ()
