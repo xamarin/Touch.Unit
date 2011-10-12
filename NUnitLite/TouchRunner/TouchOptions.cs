@@ -46,7 +46,7 @@ namespace NUnitLite {
 				new Section () { network, host, port }
 			};
 				
-			var dv = new DialogViewController (root, true);
+			var dv = new DialogViewController (root, true) { Autorotate = true };
 			dv.ViewDissapearing += delegate {
 				EnableNetwork = network.Value;
 				HostName = host.Value;

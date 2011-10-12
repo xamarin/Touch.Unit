@@ -36,7 +36,7 @@ namespace MonoTouch.NUnit.UI {
 							new TestResultElement (Result)
 						}
 					};
-					var dvc = new DialogViewController (root, true);
+					var dvc = new DialogViewController (root, true) { Autorotate = true };
 					runner.NavigationController.PushViewController (dvc, true);
 				}
 			};

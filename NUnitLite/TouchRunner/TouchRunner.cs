@@ -70,9 +70,7 @@ namespace MonoTouch.NUnit.UI {
 			};
 			menu.Add (options);
 			
-			var dv = new DialogViewController (menu) {
-				Autorotate = true
-			};
+			var dv = new DialogViewController (menu) { Autorotate = true };
 			
 			// AutoStart running the tests (with either the supplied 'writer' or the options)
 			if (AutoStart) {
@@ -121,7 +119,7 @@ namespace MonoTouch.NUnit.UI {
 				}
 			};
 				
-			var dv = new DialogViewController (root, true);
+			var dv = new DialogViewController (root, true) { Autorotate = true };
 			NavigationController.PushViewController (dv, true);				
 		}
 		
@@ -227,7 +225,8 @@ namespace MonoTouch.NUnit.UI {
 				root.Add (options);
 			}
 				
-			suites_dvc.Add (suite, new DialogViewController (root, true));
+			var dv = new DialogViewController (root, true) { Autorotate = true };
+			suites_dvc.Add (suite, dv);
 			return tse;
 		}
 		
