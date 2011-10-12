@@ -25,7 +25,8 @@ namespace MonoTouch.NUnit.UI {
 			Caption = testCase.Name;
 			Value = "NotExecuted";
 			this.Tapped += delegate {
-				Runner.OpenWriter (Test.FullName);
+				if (!Runner.OpenWriter (Test.FullName))
+					return;
 				Run ();
 				Runner.CloseWriter ();
 				// display more details on (any) failure

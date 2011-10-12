@@ -90,7 +90,8 @@ namespace MonoTouch.NUnit.UI {
 		
 		void Run ()
 		{
-			OpenWriter ("Run Everything");
+			if (!OpenWriter ("Run Everything"))
+				return;
 			try {
 				foreach (TestSuite ts in suites)
 					suite_elements [ts].Run ();
@@ -128,14 +129,34 @@ namespace MonoTouch.NUnit.UI {
 		
 		public TextWriter Writer { get; set; }
 		
-		public void OpenWriter (string message)
+		public bool OpenWriter (string message)
 		{
 			DateTime now = DateTime.Now;
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
 				if (options.ShowUseNetworkLogger) {
 					Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, options.HostName, options.HostPort);
-					Writer = new TcpTextWriter (options.HostName, options.HostPort);
+					try {
+						Writer = new TcpTextWriter (options.HostName, options.HostPort);
+					}
+					catch (SocketException) {
+						UIAlertView alert = new UIAlertView ("Network Error", 
+							String.Format ("Cannot connect to {0}:{1}. Continue on console ?", options.HostName, options.HostPort), 
+							null, "Cancel", "Continue");
+						int button = -1;
+						alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
+							button = e.ButtonIndex;
+						};
+						alert.Show ();
+						while (button == -1)
+							NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
+						Console.WriteLine (button);
+						Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
+						if (button == 0)
+							return false;
+						else
+							Writer = Console.Out;
+					}
 				} else {
 					Writer = Console.Out;
 				}
@@ -150,6 +171,7 @@ namespace MonoTouch.NUnit.UI {
 			
 			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
 			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, Linker options)
+			return true;
 		}
 		
 		public void CloseWriter ()
@@ -196,9 +218,10 @@ namespace MonoTouch.NUnit.UI {
 			if (section.Count > 1) {
 				Section options = new Section () {
 					new StringElement ("Run all", delegate () {
-						OpenWriter (suite.Name);
-						Run (suite);
-						CloseWriter ();
+						if (OpenWriter (suite.Name)) {
+							Run (suite);
+							CloseWriter ();
+						}
 					})
 				};
 				root.Add (options);

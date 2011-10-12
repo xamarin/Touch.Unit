@@ -27,8 +27,14 @@ namespace MonoTouch.NUnit {
 			
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 
-			client = new TcpClient (hostName, port);
-			writer = new StreamWriter (client.GetStream ());
+			try {
+				client = new TcpClient (hostName, port);
+				writer = new StreamWriter (client.GetStream ());
+			}
+			catch {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				throw;
+			}
 		}
 		
 		public string HostName { get; private set; }
