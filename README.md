@@ -26,9 +26,12 @@
 
 4. Run / Debug / Add Tests / Enjoy
 
+## Documentation
+
+* [NUnitLite](http://www.nunitlite.org/) web site
 
 ## Todo List
 
-* ease automation
+* Track changes in [iOS](http://developer.apple.com/devcenter/ios/index.action), [MonoTouch](http://ios.xamarin.com), [NUnitLite](http://www.nunitlite.org/index.php?p=roadmap) and [MonoTouch.Dialog](https://github.com/migueldeicaza/MonoTouch.Dialog)
 
-* otherwise KISS
+* otherwise KISS - want something more, fork it :-)
