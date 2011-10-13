@@ -14,6 +14,7 @@ using System.Threading;
 
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
+using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 
 using NUnitLite;
@@ -53,6 +54,12 @@ namespace MonoTouch.NUnit.UI {
 			suites.Add (TestLoader.Load (assembly) as TestSuite);
 		}
 		
+		static void TerminateWithSuccess ()
+		{
+			Selector selector = new Selector ("terminateWithSuccess");
+			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
+		}
+		
 		public UIViewController GetViewController ()
 		{
 			var menu = new RootElement ("Test Runner");
@@ -76,10 +83,11 @@ namespace MonoTouch.NUnit.UI {
 			if (AutoStart) {
 				ThreadPool.QueueUserWorkItem (delegate {
 					window.BeginInvokeOnMainThread (delegate {
-						Run ();
+						Run ();	
 						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
+						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
 						if (TerminateAfterExecution)
-							throw new Exception ("Ending Touch.Unit process");
+							TerminateWithSuccess ();
 					});
 				});
 			}
