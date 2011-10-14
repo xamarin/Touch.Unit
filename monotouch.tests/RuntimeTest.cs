@@ -16,7 +16,7 @@ namespace MonoTouchFixtures.ObjCRuntime {
 		}
 
 		[Test]
-		//[ExpectedException (typeof (ArgumentNullException))]
+		[ExpectedException (typeof (ArgumentNullException))]
 		public void RegisterAssembly_null ()
 		{
 			Runtime.RegisterAssembly (null);
