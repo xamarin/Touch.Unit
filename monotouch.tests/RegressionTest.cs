@@ -141,5 +141,17 @@ namespace MonoTouchFixtures {
 			var insets = new MonoTouch.UIKit.UIEdgeInsets (1, 2, 3, 4);
 			Assert.That (insets.ToString (), Is.Not.EqualTo ("MonoTouch.UIKit.UIEdgeInsets"));
 		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=1516
+		public void Bug1516_Appearance_Linker ()
+		{
+			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (238,234,222);
+			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes() {
+				TextColor = UIColor.FromRGB(85, 108, 17),
+				TextShadowColor = UIColor.Clear
+			});
+			// show not throw if the application is linked
+		}
 	}
 }
