@@ -141,7 +141,92 @@ namespace MonoTouchFixtures {
 			var insets = new MonoTouch.UIKit.UIEdgeInsets (1, 2, 3, 4);
 			Assert.That (insets.ToString (), Is.Not.EqualTo ("MonoTouch.UIKit.UIEdgeInsets"));
 		}
+
+		void CheckExceptionDetailProperty (PropertyInfo pi)
+		{
+			bool data_member = true;
+			foreach (var ca in pi.GetCustomAttributes (false)) {
+				if (ca is DataMemberAttribute) {
+					data_member = true;
+					break;
+				}
+			}
+				// to be valid both getter and setter must be present if [DataMember]
+			if (data_member) {
+				Assert.NotNull (pi.GetGetMethod (true), "get_" + pi.Name);
+				Assert.NotNull (pi.GetSetMethod (true), "set_" + pi.Name);
+			} else {
+				// check well-known [DataMember]
+				switch (pi.Name) {
+				case "HelpLink":
+				case "InnerException":
+				case "Message":
+				case "StackTrace":
+				case "Type":
+					Assert.Fail ("{0} is missing it's [DataMember] attribute", pi.Name);
+					break;
+				}
+			}
+		}
 		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=1415
+		public void Bug1415_Linker_DataMember ()
+		{
+			// the typeof ensure we're can't (totally) link away System.ServiceModel.dll
+			Type ed = typeof (System.ServiceModel.AuditLevel).Assembly.GetType ("System.ServiceModel.ExceptionDetail", false);
+			// which means it's [DataContract] / [DataMember] should not be linked out
+			// even if we're not specifically using them (and without [Preserve] being added)
+			// which is important since System.ServiceModel.dll is an SDK assembly
+			Assert.NotNull (ed, "ExceptionDetail");
+			bool help_link = false;
+			bool inner_exception = false;
+			bool message = false;
+			bool stack_trace = false;
+			bool type = false;
+			foreach (var pi in ed.GetProperties ()) {
+				CheckExceptionDetailProperty (pi);
+				switch (pi.Name) {
+				case "HelpLink":
+					help_link = true;
+					break;
+				case "InnerException":
+					inner_exception = true;
+					break;
+				case "Message":
+					message = true;
+					break;
+				case "StackTrace":
+					stack_trace = true;
+					break;
+				case "Type":
+					type = true;
+					break;
+				}
+			}
+			// ensure all properties are still present
+			Assert.True (help_link, "HelpLink");
+			Assert.True (inner_exception, "InnerException");
+			Assert.True (message, "Message");
+			Assert.True (stack_trace, "StackTrace");
+			Assert.True (type, "Type");
+		}
+		
+		[Test]
+		// http://bugzilla.xamarin.com/show_bug.cgi?id=1415
+		// not really part of the bug - but part of the same fix
+		public void Bug1415_Linker_XmlAttribute ()
+		{
+			// the typeof ensure we're can't (totally) link away System.ServiceModel.dll
+			Type ed = typeof (System.ServiceModel.AuditLevel).Assembly.GetType ("System.ServiceModel.EndpointAddress10", false);
+			// type is decorated with both [XmlSchemaProvider] and [XmlRoot]
+			Assert.NotNull (ed, "EndpointAddress10");
+			
+			var q = new OpenTK.Quaternion ();
+			Assert.Null (q.GetType ().GetProperty ("XYZ"), "XmlIgnore");
+			// should be null if application is linked (won't be if "Don't link" is used)
+		}
+
 		[Test]
 		// http://bugzilla.xamarin.com/show_bug.cgi?id=1516
 		public void Bug1516_Appearance_Linker ()
