@@ -29,8 +29,8 @@ namespace MonoTouch.NUnit.UI {
 					return;
 				Run ();
 				Runner.CloseWriter ();
-				// display more details on (any) failure
-				if (!Result.IsSuccess) {
+				// display more details on (any) failure (but not when ignored)
+				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess) {
 					var root = new RootElement ("Results") {
 						new Section () {
 							new TestResultElement (Result)
@@ -56,12 +56,11 @@ namespace MonoTouch.NUnit.UI {
 		
 		public override void Update ()
 		{
-			Value = Result.Message;
-			if (Result.IsError) {
+			if (TestCase.RunState == RunState.Ignored) {
+				Value = Result.Message;
+				DetailColor = UIColor.Orange;
+			} else if (Result.IsError || Result.IsFailure) {
 				Value = Result.Message ?? "Unknown error";
-				DetailColor = UIColor.Red;
-			} else if (Result.IsFailure) {
-				// Value = "Failed at assertion #" + Assert.Counter;
 				DetailColor = UIColor.Red;
 			} else if (Result.IsSuccess) {
 				int counter = Assert.Counter;
