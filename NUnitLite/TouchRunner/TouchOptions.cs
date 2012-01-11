@@ -9,6 +9,7 @@ using System;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using Mono.Options;
 
 namespace NUnitLite {
 	
@@ -20,6 +21,20 @@ namespace NUnitLite {
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = defaults.IntForKey ("network.host.port");
+			
+			var os = new OptionSet () {
+				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
+				{ "autostart", "If the app should automatically start running the tests.", v => AutoStart = true },
+				{ "hostname=", "Comma-separated list of host names or IP address to (try to) connect to", v => HostName = v },
+				{ "hostport=", "TCP port to connect to.", v => HostPort = int.Parse (v) },
+				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
+			};
+			
+			try {
+				os.Parse (Environment.GetCommandLineArgs ());
+			} catch (OptionException oe) {
+				Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
+			}
 		}
 		
 		private bool EnableNetwork { get; set; }
@@ -27,6 +42,10 @@ namespace NUnitLite {
 		public string HostName { get; private set; }
 		
 		public int HostPort { get; private set; }
+		
+		public bool AutoStart { get; set; }
+		
+		public bool TerminateAfterExecution { get; set; }
 		
 		public bool ShowUseNetworkLogger {
 			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)); }
