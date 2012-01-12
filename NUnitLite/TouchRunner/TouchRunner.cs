@@ -36,9 +36,16 @@ namespace MonoTouch.NUnit.UI {
 			options = new TouchOptions ();
 		}
 		
-		public bool AutoStart { get; set; }
-		public bool TerminateAfterExecution { get; set; }
-
+		public bool AutoStart {
+			get { return options.AutoStart; }
+			set { options.AutoStart = value; }
+		}
+		
+		public bool TerminateAfterExecution {
+			get { return options.TerminateAfterExecution; }
+			set { options.TerminateAfterExecution = value; }
+		}
+		
 		public UINavigationController NavigationController {
 			get { return (UINavigationController) window.RootViewController; }
 		}
@@ -135,33 +142,81 @@ namespace MonoTouch.NUnit.UI {
 		
 		public TextWriter Writer { get; set; }
 		
+		static string SelectHostName (string[] names, int port)
+		{
+			if (names.Length == 0)
+				return null;
+			
+			if (names.Length == 1)
+				return names [0];
+			
+			object lock_obj = new object ();
+			string result = null;
+			int failures = 0;
+			
+			using (var evt = new ManualResetEvent (false)) {
+				for (int i = names.Length - 1; i >= 0; i--) {
+					var name = names [i];
+					ThreadPool.QueueUserWorkItem ((v) =>
+					{
+						try {
+							var client = new TcpClient (name, port);
+							using (var writer = new StreamWriter (client.GetStream ())) {
+								writer.WriteLine ("ping");
+							}
+							lock (lock_obj) {
+								if (result == null)
+									result = name;
+							}
+							evt.Set ();
+						} catch (Exception ex) {
+							lock (lock_obj) {
+								failures++;
+								if (failures == names.Length)
+									evt.Set ();
+							}
+						}
+					});
+				}
+				
+				// Wait for 1 success or all failures
+				evt.WaitOne ();
+			}
+			
+			return result;
+		}
+		
 		public bool OpenWriter (string message)
 		{
 			DateTime now = DateTime.Now;
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
 				if (options.ShowUseNetworkLogger) {
-					Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, options.HostName, options.HostPort);
-					try {
-						Writer = new TcpTextWriter (options.HostName, options.HostPort);
-					}
-					catch (SocketException) {
-						UIAlertView alert = new UIAlertView ("Network Error", 
-							String.Format ("Cannot connect to {0}:{1}. Continue on console ?", options.HostName, options.HostPort), 
-							null, "Cancel", "Continue");
-						int button = -1;
-						alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
-							button = e.ButtonIndex;
-						};
-						alert.Show ();
-						while (button == -1)
-							NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
-						Console.WriteLine (button);
-						Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
-						if (button == 0)
-							return false;
-						else
-							Writer = Console.Out;
+					var hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
+					
+					if (hostname != null) {
+						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
+						try {
+							Writer = new TcpTextWriter (hostname, options.HostPort);
+						}
+						catch (SocketException) {
+							UIAlertView alert = new UIAlertView ("Network Error", 
+								String.Format ("Cannot connect to {0}:{1}. Continue on console ?", hostname, options.HostPort), 
+								null, "Cancel", "Continue");
+							int button = -1;
+							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
+								button = e.ButtonIndex;
+							};
+							alert.Show ();
+							while (button == -1)
+								NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
+							Console.WriteLine (button);
+							Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
+							if (button == 0)
+								return false;
+							else
+								Writer = Console.Out;
+						}
 					}
 				} else {
 					Writer = Console.Out;
