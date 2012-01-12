@@ -36,6 +36,7 @@
     <Reference Include="monotouch" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
