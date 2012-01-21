@@ -265,6 +265,7 @@
     <Compile Include="TouchRunner\TouchOptions.cs" />
     <Compile Include="TouchRunner\TestResultElement.cs" />
     <Compile Include="TouchRunner\Options.cs" />
+    <Compile Include="TouchRunner\TestRocks.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />

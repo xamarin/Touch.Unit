@@ -121,7 +121,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		void Credits ()
 		{
-			var title = new MultilineElement ("Touch.Unit Runner\nCopyright 2011 Xamarin Inc.\nAll rights reserved.\n\nAuthor: Sebastien Pouliot");
+			var title = new MultilineElement ("Touch.Unit Runner\nCopyright 2011-2012 Xamarin Inc.\nAll rights reserved.\n\nAuthor: Sebastien Pouliot");
 			title.Alignment = UITextAlignment.Center;
 			
 			var root = new RootElement ("Credits") {
@@ -334,9 +334,11 @@ namespace MonoTouch.NUnit.UI {
 				var diff = DateTime.UtcNow - time.Pop ();
 				Writer.WriteLine ("{0} : {1} ms", result.Test.Name, diff.TotalMilliseconds);
 			} else {
-				if (result.IsSuccess) {
-					Writer.Write ("\t{0} ", result.Executed ? "[PASS]" : "[IGNORED]");
-				} else if (result.IsFailure || result.IsError) {
+				if (result.IsSuccess ()) {
+					Writer.Write ("\t[PASS] ");
+				} else if (result.IsIgnored ()) {
+					Writer.Write ("\t[IGNORED] ");
+				} else if (result.IsError ()) {
 					Writer.Write ("\t[FAIL] ");
 				} else {
 					Writer.Write ("\t[INFO] ");

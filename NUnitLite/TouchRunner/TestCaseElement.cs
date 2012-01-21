@@ -56,15 +56,17 @@ namespace MonoTouch.NUnit.UI {
 		
 		public override void Update ()
 		{
-			if (TestCase.RunState == RunState.Ignored) {
-				Value = Result.Message;
+			string m = Result.Message;
+			if (Result.IsIgnored ()) {
+				Value = Result.GetMessage ();
 				DetailColor = UIColor.Orange;
-			} else if (Result.IsError || Result.IsFailure) {
-				Value = Result.Message ?? "Unknown error";
+			} else if (Result.IsError ()) {
+				Value = Result.GetMessage ();
 				DetailColor = UIColor.Red;
-			} else if (Result.IsSuccess) {
+			} else if (Result.IsSuccess ()) {
 				int counter = Assert.Counter;
-				Value = String.Format ("Success! {0} ms for {1} assertion{2}",
+				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
+					Result.IsInconclusive () ? "Inconclusive." : "Success!",
 					time.TotalMilliseconds, counter,
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;

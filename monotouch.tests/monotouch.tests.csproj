@@ -48,5 +48,6 @@
   <ItemGroup>
     <Compile Include="RegressionTest.cs" />
     <Compile Include="RuntimeTest.cs" />
+    <Compile Include="TestTest.cs" />
   </ItemGroup>
 </Project>
