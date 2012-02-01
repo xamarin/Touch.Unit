@@ -1,0 +1,32 @@
+<Type Name="IResolveConstraint" FullName="NUnit.Framework.Constraints.IResolveConstraint">
+  <TypeSignature Language="C#" Value="public interface IResolveConstraint" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IResolveConstraint" />
+  <AssemblyInfo>
+    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Resolve">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.Constraint Resolve ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class NUnit.Framework.Constraints.Constraint Resolve() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

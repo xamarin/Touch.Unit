@@ -1,0 +1,124 @@
+<Type Name="Numerics" FullName="NUnit.Framework.Constraints.Numerics">
+  <TypeSignature Language="C#" Value="public class Numerics" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Numerics extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static bool AreEqual (object expected, object actual, ref NUnit.Framework.Constraints.Tolerance tolerance);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool AreEqual(object expected, object actual, class NUnit.Framework.Constraints.Tolerance tolerance) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="tolerance" Type="NUnit.Framework.Constraints.Tolerance&amp;" RefType="ref" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="tolerance">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Compare">
+      <MemberSignature Language="C#" Value="public static int Compare (object expected, object actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 Compare(object expected, object actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsFixedPointNumeric">
+      <MemberSignature Language="C#" Value="public static bool IsFixedPointNumeric (object obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsFixedPointNumeric(object obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsFloatingPointNumeric">
+      <MemberSignature Language="C#" Value="public static bool IsFloatingPointNumeric (object obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsFloatingPointNumeric(object obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNumericType">
+      <MemberSignature Language="C#" Value="public static bool IsNumericType (object obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool IsNumericType(object obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

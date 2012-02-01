@@ -1,0 +1,80 @@
+<Type Name="StringConstraint" FullName="NUnit.Framework.Constraints.StringConstraint">
+  <TypeSignature Language="C#" Value="public abstract class StringConstraint : NUnit.Framework.Constraints.Constraint" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit StringConstraint extends NUnit.Framework.Constraints.Constraint" />
+  <AssemblyInfo>
+    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>NUnit.Framework.Constraints.Constraint</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public StringConstraint (string expected);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(string expected) cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="expected" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="caseInsensitive">
+      <MemberSignature Language="C#" Value="protected bool caseInsensitive;" />
+      <MemberSignature Language="ILAsm" Value=".field family bool caseInsensitive" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="expected">
+      <MemberSignature Language="C#" Value="protected string expected;" />
+      <MemberSignature Language="ILAsm" Value=".field family string expected" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IgnoreCase">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.StringConstraint IgnoreCase { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class NUnit.Framework.Constraints.StringConstraint IgnoreCase" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.StringConstraint</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

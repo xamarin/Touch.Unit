@@ -1,0 +1,139 @@
+<Type Name="ConstraintExpressionBase" FullName="NUnit.Framework.Constraints.ConstraintExpressionBase">
+  <TypeSignature Language="C#" Value="public abstract class ConstraintExpressionBase" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ConstraintExpressionBase extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ConstraintExpressionBase ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ConstraintExpressionBase (NUnit.Framework.Constraints.ConstraintBuilder builder);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class NUnit.Framework.Constraints.ConstraintBuilder builder) cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="builder" Type="NUnit.Framework.Constraints.ConstraintBuilder" />
+      </Parameters>
+      <Docs>
+        <param name="builder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Append">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.Constraint Append (NUnit.Framework.Constraints.Constraint constraint);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.Constraint Append(class NUnit.Framework.Constraints.Constraint constraint) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="constraint" Type="NUnit.Framework.Constraints.Constraint" />
+      </Parameters>
+      <Docs>
+        <param name="constraint">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Append">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ConstraintExpression Append (NUnit.Framework.Constraints.ConstraintOperator op);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ConstraintExpression Append(class NUnit.Framework.Constraints.ConstraintOperator op) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="op" Type="NUnit.Framework.Constraints.ConstraintOperator" />
+      </Parameters>
+      <Docs>
+        <param name="op">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Append">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ResolvableConstraintExpression Append (NUnit.Framework.Constraints.SelfResolvingOperator op);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ResolvableConstraintExpression Append(class NUnit.Framework.Constraints.SelfResolvingOperator op) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="op" Type="NUnit.Framework.Constraints.SelfResolvingOperator" />
+      </Parameters>
+      <Docs>
+        <param name="op">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="builder">
+      <MemberSignature Language="C#" Value="protected NUnit.Framework.Constraints.ConstraintBuilder builder;" />
+      <MemberSignature Language="ILAsm" Value=".field family class NUnit.Framework.Constraints.ConstraintBuilder builder" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ConstraintBuilder</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance string ToString() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

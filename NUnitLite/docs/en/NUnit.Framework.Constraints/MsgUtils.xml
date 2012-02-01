@@ -1,0 +1,188 @@
+<Type Name="MsgUtils" FullName="NUnit.Framework.Constraints.MsgUtils">
+  <TypeSignature Language="C#" Value="public class MsgUtils" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MsgUtils extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MsgUtils ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ClipExpectedAndActual">
+      <MemberSignature Language="C#" Value="public static void ClipExpectedAndActual (ref string expected, ref string actual, int maxDisplayLength, int mismatch);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void ClipExpectedAndActual(string expected, string actual, int32 maxDisplayLength, int32 mismatch) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.String&amp;" RefType="ref" />
+        <Parameter Name="actual" Type="System.String&amp;" RefType="ref" />
+        <Parameter Name="maxDisplayLength" Type="System.Int32" />
+        <Parameter Name="mismatch" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="maxDisplayLength">To be added.</param>
+        <param name="mismatch">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ClipString">
+      <MemberSignature Language="C#" Value="public static string ClipString (string s, int maxStringLength, int clipStart);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string ClipString(string s, int32 maxStringLength, int32 clipStart) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="System.String" />
+        <Parameter Name="maxStringLength" Type="System.Int32" />
+        <Parameter Name="clipStart" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <param name="maxStringLength">To be added.</param>
+        <param name="clipStart">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EscapeControlChars">
+      <MemberSignature Language="C#" Value="public static string EscapeControlChars (string s);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string EscapeControlChars(string s) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FindMismatchPosition">
+      <MemberSignature Language="C#" Value="public static int FindMismatchPosition (string expected, string actual, int istart, bool ignoreCase);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 FindMismatchPosition(string expected, string actual, int32 istart, bool ignoreCase) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.String" />
+        <Parameter Name="actual" Type="System.String" />
+        <Parameter Name="istart" Type="System.Int32" />
+        <Parameter Name="ignoreCase" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="istart">To be added.</param>
+        <param name="ignoreCase">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetArrayIndicesAsString">
+      <MemberSignature Language="C#" Value="public static string GetArrayIndicesAsString (int[] indices);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetArrayIndicesAsString(int32[] indices) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="indices" Type="System.Int32[]" />
+      </Parameters>
+      <Docs>
+        <param name="indices">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetArrayIndicesFromCollectionIndex">
+      <MemberSignature Language="C#" Value="public static int[] GetArrayIndicesFromCollectionIndex (System.Collections.ICollection collection, int index);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32[] GetArrayIndicesFromCollectionIndex(class System.Collections.ICollection collection, int32 index) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="collection" Type="System.Collections.ICollection" />
+        <Parameter Name="index" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="collection">To be added.</param>
+        <param name="index">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetTypeRepresentation">
+      <MemberSignature Language="C#" Value="public static string GetTypeRepresentation (object obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string GetTypeRepresentation(object obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
