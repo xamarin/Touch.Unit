@@ -18,17 +18,33 @@ namespace MonoTouch.NUnit.UI {
 	class TestCaseElement : TestElement {
 		
 		TimeSpan time;
+		bool tapped;
+		DateTime start;
 		
 		public TestCaseElement (TestCase testCase, TouchRunner runner)
 			: base (testCase, runner)
 		{
 			Caption = testCase.Name;
 			Value = "NotExecuted";
+			testCase.StartedEvent += StartedHandler;
+			testCase.CompletedEvent += CompletedHandler;
 			this.Tapped += delegate {
 				if (!Runner.OpenWriter (Test.FullName))
 					return;
+				tapped = true;
 				Run ();
-				Runner.CloseWriter ();
+			};
+		}
+		
+		void StartedHandler (object sender, EventArgs args)
+		{
+			start = DateTime.UtcNow;
+		}
+		
+		void CompletedHandler (object sender, EventArgs args)
+		{
+			if (tapped) {
+				Runner.CloseWriterAsync ();
 				// display more details on (any) failure (but not when ignored)
 				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess) {
 					var root = new RootElement ("Results") {
@@ -37,9 +53,13 @@ namespace MonoTouch.NUnit.UI {
 						}
 					};
 					var dvc = new DialogViewController (root, true) { Autorotate = true };
-					runner.NavigationController.PushViewController (dvc, true);
+					Runner.NavigationController.PushViewController (dvc, true);
 				}
-			};
+				tapped = false;
+			}
+			time = (DateTime.UtcNow - start);
+			Result = TestCase.Result;
+			Update ();
 		}
 		
 		public TestCase TestCase {
@@ -48,10 +68,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void Run ()
 		{
-			DateTime start = DateTime.UtcNow;
-			Result = TestCase.Run (Runner);
-			time = (DateTime.UtcNow - start);
-			Update ();
+			TestCase.RunAsync (Runner);
 		}
 		
 		public override void Update ()
