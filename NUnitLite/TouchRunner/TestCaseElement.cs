@@ -88,6 +88,8 @@ namespace MonoTouch.NUnit.UI {
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;
 			}
+			
+			Reload ();
 		}
 	}
 }

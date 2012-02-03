@@ -85,6 +85,8 @@ namespace MonoTouch.NUnit.UI {
 					success, failure, failure > 1 ? "s" : String.Empty,
 					error, error > 1 ? "s" : String.Empty);
 			}
+			
+			Reload ();
 		}
 	}
 }
