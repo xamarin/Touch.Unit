@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class OrOperator : NUnit.Framework.Constraints.BinaryOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit OrOperator extends NUnit.Framework.Constraints.BinaryOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Operator that requires at least one of it's arguments to succeed
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +25,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Construct an OrOperator
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -44,7 +48,9 @@
       <Docs>
         <param name="left">To be added.</param>
         <param name="right">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Apply the operator to produce an OrConstraint
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

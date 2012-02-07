@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class NaNConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NaNConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            NaNConstraint tests that the actual value is a double or float NaN
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -41,9 +43,12 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">
+        </param>
+        <summary>
+            Test that the actual value is an NaN
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -61,8 +66,11 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">
+        </param>
+        <summary>
+            Write the constraint description to a specified writer
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

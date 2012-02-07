@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class GreaterThanConstraint : NUnit.Framework.Constraints.ComparisonConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GreaterThanConstraint extends NUnit.Framework.Constraints.ComparisonConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Tests whether a value is greater than the value supplied to its constructor
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +27,10 @@
         <Parameter Name="expected" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected value.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:GreaterThanConstraint" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class PathConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit PathConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            PathConstraint serves as the abstract base of constraints
+            that operate on paths and provides several helper methods.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +28,10 @@
         <Parameter Name="expected" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected path</param>
+        <summary>
+            Construct a PathConstraint for a give expected path
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -44,9 +49,12 @@
         <Parameter Name="path" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="path">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="path">
+        </param>
+        <summary>
+            Canonicalize the provided path
+            </summary>
+        <returns>The path in standardized form</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -61,7 +69,9 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Flag indicating whether a caseInsensitive comparison should be made
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -76,7 +86,9 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The expected path used in the constraint
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -91,7 +103,10 @@
         <ReturnType>NUnit.Framework.Constraints.PathConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Modifies the current instance to be case-insensitve
+            and returns it.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -111,10 +126,12 @@
         <Parameter Name="path2" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="path1">The first path</param>
+        <param name="path2">The second path</param>
+        <summary>
+            Test whether two paths are the same
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -133,10 +150,12 @@
         <Parameter Name="path2" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="path1">To be added.</param>
-        <param name="path2">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="path1">The first path - supposed to be the parent path</param>
+        <param name="path2">The second path - supposed to be the child path</param>
+        <summary>
+            Test whether one path is the same as or under another path
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -151,7 +170,10 @@
         <ReturnType>NUnit.Framework.Constraints.PathConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Modifies the current instance to be case-sensitve
+            and returns it.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -168,7 +190,9 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns the string representation of this constraint
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

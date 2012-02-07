@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class BinaryConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit BinaryConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            BinaryConstraint is the abstract base of all constraints
+            that combine two other constraints in some fashion.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -26,9 +29,11 @@
         <Parameter Name="right" Type="NUnit.Framework.Constraints.Constraint" />
       </Parameters>
       <Docs>
-        <param name="left">To be added.</param>
-        <param name="right">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="left">The first constraint</param>
+        <param name="right">The second constraint</param>
+        <summary>
+            Construct a BinaryConstraint from two other constraints
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -43,7 +48,9 @@
         <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The first constraint being combined
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -58,7 +65,9 @@
         <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The second constraint being combined
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

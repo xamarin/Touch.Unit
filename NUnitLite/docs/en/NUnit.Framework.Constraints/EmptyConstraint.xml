@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class EmptyConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit EmptyConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            EmptyConstraint tests a whether a string or collection is empty,
+            postponing the decision about which test is applied until the
+            type of the actual argument is known.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -41,9 +45,11 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">The value to be tested</param>
+        <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+        <returns>True for success, false for failure</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -61,8 +67,10 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">The writer on which the description is displayed</param>
+        <summary>
+            Write the constraint description to a MessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class CollectionOperator : NUnit.Framework.Constraints.PrefixOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CollectionOperator extends NUnit.Framework.Constraints.PrefixOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Abstract base for operators that indicate how to
+            apply a constraint to items in a collection.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +26,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Constructs a CollectionOperator
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

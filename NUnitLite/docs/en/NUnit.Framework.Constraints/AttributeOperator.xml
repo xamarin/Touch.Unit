@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class AttributeOperator : NUnit.Framework.Constraints.SelfResolvingOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AttributeOperator extends NUnit.Framework.Constraints.SelfResolvingOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Operator that tests for the presence of a particular attribute
+            on a type and optionally applies further tests to the attribute.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +28,10 @@
         <Parameter Name="type" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="type">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="type">The Type of attribute tested</param>
+        <summary>
+            Construct an AttributeOperator for a particular Type
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -45,7 +50,11 @@
       </Parameters>
       <Docs>
         <param name="stack">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Reduce produces a constraint from the operator and
+            any arguments. It takes the arguments from the constraint
+            stack and pushes the resulting constraint on it.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

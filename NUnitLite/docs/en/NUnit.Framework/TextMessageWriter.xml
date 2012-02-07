@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class TextMessageWriter : NUnit.Framework.Constraints.MessageWriter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TextMessageWriter extends NUnit.Framework.Constraints.MessageWriter" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,12 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            TextMessageWriter writes constraint descriptions and messages
+            in displayable form as a text stream. It tailors the display
+            of individual message components to form the standard message
+            format of NUnit assertion failure messages.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +28,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Construct a TextMessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -45,9 +52,14 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="userMessage">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="userMessage">
+        </param>
+        <param name="args">
+        </param>
+        <summary>
+            Construct a TextMessageWriter, specifying a user message
+            and optional formatting arguments.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -65,8 +77,12 @@
         <Parameter Name="constraint" Type="NUnit.Framework.Constraints.Constraint" />
       </Parameters>
       <Docs>
-        <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="constraint">The constraint that failed</param>
+        <summary>
+            Display Expected and Actual lines for a constraint. This
+            is called by MessageWriter's default implementation of
+            WriteMessageTo and provides the generic two-line display.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -85,9 +101,14 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected value</param>
+        <param name="actual">The actual value causing the failure</param>
+        <summary>
+            Display Expected and Actual lines for given values. This
+            method may be called by constraints that need more control over
+            the display of actual and expected values than is provided
+            by the default implementation.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -107,10 +128,13 @@
         <Parameter Name="tolerance" Type="NUnit.Framework.Constraints.Tolerance" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <param name="tolerance">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected value</param>
+        <param name="actual">The actual value causing the failure</param>
+        <param name="tolerance">The tolerance within which the test was made</param>
+        <summary>
+            Display Expected and Actual lines for given values, including
+            a tolerance value on the expected line.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -132,12 +156,16 @@
         <Parameter Name="clipping" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <param name="mismatch">To be added.</param>
-        <param name="ignoreCase">To be added.</param>
-        <param name="clipping">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected string value</param>
+        <param name="actual">The actual string value</param>
+        <param name="mismatch">The point at which the strings don't match or -1</param>
+        <param name="ignoreCase">If true, case is ignored in string comparisons</param>
+        <param name="clipping">If true, clip the strings to fit the max line length</param>
+        <summary>
+            Display the expected and actual string values on separate lines.
+            If the mismatch parameter is &gt;=0, an additional line is displayed
+            line containing a caret that points to the mismatch point.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -152,7 +180,9 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets or sets the maximum line length for this writer
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -168,7 +198,9 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Prefix used for the actual value line of a message
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -183,7 +215,9 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Prefix used for the expected value line of a message
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -198,7 +232,9 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Length of a message prefix
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -216,8 +252,10 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="actual">The actual value.</param>
+        <summary>
+            Writes the text for an actual value.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -237,10 +275,13 @@
         <Parameter Name="max" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="collection">To be added.</param>
-        <param name="start">To be added.</param>
-        <param name="max">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="collection">The collection containing elements to write.</param>
+        <param name="start">The starting point of the elements to write</param>
+        <param name="max">The maximum number of elements to write</param>
+        <summary>
+            Writes the text for a collection value,
+            starting at a particular point, to a max length
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -258,8 +299,10 @@
         <Parameter Name="connector" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="connector">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="connector">The connector.</param>
+        <summary>
+            Writes the text for a connector.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -277,8 +320,10 @@
         <Parameter Name="expected" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected value.</param>
+        <summary>
+            Writes the text for an expected value.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -304,10 +349,14 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="level">To be added.</param>
-        <param name="message">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="level">The indentation level of the message</param>
+        <param name="message">The message to be written</param>
+        <param name="args">Any arguments used in formatting the message</param>
+        <summary>
+            Method to write single line  message with optional args, usually
+            written to precede the general failure message, at a givel
+            indentation level.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -325,8 +374,10 @@
         <Parameter Name="modifier" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="modifier">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="modifier">The modifier.</param>
+        <summary>
+            Write the text for a modifier.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -344,8 +395,10 @@
         <Parameter Name="predicate" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="predicate">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="predicate">The predicate.</param>
+        <summary>
+            Writes the text for a predicate.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -363,8 +416,10 @@
         <Parameter Name="val" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="val">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="val">The value.</param>
+        <summary>
+            Writes the text for a generalized value.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

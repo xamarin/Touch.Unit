@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class ConstraintBuilder.OperatorStack" />
   <TypeSignature Language="ILAsm" Value=".class nested public auto ansi beforefieldinit ConstraintBuilder/OperatorStack extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            OperatorStack is a type-safe stack for holding ConstraintOperators
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +27,10 @@
         <Parameter Name="builder" Type="NUnit.Framework.Constraints.ConstraintBuilder" />
       </Parameters>
       <Docs>
-        <param name="builder">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="builder">The builder.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:OperatorStack" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -41,8 +45,11 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>
+            Gets a value indicating whether this <see cref="T:OpStack" /> is empty.
+            </summary>
+        <value>
+          <c>true</c> if empty; otherwise, <c>false</c>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -58,8 +65,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>
+            Pops the topmost operator from the stack.
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -77,8 +86,10 @@
         <Parameter Name="op" Type="NUnit.Framework.Constraints.ConstraintOperator" />
       </Parameters>
       <Docs>
-        <param name="op">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="op">The op.</param>
+        <summary>
+            Pushes the specified operator onto the stack.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -93,8 +104,10 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintOperator</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>
+            Gets the topmost operator without modifying the stack.
+            </summary>
+        <value>The top.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

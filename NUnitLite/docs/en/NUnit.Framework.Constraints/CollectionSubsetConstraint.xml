@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class CollectionSubsetConstraint : NUnit.Framework.Constraints.CollectionItemsEqualConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit CollectionSubsetConstraint extends NUnit.Framework.Constraints.CollectionItemsEqualConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            CollectionSubsetConstraint is used to determine whether
+            one collection is a subset of another
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +28,10 @@
         <Parameter Name="expected" Type="System.Collections.IEnumerable" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The collection that the actual value is expected to be a subset of</param>
+        <summary>
+            Construct a CollectionSubsetConstraint
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -44,9 +49,13 @@
         <Parameter Name="actual" Type="System.Collections.IEnumerable" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">
+        </param>
+        <summary>
+            Test whether the actual collection is a subset of
+            the expected collection provided.
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -64,8 +73,11 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">
+        </param>
+        <summary>
+            Write a description of this constraint to a MessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

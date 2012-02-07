@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class ResolvableConstraintExpression : NUnit.Framework.Constraints.ConstraintExpression, NUnit.Framework.Constraints.IResolveConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ResolvableConstraintExpression extends NUnit.Framework.Constraints.ConstraintExpression implements class NUnit.Framework.Constraints.IResolveConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -14,7 +14,16 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            ResolvableConstraintExpression is used to represent a compound
+            constraint being constructed at a point where the last operator
+            may either terminate the expression or may have additional
+            qualifying constraints added to it.
+            It is used, for example, for a Property element or for
+            an Exception element, either of which may be optionally
+            followed by constraints that apply to the property or
+            exception.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -27,7 +36,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Create a new instance of ResolvableConstraintExpression
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -43,7 +54,10 @@
       </Parameters>
       <Docs>
         <param name="builder">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Create a new instance of ResolvableConstraintExpression,
+            passing in a pre-populated ConstraintBuilder.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -58,7 +72,9 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Appends an And Operator to the expression
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -75,7 +91,9 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Resolve the current expression to a Constraint
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -91,7 +109,9 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Appends an Or operator to the expression.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

@@ -1,6 +1,6 @@
 <Overview>
   <Assemblies>
-    <Assembly Name="NUnitLite" Version="0.6.0.0">
+    <Assembly Name="MonoTouch.NUnitLite" Version="0.6.0.0">
       <Attributes>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyCompany("NUnit Software")</AttributeName>
@@ -145,6 +145,7 @@
       <Type Name="OrConstraint" Kind="Class" />
       <Type Name="OrOperator" Kind="Class" />
       <Type Name="PathConstraint" Kind="Class" />
+      <Type Name="PredicateConstraint`1" DisplayName="PredicateConstraint&lt;T&gt;" Kind="Class" />
       <Type Name="PrefixConstraint" Kind="Class" />
       <Type Name="PrefixOperator" Kind="Class" />
       <Type Name="PropertyConstraint" Kind="Class" />

@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class NotOperator : NUnit.Framework.Constraints.PrefixOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NotOperator extends NUnit.Framework.Constraints.PrefixOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Negates the test of the constraint it wraps.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +25,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Constructs a new NotOperator
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -42,7 +46,9 @@
       </Parameters>
       <Docs>
         <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a NotConstraint applied to its argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

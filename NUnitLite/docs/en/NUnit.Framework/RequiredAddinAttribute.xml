@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class RequiredAddinAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit RequiredAddinAttribute extends System.Attribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -15,7 +15,12 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            RequiredAddinAttribute may be used to indicate the names of any addins
+            that must be present in order to run some or all of the tests in an
+            assembly. If the addin is not loaded, the entire assembly is marked
+            as NotRunnable.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -30,8 +35,10 @@
         <Parameter Name="requiredAddin" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="requiredAddin">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="requiredAddin">The required addin.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:RequiredAddinAttribute" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -46,8 +53,10 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>
+            Gets the name of required addin.
+            </summary>
+        <value>The required addin name.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

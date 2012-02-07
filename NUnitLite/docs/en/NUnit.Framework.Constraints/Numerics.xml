@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class Numerics" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Numerics extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            The Numerics class contains common operations on numeric values.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -30,11 +32,15 @@
         <Parameter Name="tolerance" Type="NUnit.Framework.Constraints.Tolerance&amp;" RefType="ref" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <param name="tolerance">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="expected">The expected value</param>
+        <param name="actual">The actual value</param>
+        <param name="tolerance">A reference to the tolerance in effect</param>
+        <summary>
+            Test two numeric values for equality, performing the usual numeric
+            conversions and using a provided or default tolerance. If the tolerance
+            provided is Empty, this method may set it to a default tolerance.
+            </summary>
+        <returns>True if the values are equal</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -53,10 +59,12 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="expected">The expected value</param>
+        <param name="actual">The actual value</param>
+        <summary>
+            Compare two numeric values, performing the usual numeric conversions.
+            </summary>
+        <returns>The relationship of the values to each other</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -74,9 +82,12 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="obj">The object to check</param>
+        <summary>
+            Checks the type of the object, returning true if
+            the object is a fixed point numeric type.
+            </summary>
+        <returns>true if the object is a fixed point numeric type</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -94,9 +105,12 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="obj">The object to check</param>
+        <summary>
+            Checks the type of the object, returning true if
+            the object is a floating point numeric type.
+            </summary>
+        <returns>true if the object is a floating point numeric type</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -114,9 +128,12 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="obj">The object to check</param>
+        <summary>
+            Checks the type of the object, returning true if
+            the object is a numeric type.
+            </summary>
+        <returns>true if the object is a numeric type</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

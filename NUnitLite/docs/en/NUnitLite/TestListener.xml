@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public interface TestListener" />
   <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract TestListener" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />

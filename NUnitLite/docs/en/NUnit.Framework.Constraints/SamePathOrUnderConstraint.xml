@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class SamePathOrUnderConstraint : NUnit.Framework.Constraints.PathConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SamePathOrUnderConstraint extends NUnit.Framework.Constraints.PathConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            SamePathOrUnderConstraint tests that one path is under another
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +27,10 @@
         <Parameter Name="expected" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">The expected path</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:SamePathOrUnderConstraint" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -44,9 +48,11 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">The value to be tested</param>
+        <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+        <returns>True for success, false for failure</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -64,8 +70,10 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">The writer on which the description is displayed</param>
+        <summary>
+            Write the constraint description to a MessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

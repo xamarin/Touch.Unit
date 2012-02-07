@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class PropOperator : NUnit.Framework.Constraints.SelfResolvingOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PropOperator extends NUnit.Framework.Constraints.SelfResolvingOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Operator used to test for the presence of a named Property
+            on an object and optionally apply further tests to the
+            value of that property.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -26,7 +30,9 @@
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Constructs a PropOperator for a particular named property
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -41,7 +47,9 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets the name of the property to which the operator applies
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -60,8 +68,13 @@
         <Parameter Name="stack" Type="NUnit.Framework.Constraints.ConstraintBuilder+ConstraintStack" />
       </Parameters>
       <Docs>
-        <param name="stack">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="stack">
+        </param>
+        <summary>
+            Reduce produces a constraint from the operator and
+            any arguments. It takes the arguments from the constraint
+            stack and pushes the resulting constraint on it.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

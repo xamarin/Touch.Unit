@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class PropertyConstraint : NUnit.Framework.Constraints.PrefixConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit PropertyConstraint extends NUnit.Framework.Constraints.PrefixConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            PropertyConstraint extracts a named property and uses
+            its value as the actual value for a chained constraint.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -26,9 +29,11 @@
         <Parameter Name="baseConstraint" Type="NUnit.Framework.Constraints.Constraint" />
       </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <param name="baseConstraint">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="name">The name.</param>
+        <param name="baseConstraint">The constraint to apply to the property.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:PropertyConstraint" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -46,9 +51,11 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">The value to be tested</param>
+        <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+        <returns>True for success, false for failure</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -64,8 +71,10 @@
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>
+            Returns the string representation of the constraint.
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -83,8 +92,13 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">The writer on which the actual value is displayed</param>
+        <summary>
+            Write the actual value for a failing constraint test to a
+            MessageWriter. The default implementation simply writes
+            the raw value of actual, leaving it to the writer to
+            perform any formatting.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -102,8 +116,10 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">The writer on which the description is displayed</param>
+        <summary>
+            Write the constraint description to a MessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

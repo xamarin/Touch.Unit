@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class WithOperator : NUnit.Framework.Constraints.PrefixOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit WithOperator extends NUnit.Framework.Constraints.PrefixOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,12 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Represents a constraint that simply wraps the
+            constraint provided as an argument, without any
+            further functionality, but which modifes the
+            order of evaluation because of its precedence.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +28,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Constructor for the WithOperator
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -42,7 +49,9 @@
       </Parameters>
       <Docs>
         <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that wraps its argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

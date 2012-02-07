@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class TestRunner : NUnitLite.TestListener" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TestRunner extends System.Object implements class NUnitLite.TestListener" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -45,8 +45,10 @@
         <Parameter Name="listener" Type="NUnitLite.TestListener" />
       </Parameters>
       <Docs>
-        <param name="listener">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="listener">The listener.</param>
+        <summary>
+            Adds a listener to the TestRunner.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -64,8 +66,10 @@
         <Parameter Name="listener" Type="NUnitLite.TestListener" />
       </Parameters>
       <Docs>
-        <param name="listener">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="listener">The listener.</param>
+        <summary>
+            Removes a listener from the TestRunner.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -83,8 +87,10 @@
         <Parameter Name="test" Type="NUnitLite.ITest" />
       </Parameters>
       <Docs>
-        <param name="test">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="test">The test.</param>
+        <summary>
+            Runs the specified test.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -103,9 +109,11 @@
         <Parameter Name="assembly" Type="System.Reflection.Assembly" />
       </Parameters>
       <Docs>
-        <param name="assembly">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="assembly">The assembly for which tests are to be run.</param>
+        <summary>
+            Runs all tests in the specified assembly.
+            </summary>
+        <returns>TestResult representing the result of the run</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -125,9 +133,11 @@
       </Parameters>
       <Docs>
         <param name="assembly">To be added.</param>
-        <param name="tests">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="tests">Array of test names to be run</param>
+        <summary>
+            Runs a set of tests specified by name
+            </summary>
+        <returns>TestResult representing the result of the run</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -145,8 +155,10 @@
         <Parameter Name="result" Type="NUnitLite.TestResult" />
       </Parameters>
       <Docs>
-        <param name="result">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="result">The result of the test that just finished.</param>
+        <summary>
+            Forwards the TestFinished event to all listeners.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -164,8 +176,10 @@
         <Parameter Name="test" Type="NUnitLite.ITest" />
       </Parameters>
       <Docs>
-        <param name="test">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="test">The test that just started.</param>
+        <summary>
+            Forwards the TestStarted event to all listeners.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

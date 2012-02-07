@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class OptionSet : System.Collections.ObjectModel.KeyedCollection&lt;string,Mono.Options.Option&gt;" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit OptionSet extends System.Collections.ObjectModel.KeyedCollection`2&lt;string, class Mono.Options.Option&gt;" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>

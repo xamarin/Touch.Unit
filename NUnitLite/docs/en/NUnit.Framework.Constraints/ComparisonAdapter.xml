@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class ComparisonAdapter" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ComparisonAdapter extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            ComparisonAdapter class centralizes all comparisons of
+            values in NUnit, adapting to the use of any provided
+            IComparer, IComparer&lt;T&gt; or Comparison&lt;T&gt;
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -44,7 +48,9 @@
       <Docs>
         <param name="expected">To be added.</param>
         <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Compares two objects
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -60,7 +66,10 @@
         <ReturnType>NUnit.Framework.Constraints.ComparisonAdapter</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets the default ComparisonAdapter, which wraps an
+            NUnitComparer object.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -80,7 +89,61 @@
       </Parameters>
       <Docs>
         <param name="comparer">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ComparisonAdapter that wraps an IComparer
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="For&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static NUnit.Framework.Constraints.ComparisonAdapter For&lt;T&gt; (System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NUnit.Framework.Constraints.ComparisonAdapter For&lt;T&gt;(class System.Collections.Generic.IComparer`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ComparisonAdapter</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">To be added.</param>
+        <summary>
+            Returns a ComparisonAdapter that wraps an IComparer&lt;T&gt;
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="For&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static NUnit.Framework.Constraints.ComparisonAdapter For&lt;T&gt; (Comparison&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NUnit.Framework.Constraints.ComparisonAdapter For&lt;T&gt;(class System.Comparison`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ComparisonAdapter</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Comparison&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">To be added.</param>
+        <summary>
+            Returns a ComparisonAdapter that wraps a Comparison&lt;T&gt;
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

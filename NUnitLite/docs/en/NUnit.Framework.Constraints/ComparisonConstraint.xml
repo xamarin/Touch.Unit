@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class ComparisonConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit ComparisonConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Abstract base class for constraints that compare values to
+            determine if one is greater than, equal to or less than
+            the other.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -29,12 +33,14 @@
         <Parameter Name="predicate" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="value">To be added.</param>
-        <param name="ltOK">To be added.</param>
-        <param name="eqOK">To be added.</param>
-        <param name="gtOK">To be added.</param>
-        <param name="predicate">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="value">The value against which to make a comparison.</param>
+        <param name="ltOK">if set to <c>true</c> less succeeds.</param>
+        <param name="eqOK">if set to <c>true</c> equal succeeds.</param>
+        <param name="gtOK">if set to <c>true</c> greater succeeds.</param>
+        <param name="predicate">String used in describing the constraint.</param>
+        <summary>
+            Initializes a new instance of the <see cref="T:ComparisonConstraint" /> class.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -49,7 +55,9 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            if true, equal returns success
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -64,7 +72,9 @@
         <ReturnType>System.Object</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The value against which a comparison is to be made
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -79,7 +89,9 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            if true, greater than returns success
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -94,7 +106,9 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            If true, less than returns success
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -112,9 +126,11 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">The value to be tested</param>
+        <summary>
+            Test whether the constraint is satisfied by a given value
+            </summary>
+        <returns>True for success, false for failure</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -133,7 +149,61 @@
       </Parameters>
       <Docs>
         <param name="comparer">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Modifies the constraint to use an IComparer and returns self
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ComparisonConstraint Using&lt;T&gt; (System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ComparisonConstraint Using&lt;T&gt;(class System.Collections.Generic.IComparer`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ComparisonConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">To be added.</param>
+        <summary>
+            Modifies the constraint to use an IComparer&lt;T&gt; and returns self
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ComparisonConstraint Using&lt;T&gt; (Comparison&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ComparisonConstraint Using&lt;T&gt;(class System.Comparison`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ComparisonConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Comparison&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">To be added.</param>
+        <summary>
+            Modifies the constraint to use a Comparison&lt;T&gt; and returns self
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -152,8 +222,10 @@
         <Parameter Name="writer" Type="NUnit.Framework.Constraints.MessageWriter" />
       </Parameters>
       <Docs>
-        <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="writer">The writer on which the description is displayed</param>
+        <summary>
+            Write the constraint description to a MessageWriter
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

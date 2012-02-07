@@ -2,14 +2,17 @@
   <TypeSignature Language="C#" Value="public enum RunState" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed RunState extends System.Enum" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Enum</BaseTypeName>
   </Base>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            The RunState enum indicates whether a test
+            has been or can be executed.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -24,7 +27,9 @@
         <ReturnType>NUnitLite.RunState</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The test can only be run explicitly
+            </summary>
       </Docs>
     </Member>
     <Member MemberName="NotRunnable">
@@ -38,7 +43,9 @@
         <ReturnType>NUnitLite.RunState</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The test is not runnable
+            </summary>
       </Docs>
     </Member>
     <Member MemberName="Runnable">
@@ -52,7 +59,9 @@
         <ReturnType>NUnitLite.RunState</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The test is runnable
+            </summary>
       </Docs>
     </Member>
   </Members>

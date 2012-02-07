@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class TouchRunner : NUnitLite.TestListener" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TouchRunner extends System.Object implements class NUnitLite.TestListener" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>

@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public sealed class DescriptionAttribute : NUnit.Framework.PropertyAttribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit DescriptionAttribute extends NUnit.Framework.PropertyAttribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -15,7 +15,10 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Attribute used to provide descriptive text about a
+            test case or fixture.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -30,8 +33,10 @@
         <Parameter Name="description" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="description">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="description">The text of the description</param>
+        <summary>
+            Construct a description Attribute
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

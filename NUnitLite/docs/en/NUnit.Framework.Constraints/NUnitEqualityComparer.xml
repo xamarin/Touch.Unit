@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class NUnitEqualityComparer" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit NUnitEqualityComparer extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            NUnitEqualityComparer encapsulates NUnit's handling of
+            equality tests between objects.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -38,7 +41,10 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets and sets a flag indicating that arrays should be
+            compared as collections, without regard to their shape.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -54,7 +60,9 @@
         <ReturnType>NUnit.Framework.Constraints.NUnitEqualityComparer</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns the default NUnitEqualityComparer
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -70,7 +78,11 @@
         <ReturnType>NUnit.Framework.Constraints.EqualityAdapter</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets and sets an external comparer to be used to
+            test for equality. It is applied to members of
+            collections, in place of NUnit's own logic.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -86,7 +98,9 @@
         <ReturnType>System.Collections.IList</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets the list of failure points for the last Match performed.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -102,7 +116,10 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets and sets a flag indicating whether case should
+            be ignored in determining equality.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -124,7 +141,9 @@
       <Docs>
         <param name="x">To be added.</param>
         <param name="y">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Compares two objects for equality.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -140,7 +159,10 @@
         <ReturnType>NUnit.Framework.Constraints.Tolerance</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets and sets a tolerance used to compare objects of
+            certin types.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

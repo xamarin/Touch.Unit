@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class CollectionItemsEqualConstraint : NUnit.Framework.Constraints.CollectionConstraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit CollectionItemsEqualConstraint extends NUnit.Framework.Constraints.CollectionConstraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,11 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            CollectionItemsEqualConstraint is the abstract base class for all
+            collection constraints that apply some notion of item equality
+            as a part of their operation.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -23,7 +27,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Construct an empty CollectionConstraint
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -38,8 +44,11 @@
         <Parameter Name="arg" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="arg">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="arg">
+        </param>
+        <summary>
+            Construct a CollectionConstraint
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -54,7 +63,9 @@
         <ReturnType>NUnit.Framework.Constraints.CollectionItemsEqualConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Flag the constraint to ignore case and return self.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -76,7 +87,9 @@
       <Docs>
         <param name="x">To be added.</param>
         <param name="y">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Compares two collection members for equality
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -95,8 +108,10 @@
         <Parameter Name="c" Type="System.Collections.IEnumerable" />
       </Parameters>
       <Docs>
-        <param name="c">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="c">The collection to be included in the tally</param>
+        <summary>
+            Return a new CollectionTally for use in making tests
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -115,9 +130,111 @@
         <Parameter Name="comparer" Type="System.Collections.IComparer" />
       </Parameters>
       <Docs>
-        <param name="comparer">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="comparer">The IComparer object to use.</param>
+        <summary>
+            Flag the constraint to use the supplied IComparer object.
+            </summary>
+        <returns>Self.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using (System.Collections.IEqualityComparer comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using(class System.Collections.IEqualityComparer comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.CollectionItemsEqualConstraint</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Collections.IEqualityComparer" />
+      </Parameters>
+      <Docs>
+        <param name="comparer">The IComparer object to use.</param>
+        <summary>
+            Flag the constraint to use the supplied IEqualityComparer object.
+            </summary>
+        <returns>Self.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt; (System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt;(class System.Collections.Generic.IComparer`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.CollectionItemsEqualConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">The IComparer object to use.</param>
+        <summary>
+            Flag the constraint to use the supplied IComparer object.
+            </summary>
+        <returns>Self.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt; (System.Collections.Generic.IEqualityComparer&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt;(class System.Collections.Generic.IEqualityComparer`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.CollectionItemsEqualConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Collections.Generic.IEqualityComparer&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">The IComparer object to use.</param>
+        <summary>
+            Flag the constraint to use the supplied IEqualityComparer object.
+            </summary>
+        <returns>Self.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Using&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt; (Comparison&lt;T&gt; comparer);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.CollectionItemsEqualConstraint Using&lt;T&gt;(class System.Comparison`1&lt;!!T&gt; comparer) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.CollectionItemsEqualConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="comparer" Type="System.Comparison&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="comparer">The IComparer object to use.</param>
+        <summary>
+            Flag the constraint to use the supplied Comparison object.
+            </summary>
+        <returns>Self.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

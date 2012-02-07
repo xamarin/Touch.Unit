@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class OptionValueCollection : System.Collections.Generic.ICollection&lt;string&gt;, System.Collections.Generic.IEnumerable&lt;string&gt;, System.Collections.Generic.IList&lt;string&gt;, System.Collections.IList" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit OptionValueCollection extends System.Object implements class System.Collections.Generic.ICollection`1&lt;string&gt;, class System.Collections.Generic.IEnumerable`1&lt;string&gt;, class System.Collections.Generic.IList`1&lt;string&gt;, class System.Collections.ICollection, class System.Collections.IEnumerable, class System.Collections.IList" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>

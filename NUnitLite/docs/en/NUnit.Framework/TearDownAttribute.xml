@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class TearDownAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TearDownAttribute extends System.Attribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -15,7 +15,11 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Attribute used to identify a method that is called
+            immediately after each test is run. The method is
+            guaranteed to be called, even if an exception is thrown.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>

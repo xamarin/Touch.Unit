@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class ExpectedExceptionAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ExpectedExceptionAttribute extends System.Attribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -15,7 +15,9 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            ExpectedExceptionAttribute
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -28,7 +30,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Constructor for a non-specific exception
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -43,8 +47,10 @@
         <Parameter Name="exceptionType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="exceptionType">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="exceptionType">The type of the expected exception</param>
+        <summary>
+            Constructor for a given type of exception
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

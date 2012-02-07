@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class AssertionHelper : NUnit.Framework.Constraints.ConstraintFactory" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AssertionHelper extends NUnit.Framework.Constraints.ConstraintFactory" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,13 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            AssertionHelper is an optional base class for user tests,
+            allowing the use of shorter names for constraints and
+            asserts and avoiding conflict with the definition of
+            <see cref="T:NUnit.Framework.Is" />, from which it inherits much of its
+            behavior, in certain mock object frameworks.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -41,8 +47,11 @@
         <Parameter Name="condition" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="condition">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="condition">The evaluated condition</param>
+        <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.AssertionException" />. Works Identically to <see cref="M:NUnit.Framework.Assert.That(System.Boolean)" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -61,9 +70,12 @@
         <Parameter Name="constraint" Type="NUnit.Framework.Constraints.IResolveConstraint" />
       </Parameters>
       <Docs>
-        <param name="code">To be added.</param>
-        <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="code">A TestDelegate to be executed</param>
+        <param name="constraint">A ThrowsConstraint used in the test</param>
+        <summary>
+            Asserts that the code represented by a delegate throws an exception
+            that satisfies the constraint provided.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -82,9 +94,13 @@
         <Parameter Name="message" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="condition">To be added.</param>
-        <param name="message">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="condition">The evaluated condition</param>
+        <param name="message">The message to display if the condition is false</param>
+        <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.AssertionException" />. Works Identically to
+            <see cref="M:NUnit.Framework.Assert.That(System.Boolean,System.String)" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -103,9 +119,12 @@
         <Parameter Name="constraint" Type="NUnit.Framework.Constraints.IResolveConstraint" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="actual">The actual value to test</param>
+        <param name="constraint">A Constraint to be applied</param>
+        <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and throwing an assertion exception on failure. Works
+            identically to <see cref="M:NUnit.Framework.Assert.That(System.Object,NUnit.Framework.Constraints.IResolveConstraint)" /></summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -131,10 +150,14 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="condition">To be added.</param>
-        <param name="message">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="condition">The evaluated condition</param>
+        <param name="message">The message to display if the condition is false</param>
+        <param name="args">Arguments to be used in formatting the message</param>
+        <summary>
+            Asserts that a condition is true. If the condition is false the method throws
+            an <see cref="T:NUnit.Framework.AssertionException" />. Works Identically to
+            <see cref="M:NUnit.Framework.Assert.That(System.Boolean,System.String,System.Object[])" />.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -154,10 +177,13 @@
         <Parameter Name="message" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <param name="constraint">To be added.</param>
-        <param name="message">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="actual">The actual value to test</param>
+        <param name="constraint">A Constraint to be applied</param>
+        <param name="message">The message that will be displayed on failure</param>
+        <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and throwing an assertion exception on failure. Works
+            identically to <see cref="M:NUnit.Framework.Assert.That(System.Object,NUnit.Framework.Constraints.IResolveConstraint,System.String)" /></summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -184,11 +210,14 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <param name="constraint">To be added.</param>
-        <param name="message">To be added.</param>
-        <param name="args">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="actual">The actual value to test</param>
+        <param name="constraint">A Constraint to be applied</param>
+        <param name="message">The message that will be displayed on failure</param>
+        <param name="args">Arguments to be used in formatting the message</param>
+        <summary>
+            Apply a constraint to an actual value, succeeding if the constraint
+            is satisfied and throwing an assertion exception on failure. Works
+            identically to <see cref="M:NUnit.Framework.Assert.That(System.Object,NUnit.Framework.Constraints.IResolveConstraint,System.String,System.Object[])" /></summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

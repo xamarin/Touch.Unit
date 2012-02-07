@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class SomeOperator : NUnit.Framework.Constraints.CollectionOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SomeOperator extends NUnit.Framework.Constraints.CollectionOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Represents a constraint that succeeds if any of the
+            members of a collection match a base constraint.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -42,7 +45,11 @@
       </Parameters>
       <Docs>
         <param name="constraint">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that will apply the argument
+            to the members of a collection, succeeding if
+            any of them succeed.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

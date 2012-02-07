@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class SetUpAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SetUpAttribute extends System.Attribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -15,7 +15,11 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Attribute used to mark a class that contains one-time SetUp
+            and/or TearDown methods that apply to all the tests in a
+            namespace or an assembly.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>

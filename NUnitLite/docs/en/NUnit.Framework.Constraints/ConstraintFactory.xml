@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class ConstraintFactory" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit ConstraintFactory extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Helper class with properties and methods that supply
+            a number of constraints used in Asserts.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -38,7 +41,11 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ConstraintExpression, which will apply
+            the following constraint to all members of a collection,
+            succeeding if all of them succeed.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -58,7 +65,34 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is assignable from the type supplied as an argument.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AssignableFrom&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.AssignableFromConstraint AssignableFrom&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.AssignableFromConstraint AssignableFrom&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.AssignableFromConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is assignable from the type supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -78,7 +112,34 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is assignable from the type supplied as an argument.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AssignableTo&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.AssignableToConstraint AssignableTo&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.AssignableToConstraint AssignableTo&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.AssignableToConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is assignable from the type supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -98,7 +159,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is greater than or equal to the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -118,7 +182,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is less than or equal to the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -138,7 +205,34 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new AttributeConstraint checking for the
+            presence of a particular attribute on an object.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Attribute&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ResolvableConstraintExpression Attribute&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ResolvableConstraintExpression Attribute&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a new AttributeConstraint checking for the
+            presence of a particular attribute on an object.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -154,7 +248,9 @@
         <ReturnType>NUnit.Framework.Constraints.BinarySerializableConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether an object graph is serializable in binary format.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -174,7 +270,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new CollectionContainsConstraint checking for the
+            presence of a particular object in the collection.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -194,7 +293,14 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new ContainsConstraint. This constraint
+            will, in turn, make use of the appropriate second-level
+            constraint, depending on the type of the actual argument.
+            This overload is only used if the item sought is a string,
+            since any other type implies that we are looking for a
+            collection member.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -214,7 +320,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value contains the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -230,7 +339,10 @@
         <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new ConstraintExpression, which will apply the following
+            constraint to the Count property of the object being tested.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -250,7 +362,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that fails if the actual
+            value contains the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -270,7 +385,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that fails if the actual
+            value ends with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -290,7 +408,10 @@
       </Parameters>
       <Docs>
         <param name="pattern">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that fails if the actual
+            value matches the pattern supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -310,7 +431,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that fails if the actual
+            value starts with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -326,7 +450,9 @@
         <ReturnType>NUnit.Framework.Constraints.EmptyConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests for empty
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -346,7 +472,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value ends with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -366,7 +495,9 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests two items for equality
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -386,7 +517,11 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is a collection containing the same elements as the
+            collection supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -402,7 +537,9 @@
         <ReturnType>NUnit.Framework.Constraints.FalseConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests for False
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -422,7 +559,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is greater than the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -442,7 +582,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is greater than or equal to the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -458,7 +601,10 @@
         <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new ConstraintExpression, which will apply the following
+            constraint to the InnerException property of the object being tested.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -480,7 +626,10 @@
       <Docs>
         <param name="from">To be added.</param>
         <param name="to">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value falls
+            within a specified range.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -500,7 +649,34 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is of the type supplied as an argument or a derived type.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InstanceOf&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.InstanceOfTypeConstraint InstanceOf&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.InstanceOfTypeConstraint InstanceOf&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.InstanceOfTypeConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is of the type supplied as an argument or a derived type.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -525,7 +701,39 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is of the type supplied as an argument or a derived type.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InstanceOfType&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.InstanceOfTypeConstraint InstanceOfType&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.InstanceOfTypeConstraint InstanceOfType&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Obsolete("Use InstanceOf&lt;T&gt;()")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.InstanceOfTypeConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is of the type supplied as an argument or a derived type.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -541,7 +749,10 @@
         <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new ConstraintExpression, which will apply the following
+            constraint to the Length property of the object being tested.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -561,7 +772,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is less than the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -581,7 +795,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the
+            actual value is less than or equal to the suppled argument
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -601,7 +818,10 @@
       </Parameters>
       <Docs>
         <param name="pattern">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value matches the Regex pattern supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -621,7 +841,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new CollectionContainsConstraint checking for the
+            presence of a particular object in the collection.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -637,7 +860,10 @@
         <ReturnType>NUnit.Framework.Constraints.ResolvableConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new ConstraintExpression, which will apply the following
+            constraint to the Message property of the object being tested.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -653,7 +879,9 @@
         <ReturnType>NUnit.Framework.Constraints.NaNConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests for NaN
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -669,7 +897,10 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ConstraintExpression that negates any
+            following constraint.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -685,7 +916,11 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ConstraintExpression, which will apply
+            the following constraint to all members of a collection,
+            succeeding if all of them fail.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -701,7 +936,10 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ConstraintExpression that negates any
+            following constraint.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -717,7 +955,9 @@
         <ReturnType>NUnit.Framework.Constraints.NullConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests for null
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -733,7 +973,9 @@
         <ReturnType>NUnit.Framework.Constraints.CollectionOrderedConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether a collection is ordered
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -753,7 +995,11 @@
       </Parameters>
       <Docs>
         <param name="name">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a new PropertyConstraintExpression, which will either
+            test for the existence of the named property on the object
+            being tested or apply any following constraint to that property.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -773,7 +1019,9 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests that two references are the same object
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -793,7 +1041,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the path provided
+            is the same as an expected path after canonicalization.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -813,7 +1064,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the path provided
+            is the same path or under an expected path after canonicalization.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -829,7 +1083,11 @@
         <ReturnType>NUnit.Framework.Constraints.ConstraintExpression</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a ConstraintExpression, which will apply
+            the following constraint to all members of a collection,
+            succeeding if at least one of them succeeds.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -849,7 +1107,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value starts with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -869,7 +1130,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value contains the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -889,7 +1153,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value ends with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -909,7 +1176,10 @@
       </Parameters>
       <Docs>
         <param name="pattern">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value matches the Regex pattern supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -929,7 +1199,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that succeeds if the actual
+            value starts with the substring supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -949,7 +1222,10 @@
       </Parameters>
       <Docs>
         <param name="expected">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual value
+            is a subset of the collection supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -965,7 +1241,9 @@
         <ReturnType>NUnit.Framework.Constraints.TrueConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests for True
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -985,7 +1263,34 @@
       </Parameters>
       <Docs>
         <param name="expectedType">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether the actual
+            value is of the exact type supplied as an argument.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TypeOf&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Constraints.ExactTypeConstraint TypeOf&lt;T&gt; ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance class NUnit.Framework.Constraints.ExactTypeConstraint TypeOf&lt;T&gt;() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.ExactTypeConstraint</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters />
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <summary>
+            Returns a constraint that tests whether the actual
+            value is of the exact type supplied as an argument.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1001,7 +1306,10 @@
         <ReturnType>NUnit.Framework.Constraints.UniqueItemsConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether a collection
+            contains all unique items.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1017,7 +1325,9 @@
         <ReturnType>NUnit.Framework.Constraints.XmlSerializableConstraint</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Returns a constraint that tests whether an object graph is serializable in xml format.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

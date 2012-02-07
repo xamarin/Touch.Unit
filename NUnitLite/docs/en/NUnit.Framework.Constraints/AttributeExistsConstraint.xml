@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class AttributeExistsConstraint : NUnit.Framework.Constraints.Constraint" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit AttributeExistsConstraint extends NUnit.Framework.Constraints.Constraint" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,10 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            AttributeExistsConstraint tests for the presence of a
+            specified attribute on  a Type.
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -25,8 +28,11 @@
         <Parameter Name="type" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="type">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="type">
+        </param>
+        <summary>
+            Constructs an AttributeExistsConstraint for a specific attribute Type
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -44,9 +50,11 @@
         <Parameter Name="actual" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="actual">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="actual">A Type, MethodInfo, or other ICustomAttributeProvider</param>
+        <summary>
+            Tests whether the object provides the expected attribute.
+            </summary>
+        <returns>True if the expected attribute is present, otherwise false</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -65,7 +73,9 @@
       </Parameters>
       <Docs>
         <param name="writer">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Writes the description of the constraint to the specified writer
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

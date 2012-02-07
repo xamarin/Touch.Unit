@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class Reflect" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Reflect extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -216,9 +216,13 @@
         <Parameter Name="objects" Type="System.Object[]" />
       </Parameters>
       <Docs>
-        <param name="objects">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="objects">An array of objects</param>
+        <summary>
+            Returns an array of types from an array of objects.
+            Used because the compact framework doesn't support
+            Type.GetTypeArray()
+            </summary>
+        <returns>An array of Types</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -287,10 +291,12 @@
         <Parameter Name="interfaceName" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="fixtureType">To be added.</param>
-        <param name="interfaceName">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="fixtureType">The type to examine</param>
+        <param name="interfaceName">The FullName of the interface to check for</param>
+        <summary>
+            Check to see if a type implements a named interface.
+            </summary>
+        <returns>True if the interface is implemented by the type</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -309,10 +315,12 @@
         <Parameter Name="interfaceType" Type="System.Type" />
       </Parameters>
       <Docs>
-        <param name="type">To be added.</param>
-        <param name="interfaceType">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="type">The type to examine</param>
+        <param name="interfaceType">The interface type to check for</param>
+        <summary>
+            Check to see if a type implements an interface.
+            </summary>
+        <returns>True if the interface is implemented by the type</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -338,10 +346,13 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="method">To be added.</param>
-        <param name="fixture">To be added.</param>
+        <param name="method">A MethodInfo for the method to be invoked</param>
+        <param name="fixture">The object on which to invoke the method</param>
         <param name="args">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Invoke a method returning void on an object, converting any
+            TargetInvocatonException to an NUnitException.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

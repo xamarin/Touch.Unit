@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class TestFixtureAttribute : Attribute" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit TestFixtureAttribute extends System.Attribute" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -17,6 +17,11 @@
   <Docs>
     <summary>To be added.</summary>
     <remarks>To be added.</remarks>
+    <example>
+            [TestFixture]
+            public class ExampleClass
+            {}
+            </example>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
@@ -28,7 +33,9 @@
       </AssemblyInfo>
       <Parameters />
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Default constructor
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -49,8 +56,13 @@
         </Parameter>
       </Parameters>
       <Docs>
-        <param name="arguments">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="arguments">
+        </param>
+        <summary>
+            Construct with a object[] representing a set of arguments.
+            In .NET 2.0, the arguments may later be separated into
+            type arguments and constructor arguments.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -65,7 +77,9 @@
         <ReturnType>System.Object[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            The arguments originally provided to the attribute
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -81,7 +95,9 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Descriptive text for this fixture
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -97,8 +113,11 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>
+            Gets or sets a value indicating whether this <see cref="T:NUnit.Framework.TestFixtureAttribute" /> should be ignored.
+            </summary>
+        <value>
+          <c>true</c> if ignore; otherwise, <c>false</c>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -113,7 +132,29 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets or sets the ignore reason. May set Ignored as a side effect.
+            </summary>
+        <value>The ignore reason.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TypeArgs">
+      <MemberSignature Language="C#" Value="public Type[] TypeArgs { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class System.Type[] TypeArgs" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.6.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Type[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Get or set the type arguments. If not set
+            explicitly, any leading arguments that are
+            Types are taken as type arguments.
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class BinaryOperator : NUnit.Framework.Constraints.ConstraintOperator" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit BinaryOperator extends NUnit.Framework.Constraints.ConstraintOperator" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Abstract base class for all binary operators
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -44,7 +46,10 @@
       <Docs>
         <param name="left">To be added.</param>
         <param name="right">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>
+            Abstract method that produces a constraint by applying
+            the operator to its left and right constraint arguments.
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -60,7 +65,9 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets the left precedence of the operator
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -79,8 +86,13 @@
         <Parameter Name="stack" Type="NUnit.Framework.Constraints.ConstraintBuilder+ConstraintStack" />
       </Parameters>
       <Docs>
-        <param name="stack">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="stack">
+        </param>
+        <summary>
+            Reduce produces a constraint from the operator and
+            any arguments. It takes the arguments from the constraint
+            stack and pushes the resulting constraint on it.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -95,7 +107,9 @@
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>
+            Gets the right precedence of the operator
+            </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

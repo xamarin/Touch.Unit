@@ -2,7 +2,7 @@
   <TypeSignature Language="C#" Value="public class MsgUtils" />
   <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit MsgUtils extends System.Object" />
   <AssemblyInfo>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -10,7 +10,9 @@
   </Base>
   <Interfaces />
   <Docs>
-    <summary>To be added.</summary>
+    <summary>
+            Static methods used in creating messages
+            </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
@@ -44,11 +46,18 @@
         <Parameter Name="mismatch" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <param name="maxDisplayLength">To be added.</param>
-        <param name="mismatch">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="expected">
+        </param>
+        <param name="actual">
+        </param>
+        <param name="maxDisplayLength">
+        </param>
+        <param name="mismatch">
+        </param>
+        <summary>
+            Clip the expected and actual strings in a coordinated fashion,
+            so that they may be displayed together.
+            </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -68,11 +77,14 @@
         <Parameter Name="clipStart" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="s">To be added.</param>
-        <param name="maxStringLength">To be added.</param>
-        <param name="clipStart">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="s">The string to be clipped</param>
+        <param name="maxStringLength">The maximum permitted length of the result string</param>
+        <param name="clipStart">The point at which to start clipping</param>
+        <summary>
+            Clip a string to a given length, starting at a particular offset, returning the clipped
+            string with ellipses representing the removed parts
+            </summary>
+        <returns>The clipped string</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -90,9 +102,12 @@
         <Parameter Name="s" Type="System.String" />
       </Parameters>
       <Docs>
-        <param name="s">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="s">The string to be converted</param>
+        <summary>
+            Converts any control characters in a string
+            to their escaped representation.
+            </summary>
+        <returns>The converted string</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -113,12 +128,15 @@
         <Parameter Name="ignoreCase" Type="System.Boolean" />
       </Parameters>
       <Docs>
-        <param name="expected">To be added.</param>
-        <param name="actual">To be added.</param>
-        <param name="istart">To be added.</param>
-        <param name="ignoreCase">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="expected">The expected string</param>
+        <param name="actual">The actual string</param>
+        <param name="istart">The index in the strings at which comparison should start</param>
+        <param name="ignoreCase">Boolean indicating whether case should be ignored</param>
+        <summary>
+            Shows the position two strings start to differ.  Comparison
+            starts at the start index.
+            </summary>
+        <returns>-1 if no mismatch found, or the index where mismatch found</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -136,8 +154,10 @@
         <Parameter Name="indices" Type="System.Int32[]" />
       </Parameters>
       <Docs>
-        <param name="indices">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="indices">Array of indices for which a string is needed</param>
+        <summary>
+            Return the a string representation for a set of indices into an array
+            </summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -157,10 +177,13 @@
         <Parameter Name="index" Type="System.Int32" />
       </Parameters>
       <Docs>
-        <param name="collection">To be added.</param>
-        <param name="index">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="collection">The collection to which the indices apply</param>
+        <param name="index">Index in the collection</param>
+        <summary>
+            Get an array of indices representing the point in a collection or
+            array corresponding to a single int index into the collection.
+            </summary>
+        <returns>Array of indices</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -178,9 +201,14 @@
         <Parameter Name="obj" Type="System.Object" />
       </Parameters>
       <Docs>
-        <param name="obj">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <param name="obj">
+        </param>
+        <summary>
+            Returns the representation of a type as used in NUnitLite.
+            This is the same as Type.ToString() except for arrays,
+            which are displayed with their declared sizes.
+            </summary>
+        <returns />
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
