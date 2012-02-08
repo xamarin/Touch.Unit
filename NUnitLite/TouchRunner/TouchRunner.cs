@@ -3,7 +3,7 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011-2012 Xamarin Inc. All rights reserved
+// Copyright 2011 Xamarin Inc. All rights reserved
 
 using System;
 using System.IO;
@@ -22,61 +22,11 @@ using NUnitLite.Runner;
 
 namespace MonoTouch.NUnit.UI {
 	
-	/// <summary>
-	/// <c>TouchRunner</c> is the main class for Touch.Unit. With a few settings it will create
-	/// it's own UI and can start (by user input or automatically) executing all unit tests that
-	/// were added to the runner's instance. By default all logs will be displayed on the console
-	/// (i.e. they will be shown in MonoDevelop's Application Output pad) or they can be sent to
-	/// a network server (e.g. for automated testing).
-	/// </summary>
-	/// <code>
-	/// // a common FinishedLaunching implementation to use Touch.Unit inside a project
-	/// public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-	/// {
-	/// 	window = new UIWindow (UIScreen.MainScreen.Bounds);
-	/// 	runner = new TouchRunner (window);
-	/// 	// register every tests included in the main application/assembly
-	/// 	runner.Add (System.Reflection.Assembly.GetExecutingAssembly ());
-	/// 	window.RootViewController = new UINavigationController (runner.GetViewController ());
-	/// 	window.MakeKeyAndVisible ();
-	///		return true;
-	/// }
-	/// </code>
-	/// <code>
-	/// // a FinishedLaunching implementation to use the automated testing features
-	/// public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-	/// {
-	/// 	window = new UIWindow (UIScreen.MainScreen.Bounds);
-	/// 	runner = new TouchRunner (window);
-	/// 	// register every tests included in the main application/assembly
-	/// 	runner.Add (System.Reflection.Assembly.GetExecutingAssembly ());
-	/// 	// you can use a TcpTextWriter or set your own custom writer
-	/// 	runner.Writer = new TcpTextWriter ("10.0.1.2", 16384);
-	/// 	// start running the test suites as soon as the application is loaded
-	/// 	runner.AutoStart = true;
-	/// 	// crash the application (to ensure it's ended) and return to springboard
-	/// 	runner.TerminateAfterExecution = true;
-	/// 	window.RootViewController = new UINavigationController (runner.GetViewController ());
-	/// 	window.MakeKeyAndVisible ();
-	///		return true;
-	/// }
-	/// </code>
 	public class TouchRunner : TestListener {
 		
 		UIWindow window;
 		TouchOptions options;
 		
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MonoTouch.NUnit.UI.TouchRunner"/> class with
-		/// the default options, previously saved user options or (for automated testing) by parsing
-		/// the command-lines options given to the application.
-		/// </summary>
-		/// <param name='window'>
-		/// The <c>UIWindow</c> instance where the runner's user interface will be down.
-		/// </param>
-		/// <exception cref='ArgumentNullException'>
-		/// Is thrown when a <see langword="null" /> <c>UIWindow</c> instance is passed to this method.
-		/// </exception>
 		public TouchRunner (UIWindow window)
 		{
 			if (window == null)
@@ -86,57 +36,22 @@ namespace MonoTouch.NUnit.UI {
 			options = new TouchOptions ();
 		}
 		
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="MonoTouch.NUnit.UI.TouchRunner"/> 
-		/// should automatically start the unit tests execution when the application is launched. This
-		/// can be used with the network logger to completely automate test execution.
-		/// </summary>
-		/// <value>
-		/// <c>true</c> for automatic test execution; otherwise, <c>false</c> (default).
-		/// </value>
 		public bool AutoStart {
 			get { return options.AutoStart; }
 			set { options.AutoStart = value; }
 		}
 		
-		/// <summary>
-		/// Gets or sets a value indicating whether this <see cref="MonoTouch.NUnit.UI.TouchRunner"/> 
-		/// should automatically terminate (i.e. kill) the application after execution of all unit tests.
-		/// Useful if you want to automate the sequential launch of several Touch.Unit applications
-		/// (e.g. different test suites, different CPU architecture on the same tests).
-		/// </summary>
-		/// <value>
-		/// <c>true</c> if the application shall terminate after the unit tests execution; otherwise, 
-		/// <c>false</c> (default).
-		/// </value>
 		public bool TerminateAfterExecution {
 			get { return options.TerminateAfterExecution; }
 			set { options.TerminateAfterExecution = value; }
 		}
 		
-		/// <summary>
-		/// Helper property that gets the <c>RootViewController</c> property of the `UIWindow` 
-		/// that was provided to the constructor.
-		/// </summary>
-		/// <value>
-		/// The navigation controller.
-		/// </value>
 		public UINavigationController NavigationController {
 			get { return (UINavigationController) window.RootViewController; }
 		}
 		
 		List<TestSuite> suites = new List<TestSuite> ();
 		
-		/// <summary>
-		/// Add the specified assembly to the list of assemblies that the runner will scan
-		/// to find test suites, i.e. types decorated with <c>[TestSuite]</c>.
-		/// </summary>
-		/// <param name='assembly'>
-		/// Assembly that contains one, or more, test suites to be executed by the runner.
-		/// </param>
-		/// <exception cref='ArgumentNullException'>
-		/// Is thrown when an <see langword="null" /> assembly is passed to this method.
-		/// </exception>
 		public void Add (Assembly assembly)
 		{
 			if (assembly == null)
@@ -152,14 +67,6 @@ namespace MonoTouch.NUnit.UI {
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
 		
-		/// <summary>
-		/// Gets the view controller that will coordinate the UI and unit tests execution, 
-		/// including the (optional) automation support to start and terminate the application
-		/// automatically.
-		/// </summary>
-		/// <returns>
-		/// The view controller.
-		/// </returns>
 		public UIViewController GetViewController ()
 		{
 			var menu = new RootElement ("Test Runner");
@@ -233,15 +140,6 @@ namespace MonoTouch.NUnit.UI {
 		
 		#region writer
 		
-		/// <summary>
-		/// Gets or sets the <c>TextWriter</c> instance where the results of the unit tests
-		/// execution will be written. By default all text is written to <c>Console.Out</c>
-		/// but the user can select (using the options) or programmatically set a <c>TcpTextWriter</c>
-		/// instance to have the test result be sent to a remote server.
-		/// </summary>
-		/// <value>
-		/// The writer.
-		/// </value>
 		public TextWriter Writer { get; set; }
 		
 		static string SelectHostName (string[] names, int port)
@@ -288,16 +186,6 @@ namespace MonoTouch.NUnit.UI {
 			return result;
 		}
 		
-		/// <summary>
-		/// Opens the writer when starting the unit tests execution.
-		/// </summary>
-		/// <returns>
-		/// <c>true</c> if the writer could be initialized properly, <c>false</c> otherwise (e.g. if
-		/// the network logger could not contact it's server).
-		/// </returns>
-		/// <param name='message'>
-		/// First message to write on the output.
-		/// </param>
 		public bool OpenWriter (string message)
 		{
 			DateTime now = DateTime.Now;
@@ -347,9 +235,6 @@ namespace MonoTouch.NUnit.UI {
 			return true;
 		}
 		
-		/// <summary>
-		/// Closes the current writer. This will end any network connection.
-		/// </summary>
 		public void CloseWriter ()
 		{
 			Writer.Close ();
@@ -362,13 +247,6 @@ namespace MonoTouch.NUnit.UI {
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
 		Dictionary<TestCase, TestCaseElement> case_elements = new Dictionary<TestCase, TestCaseElement> ();
 		
-		/// <summary>
-		/// Push the <c>UIViewController</c> that is responsable to handle the specified 
-		/// <c>TestSuite</c> instance.
-		/// </summary>
-		/// <param name='suite'>
-		/// The <c>TestSuite</c> to be shown.
-		/// </param>
 		public void Show (TestSuite suite)
 		{
 			NavigationController.PushViewController (suites_dvc [suite], true);
@@ -427,12 +305,6 @@ namespace MonoTouch.NUnit.UI {
 			suite_elements [suite].Run ();
 		}
 		
-		/// <summary>
-		/// Called when an <c>ITest</c> is about to start it's execution.
-		/// </summary>
-		/// <param name='test'>
-		/// An <c>ITest</c>, i.e. either a test suite or a test case.
-		/// </param>
 		public void TestStarted (ITest test)
 		{
 			if (test is TestSuite) {
@@ -443,13 +315,7 @@ namespace MonoTouch.NUnit.UI {
 		}
 		
 		Stack<DateTime> time = new Stack<DateTime> ();
-		
-		/// <summary>
-		/// Called when test suite or test case is completed and results are available.
-		/// </summary>
-		/// <param name='result'>
-		/// The <c>TestResult</c> instance that contains the results and a reference to the test.
-		/// </param>
+			
 		public void TestFinished (TestResult result)
 		{
 			TestSuite ts = result.Test as TestSuite;
