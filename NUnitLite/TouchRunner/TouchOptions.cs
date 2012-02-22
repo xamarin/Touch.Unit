@@ -66,7 +66,7 @@ namespace NUnitLite {
 			};
 				
 			var dv = new DialogViewController (root, true) { Autorotate = true };
-			dv.ViewDissapearing += delegate {
+			dv.ViewDisappearing += delegate {
 				EnableNetwork = network.Value;
 				HostName = host.Value;
 				ushort p;
