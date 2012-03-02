@@ -239,7 +239,7 @@ namespace Mono.Options
 		}
 	}
 
-	public class OptionContext {
+	internal class OptionContext {
 		private Option                option;
 		private string                name;
 		private int                   index;
@@ -282,7 +282,7 @@ namespace Mono.Options
 		Required,
 	}
 
-	public abstract class Option {
+	internal abstract class Option {
 		string prototype, description;
 		string[] names;
 		OptionValueType type;
@@ -509,9 +509,9 @@ namespace Mono.Options
 		}
 	}
 
-	public delegate void OptionAction<TKey, TValue> (TKey key, TValue value);
+	internal delegate void OptionAction<TKey, TValue> (TKey key, TValue value);
 
-	public class OptionSet : KeyedCollection<string, Option>
+	internal class OptionSet : KeyedCollection<string, Option>
 	{
 		public OptionSet ()
 			: this (delegate (string f) {return f;})
