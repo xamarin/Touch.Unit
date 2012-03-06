@@ -14,7 +14,7 @@ using NUnitLite.Runner;
 
 namespace MonoTouch.NUnit.UI {
 
-	abstract class TestElement : StyledStringElement {
+	abstract class TestElement : StyledMultilineElement {
 		
 		static internal UIColor DarkGreen = UIColor.FromRGB (0x00, 0x77, 0x00);
 	
