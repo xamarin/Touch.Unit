@@ -20,18 +20,29 @@ class SimpleListener {
 
 	static byte[] buffer = new byte [16 * 1024];
 
+	TcpListener server;
+	
 	IPAddress Address { get; set; }
 	int Port { get; set; }
 	string LogPath { get; set; }
 	string LogFile { get; set; }
 	bool AutoExit { get; set; }
-
-	public void Start ()
+	
+	public void Cancel ()
+	{
+		try {
+			server.Stop ();
+		} catch {
+			// We might have stopped already, so just swallow any exceptions.
+		}
+	}
+	
+	public int Start ()
 	{
 		bool processed;
 		
 		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
-		TcpListener server = new TcpListener (Address, Port);
+		server = new TcpListener (Address, Port);
 		try {
 			server.Start ();
 			
@@ -43,10 +54,13 @@ class SimpleListener {
 		}
 		catch (Exception e) {
 			Console.WriteLine ("[{0}] : {1}", DateTime.Now, e);
+			return 1;
 		}
 		finally {
 			server.Stop ();
 		}
+		
+		return 0;
 	}
 
 	public bool Processing (TcpClient client)
@@ -88,7 +102,7 @@ class SimpleListener {
 		os.WriteOptionDescriptions (Console.Out);
 	}
 
-	public static void Main (string[] args)
+	public static int Main (string[] args)
 	{ 
 		Console.WriteLine ("Touch.Unit Simple Server");
 		Console.WriteLine ("Copyright 2011, Xamarin Inc. All rights reserved.");
@@ -156,6 +170,8 @@ class SimpleListener {
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.Start ();
 						proc.WaitForExit ();
+						if (proc.ExitCode != 0)
+							listener.Cancel ();
 					}
 				});
 			}
@@ -191,15 +207,21 @@ class SimpleListener {
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
 						proc.WaitForExit ();
-						if (proc.ExitCode != 0)
+						if (proc.ExitCode != 0) {
+							listener.Cancel ();
 							Console.WriteLine (output.ToString ());
+						}
 					}
 				});
 			}
 			
-			listener.Start ();
+			return listener.Start ();
 		} catch (OptionException oe) {
 			Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
+			return 1;
+		} catch (Exception ex) {
+			Console.WriteLine (ex);
+			return 1;
 		}
 	}   
 }
