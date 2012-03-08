@@ -167,7 +167,6 @@ class SimpleListener {
 						StringBuilder procArgs = new StringBuilder ();
 						procArgs.Append ("--launchsim ");
 						procArgs.Append (launchsim);
-						procArgs.Append (" -sdk 5.0");
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
