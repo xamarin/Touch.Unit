@@ -26,6 +26,9 @@ namespace MonoTouch.NUnit.UI {
 		
 		UIWindow window;
 		TouchOptions options;
+		int passed;
+		int failed;
+		int ignored;
 		
 		public TouchRunner (UIWindow window)
 		{
@@ -232,11 +235,16 @@ namespace MonoTouch.NUnit.UI {
 			
 			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
 			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, Linker options)
+			passed = 0;
+			ignored = 0;
+			failed = 0;
 			return true;
 		}
 		
 		public void CloseWriter ()
 		{
+			Writer.WriteLine ("Tests run: {3} Passed: {0} Ignored: {1} Failed: {2}", passed, ignored, failed, passed + failed);
+
 			Writer.Close ();
 			Writer = null;
 		}
@@ -336,10 +344,13 @@ namespace MonoTouch.NUnit.UI {
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
+					passed++;
 				} else if (result.IsIgnored ()) {
 					Writer.Write ("\t[IGNORED] ");
+					ignored++;
 				} else if (result.IsError ()) {
 					Writer.Write ("\t[FAIL] ");
+					failed++;
 				} else {
 					Writer.Write ("\t[INFO] ");
 				}
