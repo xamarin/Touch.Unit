@@ -53,16 +53,9 @@ namespace MonoTouch.NUnit.UI {
 			int error = 0;
 			int failure = 0;
 			int success = 0;
-			foreach (TestResult tr in Result.Results) {
-				if (tr.IsError)
-					error++;
-				else if (tr.IsFailure)
-					failure++;
-				else if (tr.IsSuccess)
-					success++;
-			}
+			Count (Result, ref error, ref failure, ref success);
 			
-			if (Result.IsSuccess) {
+			if ((failure == 0) && (error == 0) && (success > 0)) {
 				Value = String.Format ("Success! {0} ms for {1} test{2}",
 					time.TotalMilliseconds, success,
 					success == 1 ? String.Empty : "s");
@@ -72,6 +65,20 @@ namespace MonoTouch.NUnit.UI {
 				Value = String.Format ("{0} success, {1} failure{2}, {3} error{4}", 
 					success, failure, failure > 1 ? "s" : String.Empty,
 					error, error > 1 ? "s" : String.Empty);
+			}
+		}
+		
+		void Count (TestResult result, ref int error, ref int failure, ref int success)
+		{
+			foreach (TestResult tr in result.Results) {
+				if (tr.Results.Count > 0)
+					Count (tr, ref error, ref failure, ref success);
+				else if (tr.IsError ())
+					error++;
+				else if (tr.IsFailure ())
+					failure++;
+				else
+					success++;
 			}
 		}
 	}

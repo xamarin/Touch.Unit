@@ -56,13 +56,9 @@ namespace MonoTouch.NUnit.UI {
 		
 		public override void Update ()
 		{
-			string m = Result.Message;
 			if (Result.IsIgnored ()) {
 				Value = Result.GetMessage ();
 				DetailColor = UIColor.Orange;
-			} else if (Result.IsError ()) {
-				Value = Result.GetMessage ();
-				DetailColor = UIColor.Red;
 			} else if (Result.IsSuccess ()) {
 				int counter = Assert.Counter;
 				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
@@ -70,6 +66,12 @@ namespace MonoTouch.NUnit.UI {
 					time.TotalMilliseconds, counter,
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;
+			} else if (Result.IsError () || Result.IsFailure ()) {
+				Value = Result.GetMessage ();
+				DetailColor = UIColor.Red;
+			} else {
+				// Assert.Ignore falls into this
+				Value = Result.GetMessage ();
 			}
 		}
 	}

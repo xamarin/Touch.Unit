@@ -59,5 +59,26 @@ namespace MonoTouchFixtures.Test {
 			Assert.Pass ("good enough");
 			throw new NotImplementedException ();
 		}
+
+		[Test]
+		[ExpectedException (typeof (NullReferenceException))]
+		public void IgnoredExpectedException ()
+		{
+			Assert.Ignore ("ignore [ExpectedException]");
+		}
+
+		[Test]
+		[ExpectedException (typeof (NullReferenceException))]
+		public void InconclusiveExpectedException ()
+		{
+			Assert.Inconclusive ("inconclusive [ExpectedException]");
+		}
+
+		[Test]
+		[ExpectedException (typeof (NullReferenceException))]
+		public void PassExpectedException ()
+		{
+			Assert.Pass ("pass [ExpectedException]");
+		}
 	}
 }
