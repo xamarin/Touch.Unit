@@ -53,15 +53,16 @@ namespace MonoTouch.NUnit.UI {
 			get { return (UINavigationController) window.RootViewController; }
 		}
 		
+		List<Assembly> assemblies = new List<Assembly> ();
 		List<TestSuite> suites = new List<TestSuite> ();
+		ManualResetEvent mre = new ManualResetEvent (false);
 		
 		public void Add (Assembly assembly)
 		{
 			if (assembly == null)
 				throw new ArgumentNullException ("assembly");
 			
-			// TestLoader.Load always return a TestSuite so we can avoid casting many times
-			suites.Add (TestLoader.Load (assembly) as TestSuite);
+			assemblies.Add (assembly);
 		}
 		
 		static void TerminateWithSuccess ()
@@ -74,24 +75,42 @@ namespace MonoTouch.NUnit.UI {
 		{
 			var menu = new RootElement ("Test Runner");
 			
-			Section main = new Section ();
-			foreach (TestSuite suite in suites) {
-				main.Add (Setup (suite));
-			}
+			Section main = new Section ("Loading test suites...");
 			menu.Add (main);
 			
 			Section options = new Section () {
-				new StringElement ("Run Everything", Run),
 				new StyledStringElement ("Options", Options) { Accessory = UITableViewCellAccessory.DisclosureIndicator },
 				new StyledStringElement ("Credits", Credits) { Accessory = UITableViewCellAccessory.DisclosureIndicator }
 			};
 			menu.Add (options);
+			
+			// large unit tests applications can take more time to initialize
+			// than what the iOS watchdog will allow them on devices
+			ThreadPool.QueueUserWorkItem (delegate {
+				foreach (Assembly assembly in assemblies)
+					suites.Add (TestLoader.Load (assembly) as TestSuite);
+				
+				window.InvokeOnMainThread (delegate {
+					foreach (TestSuite suite in suites) {
+						main.Add (Setup (suite));
+					}
+					mre.Set ();
+					
+					main.Caption = null;
+					menu.Reload (main, UITableViewRowAnimation.Fade);
+					
+					options.Insert (0, new StringElement ("Run Everything", Run));
+					menu.Reload (options, UITableViewRowAnimation.Fade);
+				});
+				assemblies.Clear ();
+			});
 			
 			var dv = new DialogViewController (menu) { Autorotate = true };
 			
 			// AutoStart running the tests (with either the supplied 'writer' or the options)
 			if (AutoStart) {
 				ThreadPool.QueueUserWorkItem (delegate {
+					mre.WaitOne ();
 					window.BeginInvokeOnMainThread (delegate {
 						Run ();	
 						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
