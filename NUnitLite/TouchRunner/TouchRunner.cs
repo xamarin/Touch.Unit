@@ -65,6 +65,14 @@ namespace MonoTouch.NUnit.UI {
 			assemblies.Add (assembly);
 		}
 		
+		public void Add (TestSuite suite)
+		{
+			if (suite == null)
+				throw new ArgumentNullException ("suite");
+			
+			suites.Add (suite);
+		}
+		
 		static void TerminateWithSuccess ()
 		{
 			Selector selector = new Selector ("terminateWithSuccess");
@@ -127,13 +135,26 @@ namespace MonoTouch.NUnit.UI {
 		{
 			if (!OpenWriter ("Run Everything"))
 				return;
-			try {
-				foreach (TestSuite ts in suites)
-					suite_elements [ts].Run ();
-			}
-			finally {
-				CloseWriter ();
-			}
+			
+			var suites = new Queue<TestSuite> (this.suites);
+			
+			EventHandler nextSuite = null;
+			nextSuite = (object sender, EventArgs e) =>
+			{
+				if (sender != null)
+					((TestSuite) sender).CompletedEvent -= nextSuite;
+				if (suites.Count == 0) {
+					// We need to close the writer async since there may be other objects
+					// listening for the CompletedEvent, and the order events
+					// are invoked is not defined.
+					CloseWriterAsync ();
+					return;
+				}
+				var suite = suites.Dequeue ();
+				suite.CompletedEvent += nextSuite;
+				Run (suite);
+			};
+			nextSuite (null, null);
 		}
 				
 		void Options ()
@@ -268,6 +289,11 @@ namespace MonoTouch.NUnit.UI {
 			Writer = null;
 		}
 		
+		public void CloseWriterAsync ()
+		{
+			NavigationController.BeginInvokeOnMainThread (CloseWriter);
+		}
+		
 		#endregion
 		
 		Dictionary<TestSuite, DialogViewController> suites_dvc = new Dictionary<TestSuite, DialogViewController> ();
@@ -307,8 +333,14 @@ namespace MonoTouch.NUnit.UI {
 				Section options = new Section () {
 					new StringElement ("Run all", delegate () {
 						if (OpenWriter (suite.Name)) {
+							suite.CompletedEvent += (object sender, EventArgs ea) =>
+							{
+								// We need to close the writer async since there may be other objects
+								// listening for the CompletedEvent, and the order events
+								// are invoked is not defined.
+								CloseWriterAsync ();
+							};
 							Run (suite);
-							CloseWriter ();
 						}
 					})
 				};

@@ -17,11 +17,14 @@ namespace MonoTouch.NUnit.UI {
 	class TestSuiteElement : TestElement {
 
 		TimeSpan time;
+		DateTime start;
 		
 		public TestSuiteElement (TestSuite test, TouchRunner runner)
 			: base (test, runner)
 		{
 			Caption = Suite.Name;
+			Suite.StartedEvent += StartedHandler;;
+			Suite.CompletedEvent += CompletedHandler;
 			int count = Suite.TestCaseCount;
 			if (count > 0) {
 				Accessory = UITableViewCellAccessory.DisclosureIndicator;
@@ -42,9 +45,18 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void Run ()
 		{
-			DateTime start = DateTime.UtcNow;
-			Result = Suite.Run (Runner);
+			Suite.RunAsync (Runner);
+		}
+		
+		void StartedHandler (object sender, EventArgs args)
+		{
+			start = DateTime.UtcNow;
+		}
+		
+		void CompletedHandler (object sender, EventArgs args)
+		{
 			time = (DateTime.UtcNow - start);
+			Result = Suite.Result;
 			Update ();
 		}
 		
@@ -66,6 +78,8 @@ namespace MonoTouch.NUnit.UI {
 					success, failure, failure > 1 ? "s" : String.Empty,
 					error, error > 1 ? "s" : String.Empty);
 			}
+			
+			Reload ();
 		}
 		
 		void Count (TestResult result, ref int error, ref int failure, ref int success)
