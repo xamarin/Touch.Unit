@@ -9,8 +9,8 @@ using System;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
-using NUnitLite;
-using NUnitLite.Runner;
+using NUnit.Framework.Internal;
+using NUnit.Framework.Api;
 
 namespace MonoTouch.NUnit.UI {
 
@@ -35,7 +35,7 @@ namespace MonoTouch.NUnit.UI {
 		protected TouchRunner Runner { get; private set; }
 		
 		protected TestResult Result {
-			get { return result ?? new TestResult (Test); }
+			get { return result ?? new TestCaseResult (Test as TestMethod); }
 			set { result = value; }
 		}
 		

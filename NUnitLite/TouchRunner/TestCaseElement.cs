@@ -3,23 +3,22 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011 Xamarin Inc. All rights reserved
+// Copyright 2011-2012 Xamarin Inc. All rights reserved
 
 using System;
+using System.Reflection;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
-using NUnitLite;
-using NUnitLite.Runner;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using NUnit.Framework.Api;
 
 namespace MonoTouch.NUnit.UI {
 	
 	class TestCaseElement : TestElement {
 		
-		TimeSpan time;
-		
-		public TestCaseElement (TestCase testCase, TouchRunner runner)
+		public TestCaseElement (TestMethod testCase, TouchRunner runner)
 			: base (testCase, runner)
 		{
 			Caption = testCase.Name;
@@ -30,7 +29,7 @@ namespace MonoTouch.NUnit.UI {
 				Run ();
 				Runner.CloseWriter ();
 				// display more details on (any) failure (but not when ignored)
-				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess) {
+				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess ()) {
 					var root = new RootElement ("Results") {
 						new Section () {
 							new TestResultElement (Result)
@@ -42,15 +41,16 @@ namespace MonoTouch.NUnit.UI {
 			};
 		}
 		
-		public TestCase TestCase {
-			get { return Test as TestCase; }
+		public TestMethod TestCase {
+			get { return Test as TestMethod; }
 		}
 		
 		public void Run ()
 		{
-			DateTime start = DateTime.UtcNow;
-			Result = TestCase.Run (Runner);
-			time = (DateTime.UtcNow - start);
+			var instance = TestCase.Method.ReflectedType.InvokeMember (".ctor", BindingFlags.CreateInstance, null, null, null);
+			TestExecutionContext.CurrentContext.TestObject = instance;
+			Runner.Run (TestCase);
+			TestExecutionContext.CurrentContext.TestObject = null;
 			Update ();
 		}
 		
@@ -59,14 +59,14 @@ namespace MonoTouch.NUnit.UI {
 			if (Result.IsIgnored ()) {
 				Value = Result.GetMessage ();
 				DetailColor = UIColor.Orange;
-			} else if (Result.IsSuccess ()) {
-				int counter = Assert.Counter;
+			} else if (Result.IsSuccess () || Result.IsInconclusive ()) {
+				int counter = Result.AssertCount;
 				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
 					Result.IsInconclusive () ? "Inconclusive." : "Success!",
-					time.TotalMilliseconds, counter,
+					Result.Time * 1000, counter,
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;
-			} else if (Result.IsError () || Result.IsFailure ()) {
+			} else if (Result.IsFailure ()) {
 				Value = Result.GetMessage ();
 				DetailColor = UIColor.Red;
 			} else {

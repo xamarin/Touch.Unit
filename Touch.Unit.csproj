@@ -19,9 +19,16 @@
     <DefineConstants>DEBUG;NUNITLITE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <ConsolePause>false</ConsolePause>
+    <CrashReportingApiKey />
+    <CrashReportingDelay>1</CrashReportingDelay>
+    <MtouchI18n />
+    <EnvironmentVariables>
+      <EnvironmentVariables>
+        <Variable name="VALGRIND2" value="/usr/local/bin/valgrind --tool=memcheck" />
+      </EnvironmentVariables>
+    </EnvironmentVariables>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

@@ -3,21 +3,19 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011 Xamarin Inc. All rights reserved
+// Copyright 2011-2012 Xamarin Inc. All rights reserved
 
 using System;
+using System.Text;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
-using NUnitLite;
-using NUnitLite.Runner;
+using NUnit.Framework.Internal;
 
 namespace MonoTouch.NUnit.UI {
 
 	class TestSuiteElement : TestElement {
 
-		TimeSpan time;
-		
 		public TestSuiteElement (TestSuite test, TouchRunner runner)
 			: base (test, runner)
 		{
@@ -42,44 +40,35 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void Run ()
 		{
-			DateTime start = DateTime.UtcNow;
-			Result = Suite.Run (Runner);
-			time = (DateTime.UtcNow - start);
+			Result = Runner.Run (Suite);
 			Update ();
 		}
 		
 		public override void Update ()
 		{
-			int error = 0;
-			int failure = 0;
-			int success = 0;
-			Count (Result, ref error, ref failure, ref success);
-			
-			if ((failure == 0) && (error == 0) && (success > 0)) {
-				Value = String.Format ("Success! {0} ms for {1} test{2}",
-					time.TotalMilliseconds, success,
-					success == 1 ? String.Empty : "s");
+			int positive = Result.PassCount + Result.InconclusiveCount;
+			int failure = Result.FailCount;
+			int skipped = Result.SkipCount;
+
+			StringBuilder sb = new StringBuilder ();
+			if (failure == 0) {
 				DetailColor = DarkGreen;
-			} else if (Result.Executed) {
+				sb.Append ("Success! ").Append (Result.Time * 1000).Append (" ms for ").Append (positive).Append (" test");
+				if (positive > 1)
+					sb.Append ('s');
+			} else {
 				DetailColor = UIColor.Red;
-				Value = String.Format ("{0} success, {1} failure{2}, {3} error{4}", 
-					success, failure, failure > 1 ? "s" : String.Empty,
-					error, error > 1 ? "s" : String.Empty);
+				if (positive > 0)
+					sb.Append (positive).Append (" success");
+				if (sb.Length > 0)
+					sb.Append (", ");
+				sb.Append (failure).Append (" failure");
+				if (failure > 1)
+					sb.Append ('s');
+				if (skipped > 0)
+					sb.Append (", ").Append (skipped).Append (" ignored");
 			}
-		}
-		
-		void Count (TestResult result, ref int error, ref int failure, ref int success)
-		{
-			foreach (TestResult tr in result.Results) {
-				if (tr.Results.Count > 0)
-					Count (tr, ref error, ref failure, ref success);
-				else if (tr.IsError ())
-					error++;
-				else if (tr.IsFailure ())
-					failure++;
-				else
-					success++;
-			}
+			Value = sb.ToString ();
 		}
 	}
 }

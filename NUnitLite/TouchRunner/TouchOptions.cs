@@ -11,7 +11,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using Mono.Options;
 
-namespace NUnitLite {
+namespace MonoTouch.NUnit.UI {
 	
 	public class TouchOptions {
 		
@@ -51,6 +51,7 @@ namespace NUnitLite {
 			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)); }
 		}
 		
+		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
 			var network = new BooleanElement ("Remote Server", EnableNetwork);

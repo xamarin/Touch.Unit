@@ -3,15 +3,14 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011 Xamarin Inc. All rights reserved
+// Copyright 2011-2012 Xamarin Inc. All rights reserved
 
 using System;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
-using NUnitLite;
-using NUnitLite.Runner;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace MonoTouch.NUnit.UI {
 	

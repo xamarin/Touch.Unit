@@ -3,10 +3,11 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011 Xamarin Inc. All rights reserved
+// Copyright 2011-2012 Xamarin Inc. All rights reserved
 
 using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Reflection;
@@ -17,19 +18,23 @@ using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 
-using NUnitLite;
-using NUnitLite.Runner;
+using NUnit.Framework.Internal;
+using NUnit.Framework.Api;
+using NUnit.Framework.Internal.Commands;
 
 namespace MonoTouch.NUnit.UI {
 	
-	public class TouchRunner : TestListener {
+	public class TouchRunner : ITestAssemblyRunner, ITestListener, ITestFilter {
 		
 		UIWindow window;
 		TouchOptions options;
 		int passed;
 		int failed;
 		int ignored;
-		
+		int inconclusive;
+		TestSuite suite = new TestSuite (String.Empty);
+
+		[CLSCompliant (false)]
 		public TouchRunner (UIWindow window)
 		{
 			if (window == null)
@@ -49,12 +54,12 @@ namespace MonoTouch.NUnit.UI {
 			set { options.TerminateAfterExecution = value; }
 		}
 		
+		[CLSCompliant (false)]
 		public UINavigationController NavigationController {
 			get { return (UINavigationController) window.RootViewController; }
 		}
 		
 		List<Assembly> assemblies = new List<Assembly> ();
-		List<TestSuite> suites = new List<TestSuite> ();
 		ManualResetEvent mre = new ManualResetEvent (false);
 		
 		public void Add (Assembly assembly)
@@ -71,6 +76,7 @@ namespace MonoTouch.NUnit.UI {
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
 		
+		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
 			var menu = new RootElement ("Test Runner");
@@ -83,16 +89,16 @@ namespace MonoTouch.NUnit.UI {
 				new StyledStringElement ("Credits", Credits) { Accessory = UITableViewCellAccessory.DisclosureIndicator }
 			};
 			menu.Add (options);
-			
+
 			// large unit tests applications can take more time to initialize
 			// than what the iOS watchdog will allow them on devices
 			ThreadPool.QueueUserWorkItem (delegate {
 				foreach (Assembly assembly in assemblies)
-					suites.Add (TestLoader.Load (assembly) as TestSuite);
-				
+					Load (assembly, null);
+
 				window.InvokeOnMainThread (delegate {
-					foreach (TestSuite suite in suites) {
-						main.Add (Setup (suite));
+					foreach (TestSuite ts in suite.Tests) {
+						main.Add (Setup (ts));
 					}
 					mre.Set ();
 					
@@ -106,7 +112,7 @@ namespace MonoTouch.NUnit.UI {
 			});
 			
 			var dv = new DialogViewController (menu) { Autorotate = true };
-			
+
 			// AutoStart running the tests (with either the supplied 'writer' or the options)
 			if (AutoStart) {
 				ThreadPool.QueueUserWorkItem (delegate {
@@ -128,8 +134,7 @@ namespace MonoTouch.NUnit.UI {
 			if (!OpenWriter ("Run Everything"))
 				return;
 			try {
-				foreach (TestSuite ts in suites)
-					suite_elements [ts].Run ();
+				Run (suite);
 			}
 			finally {
 				CloseWriter ();
@@ -191,7 +196,7 @@ namespace MonoTouch.NUnit.UI {
 									result = name;
 							}
 							evt.Set ();
-						} catch (Exception ex) {
+						} catch (Exception) {
 							lock (lock_obj) {
 								failures++;
 								if (failures == names.Length)
@@ -249,20 +254,23 @@ namespace MonoTouch.NUnit.UI {
 			Writer.WriteLine ("[MonoTouch Version:\t{0}]", MonoTouch.Constants.Version);
 			UIDevice device = UIDevice.CurrentDevice;
 			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+			Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
+			Writer.WriteLine ("[Device UDID:\t{0}]", device.UniqueIdentifier);
 			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
-			// FIXME: add more data about the device
-			
+
 			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
-			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, Linker options)
+			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
 			passed = 0;
 			ignored = 0;
 			failed = 0;
+			inconclusive = 0;
 			return true;
 		}
 		
 		public void CloseWriter ()
 		{
-			Writer.WriteLine ("Tests run: {3} Passed: {0} Ignored: {1} Failed: {2}", passed, ignored, failed, passed + failed);
+			int total = passed + inconclusive + failed; // ignored are *not* run
+			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
 
 			Writer.Close ();
 			Writer = null;
@@ -272,7 +280,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		Dictionary<TestSuite, DialogViewController> suites_dvc = new Dictionary<TestSuite, DialogViewController> ();
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
-		Dictionary<TestCase, TestCaseElement> case_elements = new Dictionary<TestCase, TestCaseElement> ();
+		Dictionary<TestMethod, TestCaseElement> case_elements = new Dictionary<TestMethod, TestCaseElement> ();
 		
 		public void Show (TestSuite suite)
 		{
@@ -292,7 +300,7 @@ namespace MonoTouch.NUnit.UI {
 				if (ts != null) {
 					section.Add (Setup (ts));
 				} else {
-					TestCase tc = (test as TestCase);
+					TestMethod tc = (test as TestMethod);
 					if (tc != null) {
 						section.Add (Setup (tc));
 					} else {
@@ -320,46 +328,38 @@ namespace MonoTouch.NUnit.UI {
 			return tse;
 		}
 		
-		TestCaseElement Setup (TestCase test)
+		TestCaseElement Setup (TestMethod test)
 		{
 			TestCaseElement tce = new TestCaseElement (test, this);
 			case_elements.Add (test, tce);
 			return tce;
 		}
 				
-		void Run (TestSuite suite)
-		{
-			suite_elements [suite].Run ();
-		}
-		
 		public void TestStarted (ITest test)
 		{
 			if (test is TestSuite) {
 				Writer.WriteLine ();
-				time.Push (DateTime.UtcNow);
 				Writer.WriteLine (test.Name);
 			}
 		}
 		
-		Stack<DateTime> time = new Stack<DateTime> ();
-			
-		public void TestFinished (TestResult result)
+		public void TestFinished (ITestResult r)
 		{
+			TestResult result = r as TestResult;
 			TestSuite ts = result.Test as TestSuite;
 			if (ts != null) {
 				suite_elements [ts].Update (result);
 			} else {
-				TestCase tc = result.Test as TestCase;
+				TestMethod tc = result.Test as TestMethod;
 				if (tc != null)
 					case_elements [tc].Update (result);
 			}
 			
 			if (result.Test is TestSuite) {
-				if (!result.IsError && !result.IsFailure && !result.IsSuccess && !result.Executed)
+				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
 					Writer.WriteLine ("\t[INFO] {0}", result.Message);
 				
-				var diff = DateTime.UtcNow - time.Pop ();
-				Writer.WriteLine ("{0} : {1} ms", result.Test.Name, diff.TotalMilliseconds);
+				Writer.WriteLine ("{0} : {1} ms", result.Test.Name, result.Time * 1000);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
@@ -367,9 +367,12 @@ namespace MonoTouch.NUnit.UI {
 				} else if (result.IsIgnored ()) {
 					Writer.Write ("\t[IGNORED] ");
 					ignored++;
-				} else if (result.IsError ()) {
+				} else if (result.IsFailure ()) {
 					Writer.Write ("\t[FAIL] ");
 					failed++;
+				} else if (result.IsInconclusive ()) {
+					Writer.Write ("\t[INCONCLUSIVE] ");
+					inconclusive++;
 				} else {
 					Writer.Write ("\t[INFO] ");
 				}
@@ -388,6 +391,59 @@ namespace MonoTouch.NUnit.UI {
 						Writer.WriteLine ("\t\t{0}", line);
 				}
 			}
+		}
+
+		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
+		Dictionary<string, object> empty = new Dictionary<string, object> ();
+
+		// not used - but it satisfy the interface
+		public bool Load (string assemblyName, IDictionary settings)
+		{
+			return AddSuite (builder.Build (assemblyName, settings ?? empty));
+		}
+
+		public bool Load (Assembly assembly, IDictionary settings)
+		{
+			return AddSuite (builder.Build (assembly, settings ?? empty));
+		}
+
+		bool AddSuite (TestSuite ts)
+		{
+			if (ts == null)
+				return false;
+			suite.Add (ts);
+			return true;
+		}
+
+		public ITestResult Run (ITestListener listener, ITestFilter filter)
+		{
+			if (suite == null)
+				return null;
+
+			return Run (suite);
+		}
+
+		public TestResult Run (Test test)
+		{
+	                TestExecutionContext.CurrentContext.WorkDirectory = Environment.CurrentDirectory;
+			TestExecutionContext.CurrentContext.Listener = this;
+			TestCommand command = test.GetTestCommand (this);
+			return CommandRunner.Execute (command);
+		}
+
+		public ITest LoadedTest {
+			get {
+				return suite;
+			}
+		}
+
+		public void TestOutput (TestOutput testOutput)
+		{
+		}
+
+		bool ITestFilter.Pass (ITest test)
+		{
+			return true;
 		}
 	}
 }
