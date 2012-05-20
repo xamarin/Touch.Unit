@@ -14,6 +14,8 @@ using Mono.Options;
 namespace MonoTouch.NUnit.UI {
 	
 	public class TouchOptions {
+
+		static public TouchOptions Current = new TouchOptions ();
 		
 		public TouchOptions ()
 		{
@@ -21,6 +23,7 @@ namespace MonoTouch.NUnit.UI {
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = defaults.IntForKey ("network.host.port");
+			SortNames = defaults.BoolForKey ("display.sort");
 			
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
@@ -50,11 +53,13 @@ namespace MonoTouch.NUnit.UI {
 		public bool ShowUseNetworkLogger {
 			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)); }
 		}
+
+		public bool SortNames { get; set; }
 		
 		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
-			var network = new BooleanElement ("Remote Server", EnableNetwork);
+			var network = new BooleanElement ("Enable", EnableNetwork);
 
 			var host = new EntryElement ("Host Name", "name", HostName);
 			host.KeyboardType = UIKeyboardType.ASCIICapable;
@@ -62,8 +67,11 @@ namespace MonoTouch.NUnit.UI {
 			var port = new EntryElement ("Port", "name", HostPort.ToString ());
 			port.KeyboardType = UIKeyboardType.NumberPad;
 			
+			var sort = new BooleanElement ("Sort Names", SortNames);
+
 			var root = new RootElement ("Options") {
-				new Section () { network, host, port }
+				new Section ("Remote Server") { network, host, port },
+				new Section ("Display") { sort }
 			};
 				
 			var dv = new DialogViewController (root, true) { Autorotate = true };
@@ -75,11 +83,13 @@ namespace MonoTouch.NUnit.UI {
 					HostPort = p;
 				else
 					HostPort = -1;
+				SortNames = sort.Value;
 				
 				var defaults = NSUserDefaults.StandardUserDefaults;
 				defaults.SetBool (EnableNetwork, "network.enabled");
 				defaults.SetString (HostName ?? String.Empty, "network.host.name");
 				defaults.SetInt (HostPort, "network.host.port");
+				defaults.SetBool (SortNames, "display.sort");
 			};
 			
 			return dv;

@@ -34,7 +34,7 @@ namespace MonoTouch.NUnit.UI {
 
 		protected TouchRunner Runner { get; private set; }
 		
-		protected TestResult Result {
+		public TestResult Result {
 			get { return result ?? new TestCaseResult (Test as TestMethod); }
 			set { result = value; }
 		}

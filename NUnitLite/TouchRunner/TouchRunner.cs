@@ -27,7 +27,6 @@ namespace MonoTouch.NUnit.UI {
 	public class TouchRunner : ITestAssemblyRunner, ITestListener, ITestFilter {
 		
 		UIWindow window;
-		TouchOptions options;
 		int passed;
 		int failed;
 		int ignored;
@@ -41,17 +40,16 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("window");
 			
 			this.window = window;
-			options = new TouchOptions ();
 		}
 		
 		public bool AutoStart {
-			get { return options.AutoStart; }
-			set { options.AutoStart = value; }
+			get { return TouchOptions.Current.AutoStart; }
+			set { TouchOptions.Current.AutoStart = value; }
 		}
 		
 		public bool TerminateAfterExecution {
-			get { return options.TerminateAfterExecution; }
-			set { options.TerminateAfterExecution = value; }
+			get { return TouchOptions.Current.TerminateAfterExecution; }
+			set { TouchOptions.Current.TerminateAfterExecution = value; }
 		}
 		
 		[CLSCompliant (false)]
@@ -143,12 +141,12 @@ namespace MonoTouch.NUnit.UI {
 				
 		void Options ()
 		{
-			NavigationController.PushViewController (options.GetViewController (), true);				
+			NavigationController.PushViewController (TouchOptions.Current.GetViewController (), true);				
 		}
 		
 		void Credits ()
 		{
-			var title = new MultilineElement ("Touch.Unit Runner\nCopyright 2011-2012 Xamarin Inc.\nAll rights reserved.\n\nAuthor: Sebastien Pouliot");
+			var title = new MultilineElement ("Touch.Unit Runner\nCopyright 2011-2012 Xamarin Inc.\nAll rights reserved.");
 			title.Alignment = UITextAlignment.Center;
 			
 			var root = new RootElement ("Credits") {
@@ -157,7 +155,8 @@ namespace MonoTouch.NUnit.UI {
 					new HtmlElement ("About Xamarin", "http://www.xamarin.com"),
 					new HtmlElement ("About MonoTouch", "http://ios.xamarin.com"),
 					new HtmlElement ("About MonoTouch.Dialog", "https://github.com/migueldeicaza/MonoTouch.Dialog"),
-					new HtmlElement ("About NUnitLite", "http://www.nunitlite.org")
+					new HtmlElement ("About NUnitLite", "http://www.nunitlite.org"),
+					new HtmlElement ("About Font Awesome", "http://fortawesome.github.com/Font-Awesome")
 				}
 			};
 				
@@ -215,6 +214,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		public bool OpenWriter (string message)
 		{
+			TouchOptions options = TouchOptions.Current;
 			DateTime now = DateTime.Now;
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
@@ -278,7 +278,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		#endregion
 		
-		Dictionary<TestSuite, DialogViewController> suites_dvc = new Dictionary<TestSuite, DialogViewController> ();
+		Dictionary<TestSuite, TouchViewController> suites_dvc = new Dictionary<TestSuite, TouchViewController> ();
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
 		Dictionary<TestMethod, TestCaseElement> case_elements = new Dictionary<TestMethod, TestCaseElement> ();
 		
@@ -317,14 +317,14 @@ namespace MonoTouch.NUnit.UI {
 						if (OpenWriter (suite.Name)) {
 							Run (suite);
 							CloseWriter ();
+							suites_dvc [suite].Filter ();
 						}
 					})
 				};
 				root.Add (options);
 			}
-				
-			var dv = new DialogViewController (root, true) { Autorotate = true };
-			suites_dvc.Add (suite, dv);
+
+			suites_dvc.Add (suite, new TouchViewController (root));
 			return tse;
 		}
 		

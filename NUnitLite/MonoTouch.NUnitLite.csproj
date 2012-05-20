@@ -732,6 +732,7 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.7.0\src\framework\Internal\Tests\TestSuite.cs">
       <Link>framework\Internal\Tests\TestSuite.cs</Link>
     </Compile>
+    <Compile Include="TouchRunner\TouchViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />
