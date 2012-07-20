@@ -152,7 +152,10 @@ class SimpleListener {
 				ThreadPool.QueueUserWorkItem ((v) => {
 					using (Process proc = new Process ()) {
 						StringBuilder procArgs = new StringBuilder ();
-						procArgs.Append ("--launchdev ");
+						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
+						if (!String.IsNullOrEmpty (sdk_root))
+							procArgs.Append ("--sdkroot ").Append (sdk_root);
+						procArgs.Append (" --launchdev ");
 						procArgs.Append (launchdev);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
@@ -181,7 +184,10 @@ class SimpleListener {
 					using (Process proc = new Process ()) {
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
-						procArgs.Append ("--launchsim ");
+						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
+						if (!String.IsNullOrEmpty (sdk_root))
+							procArgs.Append ("--sdkroot ").Append (sdk_root);
+						procArgs.Append (" --launchsim ");
 						procArgs.Append (launchsim);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
