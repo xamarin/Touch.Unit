@@ -31,13 +31,14 @@ using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 
-using NUnit.Framework.Internal;
 using NUnit.Framework.Api;
+using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
+using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	
-	public class TouchRunner : ITestAssemblyRunner, ITestListener, ITestFilter {
+	public class TouchRunner : ITestListener, ITestFilter {
 		
 		UIWindow window;
 		int passed;
@@ -361,7 +362,9 @@ namespace MonoTouch.NUnit.UI {
 			TestResult result = r as TestResult;
 			TestSuite ts = result.Test as TestSuite;
 			if (ts != null) {
-				suite_elements [ts].Update (result);
+				TestSuiteElement tse;
+				if (suite_elements.TryGetValue (ts, out tse))
+					tse.Update (result);
 			} else {
 				TestMethod tc = result.Test as TestMethod;
 				if (tc != null)
@@ -371,8 +374,10 @@ namespace MonoTouch.NUnit.UI {
 			if (result.Test is TestSuite) {
 				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
 					Writer.WriteLine ("\t[INFO] {0}", result.Message);
-				
-				Writer.WriteLine ("{0} : {1} ms", result.Test.Name, result.Time * 1000);
+
+				string name = result.Test.Name;
+				if (!String.IsNullOrEmpty (name))
+					Writer.WriteLine ("{0} : {1} ms", name, result.Time * 1000);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
@@ -409,7 +414,6 @@ namespace MonoTouch.NUnit.UI {
 		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
 		Dictionary<string, object> empty = new Dictionary<string, object> ();
 
-		// not used - but it satisfy the interface
 		public bool Load (string assemblyName, IDictionary settings)
 		{
 			return AddSuite (builder.Build (assemblyName, settings ?? empty));
@@ -428,20 +432,15 @@ namespace MonoTouch.NUnit.UI {
 			return true;
 		}
 
-		public ITestResult Run (ITestListener listener, ITestFilter filter)
-		{
-			if (suite == null)
-				return null;
-
-			return Run (suite);
-		}
-
 		public TestResult Run (Test test)
 		{
-	                TestExecutionContext.CurrentContext.WorkDirectory = Environment.CurrentDirectory;
-			TestExecutionContext.CurrentContext.Listener = this;
-			TestCommand command = test.GetTestCommand (this);
-			return CommandRunner.Execute (command);
+			TestExecutionContext current = TestExecutionContext.CurrentContext;
+			current.WorkDirectory = Environment.CurrentDirectory;
+			current.Listener = this;
+			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
+			WorkItem wi = WorkItem.CreateWorkItem (test, current, this);
+			wi.Execute ();
+			return wi.Result;
 		}
 
 		public ITest LoadedTest {

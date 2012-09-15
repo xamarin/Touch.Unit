@@ -60,11 +60,7 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void Run ()
 		{
-			var instance = TestCase.Method.ReflectedType.InvokeMember (".ctor", BindingFlags.CreateInstance, null, null, null);
-			TestExecutionContext.CurrentContext.TestObject = instance;
-			Runner.Run (TestCase);
-			TestExecutionContext.CurrentContext.TestObject = null;
-			Update ();
+			Update (Runner.Run (TestCase));
 		}
 		
 		public override void Update ()
