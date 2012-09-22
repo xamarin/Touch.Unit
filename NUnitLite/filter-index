@@ -1,0 +1,16 @@
+#!/usr/bin/csharp
+
+LoadAssembly ("System.Xml.Linq.dll");
+using System;
+using System.IO;
+using System.Xml.Linq;
+
+var mainFile = Environment.GetEnvironmentVariable ("INDEX");
+var main = XDocument.Load (mainFile);
+foreach (var element in main.Root.Element ("Types").Elements ()) {
+	string dir = "./docs/en/" + element.Attribute ("Name").Value;
+	if (!Directory.Exists (dir)) {
+		element.Remove ();
+	}
+}
+main.Save (mainFile);
