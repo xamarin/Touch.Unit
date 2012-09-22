@@ -4,6 +4,7 @@
   <AssemblyInfo>
     <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>NUnit.Framework.Constraints.Constraint</BaseTypeName>
@@ -25,6 +26,7 @@
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="expected" Type="System.Object" />
@@ -43,6 +45,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -89,6 +92,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -107,6 +111,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -125,6 +130,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -143,6 +149,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -165,6 +172,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -183,6 +191,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -201,6 +210,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -220,6 +230,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -240,6 +251,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -258,6 +270,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -276,6 +289,7 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -303,6 +317,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -325,6 +340,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -347,6 +363,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -373,6 +390,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -399,6 +417,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -425,6 +444,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.EqualConstraint</ReturnType>
@@ -447,6 +467,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -468,6 +489,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>

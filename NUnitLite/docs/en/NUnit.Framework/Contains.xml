@@ -4,6 +4,7 @@
   <AssemblyInfo>
     <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -20,10 +21,31 @@
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
         <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public static NUnit.Framework.Constraints.CollectionContainsConstraint Item (object expected);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NUnit.Framework.Constraints.CollectionContainsConstraint Item(object expected) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.CollectionContainsConstraint</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -62,6 +84,26 @@
       </Parameters>
       <Docs>
         <param name="substring">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Substring">
+      <MemberSignature Language="C#" Value="public static NUnit.Framework.Constraints.SubstringConstraint Substring (string expected);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class NUnit.Framework.Constraints.SubstringConstraint Substring(string expected) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.SubstringConstraint</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>

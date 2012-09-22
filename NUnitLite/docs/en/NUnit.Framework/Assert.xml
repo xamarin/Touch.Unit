@@ -4,6 +4,7 @@
   <AssemblyInfo>
     <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -23,6 +24,7 @@
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
       <Docs>
@@ -31,6 +33,1776 @@
             like to inherit from it to add other static methods. Hence, the
             protected constructor disallows any instances of this object.
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (decimal expected, decimal actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(valuetype System.Decimal expected, valuetype System.Decimal actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (int expected, int actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int32 expected, int32 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (long expected, long actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int64 expected, int64 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (object expected, object actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(object expected, object actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (uint expected, uint actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int32 expected, unsigned int32 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (ulong expected, ulong actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int64 expected, unsigned int64 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (decimal expected, decimal actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(valuetype System.Decimal expected, valuetype System.Decimal actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, double actual, double delta);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, float64 actual, float64 delta) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="delta" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, Nullable&lt;double&gt; actual, double delta);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, valuetype System.Nullable`1&lt;float64&gt; actual, float64 delta) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Nullable&lt;System.Double&gt;" />
+        <Parameter Name="delta" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (int expected, int actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int32 expected, int32 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (long expected, long actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int64 expected, int64 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (object expected, object actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(object expected, object actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (uint expected, uint actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int32 expected, unsigned int32 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (ulong expected, ulong actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int64 expected, unsigned int64 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (decimal expected, decimal actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(valuetype System.Decimal expected, valuetype System.Decimal actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, double actual, double delta, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, float64 actual, float64 delta, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="delta" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, Nullable&lt;double&gt; actual, double delta, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, valuetype System.Nullable`1&lt;float64&gt; actual, float64 delta, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Nullable&lt;System.Double&gt;" />
+        <Parameter Name="delta" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (int expected, int actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int32 expected, int32 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (long expected, long actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(int64 expected, int64 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (object expected, object actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(object expected, object actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (uint expected, uint actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int32 expected, unsigned int32 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (ulong expected, ulong actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(unsigned int64 expected, unsigned int64 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, double actual, double delta, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, float64 actual, float64 delta, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="delta" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreEqual">
+      <MemberSignature Language="C#" Value="public static void AreEqual (double expected, Nullable&lt;double&gt; actual, double delta, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreEqual(float64 expected, valuetype System.Nullable`1&lt;float64&gt; actual, float64 delta, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Nullable&lt;System.Double&gt;" />
+        <Parameter Name="delta" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (decimal expected, decimal actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(valuetype System.Decimal expected, valuetype System.Decimal actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (double expected, double actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float64 expected, float64 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (int expected, int actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int32 expected, int32 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (long expected, long actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int64 expected, int64 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (object expected, object actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(object expected, object actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (float expected, float actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float32 expected, float32 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Single" />
+        <Parameter Name="actual" Type="System.Single" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (uint expected, uint actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int32 expected, unsigned int32 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (ulong expected, ulong actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int64 expected, unsigned int64 actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (decimal expected, decimal actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(valuetype System.Decimal expected, valuetype System.Decimal actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (double expected, double actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float64 expected, float64 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (int expected, int actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int32 expected, int32 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (long expected, long actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int64 expected, int64 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (object expected, object actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(object expected, object actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (float expected, float actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float32 expected, float32 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Single" />
+        <Parameter Name="actual" Type="System.Single" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (uint expected, uint actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int32 expected, unsigned int32 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (ulong expected, ulong actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int64 expected, unsigned int64 actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (decimal expected, decimal actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(valuetype System.Decimal expected, valuetype System.Decimal actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Decimal" />
+        <Parameter Name="actual" Type="System.Decimal" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (double expected, double actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float64 expected, float64 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (int expected, int actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int32 expected, int32 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int32" />
+        <Parameter Name="actual" Type="System.Int32" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (long expected, long actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(int64 expected, int64 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Int64" />
+        <Parameter Name="actual" Type="System.Int64" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (object expected, object actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(object expected, object actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (float expected, float actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(float32 expected, float32 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Single" />
+        <Parameter Name="actual" Type="System.Single" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (uint expected, uint actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int32 expected, unsigned int32 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt32" />
+        <Parameter Name="actual" Type="System.UInt32" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotEqual">
+      <MemberSignature Language="C#" Value="public static void AreNotEqual (ulong expected, ulong actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotEqual(unsigned int64 expected, unsigned int64 actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.UInt64" />
+        <Parameter Name="actual" Type="System.UInt64" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotSame">
+      <MemberSignature Language="C#" Value="public static void AreNotSame (object expected, object actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotSame(object expected, object actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotSame">
+      <MemberSignature Language="C#" Value="public static void AreNotSame (object expected, object actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotSame(object expected, object actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreNotSame">
+      <MemberSignature Language="C#" Value="public static void AreNotSame (object expected, object actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreNotSame(object expected, object actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreSame">
+      <MemberSignature Language="C#" Value="public static void AreSame (object expected, object actual);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreSame(object expected, object actual) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreSame">
+      <MemberSignature Language="C#" Value="public static void AreSame (object expected, object actual, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreSame(object expected, object actual, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AreSame">
+      <MemberSignature Language="C#" Value="public static void AreSame (object expected, object actual, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void AreSame(object expected, object actual, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Object" />
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AssertDoublesAreEqual">
+      <MemberSignature Language="C#" Value="protected static void AssertDoublesAreEqual (double expected, double actual, double delta, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method familystatic hidebysig void AssertDoublesAreEqual(float64 expected, float64 actual, float64 delta, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expected" Type="System.Double" />
+        <Parameter Name="actual" Type="System.Double" />
+        <Parameter Name="delta" Type="System.Double" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]" />
+      </Parameters>
+      <Docs>
+        <param name="expected">To be added.</param>
+        <param name="actual">To be added.</param>
+        <param name="delta">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ByVal">
+      <MemberSignature Language="C#" Value="public static void ByVal (object actual, NUnit.Framework.Constraints.IResolveConstraint expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void ByVal(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ByVal">
+      <MemberSignature Language="C#" Value="public static void ByVal (object actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void ByVal(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ByVal">
+      <MemberSignature Language="C#" Value="public static void ByVal (object actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void ByVal(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (NUnit.Framework.TestDelegate code);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (NUnit.Framework.TestDelegate code, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (Type expectedExceptionType, NUnit.Framework.TestDelegate code);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (NUnit.Framework.TestDelegate code, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (Type expectedExceptionType, NUnit.Framework.TestDelegate code, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch">
+      <MemberSignature Language="C#" Value="public static Exception Catch (Type expectedExceptionType, NUnit.Framework.TestDelegate code, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Catch(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Catch&lt;T&gt; (NUnit.Framework.TestDelegate code) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Catch&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Catch&lt;T&gt; (NUnit.Framework.TestDelegate code, string message) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Catch&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Catch&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Catch&lt;T&gt; (NUnit.Framework.TestDelegate code, string message, object[] args) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Catch&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -53,12 +1825,82 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="DoesNotThrow">
+      <MemberSignature Language="C#" Value="public static void DoesNotThrow (NUnit.Framework.TestDelegate code);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void DoesNotThrow(class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DoesNotThrow">
+      <MemberSignature Language="C#" Value="public static void DoesNotThrow (NUnit.Framework.TestDelegate code, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void DoesNotThrow(class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DoesNotThrow">
+      <MemberSignature Language="C#" Value="public static void DoesNotThrow (NUnit.Framework.TestDelegate code, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void DoesNotThrow(class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Equals">
       <MemberSignature Language="C#" Value="public static bool Equals (object a, object b);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Equals(object a, object b) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
         <Attribute>
@@ -86,11 +1928,47 @@
       </Docs>
     </Member>
     <Member MemberName="Fail">
+      <MemberSignature Language="C#" Value="public static void Fail ();" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void Fail() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Fail">
+      <MemberSignature Language="C#" Value="public static void Fail (string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void Fail(string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Fail">
       <MemberSignature Language="C#" Value="public static void Fail (string message, object[] args);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig void Fail(string message, object[] args) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -120,6 +1998,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -142,6 +2021,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -166,6 +2046,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -198,6 +2079,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -217,6 +2099,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -239,6 +2122,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -269,6 +2153,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -288,6 +2173,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -310,6 +2196,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -334,12 +2221,289 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="IsFalse">
+      <MemberSignature Language="C#" Value="public static void IsFalse (bool condition);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsFalse(bool condition) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsFalse">
+      <MemberSignature Language="C#" Value="public static void IsFalse (bool condition, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsFalse(bool condition, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsFalse">
+      <MemberSignature Language="C#" Value="public static void IsFalse (bool condition, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsFalse(bool condition, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNotNull">
+      <MemberSignature Language="C#" Value="public static void IsNotNull (object anObject);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNotNull(object anObject) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNotNull">
+      <MemberSignature Language="C#" Value="public static void IsNotNull (object anObject, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNotNull(object anObject, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNotNull">
+      <MemberSignature Language="C#" Value="public static void IsNotNull (object anObject, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNotNull(object anObject, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNull">
+      <MemberSignature Language="C#" Value="public static void IsNull (object anObject);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNull(object anObject) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNull">
+      <MemberSignature Language="C#" Value="public static void IsNull (object anObject, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNull(object anObject, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsNull">
+      <MemberSignature Language="C#" Value="public static void IsNull (object anObject, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsNull(object anObject, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="anObject" Type="System.Object" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="anObject">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsTrue">
+      <MemberSignature Language="C#" Value="public static void IsTrue (bool condition);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsTrue(bool condition) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsTrue">
+      <MemberSignature Language="C#" Value="public static void IsTrue (bool condition, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsTrue(bool condition, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsTrue">
+      <MemberSignature Language="C#" Value="public static void IsTrue (bool condition, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void IsTrue(bool condition, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="NotNull">
       <MemberSignature Language="C#" Value="public static void NotNull (object anObject);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig void NotNull(object anObject) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -363,6 +2527,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -388,6 +2553,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -421,6 +2587,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -444,6 +2611,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -469,6 +2637,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -502,6 +2671,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -522,6 +2692,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -545,6 +2716,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -576,6 +2748,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -603,6 +2776,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -620,11 +2794,33 @@
       </Docs>
     </Member>
     <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (NUnit.Framework.TestDelegate code, NUnit.Framework.Constraints.IResolveConstraint constraint);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(class NUnit.Framework.TestDelegate code, class NUnit.Framework.Constraints.IResolveConstraint constraint) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="constraint" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="constraint">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
       <MemberSignature Language="C#" Value="public static void That (bool condition, string message);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool condition, string message) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -649,6 +2845,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -673,6 +2870,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -705,6 +2903,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -731,6 +2930,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -759,12 +2959,352 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class NUnit.Framework.Constraints.IResolveConstraint expression, class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="expression">To be added.</param>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (Type expectedExceptionType, NUnit.Framework.TestDelegate code);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class NUnit.Framework.Constraints.IResolveConstraint expression, class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expression">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (Type expectedExceptionType, NUnit.Framework.TestDelegate code, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class NUnit.Framework.Constraints.IResolveConstraint expression, class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expression">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws">
+      <MemberSignature Language="C#" Value="public static Exception Throws (Type expectedExceptionType, NUnit.Framework.TestDelegate code, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class System.Exception Throws(class System.Type expectedExceptionType, class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Exception</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="expectedExceptionType" Type="System.Type" />
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="expectedExceptionType">To be added.</param>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Throws&lt;T&gt; (NUnit.Framework.TestDelegate code) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Throws&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Throws&lt;T&gt; (NUnit.Framework.TestDelegate code, string message) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Throws&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Throws&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T Throws&lt;T&gt; (NUnit.Framework.TestDelegate code, string message, object[] args) where T : Exception;" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig !!T Throws&lt;(class System.Exception) T&gt;(class NUnit.Framework.TestDelegate code, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T">
+          <Constraints>
+            <BaseTypeName>System.Exception</BaseTypeName>
+          </Constraints>
+        </TypeParameter>
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="code">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="True">
       <MemberSignature Language="C#" Value="public static void True (bool condition);" />
       <MemberSignature Language="ILAsm" Value=".method public static hidebysig void True(bool condition) cil managed" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -787,6 +3327,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
@@ -811,6 +3352,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>

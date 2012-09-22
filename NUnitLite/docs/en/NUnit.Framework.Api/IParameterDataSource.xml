@@ -1,0 +1,35 @@
+<Type Name="IParameterDataSource" FullName="NUnit.Framework.Api.IParameterDataSource">
+  <TypeSignature Language="C#" Value="public interface IParameterDataSource" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract IParameterDataSource" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="GetData">
+      <MemberSignature Language="C#" Value="public System.Collections.IEnumerable GetData (System.Reflection.ParameterInfo parameter);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.IEnumerable GetData(class System.Reflection.ParameterInfo parameter) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.IEnumerable</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="parameter" Type="System.Reflection.ParameterInfo" />
+      </Parameters>
+      <Docs>
+        <param name="parameter">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

@@ -1,0 +1,59 @@
+<Type Name="ITestAssemblyBuilder" FullName="NUnit.Framework.Api.ITestAssemblyBuilder">
+  <TypeSignature Language="C#" Value="public interface ITestAssemblyBuilder" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestAssemblyBuilder" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Build">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Internal.TestSuite Build (System.Reflection.Assembly assembly, System.Collections.IDictionary options);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class NUnit.Framework.Internal.TestSuite Build(class System.Reflection.Assembly assembly, class System.Collections.IDictionary options) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Internal.TestSuite</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="assembly" Type="System.Reflection.Assembly" />
+        <Parameter Name="options" Type="System.Collections.IDictionary" />
+      </Parameters>
+      <Docs>
+        <param name="assembly">To be added.</param>
+        <param name="options">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Build">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Internal.TestSuite Build (string assemblyName, System.Collections.IDictionary options);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class NUnit.Framework.Internal.TestSuite Build(string assemblyName, class System.Collections.IDictionary options) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Internal.TestSuite</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="assemblyName" Type="System.String" />
+        <Parameter Name="options" Type="System.Collections.IDictionary" />
+      </Parameters>
+      <Docs>
+        <param name="assemblyName">To be added.</param>
+        <param name="options">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

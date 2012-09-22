@@ -1,0 +1,55 @@
+<Type Name="ITestCaseBuilder" FullName="NUnit.Framework.Extensibility.ITestCaseBuilder">
+  <TypeSignature Language="C#" Value="public interface ITestCaseBuilder" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestCaseBuilder" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="BuildFrom">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Internal.Test BuildFrom (System.Reflection.MethodInfo method);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class NUnit.Framework.Internal.Test BuildFrom(class System.Reflection.MethodInfo method) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Internal.Test</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
+      </Parameters>
+      <Docs>
+        <param name="method">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CanBuildFrom">
+      <MemberSignature Language="C#" Value="public bool CanBuildFrom (System.Reflection.MethodInfo method);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool CanBuildFrom(class System.Reflection.MethodInfo method) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
+      </Parameters>
+      <Docs>
+        <param name="method">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

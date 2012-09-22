@@ -1,0 +1,481 @@
+<Type Name="Assume" FullName="NUnit.Framework.Assume">
+  <TypeSignature Language="C#" Value="public class Assume" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit Assume extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Assume ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public static bool Equals (object a, object b);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Equals(object a, object b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Object" />
+        <Parameter Name="b" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ReferenceEquals">
+      <MemberSignature Language="C#" Value="public static void ReferenceEquals (object a, object b);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void ReferenceEquals(object a, object b) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Object" />
+        <Parameter Name="b" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (bool condition);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool condition) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (NUnit.Framework.Constraints.ActualValueDelegate del, NUnit.Framework.Constraints.IResolveConstraint expr);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(class NUnit.Framework.Constraints.ActualValueDelegate del, class NUnit.Framework.Constraints.IResolveConstraint expr) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="del" Type="NUnit.Framework.Constraints.ActualValueDelegate" />
+        <Parameter Name="expr" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="del">To be added.</param>
+        <param name="expr">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (NUnit.Framework.TestDelegate code, NUnit.Framework.Constraints.IResolveConstraint constraint);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(class NUnit.Framework.TestDelegate code, class NUnit.Framework.Constraints.IResolveConstraint constraint) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="NUnit.Framework.TestDelegate" />
+        <Parameter Name="constraint" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="constraint">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (bool condition, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool condition, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (ref bool actual, NUnit.Framework.Constraints.IResolveConstraint expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool actual, class NUnit.Framework.Constraints.IResolveConstraint expression) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Boolean&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (object actual, NUnit.Framework.Constraints.IResolveConstraint expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (NUnit.Framework.Constraints.ActualValueDelegate del, NUnit.Framework.Constraints.IResolveConstraint expr, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(class NUnit.Framework.Constraints.ActualValueDelegate del, class NUnit.Framework.Constraints.IResolveConstraint expr, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="del" Type="NUnit.Framework.Constraints.ActualValueDelegate" />
+        <Parameter Name="expr" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="del">To be added.</param>
+        <param name="expr">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (bool condition, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool condition, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="condition" Type="System.Boolean" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="condition">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (ref bool actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Boolean&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (object actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (NUnit.Framework.Constraints.ActualValueDelegate del, NUnit.Framework.Constraints.IResolveConstraint expr, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(class NUnit.Framework.Constraints.ActualValueDelegate del, class NUnit.Framework.Constraints.IResolveConstraint expr, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="del" Type="NUnit.Framework.Constraints.ActualValueDelegate" />
+        <Parameter Name="expr" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="del">To be added.</param>
+        <param name="expr">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (ref bool actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(bool actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Boolean&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That">
+      <MemberSignature Language="C#" Value="public static void That (object actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That(object actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="actual" Type="System.Object" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="That&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void That&lt;T&gt; (ref T actual, NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig void That&lt;T&gt;(!!T actual, class NUnit.Framework.Constraints.IResolveConstraint expression, string message, object[] args) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="actual" Type="T&amp;" RefType="ref" />
+        <Parameter Name="expression" Type="NUnit.Framework.Constraints.IResolveConstraint" />
+        <Parameter Name="message" Type="System.String" />
+        <Parameter Name="args" Type="System.Object[]">
+          <Attributes>
+            <Attribute>
+              <AttributeName>System.ParamArray</AttributeName>
+            </Attribute>
+          </Attributes>
+        </Parameter>
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="actual">To be added.</param>
+        <param name="expression">To be added.</param>
+        <param name="message">To be added.</param>
+        <param name="args">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

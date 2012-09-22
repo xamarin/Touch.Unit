@@ -4,6 +4,7 @@
   <AssemblyInfo>
     <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>NUnit.Framework.Constraints.Constraint</BaseTypeName>
@@ -18,11 +19,12 @@
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public BinaryConstraint (NUnit.Framework.Constraints.Constraint left, NUnit.Framework.Constraints.Constraint right);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class NUnit.Framework.Constraints.Constraint left, class NUnit.Framework.Constraints.Constraint right) cil managed" />
+      <MemberSignature Language="C#" Value="protected BinaryConstraint (NUnit.Framework.Constraints.Constraint left, NUnit.Framework.Constraints.Constraint right);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(class NUnit.Framework.Constraints.Constraint left, class NUnit.Framework.Constraints.Constraint right) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="left" Type="NUnit.Framework.Constraints.Constraint" />
@@ -54,6 +56,21 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="Left">
+      <MemberSignature Language="C#" Value="protected NUnit.Framework.Constraints.Constraint Left;" />
+      <MemberSignature Language="ILAsm" Value=".field family class NUnit.Framework.Constraints.Constraint Left" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="right">
       <MemberSignature Language="C#" Value="protected NUnit.Framework.Constraints.Constraint right;" />
       <MemberSignature Language="ILAsm" Value=".field family class NUnit.Framework.Constraints.Constraint right" />
@@ -68,6 +85,21 @@
         <summary>
             The second constraint being combined
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Right">
+      <MemberSignature Language="C#" Value="protected NUnit.Framework.Constraints.Constraint Right;" />
+      <MemberSignature Language="ILAsm" Value=".field family class NUnit.Framework.Constraints.Constraint Right" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Constraints.Constraint</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

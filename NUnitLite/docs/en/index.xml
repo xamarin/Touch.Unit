@@ -1,7 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Overview>
   <Assemblies>
-    <Assembly Name="MonoTouch.NUnitLite" Version="0.6.0.0">
+    <Assembly Name="MonoTouch.NUnitLite" Version="0.7.0.0">
       <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(true)</AttributeName>
+        </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyCompany("NUnit Software")</AttributeName>
         </Attribute>
@@ -9,13 +13,13 @@
           <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyCopyright("Copyright 2007, Charlie Poole")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyCopyright("Copyright 2012, Charlie Poole")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyDescription("NUnitLite unit-testing framework")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyFileVersion("0.6.0.0")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyFileVersion("0.7.0.0")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyProduct("NUnitLite")</AttributeName>
@@ -41,49 +45,107 @@
   <Remarks>To be added.</Remarks>
   <Copyright>To be added.</Copyright>
   <Types>
-    <Namespace Name="Mono.Options">
-      <Type Name="Option" Kind="Class" />
-      <Type Name="OptionAction`2" DisplayName="OptionAction&lt;TKey,TValue&gt;" Kind="Delegate" />
-      <Type Name="OptionContext" Kind="Class" />
-      <Type Name="OptionException" Kind="Class" />
-      <Type Name="OptionSet" Kind="Class" />
-      <Type Name="OptionValueCollection" Kind="Class" />
-      <Type Name="OptionValueType" Kind="Enumeration" />
-    </Namespace>
-    <Namespace Name="MonoTouch.NUnit">
-      <Type Name="TcpTextWriter" Kind="Class" />
-    </Namespace>
-    <Namespace Name="MonoTouch.NUnit.UI">
-      <Type Name="TouchRunner" Kind="Class" />
+    <Namespace Name="NUnit">
+      <Type Name="Env" Kind="Class" />
+      <Type Name="ObjectList" Kind="Class" />
     </Namespace>
     <Namespace Name="NUnit.Framework">
       <Type Name="Assert" Kind="Class" />
       <Type Name="AssertionException" Kind="Class" />
       <Type Name="AssertionHelper" Kind="Class" />
+      <Type Name="Assume" Kind="Class" />
+      <Type Name="CategoryAttribute" Kind="Class" />
+      <Type Name="CombinatorialAttribute" Kind="Class" />
       <Type Name="Contains" Kind="Class" />
+      <Type Name="CultureAttribute" Kind="Class" />
+      <Type Name="DataAttribute" Kind="Class" />
       <Type Name="DescriptionAttribute" Kind="Class" />
       <Type Name="ExpectedExceptionAttribute" Kind="Class" />
+      <Type Name="ExpectedExceptionDecorator" Kind="Class" />
+      <Type Name="ExplicitAttribute" Kind="Class" />
       <Type Name="GlobalSettings" Kind="Class" />
+      <Type Name="Guard" Kind="Class" />
       <Type Name="Has" Kind="Class" />
       <Type Name="IExpectException" Kind="Interface" />
       <Type Name="IgnoreAttribute" Kind="Class" />
       <Type Name="IgnoreException" Kind="Class" />
+      <Type Name="IncludeExcludeAttribute" Kind="Class" />
       <Type Name="InconclusiveException" Kind="Class" />
       <Type Name="Is" Kind="Class" />
       <Type Name="Iz" Kind="Class" />
+      <Type Name="ListMapper" Kind="Class" />
+      <Type Name="MaxTimeAttribute" Kind="Class" />
+      <Type Name="MessageMatch" Kind="Enumeration" />
+      <Type Name="NUnitAttribute" Kind="Class" />
+      <Type Name="PairwiseAttribute" Kind="Class" />
+      <Type Name="PlatformAttribute" Kind="Class" />
+      <Type Name="PostTestAttribute" Kind="Class" />
+      <Type Name="PreTestAttribute" Kind="Class" />
       <Type Name="PropertyAttribute" Kind="Class" />
+      <Type Name="RandomAttribute" Kind="Class" />
+      <Type Name="RangeAttribute" Kind="Class" />
+      <Type Name="RepeatAttribute" Kind="Class" />
       <Type Name="RequiredAddinAttribute" Kind="Class" />
+      <Type Name="SequentialAttribute" Kind="Class" />
+      <Type Name="SetCultureAttribute" Kind="Class" />
+      <Type Name="SetUICultureAttribute" Kind="Class" />
       <Type Name="SetUpAttribute" Kind="Class" />
+      <Type Name="SpecialValue" Kind="Enumeration" />
       <Type Name="StackFilter" Kind="Class" />
       <Type Name="SuccessException" Kind="Class" />
       <Type Name="TearDownAttribute" Kind="Class" />
       <Type Name="TestAttribute" Kind="Class" />
+      <Type Name="TestCaseAttribute" Kind="Class" />
+      <Type Name="TestCaseData" Kind="Class" />
+      <Type Name="TestCaseSourceAttribute" Kind="Class" />
+      <Type Name="TestContext" Kind="Class" />
+      <Type Name="TestContext+ResultAdapter" Kind="Class" />
+      <Type Name="TestContext+TestAdapter" Kind="Class" />
       <Type Name="TestDelegate" Kind="Delegate" />
       <Type Name="TestFixtureAttribute" Kind="Class" />
+      <Type Name="TestFixtureSetUpAttribute" Kind="Class" />
+      <Type Name="TestFixtureTearDownAttribute" Kind="Class" />
+      <Type Name="TestModificationAttribute" Kind="Class" />
       <Type Name="TextMessageWriter" Kind="Class" />
       <Type Name="Throws" Kind="Class" />
+      <Type Name="ValuesAttribute" Kind="Class" />
+      <Type Name="ValueSourceAttribute" Kind="Class" />
+    </Namespace>
+    <Namespace Name="NUnit.Framework.Api">
+      <Type Name="ExpectedExceptionData" Kind="Structure" />
+      <Type Name="IApplyToTest" Kind="Interface" />
+      <Type Name="IDynamicTestCaseSource" Kind="Interface" />
+      <Type Name="IParameterDataSource" Kind="Interface" />
+      <Type Name="IPropertyBag" Kind="Interface" />
+      <Type Name="ITest" Kind="Interface" />
+      <Type Name="ITestAssemblyBuilder" Kind="Interface" />
+      <Type Name="ITestAssemblyRunner" Kind="Interface" />
+      <Type Name="ITestCaseData" Kind="Interface" />
+      <Type Name="ITestCaseSource" Kind="Interface" />
+      <Type Name="ITestFilter" Kind="Interface" />
+      <Type Name="ITestListener" Kind="Interface" />
+      <Type Name="ITestResult" Kind="Interface" />
+      <Type Name="IXmlNodeBuilder" Kind="Interface" />
+      <Type Name="PropertyEntry" Kind="Class" />
+      <Type Name="ResultState" Kind="Class" />
+      <Type Name="RunState" Kind="Enumeration" />
+      <Type Name="TestOutput" Kind="Class" />
+      <Type Name="TestOutputType" Kind="Enumeration" />
+      <Type Name="TestStatus" Kind="Enumeration" />
+    </Namespace>
+    <Namespace Name="NUnit.Framework.Builders">
+      <Type Name="CombinatorialStrategy" Kind="Class" />
+      <Type Name="CombinatorialTestCaseProvider" Kind="Class" />
+      <Type Name="CombiningStrategy" Kind="Class" />
+      <Type Name="DataAttributeTestCaseProvider" Kind="Class" />
+      <Type Name="NUnitTestCaseBuilder" Kind="Class" />
+      <Type Name="NUnitTestFixtureBuilder" Kind="Class" />
+      <Type Name="PairwiseStrategy" Kind="Class" />
+      <Type Name="ParameterDataProvider" Kind="Class" />
+      <Type Name="SequentialStrategy" Kind="Class" />
     </Namespace>
     <Namespace Name="NUnit.Framework.Constraints">
+      <Type Name="ActualValueDelegate" Kind="Delegate" />
       <Type Name="AllItemsConstraint" Kind="Class" />
       <Type Name="AllOperator" Kind="Class" />
       <Type Name="AndConstraint" Kind="Class" />
@@ -104,6 +166,7 @@
       <Type Name="CollectionOperator" Kind="Class" />
       <Type Name="CollectionOrderedConstraint" Kind="Class" />
       <Type Name="CollectionSubsetConstraint" Kind="Class" />
+      <Type Name="CollectionTally" Kind="Class" />
       <Type Name="ComparisonAdapter" Kind="Class" />
       <Type Name="ComparisonConstraint" Kind="Class" />
       <Type Name="Constraint" Kind="Class" />
@@ -117,11 +180,15 @@
       <Type Name="ContainsConstraint" Kind="Class" />
       <Type Name="EmptyCollectionConstraint" Kind="Class" />
       <Type Name="EmptyConstraint" Kind="Class" />
+      <Type Name="EmptyDirectoryConstraint" Kind="Class" />
       <Type Name="EmptyStringConstraint" Kind="Class" />
       <Type Name="EndsWithConstraint" Kind="Class" />
       <Type Name="EqualConstraint" Kind="Class" />
       <Type Name="EqualityAdapter" Kind="Class" />
+      <Type Name="ExactCountConstraint" Kind="Class" />
+      <Type Name="ExactCountOperator" Kind="Class" />
       <Type Name="ExactTypeConstraint" Kind="Class" />
+      <Type Name="ExceptionTypeConstraint" Kind="Class" />
       <Type Name="FalseConstraint" Kind="Class" />
       <Type Name="FloatingPointNumerics" Kind="Class" />
       <Type Name="GreaterThanConstraint" Kind="Class" />
@@ -142,10 +209,10 @@
       <Type Name="Numerics" Kind="Class" />
       <Type Name="NUnitComparer" Kind="Class" />
       <Type Name="NUnitEqualityComparer" Kind="Class" />
+      <Type Name="NUnitEqualityComparer+FailurePoint" Kind="Class" />
       <Type Name="OrConstraint" Kind="Class" />
       <Type Name="OrOperator" Kind="Class" />
       <Type Name="PathConstraint" Kind="Class" />
-      <Type Name="PredicateConstraint`1" DisplayName="PredicateConstraint&lt;T&gt;" Kind="Class" />
       <Type Name="PrefixConstraint" Kind="Class" />
       <Type Name="PrefixOperator" Kind="Class" />
       <Type Name="PropertyConstraint" Kind="Class" />
@@ -174,24 +241,12 @@
       <Type Name="WithOperator" Kind="Class" />
       <Type Name="XmlSerializableConstraint" Kind="Class" />
     </Namespace>
-    <Namespace Name="NUnitLite">
-      <Type Name="Env" Kind="Class" />
-      <Type Name="ITest" Kind="Interface" />
-      <Type Name="NullListener" Kind="Class" />
-      <Type Name="Reflect" Kind="Class" />
-      <Type Name="ResultState" Kind="Enumeration" />
-      <Type Name="ResultSummary" Kind="Class" />
-      <Type Name="RunState" Kind="Enumeration" />
-      <Type Name="TestCase" Kind="Class" />
-      <Type Name="TestListener" Kind="Interface" />
-      <Type Name="TestResult" Kind="Class" />
-      <Type Name="TestSuite" Kind="Class" />
-      <Type Name="TouchOptions" Kind="Class" />
-    </Namespace>
-    <Namespace Name="NUnitLite.Runner">
-      <Type Name="CommandLineOptions" Kind="Class" />
-      <Type Name="TestLoader" Kind="Class" />
-      <Type Name="TestRunner" Kind="Class" />
+    <Namespace Name="NUnit.Framework.Extensibility">
+      <Type Name="IParameterDataProvider" Kind="Interface" />
+      <Type Name="ISuiteBuilder" Kind="Interface" />
+      <Type Name="ITestCaseBuilder" Kind="Interface" />
+      <Type Name="ITestCaseBuilder2" Kind="Interface" />
+      <Type Name="ITestCaseProvider" Kind="Interface" />
     </Namespace>
   </Types>
   <Title>NUnitLite</Title>

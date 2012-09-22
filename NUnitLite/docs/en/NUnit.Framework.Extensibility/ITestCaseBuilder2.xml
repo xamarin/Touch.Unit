@@ -1,0 +1,63 @@
+<Type Name="ITestCaseBuilder2" FullName="NUnit.Framework.Extensibility.ITestCaseBuilder2">
+  <TypeSignature Language="C#" Value="public interface ITestCaseBuilder2 : NUnit.Framework.Extensibility.ITestCaseBuilder" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestCaseBuilder2 implements class NUnit.Framework.Extensibility.ITestCaseBuilder" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>NUnit.Framework.Extensibility.ITestCaseBuilder</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="BuildFrom">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Internal.Test BuildFrom (System.Reflection.MethodInfo method, NUnit.Framework.Internal.Test suite);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class NUnit.Framework.Internal.Test BuildFrom(class System.Reflection.MethodInfo method, class NUnit.Framework.Internal.Test suite) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Internal.Test</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
+        <Parameter Name="suite" Type="NUnit.Framework.Internal.Test" />
+      </Parameters>
+      <Docs>
+        <param name="method">To be added.</param>
+        <param name="suite">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CanBuildFrom">
+      <MemberSignature Language="C#" Value="public bool CanBuildFrom (System.Reflection.MethodInfo method, NUnit.Framework.Internal.Test suite);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool CanBuildFrom(class System.Reflection.MethodInfo method, class NUnit.Framework.Internal.Test suite) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
+        <Parameter Name="suite" Type="NUnit.Framework.Internal.Test" />
+      </Parameters>
+      <Docs>
+        <param name="method">To be added.</param>
+        <param name="suite">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

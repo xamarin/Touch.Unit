@@ -1,0 +1,35 @@
+<Type Name="ITestFilter" FullName="NUnit.Framework.Api.ITestFilter">
+  <TypeSignature Language="C#" Value="public interface ITestFilter" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestFilter" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Pass">
+      <MemberSignature Language="C#" Value="public bool Pass (NUnit.Framework.Api.ITest test);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool Pass(class NUnit.Framework.Api.ITest test) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="test" Type="NUnit.Framework.Api.ITest" />
+      </Parameters>
+      <Docs>
+        <param name="test">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

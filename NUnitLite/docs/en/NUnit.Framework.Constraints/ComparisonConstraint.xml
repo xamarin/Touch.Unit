@@ -4,6 +4,7 @@
   <AssemblyInfo>
     <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
     <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>NUnit.Framework.Constraints.Constraint</BaseTypeName>
@@ -19,24 +20,25 @@
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public ComparisonConstraint (object value, bool ltOK, bool eqOK, bool gtOK, string predicate);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(object value, bool ltOK, bool eqOK, bool gtOK, string predicate) cil managed" />
+      <MemberSignature Language="C#" Value="protected ComparisonConstraint (object value, bool lessComparisonResult, bool equalComparisonResult, bool greaterComparisonResult, string predicate);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig specialname rtspecialname instance void .ctor(object value, bool lessComparisonResult, bool equalComparisonResult, bool greaterComparisonResult, string predicate) cil managed" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="value" Type="System.Object" />
-        <Parameter Name="ltOK" Type="System.Boolean" />
-        <Parameter Name="eqOK" Type="System.Boolean" />
-        <Parameter Name="gtOK" Type="System.Boolean" />
+        <Parameter Name="lessComparisonResult" Type="System.Boolean" />
+        <Parameter Name="equalComparisonResult" Type="System.Boolean" />
+        <Parameter Name="greaterComparisonResult" Type="System.Boolean" />
         <Parameter Name="predicate" Type="System.String" />
       </Parameters>
       <Docs>
         <param name="value">The value against which to make a comparison.</param>
-        <param name="ltOK">if set to <c>true</c> less succeeds.</param>
-        <param name="eqOK">if set to <c>true</c> equal succeeds.</param>
-        <param name="gtOK">if set to <c>true</c> greater succeeds.</param>
+        <param name="lessComparisonResult">To be added.</param>
+        <param name="equalComparisonResult">To be added.</param>
+        <param name="greaterComparisonResult">To be added.</param>
         <param name="predicate">String used in describing the constraint.</param>
         <summary>
             Initializes a new instance of the <see cref="T:ComparisonConstraint" /> class.
@@ -61,12 +63,28 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="equalComparisonResult">
+      <MemberSignature Language="C#" Value="protected bool equalComparisonResult;" />
+      <MemberSignature Language="ILAsm" Value=".field family bool equalComparisonResult" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="expected">
       <MemberSignature Language="C#" Value="protected object expected;" />
       <MemberSignature Language="ILAsm" Value=".field family object expected" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -75,6 +93,21 @@
         <summary>
             The value against which a comparison is to be made
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="greaterComparisonResult">
+      <MemberSignature Language="C#" Value="protected bool greaterComparisonResult;" />
+      <MemberSignature Language="ILAsm" Value=".field family bool greaterComparisonResult" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -92,6 +125,21 @@
         <summary>
             if true, greater than returns success
             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="lessComparisonResult">
+      <MemberSignature Language="C#" Value="protected bool lessComparisonResult;" />
+      <MemberSignature Language="ILAsm" Value=".field family bool lessComparisonResult" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -118,6 +166,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -140,6 +189,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.ComparisonConstraint</ReturnType>
@@ -162,6 +212,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.ComparisonConstraint</ReturnType>
@@ -188,6 +239,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>NUnit.Framework.Constraints.ComparisonConstraint</ReturnType>
@@ -214,6 +266,7 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.6.0.0</AssemblyVersion>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>

@@ -1,0 +1,51 @@
+<Type Name="SequentialStrategy" FullName="NUnit.Framework.Builders.SequentialStrategy">
+  <TypeSignature Language="C#" Value="public class SequentialStrategy : NUnit.Framework.Builders.CombiningStrategy" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit SequentialStrategy extends NUnit.Framework.Builders.CombiningStrategy" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>NUnit.Framework.Builders.CombiningStrategy</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SequentialStrategy (System.Collections.IEnumerable[] sources);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class System.Collections.IEnumerable[] sources) cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="sources" Type="System.Collections.IEnumerable[]" />
+      </Parameters>
+      <Docs>
+        <param name="sources">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetTestCases">
+      <MemberSignature Language="C#" Value="public override System.Collections.Generic.IEnumerable&lt;NUnit.Framework.Api.ITestCaseData&gt; GetTestCases ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig virtual instance class System.Collections.Generic.IEnumerable`1&lt;class NUnit.Framework.Api.ITestCaseData&gt; GetTestCases() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;NUnit.Framework.Api.ITestCaseData&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

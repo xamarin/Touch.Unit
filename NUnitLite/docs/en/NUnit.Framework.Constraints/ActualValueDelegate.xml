@@ -1,0 +1,20 @@
+<Type Name="ActualValueDelegate" FullName="NUnit.Framework.Constraints.ActualValueDelegate">
+  <TypeSignature Language="C#" Value="public delegate object ActualValueDelegate();" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed ActualValueDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters />
+  <ReturnValue>
+    <ReturnType>System.Object</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <summary>To be added.</summary>
+    <returns>To be added.</returns>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,35 @@
+<Type Name="ITestCaseSource" FullName="NUnit.Framework.Api.ITestCaseSource">
+  <TypeSignature Language="C#" Value="public interface ITestCaseSource" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestCaseSource" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="GetTestCasesFor">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IEnumerable&lt;NUnit.Framework.Api.ITestCaseData&gt; GetTestCasesFor (System.Reflection.MethodInfo method);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IEnumerable`1&lt;class NUnit.Framework.Api.ITestCaseData&gt; GetTestCasesFor(class System.Reflection.MethodInfo method) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IEnumerable&lt;NUnit.Framework.Api.ITestCaseData&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="method" Type="System.Reflection.MethodInfo" />
+      </Parameters>
+      <Docs>
+        <param name="method">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

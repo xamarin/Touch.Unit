@@ -1,0 +1,127 @@
+<Type Name="ITestCaseData" FullName="NUnit.Framework.Api.ITestCaseData">
+  <TypeSignature Language="C#" Value="public interface ITestCaseData" />
+  <TypeSignature Language="ILAsm" Value=".class public interface auto ansi abstract ITestCaseData" />
+  <AssemblyInfo>
+    <AssemblyName>MonoTouch.NUnitLite</AssemblyName>
+    <AssemblyVersion>0.7.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Arguments">
+      <MemberSignature Language="C#" Value="public object[] Arguments { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance object[] Arguments" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object[]</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExceptionData">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Api.ExpectedExceptionData ExceptionData { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype NUnit.Framework.Api.ExpectedExceptionData ExceptionData" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Api.ExpectedExceptionData</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ExpectedResult">
+      <MemberSignature Language="C#" Value="public object ExpectedResult { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance object ExpectedResult" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HasExpectedResult">
+      <MemberSignature Language="C#" Value="public bool HasExpectedResult { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool HasExpectedResult" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Properties">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Api.IPropertyBag Properties { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class NUnit.Framework.Api.IPropertyBag Properties" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Api.IPropertyBag</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RunState">
+      <MemberSignature Language="C#" Value="public NUnit.Framework.Api.RunState RunState { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype NUnit.Framework.Api.RunState RunState" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>NUnit.Framework.Api.RunState</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TestName">
+      <MemberSignature Language="C#" Value="public string TestName { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string TestName" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.7.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
