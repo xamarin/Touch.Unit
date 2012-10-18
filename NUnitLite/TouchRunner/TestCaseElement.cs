@@ -64,7 +64,6 @@ namespace MonoTouch.NUnit.UI {
 			TestExecutionContext.CurrentContext.TestObject = instance;
 			Runner.Run (TestCase);
 			TestExecutionContext.CurrentContext.TestObject = null;
-			Update ();
 		}
 		
 		public override void Update ()
