@@ -36,10 +36,12 @@ namespace MonoTouch.NUnit.UI {
 		{
 			Autorotate = true;
 
-			NavigationItem.RightBarButtonItems = new UIBarButtonItem [] {
-				new UIBarButtonItem (ArrowDown, UIBarButtonItemStyle.Plain, ChangeSort),
-				new UIBarButtonItem (Asterisk, UIBarButtonItemStyle.Plain, ChangeFilter)
-			};
+			if (UIDevice.CurrentDevice.CheckSystemVersion (5, 0)) {
+				NavigationItem.RightBarButtonItems = new UIBarButtonItem [] {
+					new UIBarButtonItem (ArrowDown, UIBarButtonItemStyle.Plain, ChangeSort),
+					new UIBarButtonItem (Asterisk, UIBarButtonItemStyle.Plain, ChangeFilter)
+				};
+			}
 
 			Section testcases = root [0];
 			OriginalCaption = testcases.Caption;
