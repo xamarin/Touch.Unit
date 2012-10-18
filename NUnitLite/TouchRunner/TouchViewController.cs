@@ -42,11 +42,13 @@ namespace MonoTouch.NUnit.UI {
 			};
 
 			Section testcases = root [0];
-			Unfiltered = new Section (testcases.Caption);
+			OriginalCaption = testcases.Caption;
+			Unfiltered = new List<Element> ();
 			foreach (Element e in testcases)
 				Unfiltered.Add (e);
 
 			CurrentFilter = ResultFilter.All;
+			Filter ();
 			CurrentSortOrder = SortOrder.None;
 			if (TouchOptions.Current.SortNames)
 				ChangeSort (this, EventArgs.Empty);
@@ -67,7 +69,8 @@ namespace MonoTouch.NUnit.UI {
 			Success,
 		}
 
-		Section Unfiltered { get; set; }
+		string OriginalCaption { get; set; }
+		List<Element> Unfiltered { get; set; }
 
 		ResultFilter CurrentFilter { get; set; }
 
@@ -119,9 +122,9 @@ namespace MonoTouch.NUnit.UI {
 			}
 			Root.RemoveAt (0);
 			if (CurrentFilter == ResultFilter.All) {
-				filtered.Caption = String.Format ("{0} ({1})", Unfiltered.Caption, Unfiltered.Count);
+				filtered.Caption = String.Format ("{0} ({1})", OriginalCaption, Unfiltered.Count);
 			} else {
-				filtered.Caption = String.Format ("{0} ({1} : {2}/{3})", Unfiltered.Caption, CurrentFilter, filtered.Count, Unfiltered.Count);
+				filtered.Caption = String.Format ("{0} ({1} : {2}/{3})", OriginalCaption, CurrentFilter, filtered.Count, Unfiltered.Count);
 			}
 			Root.Insert (0, filtered);
 			ReloadData ();

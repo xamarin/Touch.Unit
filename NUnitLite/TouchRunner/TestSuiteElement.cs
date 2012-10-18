@@ -54,7 +54,6 @@ namespace MonoTouch.NUnit.UI {
 		public void Run ()
 		{
 			Result = Runner.Run (Suite);
-			Update ();
 		}
 		
 		public override void Update ()
