@@ -38,7 +38,7 @@ using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	
-	public class TouchRunner : ITestListener, ITestFilter {
+	public class TouchRunner : ITestListener {
 		
 		UIWindow window;
 		int passed;
@@ -46,6 +46,7 @@ namespace MonoTouch.NUnit.UI {
 		int ignored;
 		int inconclusive;
 		TestSuite suite = new TestSuite (String.Empty);
+		ITestFilter filter;
 
 		[CLSCompliant (false)]
 		public TouchRunner (UIWindow window)
@@ -54,11 +55,17 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("window");
 			
 			this.window = window;
+			filter = TestFilter.Empty;
 		}
 		
 		public bool AutoStart {
 			get { return TouchOptions.Current.AutoStart; }
 			set { TouchOptions.Current.AutoStart = value; }
+		}
+		
+		public ITestFilter Filter {
+			get { return filter; }
+			set { filter = value; }
 		}
 		
 		public bool TerminateAfterExecution {
@@ -438,7 +445,7 @@ namespace MonoTouch.NUnit.UI {
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
 			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
-			WorkItem wi = WorkItem.CreateWorkItem (test, current, this);
+			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
 			wi.Execute ();
 			return wi.Result;
 		}
@@ -451,11 +458,6 @@ namespace MonoTouch.NUnit.UI {
 
 		public void TestOutput (TestOutput testOutput)
 		{
-		}
-
-		bool ITestFilter.Pass (ITest test)
-		{
-			return true;
 		}
 	}
 }
