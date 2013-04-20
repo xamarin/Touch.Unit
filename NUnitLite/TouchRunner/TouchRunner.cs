@@ -44,7 +44,7 @@ namespace MonoTouch.NUnit.UI {
 		UIWindow window;
 		TestSuite suite = new TestSuite (String.Empty);
 		ITestFilter filter;
-		ITestListener listener;
+		ITestReporter reporter;
 
 		[CLSCompliant (false)]
 		public TouchRunner (UIWindow window)
@@ -66,9 +66,9 @@ namespace MonoTouch.NUnit.UI {
 			set { filter = value; }
 		}
 
-		public ITestListener Listener {
-			get { return listener ?? (listener = new DefaultTestListener(Writer)); }
-			set { listener = value; }
+		public ITestReporter Reporter {
+			get { return reporter ?? (reporter = new DefaultTestListener(Writer)); }
+			set { reporter = value; }
 		}
 		
 		public bool TerminateAfterExecution {
@@ -377,7 +377,7 @@ namespace MonoTouch.NUnit.UI {
 		{
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
-			current.Listener = Listener;
+			current.Listener = this;
 			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
 			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
 			wi.Execute ();
@@ -394,16 +394,20 @@ namespace MonoTouch.NUnit.UI {
 
 		public void TestStarted (ITest test)
 		{
-			Listener.TestStarted(test);
+			Reporter.TestStarted(test);
+			TestSuite ts = test as TestSuite;
+			if (ts != null)
+				Reporter.TestSuiteStarted(ts);
 		}
 
 		public void TestFinished (ITestResult r)
 		{
-			Listener.TestFinished(r);
+			Reporter.TestFinished(r);
 			
 			TestResult result = r as TestResult;
 			TestSuite ts = result.Test as TestSuite;
 			if (ts != null) {
+				Reporter.TestSuiteFinished(ts);
 				TestSuiteElement tse;
 				if (suite_elements.TryGetValue (ts, out tse))
 					tse.Update (result);
@@ -416,7 +420,7 @@ namespace MonoTouch.NUnit.UI {
 
 		public void TestOutput (TestOutput testOutput)
 		{
-			Listener.TestOutput(testOutput);
+			Reporter.TestOutput(testOutput);
 		}
 
 

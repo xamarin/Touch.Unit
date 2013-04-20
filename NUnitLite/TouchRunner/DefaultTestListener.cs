@@ -76,9 +76,20 @@ namespace MonoTouch.NUnit
 		{
 		}
 
-		public void TestSuiteFinished()
+		public void TestSuiteStarted (TestSuite ts)
+		{
+			passed = 0;
+			inconclusive = 0;
+			failed = 0;
+			ignored = 0;
+
+			Writer.WriteLine ("Started Suite: " + ts.Name);
+		}
+
+		public void TestSuiteFinished (TestSuite ts)
 		{
 			int total = passed + inconclusive + failed; // ignored are *not* run
+			Writer.WriteLine ("Finished Suite: " + ts.Name);
 			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
 		}
 	}
