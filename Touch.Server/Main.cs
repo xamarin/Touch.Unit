@@ -38,7 +38,6 @@ class SimpleListener {
 	IPAddress Address { get; set; }
 	int Port { get; set; }
 	string LogPath { get; set; }
-	string LogFile { get; set; }
 	bool AutoExit { get; set; }
 	
 	public void Cancel ()
@@ -78,23 +77,22 @@ class SimpleListener {
 
 	public bool Processing (TcpClient client)
 	{
-		string logfile = Path.Combine (LogPath, LogFile ?? DateTime.UtcNow.Ticks.ToString () + ".log");
 		string remote = client.Client.RemoteEndPoint.ToString ();
-		Console.WriteLine ("Connection from {0} saving logs to {1}", remote, logfile);
+		Console.WriteLine ("Connection from {0}", remote);
 
-		using (FileStream fs = File.OpenWrite (logfile)) {
+		using (var fs = Console.Out) {
 			// a few extra bits of data only available from this side
 			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
 				Environment.NewLine, DateTime.Now, remote);
-			byte[] array = Encoding.UTF8.GetBytes (header);
-			fs.Write (array, 0, array.Length);
+
+			fs.WriteLine (header);
 			fs.Flush ();
 			// now simply copy what we receive
 			int i;
 			int total = 0;
 			NetworkStream stream = client.GetStream ();
 			while ((i = stream.Read (buffer, 0, buffer.Length)) != 0) {
-				fs.Write (buffer, 0, i);
+				fs.Write (fs.Encoding.GetString(buffer, 0, i));
 				fs.Flush ();
 				total += i;
 			}
@@ -134,7 +132,6 @@ class SimpleListener {
 			{ "ip", "IP address to listen (default: Any)", v => address = v },
 			{ "port", "TCP port to listen (default: 16384)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
-			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
@@ -158,7 +155,6 @@ class SimpleListener {
 				listener.Port = 16384;
 			
 			listener.LogPath = log_path ?? ".";
-			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
 			
 			if (launchdev != null) {
