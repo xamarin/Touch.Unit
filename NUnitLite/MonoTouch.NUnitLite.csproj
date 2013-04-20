@@ -817,6 +817,8 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.8.0\src\framework\Runner\OutputWriters\OutputWriter.cs">
       <Link>framework\Runner\OutputWriters\OutputWriter.cs</Link>
     </Compile>
+    <Compile Include="TouchRunner\DefaultTestListener.cs" />
+    <Compile Include="TouchRunner\ITestReporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />
