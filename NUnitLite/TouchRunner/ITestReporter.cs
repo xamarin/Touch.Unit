@@ -5,6 +5,7 @@ namespace MonoTouch.NUnit
 {
 	public interface ITestReporter : ITestListener
 	{
+
 	}
 }
 

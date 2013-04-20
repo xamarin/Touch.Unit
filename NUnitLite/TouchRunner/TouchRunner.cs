@@ -38,7 +38,8 @@ using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	
-	public class TouchRunner {
+	public class TouchRunner : ITestListener
+	{
 		
 		UIWindow window;
 		TestSuite suite = new TestSuite (String.Empty);
@@ -283,18 +284,11 @@ namespace MonoTouch.NUnit.UI {
 
 			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
 			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
-			passed = 0;
-			ignored = 0;
-			failed = 0;
-			inconclusive = 0;
 			return true;
 		}
 		
 		public void CloseWriter ()
 		{
-			int total = passed + inconclusive + failed; // ignored are *not* run
-			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
-
 			Writer.Close ();
 			Writer = null;
 		}
@@ -395,5 +389,37 @@ namespace MonoTouch.NUnit.UI {
 				return suite;
 			}
 		}
+
+		#region ITestListener implementation
+
+		public void TestStarted (ITest test)
+		{
+			Listener.TestStarted(test);
+		}
+
+		public void TestFinished (ITestResult r)
+		{
+			Listener.TestFinished(r);
+			
+			TestResult result = r as TestResult;
+			TestSuite ts = result.Test as TestSuite;
+			if (ts != null) {
+				TestSuiteElement tse;
+				if (suite_elements.TryGetValue (ts, out tse))
+					tse.Update (result);
+			} else {
+				TestMethod tc = result.Test as TestMethod;
+				if (tc != null)
+					case_elements [tc].Update (result);
+			}
+		}
+
+		public void TestOutput (TestOutput testOutput)
+		{
+			Listener.TestOutput(testOutput);
+		}
+
+
+		#endregion
 	}
 }

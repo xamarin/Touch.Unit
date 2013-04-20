@@ -1,6 +1,8 @@
 using System;
 using NUnit.Framework.Api;
 using System.IO;
+using NUnit.Framework.Internal;
+using MonoTouch.NUnit.UI;
 
 namespace MonoTouch.NUnit
 {
@@ -29,17 +31,7 @@ namespace MonoTouch.NUnit
 		public void TestFinished (ITestResult r)
 		{
 			TestResult result = r as TestResult;
-			TestSuite ts = result.Test as TestSuite;
-			if (ts != null) {
-				TestSuiteElement tse;
-				if (suite_elements.TryGetValue (ts, out tse))
-					tse.Update (result);
-			} else {
-				TestMethod tc = result.Test as TestMethod;
-				if (tc != null)
-					case_elements [tc].Update (result);
-			}
-			
+
 			if (result.Test is TestSuite) {
 				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
 					Writer.WriteLine ("\t[INFO] {0}", result.Message);
@@ -82,6 +74,12 @@ namespace MonoTouch.NUnit
 
 		public void TestOutput (TestOutput testOutput)
 		{
+		}
+
+		public void TestSuiteFinished()
+		{
+			int total = passed + inconclusive + failed; // ignored are *not* run
+			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
 		}
 	}
 }
