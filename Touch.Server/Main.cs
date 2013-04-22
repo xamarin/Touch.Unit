@@ -161,6 +161,10 @@ class SimpleListener {
 			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
 			
+			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
+			if (String.IsNullOrEmpty (mt_root))
+				mt_root = "/Developer/MonoTouch";
+
 			if (launchdev != null) {
 				ThreadPool.QueueUserWorkItem ((v) => {
 					using (Process proc = new Process ()) {
@@ -182,7 +186,7 @@ class SimpleListener {
 								procArgs.Append (',');
 							procArgs.Append (ipAddresses [i].ToString ());
 						}
-						proc.StartInfo.FileName = "/Developer/MonoTouch/usr/bin/mtouch";
+						proc.StartInfo.FileName = Path.Combine (mt_root, "usr/bin/mtouch");
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.Start ();
 						proc.WaitForExit ();
@@ -208,7 +212,7 @@ class SimpleListener {
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.Append (" -argument=-app-arg:-hostname:127.0.0.1");
 						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
-						proc.StartInfo.FileName = "/Developer/MonoTouch/usr/bin/mtouch";
+						proc.StartInfo.FileName = Path.Combine (mt_root, "usr/bin/mtouch");
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardError = true;
