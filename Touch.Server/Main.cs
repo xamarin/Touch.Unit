@@ -91,12 +91,15 @@ class SimpleListener {
 			int i;
 			int total = 0;
 			NetworkStream stream = client.GetStream ();
-			while ((i = stream.Read (buffer, 0, buffer.Length)) != 0) {
-				fs.Write (fs.Encoding.GetString(buffer, 0, i));
-				fs.Flush ();
-				total += i;
-			}
-			
+
+            do {
+                i = stream.Read (buffer, 0, buffer.Length);
+                fs.Write (fs.Encoding.GetString(buffer, 0, i));
+                fs.Flush ();
+                total += i;
+            }
+			while (i != 0);
+
 			if (total < 16) {
 				// This wasn't a test run, but a connection from the app (on device) to find
 				// the ip address we're reachable on.
@@ -122,19 +125,14 @@ class SimpleListener {
 		string address = null;
 		string port = null;
 		string log_path = ".";
-		string log_file = null;
-		string launchdev = null;
-		string launchsim = null;
-		bool autoexit = false;
+		bool autoexit = true;
 		
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "ip", "IP address to listen (default: Any)", v => address = v },
 			{ "port", "TCP port to listen (default: 16384)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
-			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
-			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
-			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
+			{ "no-autoexit", "Don't exit the server once a test run has completed (default: false)", v => autoexit = false },
 		};
 		
 		try {
@@ -156,78 +154,6 @@ class SimpleListener {
 			
 			listener.LogPath = log_path ?? ".";
 			listener.AutoExit = autoexit;
-			
-			if (launchdev != null) {
-				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
-						StringBuilder procArgs = new StringBuilder ();
-						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
-						if (!String.IsNullOrEmpty (sdk_root))
-							procArgs.Append ("--sdkroot ").Append (sdk_root);
-						procArgs.Append (" --launchdev ");
-						procArgs.Append (launchdev);
-						procArgs.Append (" -argument=-connection-mode -argument=none");
-						procArgs.Append (" -argument=-app-arg:-autostart");
-						procArgs.Append (" -argument=-app-arg:-autoexit");
-						procArgs.Append (" -argument=-app-arg:-enablenetwork");
-						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
-						procArgs.Append (" -argument=-app-arg:-hostname:");
-						var ipAddresses = System.Net.Dns.GetHostEntry (System.Net.Dns.GetHostName ()).AddressList;
-						for (int i = 0; i < ipAddresses.Length; i++) {
-							if (i > 0)
-								procArgs.Append (',');
-							procArgs.Append (ipAddresses [i].ToString ());
-						}
-						proc.StartInfo.FileName = "/Developer/MonoTouch/usr/bin/mtouch";
-						proc.StartInfo.Arguments = procArgs.ToString ();
-						proc.Start ();
-						proc.WaitForExit ();
-						if (proc.ExitCode != 0)
-							listener.Cancel ();
-					}
-				});
-			}
-			
-			if (launchsim != null) {
-				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
-						StringBuilder output = new StringBuilder ();
-						StringBuilder procArgs = new StringBuilder ();
-						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
-						if (!String.IsNullOrEmpty (sdk_root))
-							procArgs.Append ("--sdkroot ").Append (sdk_root);
-						procArgs.Append (" --launchsim ");
-						procArgs.Append (launchsim);
-						procArgs.Append (" -argument=-connection-mode -argument=none");
-						procArgs.Append (" -argument=-app-arg:-autostart");
-						procArgs.Append (" -argument=-app-arg:-autoexit");
-						procArgs.Append (" -argument=-app-arg:-enablenetwork");
-						procArgs.Append (" -argument=-app-arg:-hostname:127.0.0.1");
-						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
-						proc.StartInfo.FileName = "/Developer/MonoTouch/usr/bin/mtouch";
-						proc.StartInfo.Arguments = procArgs.ToString ();
-						proc.StartInfo.UseShellExecute = false;
-						proc.StartInfo.RedirectStandardError = true;
-						proc.StartInfo.RedirectStandardOutput = true;
-						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output)
-								output.AppendLine (e.Data);
-						};
-						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output)
-								output.AppendLine (e.Data);
-						};
-						proc.Start ();
-						proc.BeginErrorReadLine ();
-						proc.BeginOutputReadLine ();
-						proc.WaitForExit ();
-						if (proc.ExitCode != 0) {
-							listener.Cancel ();
-							Console.WriteLine (output.ToString ());
-						}
-					}
-				});
-			}
 			
 			return listener.Start ();
 		} catch (OptionException oe) {
