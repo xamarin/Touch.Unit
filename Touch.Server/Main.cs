@@ -175,7 +175,7 @@ class SimpleListener
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchdev ");
 						procArgs.Append (launchdev);
-						procArgs.AppendFormat (" --devName={0} ", deviceName);
+						procArgs.AppendFormat (" --devname={0} ", deviceName);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
