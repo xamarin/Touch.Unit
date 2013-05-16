@@ -16,8 +16,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
-
 using System;
 using System.IO;
 using System.Net;
@@ -25,22 +23,25 @@ using System.Net.Sockets;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
-
 using Mono.Options;
 
 // a simple, blocking (i.e. one device/app at the time), listener
-class SimpleListener {
+class SimpleListener
+{
 
 	static byte[] buffer = new byte [16 * 1024];
-
 	TcpListener server;
-	
+
 	IPAddress Address { get; set; }
+
 	int Port { get; set; }
+
 	string LogPath { get; set; }
+
 	string LogFile { get; set; }
+
 	bool AutoExit { get; set; }
-	
+
 	public void Cancel ()
 	{
 		try {
@@ -49,7 +50,7 @@ class SimpleListener {
 			// We might have stopped already, so just swallow any exceptions.
 		}
 	}
-	
+
 	public int Start ()
 	{
 		bool processed;
@@ -64,12 +65,10 @@ class SimpleListener {
 					processed = Processing (client);
 				}
 			} while (!AutoExit || !processed);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Console.WriteLine ("[{0}] : {1}", DateTime.Now, e);
 			return 1;
-		}
-		finally {
+		} finally {
 			server.Stop ();
 		}
 		
@@ -85,7 +84,7 @@ class SimpleListener {
 		using (FileStream fs = File.OpenWrite (logfile)) {
 			// a few extra bits of data only available from this side
 			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
-				Environment.NewLine, DateTime.Now, remote);
+			                               Environment.NewLine, DateTime.Now, remote);
 			byte[] array = Encoding.UTF8.GetBytes (header);
 			fs.Write (array, 0, array.Length);
 			fs.Flush ();
@@ -128,6 +127,7 @@ class SimpleListener {
 		string launchdev = null;
 		string launchsim = null;
 		bool autoexit = false;
+		string deviceName = " ";
 		
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -138,6 +138,7 @@ class SimpleListener {
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
+			{ "devname=", "Specify the device to connect to", v => deviceName = v},
 		};
 		
 		try {
@@ -174,6 +175,7 @@ class SimpleListener {
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchdev ");
 						procArgs.Append (launchdev);
+						procArgs.AppendFormat (" --devname={0} ", deviceName);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
@@ -245,5 +247,5 @@ class SimpleListener {
 			Console.WriteLine (ex);
 			return 1;
 		}
-	}   
+	}
 }
