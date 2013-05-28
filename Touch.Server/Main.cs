@@ -128,6 +128,7 @@ class SimpleListener {
 		string launchdev = null;
 		string launchsim = null;
 		bool autoexit = false;
+		string device_name = String.Empty;
 		
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -138,6 +139,7 @@ class SimpleListener {
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
+			{ "devname=", "Specify the device to connect to", v => device_name = v},
 		};
 		
 		try {
@@ -174,6 +176,8 @@ class SimpleListener {
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchdev ");
 						procArgs.Append (launchdev);
+						if (!String.IsNullOrEmpty (device_name))
+							procArgs.Append (" --devname=").Append (device_name);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
