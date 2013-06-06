@@ -277,6 +277,7 @@ namespace MonoTouch.NUnit.UI {
 			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
 			Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
 			Writer.WriteLine ("[Device UDID:\t{0}]", UniqueIdentifier);
+			Writer.WriteLine ("[Device Locale:\t{0}]", NSLocale.CurrentLocale.Identifier);
 			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
 
 			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
