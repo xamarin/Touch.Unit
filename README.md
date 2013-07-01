@@ -12,15 +12,13 @@
 
 1. Clone all the required code from github.com
 
-	$ git clone git://github.com/spouliot/MonoTouch.Dialog.git
-
 	$ git clone git://github.com/spouliot/NUnitLite.git
 
 	$ git clone git://github.com/spouliot/Touch.Unit.git
 
 	note: make sure to pull from all of them to get the latest fixes
 
-2. Launch MonoDevelop (2.8 or later)
+2. Launch Xamarin Studio (4.0 or later)
 
 3. Open the "Touch.Unit.sln" solution
 
@@ -32,6 +30,6 @@
 
 ## Todo List
 
-* Track changes in [iOS](http://developer.apple.com/devcenter/ios/index.action), [MonoTouch](http://ios.xamarin.com), [NUnitLite](http://www.nunitlite.org/index.php?p=roadmap) and [MonoTouch.Dialog](https://github.com/migueldeicaza/MonoTouch.Dialog)
+* Track changes in [iOS](http://developer.apple.com/devcenter/ios/index.action), [Xamarin.iOS](http://ios.xamarin.com), [NUnitLite](http://www.nunitlite.org/index.php?p=roadmap) and [MonoTouch.Dialog](https://github.com/migueldeicaza/MonoTouch.Dialog)
 
 * otherwise KISS - want something more, fork it :-)

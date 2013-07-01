@@ -3,7 +3,7 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011-2012 Xamarin Inc.
+// Copyright 2011-2013 Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ namespace MonoTouch.NUnit {
 			runner.Add (Assembly.GetExecutingAssembly ());
 			// otherwise you need to ensure that the test assemblies will 
 			// become part of the app bundle
-			runner.Add (typeof (MonoTouchFixtures.RegressionTest).Assembly);
+			runner.Add (typeof (MonoTouchFixtures.Test.Test).Assembly);
 #if false
 			// you can use the default or set your own custom writer (e.g. save to web site and tweet it ;-)
 			runner.Writer = new TcpTextWriter ("10.0.1.2", 16384);

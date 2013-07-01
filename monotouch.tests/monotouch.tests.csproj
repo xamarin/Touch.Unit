@@ -30,13 +30,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="Mono.Data.Sqlite" />
-    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -46,8 +40,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RegressionTest.cs" />
-    <Compile Include="RuntimeTest.cs" />
     <Compile Include="TestTest.cs" />
   </ItemGroup>
 </Project>

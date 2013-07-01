@@ -29,6 +29,7 @@
         <Variable name="VALGRIND2" value="/usr/local/bin/valgrind --tool=memcheck" />
       </EnvironmentVariables>
     </EnvironmentVariables>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
