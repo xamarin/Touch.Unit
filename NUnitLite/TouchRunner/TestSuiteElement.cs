@@ -3,7 +3,7 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011-2012 Xamarin Inc.
+// Copyright 2011-2013 Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ namespace MonoTouch.NUnit.UI {
 			StringBuilder sb = new StringBuilder ();
 			if (failure == 0) {
 				DetailColor = DarkGreen;
-				sb.Append ("Success! ").Append (Result.Duration.TotalMilliseconds * 1000).Append (" ms for ").Append (positive).Append (" test");
+				sb.Append ("Success! ").Append (Result.Duration.TotalMilliseconds).Append (" ms for ").Append (positive).Append (" test");
 				if (positive > 1)
 					sb.Append ('s');
 			} else {

@@ -3,7 +3,7 @@
 // Authors:
 //	Sebastien Pouliot  <sebastien@xamarin.com>
 //
-// Copyright 2011-2012 Xamarin Inc.
+// Copyright 2011-2013 Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -394,7 +394,7 @@ namespace MonoTouch.NUnit.UI {
 
 				string name = result.Test.Name;
 				if (!String.IsNullOrEmpty (name))
-					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds * 1000);
+					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
