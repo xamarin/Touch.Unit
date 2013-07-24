@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>NUnitLite</RootNamespace>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>NUnitLite.MT</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -856,12 +856,15 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.9.0\src\framework\Internal\Filters\SimpleCategoryExpression.cs">
       <Link>framework\Internal\Filters\SimpleCategoryExpression.cs</Link>
     </Compile>
+    <Compile Include="AdditionalFramework\Assert.cs" />
+    <Compile Include="AdditionalFramework\CollectionAssert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />
     <Folder Include="framework\" />
     <Folder Include="framework\Compatibility\" />
     <Folder Include="framework\Internal\" />
+    <Folder Include="AdditionalFramework\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\NUnitLite\NUnitLite-0.9.0\src\framework\nunit.snk">

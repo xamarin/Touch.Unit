@@ -35,6 +35,7 @@ using NUnit.Framework.Api;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 using NUnit.Framework.Internal.WorkItems;
+using NUnitLite.Runner;
 
 namespace MonoTouch.NUnit.UI {
 	
@@ -47,6 +48,8 @@ namespace MonoTouch.NUnit.UI {
 		int inconclusive;
 		TestSuite suite = new TestSuite (String.Empty);
 		ITestFilter filter;
+
+		public bool UseXml { get; set; }
 
 		[CLSCompliant (false)]
 		public TouchRunner (UIWindow window)
@@ -270,18 +273,19 @@ namespace MonoTouch.NUnit.UI {
 					Writer = Console.Out;
 				}
 			}
-			
-			Writer.WriteLine ("[Runner executing:\t{0}]", message);
-			Writer.WriteLine ("[MonoTouch Version:\t{0}]", MonoTouch.Constants.Version);
-			UIDevice device = UIDevice.CurrentDevice;
-			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
-			Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
-			Writer.WriteLine ("[Device UDID:\t{0}]", UniqueIdentifier);
-			Writer.WriteLine ("[Device Locale:\t{0}]", NSLocale.CurrentLocale.Identifier);
-			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
+			if (!UseXml) {
+				Writer.WriteLine ("[Runner executing:\t{0}]", message);
+				Writer.WriteLine ("[MonoTouch Version:\t{0}]", MonoTouch.Constants.Version);
+				UIDevice device = UIDevice.CurrentDevice;
+				Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+				Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
+				Writer.WriteLine ("[Device UDID:\t{0}]", UniqueIdentifier);
+				Writer.WriteLine ("[Device Locale:\t{0}]", NSLocale.CurrentLocale.Identifier);
+				Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
 
-			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
-			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
+				Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
+				// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
+			}
 			passed = 0;
 			ignored = 0;
 			failed = 0;
@@ -300,9 +304,14 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void CloseWriter ()
 		{
-			int total = passed + inconclusive + failed; // ignored are *not* run
-			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
-
+			if (UseXml) {
+				
+				NUnit3XmlOutputWriter outputWriter = new NUnit3XmlOutputWriter ();
+				outputWriter.WriteResultFile (TestResult, Writer);
+			} else {
+				int total = passed + inconclusive + failed; // ignored are *not* run
+				Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
+			}
 			Writer.Close ();
 			Writer = null;
 		}
@@ -448,15 +457,17 @@ namespace MonoTouch.NUnit.UI {
 			suite.Add (ts);
 			return true;
 		}
-
+		TestResult TestResult;
 		public TestResult Run (Test test)
 		{
+			TestResult = null;
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
 			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
 			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
 			wi.Execute ();
+			TestResult = wi.Result;
 			return wi.Result;
 		}
 
