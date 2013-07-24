@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch.Unit", "Touch.Unit.csproj", "{5DDFD948-5455-40EB-BD67-211EA61F6472}"
@@ -86,6 +87,6 @@ Global
 		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Touch.Unit.csproj
+		StartupItem = Touch.Server\Touch.Server.csproj
 	EndGlobalSection
 EndGlobal

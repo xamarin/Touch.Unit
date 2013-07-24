@@ -304,14 +304,15 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void CloseWriter ()
 		{
-			if (UseXml) {
-				
-				NUnit3XmlOutputWriter outputWriter = new NUnit3XmlOutputWriter ();
-				outputWriter.WriteResultFile (TestResult, Writer);
-			} else {
-				int total = passed + inconclusive + failed; // ignored are *not* run
-				Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
-			}
+			NUnit3XmlOutputWriter outputWriter = new NUnit3XmlOutputWriter ();
+			var tempFilePath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "output.xml");
+			outputWriter.WriteResultFile (TestResult,tempFilePath);
+			var data = File.ReadAllBytes (tempFilePath);
+
+			(Writer as TcpTextWriter).Write (data, 0, data.Length);
+//			while (!file.EndOfStream) {
+//				Writer.WriteLine (file.ReadLine ());
+//			}
 			Writer.Close ();
 			Writer = null;
 		}
@@ -377,6 +378,8 @@ namespace MonoTouch.NUnit.UI {
 				
 		public void TestStarted (ITest test)
 		{
+			if (UseXml)
+				return;
 			if (test is TestSuite) {
 				Writer.WriteLine ();
 				Writer.WriteLine (test.Name);
@@ -385,6 +388,8 @@ namespace MonoTouch.NUnit.UI {
 		
 		public void TestFinished (ITestResult r)
 		{
+			if (UseXml)
+				return;
 			TestResult result = r as TestResult;
 			TestSuite ts = result.Test as TestSuite;
 			if (ts != null) {
