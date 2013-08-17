@@ -243,6 +243,7 @@ namespace MonoTouch.NUnit.UI {
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
 				if (options.ShowUseNetworkLogger) {
+					UseXml = true;
 					var hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
 					
 					if (hostname != null) {
