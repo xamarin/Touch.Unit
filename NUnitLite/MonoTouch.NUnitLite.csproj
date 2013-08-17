@@ -9,14 +9,14 @@
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>NUnitLite</RootNamespace>
-    <AssemblyName>NUnitLite</AssemblyName>
+    <AssemblyName>NUnitLite.MT</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;NUNITLITE;CLR_2_0;MONOTOUCH</DefineConstants>
+    <DefineConstants>DEBUG;NUNITLITE;CLR_2_0;MONOTOUCH;NET_4_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -28,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <DefineConstants>NUNITLITE;CLR_4_0;MONOTOUCH</DefineConstants>
+    <DefineConstants>NUNITLITE;CLR_4_0;MONOTOUCH;NET_4_5</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -856,12 +856,15 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.9.0\src\framework\Internal\Filters\SimpleCategoryExpression.cs">
       <Link>framework\Internal\Filters\SimpleCategoryExpression.cs</Link>
     </Compile>
+    <Compile Include="AdditionalFramework\Assert.cs" />
+    <Compile Include="AdditionalFramework\CollectionAssert.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />
     <Folder Include="framework\" />
     <Folder Include="framework\Compatibility\" />
     <Folder Include="framework\Internal\" />
+    <Folder Include="AdditionalFramework\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\NUnitLite\NUnitLite-0.9.0\src\framework\nunit.snk">

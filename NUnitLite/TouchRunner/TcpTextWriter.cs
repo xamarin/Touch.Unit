@@ -14,6 +14,7 @@ namespace MonoTouch.NUnit {
 		
 		private TcpClient client;
 		private StreamWriter writer;
+		private NetworkStream networkWriter;
 
 		public TcpTextWriter (string hostName, int port)
 		{
@@ -29,7 +30,8 @@ namespace MonoTouch.NUnit {
 
 			try {
 				client = new TcpClient (hostName, port);
-				writer = new StreamWriter (client.GetStream ());
+				networkWriter = client.GetStream();
+				writer = new StreamWriter (networkWriter);
 			}
 			catch {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
@@ -62,6 +64,11 @@ namespace MonoTouch.NUnit {
 		public override void Flush ()
 		{
 			writer.Flush ();
+		}
+
+		public void Write(byte[] data,int offset,int length)
+		{
+			networkWriter.Write (data, offset, length);
 		}
 
 		// minimum to override - see http://msdn.microsoft.com/en-us/library/system.io.textwriter.aspx

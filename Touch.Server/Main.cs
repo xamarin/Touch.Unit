@@ -34,13 +34,13 @@ class SimpleListener {
 	static byte[] buffer = new byte [16 * 1024];
 
 	TcpListener server;
-	
+
 	IPAddress Address { get; set; }
 	int Port { get; set; }
 	string LogPath { get; set; }
 	string LogFile { get; set; }
 	bool AutoExit { get; set; }
-	
+
 	public void Cancel ()
 	{
 		try {
@@ -49,16 +49,16 @@ class SimpleListener {
 			// We might have stopped already, so just swallow any exceptions.
 		}
 	}
-	
+
 	public int Start ()
 	{
 		bool processed;
-		
+
 		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
 		server = new TcpListener (Address, Port);
 		try {
 			server.Start ();
-			
+
 			do {
 				using (TcpClient client = server.AcceptTcpClient ()) {
 					processed = Processing (client);
@@ -72,23 +72,23 @@ class SimpleListener {
 		finally {
 			server.Stop ();
 		}
-		
+
 		return 0;
 	}
 
 	public bool Processing (TcpClient client)
 	{
+		if (!Directory.Exists (LogPath))
+			Directory.CreateDirectory (LogPath);
 		string logfile = Path.Combine (LogPath, LogFile ?? DateTime.UtcNow.Ticks.ToString () + ".log");
 		string remote = client.Client.RemoteEndPoint.ToString ();
 		Console.WriteLine ("Connection from {0} saving logs to {1}", remote, logfile);
 
-		using (FileStream fs = File.OpenWrite (logfile)) {
+		using (FileStream fs = File.Open (logfile, FileMode.Create, FileAccess.ReadWrite)) {
 			// a few extra bits of data only available from this side
 			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
-				Environment.NewLine, DateTime.Now, remote);
-			byte[] array = Encoding.UTF8.GetBytes (header);
-			fs.Write (array, 0, array.Length);
-			fs.Flush ();
+			                               Environment.NewLine, DateTime.Now, remote);
+			Console.WriteLine (header);
 			// now simply copy what we receive
 			int i;
 			int total = 0;
@@ -98,16 +98,17 @@ class SimpleListener {
 				fs.Flush ();
 				total += i;
 			}
-			
+
 			if (total < 16) {
 				// This wasn't a test run, but a connection from the app (on device) to find
 				// the ip address we're reachable on.
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
+
 
 	static void ShowHelp (OptionSet os)
 	{
@@ -119,7 +120,7 @@ class SimpleListener {
 	{ 
 		Console.WriteLine ("Touch.Unit Simple Server");
 		Console.WriteLine ("Copyright 2011, Xamarin Inc. All rights reserved.");
-		
+
 		bool help = false;
 		string address = null;
 		string port = null;
@@ -129,40 +130,42 @@ class SimpleListener {
 		string launchsim = null;
 		bool autoexit = false;
 		string device_name = String.Empty;
-		
+
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "ip", "IP address to listen (default: Any)", v => address = v },
 			{ "port", "TCP port to listen (default: 16384)", v => port = v },
-			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
+			{ "logpath=", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 		};
-		
+
 		try {
 			os.Parse (args);
 			if (help)
 				ShowHelp (os);
-			
+
 			var listener = new SimpleListener ();
-			
+
 			IPAddress ip;
 			if (String.IsNullOrEmpty (address) || !IPAddress.TryParse (address, out ip))
 				listener.Address = IPAddress.Any;
-			
+			else
+				listener.Address = ip;
+
 			ushort p;
 			if (UInt16.TryParse (port, out p))
 				listener.Port = p;
 			else
 				listener.Port = 16384;
-			
+
 			listener.LogPath = log_path ?? ".";
 			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
-			
+
 			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
 			if (String.IsNullOrEmpty (mt_root))
 				mt_root = "/Developer/MonoTouch";
@@ -199,7 +202,7 @@ class SimpleListener {
 					}
 				});
 			}
-			
+
 			if (launchsim != null) {
 				ThreadPool.QueueUserWorkItem ((v) => {
 					using (Process proc = new Process ()) {
@@ -240,14 +243,15 @@ class SimpleListener {
 					}
 				});
 			}
-			
+
 			return listener.Start ();
 		} catch (OptionException oe) {
 			Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
 			return 1;
-		} catch (Exception ex) {
-			Console.WriteLine (ex);
-			return 1;
-		}
+		} 
+		//		catch (Exception ex) {
+		//			Console.WriteLine (ex);
+		//			return 1;
+		//		}
 	}   
 }
