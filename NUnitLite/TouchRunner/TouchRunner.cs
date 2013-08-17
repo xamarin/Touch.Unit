@@ -308,12 +308,17 @@ namespace MonoTouch.NUnit.UI {
 			var tempFilePath = Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "output.xml");
 			outputWriter.WriteResultFile (TestResult,tempFilePath);
 			var data = File.ReadAllBytes (tempFilePath);
+			if (Writer is TcpTextWriter) {
 
-			(Writer as TcpTextWriter).Write (data, 0, data.Length);
-//			while (!file.EndOfStream) {
-//				Writer.WriteLine (file.ReadLine ());
-//			}
-			Writer.Close ();
+				(Writer as TcpTextWriter).Write (data, 0, data.Length);
+				
+				Writer.Close ();
+			} else {			
+				int total = passed + inconclusive + failed; // ignored are *not* run
+				Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
+
+			}
+			
 			Writer = null;
 		}
 		
