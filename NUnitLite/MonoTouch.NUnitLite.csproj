@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;NUNITLITE;CLR_2_0;MONOTOUCH</DefineConstants>
+    <DefineConstants>DEBUG;NUNITLITE;CLR_4_0;NET_4_5;MONOTOUCH</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -28,7 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <DefineConstants>NUNITLITE;CLR_4_0;MONOTOUCH</DefineConstants>
+    <DefineConstants>NUNITLITE;CLR_4_0;NET_4_5;MONOTOUCH</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
