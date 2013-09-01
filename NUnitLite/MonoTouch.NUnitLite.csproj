@@ -856,6 +856,7 @@
     <Compile Include="..\..\NUnitLite\NUnitLite-0.9.0\src\framework\Internal\Filters\SimpleCategoryExpression.cs">
       <Link>framework\Internal\Filters\SimpleCategoryExpression.cs</Link>
     </Compile>
+    <Compile Include="TouchRunner\NUnitOutputTextWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TouchRunner\" />

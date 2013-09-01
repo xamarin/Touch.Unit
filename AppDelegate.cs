@@ -54,6 +54,13 @@ namespace MonoTouch.NUnit {
 			// crash the application (to ensure it's ended) and return to springboard
 			runner.TerminateAfterExecution = true;
 #endif
+#if false
+			// you can get NUnit[2-3]-style XML reports to the console or server like this
+			// replace `null` (default to Console.Out) to a TcpTextWriter to send data to a socket server
+			// replace `NUnit2XmlOutputWriter` with `NUnit3XmlOutputWriter` for NUnit3 format
+			runner.Writer = new NUnitOutputTextWriter (runner, null, new NUnitLite.Runner.NUnit2XmlOutputWriter ());
+			// the same AutoStart and TerminateAfterExecution can be used for build automation
+#endif
 			window.RootViewController = new UINavigationController (runner.GetViewController ());
 			window.MakeKeyAndVisible ();
 			return true;

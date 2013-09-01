@@ -187,6 +187,8 @@ namespace MonoTouch.NUnit.UI {
 		
 		#region writer
 		
+		public TestResult Result { get; set; }
+
 		public TextWriter Writer { get; set; }
 		
 		static string SelectHostName (string[] names, int port)
@@ -451,13 +453,15 @@ namespace MonoTouch.NUnit.UI {
 
 		public TestResult Run (Test test)
 		{
+			Result = null;
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
 			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
 			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
 			wi.Execute ();
-			return wi.Result;
+			Result = wi.Result;
+			return Result;
 		}
 
 		public ITest LoadedTest {
