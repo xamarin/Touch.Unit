@@ -193,6 +193,7 @@ class SimpleListener {
 						}
 						proc.StartInfo.FileName = Path.Combine (mt_root, "usr/bin/mtouch");
 						proc.StartInfo.Arguments = procArgs.ToString ();
+						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.StartInfo.RedirectStandardError = true;
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
@@ -240,21 +241,24 @@ class SimpleListener {
 						proc.StartInfo.RedirectStandardError = true;
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output)
+							lock (output) {
+								output.Append ("[mtouch stderr] ");
 								output.AppendLine (e.Data);
+							}
 						};
 						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output)
+							lock (output) {
+								output.Append ("[mtouch stdout] ");
 								output.AppendLine (e.Data);
+							}
 						};
 						proc.Start ();
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
 						proc.WaitForExit ();
-						if (proc.ExitCode != 0) {
+						if (proc.ExitCode != 0)
 							listener.Cancel ();
-							Console.WriteLine (output.ToString ());
-						}
+						Console.WriteLine (output.ToString ());
 					}
 				});
 			}
