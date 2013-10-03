@@ -170,6 +170,7 @@ class SimpleListener {
 			if (launchdev != null) {
 				ThreadPool.QueueUserWorkItem ((v) => {
 					using (Process proc = new Process ()) {
+						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
 						if (!String.IsNullOrEmpty (sdk_root))
@@ -192,10 +193,27 @@ class SimpleListener {
 						}
 						proc.StartInfo.FileName = Path.Combine (mt_root, "usr/bin/mtouch");
 						proc.StartInfo.Arguments = procArgs.ToString ();
+						proc.StartInfo.RedirectStandardOutput = true;
+						proc.StartInfo.RedirectStandardError = true;
+						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
+							lock (output) {
+								output.Append ("[mtouch stderr] ");
+								output.AppendLine (e.Data);
+							}
+						};
+						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
+							lock (output) {
+								output.Append ("[mtouch stdout] ");
+								output.AppendLine (e.Data);
+							}
+						};
 						proc.Start ();
+						proc.BeginErrorReadLine ();
+						proc.BeginOutputReadLine ();
 						proc.WaitForExit ();
 						if (proc.ExitCode != 0)
 							listener.Cancel ();
+						Console.WriteLine (output.ToString ());
 					}
 				});
 			}
