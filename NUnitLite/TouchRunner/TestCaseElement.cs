@@ -39,7 +39,14 @@ namespace MonoTouch.NUnit.UI {
 			this.Tapped += delegate {
 				if (!Runner.OpenWriter (Test.FullName))
 					return;
+
+				var suite = (testCase.Parent as TestSuite);
+				var context = TestExecutionContext.CurrentContext;
+
+				suite.GetOneTimeSetUpCommand ().Execute (context);
 				Run ();
+				suite.GetOneTimeTearDownCommand ().Execute (context);
+
 				Runner.CloseWriter ();
 				// display more details on (any) failure (but not when ignored)
 				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess ()) {

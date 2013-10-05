@@ -457,7 +457,6 @@ namespace MonoTouch.NUnit.UI {
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
-			current.TestObject = test is TestSuite ? null : Reflect.Construct ((test as TestMethod).Method.ReflectedType, null);
 			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
 			wi.Execute ();
 			Result = wi.Result;

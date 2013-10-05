@@ -24,6 +24,26 @@ namespace MonoTouchFixtures.Test {
 	[TestFixture]
 	[Preserve (AllMembers = true)]
 	public class Test {
+
+		bool fixture_setup = false;
+
+		[TestFixtureSetUp]
+		public void Setup ()
+		{
+			fixture_setup = true;
+		}
+
+		[TestFixtureTearDown]
+		public void Teardown ()
+		{
+			fixture_setup = false;
+		}
+
+		[Test]
+		public void TestFixtureSetUpCalled ()
+		{
+			Assert.True (fixture_setup);
+		}
 		
 		[Test]
 		public void Ok ()
