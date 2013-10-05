@@ -42,6 +42,7 @@ namespace MonoTouch.NUnit.UI {
 
 				var suite = (testCase.Parent as TestSuite);
 				var context = TestExecutionContext.CurrentContext;
+				context.TestObject = Reflect.Construct (testCase.Method.ReflectedType, null);
 
 				suite.GetOneTimeSetUpCommand ().Execute (context);
 				Run ();
