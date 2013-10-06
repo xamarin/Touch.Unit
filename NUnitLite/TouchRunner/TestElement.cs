@@ -61,8 +61,10 @@ namespace MonoTouch.NUnit.UI {
 			Update ();
 			
 			if (GetContainerTableView () != null) {
-				var root = GetImmediateRootElement ();
-				root.Reload (this, UITableViewRowAnimation.Fade);
+				Runner.InvokeOnMainThread (() => {
+					var root = GetImmediateRootElement ();
+					root.Reload (this, UITableViewRowAnimation.Fade);
+				});
 			}
 		}
 		

@@ -20,6 +20,7 @@
 
 using System;
 using System.Reflection;
+using System.Threading;
 using MonoTouch.Dialog;
 using MonoTouch.UIKit;
 
@@ -37,28 +38,33 @@ namespace MonoTouch.NUnit.UI {
 			Caption = testCase.Name;
 			Value = "NotExecuted";
 			this.Tapped += delegate {
-				if (!Runner.OpenWriter (Test.FullName))
-					return;
+				ThreadPool.QueueUserWorkItem (delegate {
+					if (!Runner.OpenWriter (Test.FullName))
+						return;
 
-				var suite = (testCase.Parent as TestSuite);
-				var context = TestExecutionContext.CurrentContext;
-				context.TestObject = Reflect.Construct (testCase.Method.ReflectedType, null);
+					var suite = (testCase.Parent as TestSuite);
+					var context = TestExecutionContext.CurrentContext;
+					context.TestObject = Reflect.Construct (testCase.Method.ReflectedType, null);
 
-				suite.GetOneTimeSetUpCommand ().Execute (context);
-				Run ();
-				suite.GetOneTimeTearDownCommand ().Execute (context);
+					suite.GetOneTimeSetUpCommand ().Execute (context);
+					Run ();
+					suite.GetOneTimeTearDownCommand ().Execute (context);
 
-				Runner.CloseWriter ();
-				// display more details on (any) failure (but not when ignored)
-				if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess ()) {
-					var root = new RootElement ("Results") {
-						new Section () {
-							new TestResultElement (Result)
-						}
-					};
-					var dvc = new DialogViewController (root, true) { Autorotate = true };
-					runner.NavigationController.PushViewController (dvc, true);
-				}
+					Runner.CloseWriter ();
+
+					// display more details on (any) failure (but not when ignored)
+					if ((TestCase.RunState == RunState.Runnable) && !Result.IsSuccess ()) {
+						Runner.InvokeOnMainThread (() => {
+							var root = new RootElement ("Results") {
+								new Section () {
+									new TestResultElement (Result)
+								}
+							};
+							var dvc = new DialogViewController (root, true) { Autorotate = true };
+							runner.NavigationController.PushViewController (dvc, true);
+						});
+					}
+				});
 			};
 		}
 		

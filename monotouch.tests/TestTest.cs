@@ -1,5 +1,5 @@
 //
-// Copyright 2011-2012 Xamarin Inc.
+// Copyright 2011-2013 Xamarin Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
 //
 
 using System;
+using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using NUnit.Framework;
@@ -115,6 +116,27 @@ namespace MonoTouchFixtures.Test {
 		public void PassExpectedException ()
 		{
 			Assert.Pass ("pass [ExpectedException]");
+		}
+
+		Task GetException ()
+		{
+			throw new Exception ();
+		}
+
+		[Test]
+		[ExpectedException (typeof (Exception))]
+		public async void AsyncException ()
+		{
+			await GetException ();
+		}
+
+		[Test]
+		public async Task NestedAsync ()
+		{
+			await Task.Run (async () => {
+				await Task.Delay (1000);
+			});
+			Assert.Pass ("Delayed");
 		}
 	}
 }

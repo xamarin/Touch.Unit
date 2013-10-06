@@ -38,7 +38,8 @@ using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	
-	public class TouchRunner : ITestListener {
+	[CLSCompliant (false)]
+	public class TouchRunner : NSObject, ITestListener {
 		
 		UIWindow window;
 		int passed;
@@ -150,14 +151,15 @@ namespace MonoTouch.NUnit.UI {
 		
 		void Run ()
 		{
-			if (!OpenWriter ("Run Everything"))
-				return;
-			try {
-				Run (suite);
-			}
-			finally {
-				CloseWriter ();
-			}
+			ThreadPool.QueueUserWorkItem (delegate {
+				if (!OpenWriter ("Run Everything"))
+					return;
+				try {
+					Run (suite);
+				} finally {
+					CloseWriter ();
+				}
+			});
 		}
 				
 		void Options ()
@@ -347,11 +349,19 @@ namespace MonoTouch.NUnit.UI {
 			if (section.Count > 1) {
 				Section options = new Section () {
 					new StringElement ("Run all", delegate () {
-						if (OpenWriter (suite.Name)) {
-							Run (suite);
-							CloseWriter ();
-							suites_dvc [suite].Filter ();
-						}
+						ThreadPool.QueueUserWorkItem (delegate {
+							if (!OpenWriter (suite.Name))
+								return;
+							try {
+								Run (suite);
+							}
+							finally {
+								CloseWriter ();
+								InvokeOnMainThread (() => {
+									suites_dvc [suite].Filter ();
+								});
+							}
+						});
 					})
 				};
 				root.Add (options);
@@ -383,11 +393,11 @@ namespace MonoTouch.NUnit.UI {
 			if (ts != null) {
 				TestSuiteElement tse;
 				if (suite_elements.TryGetValue (ts, out tse))
-					tse.Update (result);
+					BeginInvokeOnMainThread (() => tse.Update (result));
 			} else {
 				TestMethod tc = result.Test as TestMethod;
 				if (tc != null)
-					case_elements [tc].Update (result);
+					BeginInvokeOnMainThread (() => case_elements [tc].Update (result));
 			}
 			
 			if (result.Test is TestSuite) {
@@ -457,8 +467,8 @@ namespace MonoTouch.NUnit.UI {
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
-			WorkItem wi = WorkItem.CreateWorkItem (test, current, filter);
-			wi.Execute ();
+			WorkItem wi = test.CreateWorkItem (filter);
+			wi.Execute (current);
 			Result = wi.Result;
 			return Result;
 		}
