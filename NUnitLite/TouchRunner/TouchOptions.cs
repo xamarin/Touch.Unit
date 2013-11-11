@@ -35,7 +35,7 @@ namespace MonoTouch.NUnit.UI {
 			var defaults = NSUserDefaults.StandardUserDefaults;
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
-			HostPort = defaults.IntForKey ("network.host.port");
+			HostPort = (int)defaults.IntForKey ("network.host.port");
 			SortNames = defaults.BoolForKey ("display.sort");
 			
 			var os = new OptionSet () {
