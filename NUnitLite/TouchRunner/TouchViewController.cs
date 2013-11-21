@@ -27,6 +27,10 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 
+#if !HAVE_NATIVE_TYPES
+using CGSize = global::System.Drawing.SizeF;
+#endif
+
 namespace MonoTouch.NUnit.UI {
 
 	[CLSCompliant (false)]
@@ -247,7 +251,7 @@ namespace MonoTouch.NUnit.UI {
 			// https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/IconsImages/IconsImages.html
 			// http://tirania.org/blog/archive/2010/Jul-20-2.html
 			float size = 20f;
-			UIGraphics.BeginImageContextWithOptions (new SizeF (size, size), false, 0);
+			UIGraphics.BeginImageContextWithOptions (new CGSize (size, size), false, 0);
 			using (var c = UIGraphics.GetCurrentContext ()) {
 				c.SetFillColor (1.0f, 1.0f, 1.0f, 1.0f);
 				c.SetStrokeColor (1.0f, 1.0f, 1.0f, 1.0f);
