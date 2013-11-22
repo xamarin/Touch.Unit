@@ -296,7 +296,9 @@ namespace MonoTouch.NUnit.UI {
 		static string UniqueIdentifier {
 			get {
 				IntPtr handle = UIDevice.CurrentDevice.Handle;
-				return NSString.FromHandle (Messaging.IntPtr_objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
+				if (UIDevice.CurrentDevice.RespondsToSelector (new Selector ("uniqueIdentifier")))
+					return NSString.FromHandle (Messaging.IntPtr_objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
+				return "unknown";
 			}
 		}
 		
