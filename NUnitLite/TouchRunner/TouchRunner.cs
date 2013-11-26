@@ -255,7 +255,7 @@ namespace MonoTouch.NUnit.UI {
 								null, "Cancel", "Continue");
 							int button = -1;
 							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
-								button = e.ButtonIndex;
+								button = (int)e.ButtonIndex;
 							};
 							alert.Show ();
 							while (button == -1)
