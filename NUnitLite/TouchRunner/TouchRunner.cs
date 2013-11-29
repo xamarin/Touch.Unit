@@ -38,8 +38,7 @@ using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	
-	[CLSCompliant (false)]
-	public class TouchRunner : NSObject, ITestListener {
+	public class TouchRunner : ITestListener {
 		
 		UIWindow window;
 		int passed;
@@ -151,15 +150,14 @@ namespace MonoTouch.NUnit.UI {
 		
 		void Run ()
 		{
-			ThreadPool.QueueUserWorkItem (delegate {
-				if (!OpenWriter ("Run Everything"))
-					return;
-				try {
-					Run (suite);
-				} finally {
-					CloseWriter ();
-				}
-			});
+			if (!OpenWriter ("Run Everything"))
+				return;
+			try {
+				Run (suite);
+			}
+			finally {
+				CloseWriter ();
+			}
 		}
 				
 		void Options ()
@@ -349,19 +347,11 @@ namespace MonoTouch.NUnit.UI {
 			if (section.Count > 1) {
 				Section options = new Section () {
 					new StringElement ("Run all", delegate () {
-						ThreadPool.QueueUserWorkItem (delegate {
-							if (!OpenWriter (suite.Name))
-								return;
-							try {
-								Run (suite);
-							}
-							finally {
-								CloseWriter ();
-								InvokeOnMainThread (() => {
-									suites_dvc [suite].Filter ();
-								});
-							}
-						});
+						if (OpenWriter (suite.Name)) {
+							Run (suite);
+							CloseWriter ();
+							suites_dvc [suite].Filter ();
+						}
 					})
 				};
 				root.Add (options);
@@ -393,11 +383,11 @@ namespace MonoTouch.NUnit.UI {
 			if (ts != null) {
 				TestSuiteElement tse;
 				if (suite_elements.TryGetValue (ts, out tse))
-					BeginInvokeOnMainThread (() => tse.Update (result));
+					tse.Update (result);
 			} else {
 				TestMethod tc = result.Test as TestMethod;
 				if (tc != null)
-					BeginInvokeOnMainThread (() => case_elements [tc].Update (result));
+					case_elements [tc].Update (result);
 			}
 			
 			if (result.Test is TestSuite) {
