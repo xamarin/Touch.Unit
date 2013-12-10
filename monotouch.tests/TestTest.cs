@@ -131,6 +131,7 @@ namespace MonoTouchFixtures.Test {
 		}
 
 		[Test]
+		[Timeout (Int32.MaxValue)]
 		public async Task NestedAsync ()
 		{
 			await Task.Run (async () => {
