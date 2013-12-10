@@ -81,6 +81,11 @@ namespace MonoTouch.NUnit.UI {
 					sb.Append (", ").Append (skipped).Append (" ignored");
 			}
 			Value = sb.ToString ();
+
+			if (GetContainerTableView () != null) {
+				var root = GetImmediateRootElement ();
+				root.Reload (this, UITableViewRowAnimation.Fade);
+			}
 		}
 	}
 }
