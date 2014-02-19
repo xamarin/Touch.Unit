@@ -19,9 +19,17 @@
 //
 
 using System;
-using MonoTouch.Dialog;
+
+#if XAMCORE_2_0
+using Foundation;
+using UIKit;
+#else
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+#endif
+
+using MonoTouch.Dialog;
+
 using Mono.Options;
 
 namespace MonoTouch.NUnit.UI {
