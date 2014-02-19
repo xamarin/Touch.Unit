@@ -26,10 +26,19 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Threading;
 
-using MonoTouch.Dialog;
+#if XAMCORE_2_0
+using Foundation;
+using ObjCRuntime;
+using UIKit;
+using Constants = global::ObjCRuntime.Constants;
+#else
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
+using Constants = global::MonoTouch.Constants;
+#endif
+
+using MonoTouch.Dialog;
 
 using NUnit.Framework.Api;
 using NUnit.Framework.Internal;
@@ -274,7 +283,7 @@ namespace MonoTouch.NUnit.UI {
 			}
 			
 			Writer.WriteLine ("[Runner executing:\t{0}]", message);
-			Writer.WriteLine ("[MonoTouch Version:\t{0}]", MonoTouch.Constants.Version);
+			Writer.WriteLine ("[MonoTouch Version:\t{0}]", Constants.Version);
 			UIDevice device = UIDevice.CurrentDevice;
 			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
 			Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
