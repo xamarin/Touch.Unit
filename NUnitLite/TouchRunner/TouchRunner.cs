@@ -302,13 +302,16 @@ namespace MonoTouch.NUnit.UI {
 			return true;
 		}
 
+		[System.Runtime.InteropServices.DllImport ("/usr/lib/libobjc.dylib")]
+		static extern IntPtr objc_msgSend (IntPtr receiver, IntPtr selector);
+
 		// Apple blacklisted `uniqueIdentifier` (for the appstore) but it's still 
 		// something useful to have inside the test logs
 		static string UniqueIdentifier {
 			get {
 				IntPtr handle = UIDevice.CurrentDevice.Handle;
 				if (UIDevice.CurrentDevice.RespondsToSelector (new Selector ("uniqueIdentifier")))
-					return NSString.FromHandle (Messaging.IntPtr_objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
+					return NSString.FromHandle (objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
 				return "unknown";
 			}
 		}
