@@ -284,6 +284,7 @@ namespace MonoTouch.NUnit.UI {
 			
 			Writer.WriteLine ("[Runner executing:\t{0}]", message);
 			Writer.WriteLine ("[MonoTouch Version:\t{0}]", Constants.Version);
+			Writer.WriteLine ("[Assembly:\t{0}.dll ({1} bits)]", typeof (NSObject).Assembly.GetName ().Name, IntPtr.Size * 8);
 			Writer.WriteLine ("[GC:\t{0}{1}]", GC.MaxGeneration == 0 ? "Boehm": "sgen", 
 				NSObject.IsNewRefcountEnabled () ? "+NewRefCount" : String.Empty);
 			UIDevice device = UIDevice.CurrentDevice;
