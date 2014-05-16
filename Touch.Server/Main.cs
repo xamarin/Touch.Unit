@@ -121,6 +121,7 @@ class SimpleListener {
 		Console.WriteLine ("Copyright 2011, Xamarin Inc. All rights reserved.");
 		
 		bool help = false;
+		bool verbose = false;
 		string address = null;
 		string port = null;
 		string log_path = ".";
@@ -129,9 +130,11 @@ class SimpleListener {
 		string launchsim = null;
 		bool autoexit = false;
 		string device_name = String.Empty;
-		
+		string device_type = String.Empty;
+
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
+			{ "verbose", "Display verbose output", v => verbose = true },
 			{ "ip", "IP address to listen (default: Any)", v => address = v },
 			{ "port", "TCP port to listen (default: 16384)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
@@ -140,6 +143,7 @@ class SimpleListener {
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
+			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
 		};
 		
 		try {
@@ -229,6 +233,8 @@ class SimpleListener {
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchsim ");
 						procArgs.Append (launchsim);
+						if (!string.IsNullOrEmpty (device_type))
+							procArgs.Append (" --device ").Append (device_type);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
@@ -252,6 +258,8 @@ class SimpleListener {
 								output.AppendLine (e.Data);
 							}
 						};
+						if (verbose)
+							Console.WriteLine ("{0} {1}", proc.StartInfo.FileName, proc.StartInfo.Arguments);
 						proc.Start ();
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
