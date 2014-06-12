@@ -49,13 +49,21 @@ class SimpleListener {
 			// We might have stopped already, so just swallow any exceptions.
 		}
 	}
+
+	public void Initialize ()
+	{
+		server = new TcpListener (Address, Port);
+
+		if (Port == 0)
+			Port = ((IPEndPoint) server.LocalEndpoint).Port;
+
+		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
+	}
 	
 	public int Start ()
 	{
 		bool processed;
-		
-		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
-		server = new TcpListener (Address, Port);
+
 		try {
 			server.Start ();
 			
@@ -136,7 +144,7 @@ class SimpleListener {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "verbose", "Display verbose output", v => verbose = true },
 			{ "ip", "IP address to listen (default: Any)", v => address = v },
-			{ "port", "TCP port to listen (default: 16384)", v => port = v },
+			{ "port", "TCP port to listen (default: Any)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
@@ -160,12 +168,11 @@ class SimpleListener {
 			ushort p;
 			if (UInt16.TryParse (port, out p))
 				listener.Port = p;
-			else
-				listener.Port = 16384;
 			
 			listener.LogPath = log_path ?? ".";
 			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
+			listener.Initialize ();
 			
 			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
 			if (String.IsNullOrEmpty (mt_root))
