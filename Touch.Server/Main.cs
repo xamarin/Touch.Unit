@@ -53,6 +53,7 @@ class SimpleListener {
 	public void Initialize ()
 	{
 		server = new TcpListener (Address, Port);
+		server.Start ();
 
 		if (Port == 0)
 			Port = ((IPEndPoint) server.LocalEndpoint).Port;
@@ -65,7 +66,6 @@ class SimpleListener {
 		bool processed;
 
 		try {
-			server.Start ();
 			
 			do {
 				using (TcpClient client = server.AcceptTcpClient ()) {
