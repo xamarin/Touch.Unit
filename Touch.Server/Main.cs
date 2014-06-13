@@ -34,6 +34,7 @@ class SimpleListener {
 	static byte[] buffer = new byte [16 * 1024];
 
 	TcpListener server;
+	ManualResetEvent stopped = new ManualResetEvent (false);
 	
 	IPAddress Address { get; set; }
 	int Port { get; set; }
@@ -44,7 +45,9 @@ class SimpleListener {
 	public void Cancel ()
 	{
 		try {
-			server.Stop ();
+			// wait a second just in case more data arrives.
+			if (!stopped.WaitOne (TimeSpan.FromSeconds (1))) 
+				server.Stop ();
 		} catch {
 			// We might have stopped already, so just swallow any exceptions.
 		}
@@ -78,7 +81,11 @@ class SimpleListener {
 			return 1;
 		}
 		finally {
-			server.Stop ();
+			try {
+				server.Stop ();
+			} finally {
+				stopped.Set ();
+			}
 		}
 		
 		return 0;
@@ -271,8 +278,7 @@ class SimpleListener {
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
 						proc.WaitForExit ();
-						if (proc.ExitCode != 0)
-							listener.Cancel ();
+						listener.Cancel ();
 						Console.WriteLine (output.ToString ());
 					}
 				});
