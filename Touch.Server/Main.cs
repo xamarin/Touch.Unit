@@ -255,13 +255,13 @@ class SimpleListener {
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
 							lock (output) {
-								output.Append ("[mtouch stderr] ");
+								output.AppendFormat ("[mtouch stderr {0}] ", DateTime.Now.ToLongTimeString ());
 								output.AppendLine (e.Data);
 							}
 						};
 						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
 							lock (output) {
-								output.Append ("[mtouch stdout] ");
+								output.AppendFormat ("[mtouch stdout {0}] ", DateTime.Now.ToLongTimeString ());
 								output.AppendLine (e.Data);
 							}
 						};
