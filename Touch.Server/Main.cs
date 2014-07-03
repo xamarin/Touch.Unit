@@ -25,7 +25,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
-
+using System.Net.NetworkInformation;
 using Mono.Options;
 
 // a simple, blocking (i.e. one device/app at the time), listener
@@ -146,11 +146,13 @@ class SimpleListener {
 		bool autoexit = false;
 		string device_name = String.Empty;
 		string device_type = String.Empty;
+		string inte = String.Empty;
+		IPAddress ip = null;
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "verbose", "Display verbose output", v => verbose = true },
-			{ "ip", "IP address to listen (default: Any)", v => address = v },
+			{ "ip=", "IP address to listen (default: Any)", v => address = v },
 			{ "port", "TCP port to listen (default: Any)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
@@ -159,8 +161,10 @@ class SimpleListener {
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
+			{ "interface=", "Specifies the listening interface, in form of et0", v => inte = v},
 		};
-		
+
+
 		try {
 			os.Parse (args);
 			if (help)
@@ -168,9 +172,12 @@ class SimpleListener {
 			
 			var listener = new SimpleListener ();
 			
-			IPAddress ip;
-			if (String.IsNullOrEmpty (address) || !IPAddress.TryParse (address, out ip))
+
+			if
+				(String.IsNullOrEmpty (address) || !IPAddress.TryParse (address, out ip))
 				listener.Address = IPAddress.Any;
+			else
+				listener.Address = ip;
 			
 			ushort p;
 			if (UInt16.TryParse (port, out p))
@@ -184,6 +191,7 @@ class SimpleListener {
 			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
 			if (String.IsNullOrEmpty (mt_root))
 				mt_root = "/Developer/MonoTouch";
+
 
 			string mtouch = Path.Combine (mt_root, "bin", "mtouch");
 			if (!File.Exists (mtouch))
@@ -207,12 +215,47 @@ class SimpleListener {
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
 						procArgs.Append (" -argument=-app-arg:-hostname:");
-						var ipAddresses = System.Net.Dns.GetHostEntry (System.Net.Dns.GetHostName ()).AddressList;
-						for (int i = 0; i < ipAddresses.Length; i++) {
-							if (i > 0)
-								procArgs.Append (',');
-							procArgs.Append (ipAddresses [i].ToString ());
+
+						if(ip!=null)
+						{
+							procArgs.Append(ip.ToString());
 						}
+						else
+						{
+							bool foundIP = false;
+							if(inte!="")
+							{
+								foreach(NetworkInterface net in NetworkInterface.GetAllNetworkInterfaces())
+								{
+									if(net.Name == inte)
+									{
+										IPInterfaceProperties properties = net.GetIPProperties();
+										foreach (IPAddressInformation unicast in properties.UnicastAddresses)
+										{
+											if(unicast.Address.AddressFamily == AddressFamily.InterNetwork)
+												foundIP = true;
+												procArgs.Append(unicast.Address.ToString());
+										}
+										break;
+									}
+								}
+							}
+
+							if(!foundIP)
+							{
+								if(inte != "")
+									Console.WriteLine("Could not find interface {0}, defaulting to ip address of your first available interface",inte);
+
+								var ipAddresses = System.Net.Dns.GetHostEntry (System.Net.Dns.GetHostName ()).AddressList;
+								for (int i = 0; i < ipAddresses.Length; i++) 
+								{
+									if (i > 0)
+										procArgs.Append (',');
+									procArgs.Append (ipAddresses [i].ToString ());
+								}
+							}
+						}
+
 						proc.StartInfo.FileName = mtouch;
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.StartInfo.UseShellExecute = false;
@@ -236,6 +279,7 @@ class SimpleListener {
 						proc.WaitForExit ();
 						if (proc.ExitCode != 0)
 							listener.Cancel ();
+
 						Console.WriteLine (output.ToString ());
 					}
 				});
