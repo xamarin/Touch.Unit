@@ -55,13 +55,17 @@ class SimpleListener {
 
 	public void Initialize ()
 	{
+    Console.WriteLine("User input for endpoint: {0}:{1}", Address, Port);
+
 		server = new TcpListener (Address, Port);
 		server.Start ();
 
-		if (Port == 0)
-			Port = ((IPEndPoint) server.LocalEndpoint).Port;
+    if (Port == 0)
+    {
+      Port = ( (IPEndPoint)server.LocalEndpoint ).Port;
+    }
 
-		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
+		Console.WriteLine("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
 	}
 	
 	public int Start ()
@@ -150,9 +154,9 @@ class SimpleListener {
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "verbose", "Display verbose output", v => verbose = true },
-			{ "ip", "IP address to listen (default: Any)", v => address = v },
-			{ "port", "TCP port to listen (default: Any)", v => port = v },
-			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
+			{ "ip=", "IP address to listen (default: Any)", v => address = v },
+			{ "port=", "TCP port to listen (default: Any)", v => port = v },
+			{ "logpath=", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
@@ -161,46 +165,72 @@ class SimpleListener {
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
 		};
 		
-		try {
+		try 
+    {
 			os.Parse (args);
 			if (help)
-				ShowHelp (os);
+      {
+				ShowHelp(os);
+        return 0;
+      }
 			
 			var listener = new SimpleListener ();
 			
 			IPAddress ip;
 			if (String.IsNullOrEmpty (address) || !IPAddress.TryParse (address, out ip))
+      {
 				listener.Address = IPAddress.Any;
+      }
 			
+
 			ushort p;
-			if (UInt16.TryParse (port, out p))
+			if (UInt16.TryParse(port, out p))
+      {
 				listener.Port = p;
+      }
+      else
+      {
+        Console.WriteLine ("Unable to parse port : {0}", port);
+      }
 			
 			listener.LogPath = log_path ?? ".";
 			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
-			listener.Initialize ();
+			listener.Initialize();
 			
-			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
+			string mt_root = Environment.GetEnvironmentVariable("MONOTOUCH_ROOT");
 			if (String.IsNullOrEmpty (mt_root))
+      {
 				mt_root = "/Developer/MonoTouch";
+      }
 
 			string mtouch = Path.Combine (mt_root, "bin", "mtouch");
 			if (!File.Exists (mtouch))
+      {
 				mtouch = Path.Combine (mt_root, "usr", "bin", "mtouch");
+      }
 
-			if (launchdev != null) {
-				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
+			if (launchdev != null) 
+      {
+				ThreadPool.QueueUserWorkItem ((v) => 
+        {
+					using (Process proc = new Process ()) 
+          {
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
 						if (!String.IsNullOrEmpty (sdk_root))
+            {
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
+            }
+
 						procArgs.Append (" --launchdev ");
 						procArgs.Append (launchdev);
 						if (!String.IsNullOrEmpty (device_name))
+            {
 							procArgs.Append (" --devname=").Append (device_name);
+            }
+
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
@@ -208,9 +238,12 @@ class SimpleListener {
 						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
 						procArgs.Append (" -argument=-app-arg:-hostname:");
 						var ipAddresses = System.Net.Dns.GetHostEntry (System.Net.Dns.GetHostName ()).AddressList;
-						for (int i = 0; i < ipAddresses.Length; i++) {
+						for (int i = 0; i < ipAddresses.Length; i++) 
+            {
 							if (i > 0)
+              {
 								procArgs.Append (',');
+              }
 							procArgs.Append (ipAddresses [i].ToString ());
 						}
 						proc.StartInfo.FileName = mtouch;
@@ -218,14 +251,18 @@ class SimpleListener {
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.StartInfo.RedirectStandardError = true;
-						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
+						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) 
+            {
+							lock (output) 
+              {
 								output.Append ("[mtouch stderr] ");
 								output.AppendLine (e.Data);
 							}
 						};
-						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
+						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) 
+            {
+							lock (output) 
+              {
 								output.Append ("[mtouch stdout] ");
 								output.AppendLine (e.Data);
 							}
@@ -235,49 +272,67 @@ class SimpleListener {
 						proc.BeginOutputReadLine ();
 						proc.WaitForExit ();
 						if (proc.ExitCode != 0)
+            {
 							listener.Cancel ();
-						Console.WriteLine (output.ToString ());
+            }
+						Console.WriteLine(output.ToString ());
 					}
 				});
 			}
 			
-			if (launchsim != null) {
-				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
+			if (launchsim != null) 
+      {
+				ThreadPool.QueueUserWorkItem ((v) => 
+        {
+					using (Process proc = new Process ()) 
+          {
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
 						if (!String.IsNullOrEmpty (sdk_root))
+            {
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
+            }
+
 						procArgs.Append (" --launchsim ");
 						procArgs.Append (launchsim);
 						if (!string.IsNullOrEmpty (device_type))
+            {
 							procArgs.Append (" --device ").Append (device_type);
+            }
+
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.Append (" -argument=-app-arg:-hostname:127.0.0.1");
-						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
+						procArgs.AppendFormat(" -argument=-app-arg:-hostport:{0}", listener.Port);
 						proc.StartInfo.FileName = mtouch;
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardError = true;
 						proc.StartInfo.RedirectStandardOutput = true;
-						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
+						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) 
+            {
+							lock (output) 
+              {
 								output.AppendFormat ("[mtouch stderr {0}] ", DateTime.Now.ToLongTimeString ());
 								output.AppendLine (e.Data);
 							}
 						};
-						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
+						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) 
+            {
+							lock (output) 
+              {
 								output.AppendFormat ("[mtouch stdout {0}] ", DateTime.Now.ToLongTimeString ());
 								output.AppendLine (e.Data);
 							}
 						};
 						if (verbose)
+            {
 							Console.WriteLine ("{0} {1}", proc.StartInfo.FileName, proc.StartInfo.Arguments);
+            }
+
 						proc.Start ();
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
@@ -289,10 +344,14 @@ class SimpleListener {
 			}
 			
 			return listener.Start ();
-		} catch (OptionException oe) {
+		} 
+    catch (OptionException oe) 
+    {
 			Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
 			return 1;
-		} catch (Exception ex) {
+		} 
+    catch (Exception ex) 
+    {
 			Console.WriteLine (ex);
 			return 1;
 		}
