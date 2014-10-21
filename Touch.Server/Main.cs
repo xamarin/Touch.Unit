@@ -105,9 +105,13 @@ class SimpleListener {
 			// a few extra bits of data only available from this side
 			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
 				Environment.NewLine, DateTime.Now, remote);
+			Console.WriteLine(header);
+
+/*
 			byte[] array = Encoding.UTF8.GetBytes (header);
 			fs.Write (array, 0, array.Length);
 			fs.Flush ();
+*/
 			// now simply copy what we receive
 			int i;
 			int total = 0;
@@ -247,7 +251,11 @@ class SimpleListener {
 							procArgs.Append (ipAddresses [i].ToString ());
 						}
 						proc.StartInfo.FileName = mtouch;
-						proc.StartInfo.Arguments = procArgs.ToString ();
+
+						string strArgs = procArgs.ToString ();
+						Console.WriteLine("[Command] mtouch {0}", strArgs);
+
+						proc.StartInfo.Arguments = strArgs;
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.StartInfo.RedirectStandardError = true;
@@ -307,8 +315,15 @@ class SimpleListener {
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.Append (" -argument=-app-arg:-hostname:127.0.0.1");
 						procArgs.AppendFormat(" -argument=-app-arg:-hostport:{0}", listener.Port);
+
+
 						proc.StartInfo.FileName = mtouch;
-						proc.StartInfo.Arguments = procArgs.ToString ();
+
+                        string strArgs = procArgs.ToString();
+						Console.WriteLine("[Command] mtouch {0}", strArgs);
+						proc.StartInfo.Arguments = strArgs;
+
+
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardError = true;
 						proc.StartInfo.RedirectStandardOutput = true;
