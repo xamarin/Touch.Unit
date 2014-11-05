@@ -34,7 +34,7 @@ using MonoTouch.UIKit;
 
 using MonoTouch.Dialog;
 
-#if !HAVE_NATIVE_TYPES
+#if !XAMCORE_2_0
 using CGSize = global::System.Drawing.SizeF;
 #endif
 
