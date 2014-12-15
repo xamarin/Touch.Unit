@@ -88,6 +88,7 @@ namespace MonoTouch.NUnit.UI {
 		}
 		
 		List<Assembly> assemblies = new List<Assembly> ();
+		List<string> fixtures;
 		ManualResetEvent mre = new ManualResetEvent (false);
 		
 		public void Add (Assembly assembly)
@@ -96,6 +97,18 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("assembly");
 			
 			assemblies.Add (assembly);
+		}
+
+		public void Add (Assembly assembly, IList<string> fixtures)
+		{
+			Add (assembly);
+			if (fixtures != null) {
+				if (this.fixtures == null) {
+					this.fixtures = new List<string> (fixtures);
+				} else {
+					this.fixtures.AddRange (fixtures);
+				}
+			}
 		}
 		
 		static void TerminateWithSuccess ()
@@ -122,7 +135,7 @@ namespace MonoTouch.NUnit.UI {
 			// than what the iOS watchdog will allow them on devices
 			ThreadPool.QueueUserWorkItem (delegate {
 				foreach (Assembly assembly in assemblies)
-					Load (assembly, null);
+					Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } } );
 
 				window.InvokeOnMainThread (delegate {
 					foreach (TestSuite ts in suite.Tests) {
