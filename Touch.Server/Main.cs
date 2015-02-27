@@ -270,19 +270,15 @@ class SimpleListener {
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.StartInfo.RedirectStandardInput = true;
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
-								output.AppendFormat ("[mtouch stderr {0}] ", DateTime.Now.ToLongTimeString ());
-								output.AppendLine (e.Data);
-							}
+							Console.WriteLine ("[mtouch stderr {0}] {1}", DateTime.Now.ToLongTimeString (), e.Data);
 						};
 						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
-							lock (output) {
-								output.AppendFormat ("[mtouch stdout {0}] ", DateTime.Now.ToLongTimeString ());
-								output.AppendLine (e.Data);
-								if (e.Data.StartsWith ("Application launched. PID = ")) {
-									var pidstr = e.Data.Substring ("Application launched. PID = ".Length);
-									if (!int.TryParse (pidstr, out pid))
-										Console.WriteLine ("Could not parse pid: {0}", pidstr);
+							Console.WriteLine ("[mtouch stdout {0}] {1}", DateTime.Now.ToLongTimeString (), e.Data);
+
+							if (e.Data.StartsWith ("Application launched. PID = ")) {
+								var pidstr = e.Data.Substring ("Application launched. PID = ".Length);
+								if (!int.TryParse (pidstr, out pid)) {
+									Console.WriteLine ("Could not parse pid: {0}", pidstr);
 								}
 							}
 						};
@@ -305,7 +301,6 @@ class SimpleListener {
 							proc.WaitForExit ();
 						}
 						listener.Cancel ();
-						Console.WriteLine (output.ToString ());
 					}
 				});
 			}
