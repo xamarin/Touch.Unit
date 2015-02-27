@@ -147,7 +147,7 @@ class SimpleListener {
 		bool autoexit = false;
 		string device_name = String.Empty;
 		string device_type = String.Empty;
-		float? timeout = null;
+		TimeSpan? timeout = null;
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -161,7 +161,7 @@ class SimpleListener {
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
-			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = float.Parse (v) },
+			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = TimeSpan.FromMinutes (double.Parse (v)) },
 		};
 		
 		try {
@@ -292,18 +292,9 @@ class SimpleListener {
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
 						if (timeout.HasValue) {
-							if (!proc.WaitForExit ((int) (timeout.Value * 60 * 1000))) {
+							if (!proc.WaitForExit ((int) timeout.Value.TotalMilliseconds)) {
 								if (pid != 0) {
-									Console.WriteLine ("Timeout ({1} s) reached, will now send SIGQUIT to the app (PID: {0})", pid, timeout.Value * 60);
-									kill (pid, 3 /* SIGQUIT */); // print managed stack traces.
-									if (!proc.WaitForExit (5000 /* wait for at most 5 seconds to see if something happens */)) {
-										Console.WriteLine ("Timeout ({1} s) reached, will now send SIGABRT to the app (PID: {0})", pid, timeout.Value * 60);
-										kill (pid, 6 /* SIGABRT */); // print native stack traces.
-										if (!proc.WaitForExit (5000 /* wait another 5 seconds */)) {
-											Console.WriteLine ("Timeout ({1} s) reached, will now send SIGKILL to the app (PID: {0})", pid, timeout.Value * 60);
-											kill (pid, 9 /* SIGKILL */); // terminate unconditionally.
-										}
-									}
+									KillPid (proc, pid, 5000, timeout.Value, "Completion");
 								} else {
 									proc.StandardInput.WriteLine (); // this kills as well, but we won't be able to send SIGQUIT to get a stack trace.
 								}
@@ -328,6 +319,20 @@ class SimpleListener {
 			return 1;
 		}
 	}   
+
+	static void KillPid (Process proc, int pid, int kill_separation, TimeSpan timeout, string type)
+	{
+		Console.WriteLine ("{2} timeout ({1} s) reached, will now send SIGQUIT to the app (PID: {0})", pid, timeout.TotalSeconds, type);
+		kill (pid, 3 /* SIGQUIT */); // print managed stack traces.
+		if (!proc.WaitForExit (kill_separation /* wait for at most 5 seconds to see if something happens */)) {
+			Console.WriteLine ("{2} timeout ({1} s) reached, will now send SIGABRT to the app (PID: {0})", pid, timeout.TotalSeconds, type);
+			kill (pid, 6 /* SIGABRT */); // print native stack traces.
+			if (!proc.WaitForExit (kill_separation /* wait another 5 seconds */)) {
+				Console.WriteLine ("{2} timeout ({1} s) reached, will now send SIGKILL to the app (PID: {0})", pid, timeout.TotalSeconds, type);
+				kill (pid, 9 /* SIGKILL */); // terminate unconditionally.
+			}
+		}
+	}
 
    [DllImport ("libc")]
    private static extern void kill (int pid, int sig);
