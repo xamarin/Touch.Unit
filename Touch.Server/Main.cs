@@ -36,13 +36,19 @@ class SimpleListener {
 
 	TcpListener server;
 	ManualResetEvent stopped = new ManualResetEvent (false);
+	ManualResetEvent connected = new ManualResetEvent (false);
 	
 	IPAddress Address { get; set; }
 	int Port { get; set; }
 	string LogPath { get; set; }
 	string LogFile { get; set; }
 	bool AutoExit { get; set; }
-	
+
+	public bool WaitForConnection (TimeSpan ts)
+	{
+		return connected.WaitOne (ts);
+	}
+
 	public void Cancel ()
 	{
 		try {
@@ -97,6 +103,7 @@ class SimpleListener {
 		string logfile = Path.Combine (LogPath, LogFile ?? DateTime.UtcNow.Ticks.ToString () + ".log");
 		string remote = client.Client.RemoteEndPoint.ToString ();
 		Console.WriteLine ("Connection from {0} saving logs to {1}", remote, logfile);
+		connected.Set ();
 
 		using (FileStream fs = File.OpenWrite (logfile)) {
 			// a few extra bits of data only available from this side
@@ -148,6 +155,7 @@ class SimpleListener {
 		string device_name = String.Empty;
 		string device_type = String.Empty;
 		TimeSpan? timeout = null;
+		TimeSpan? startup_timeout = null;
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -162,6 +170,7 @@ class SimpleListener {
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
 			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = TimeSpan.FromMinutes (double.Parse (v)) },
+			{ "startup-timeout=", "Specifies a timeout (in seconds) for the simulator app to connect to Touch.Server (ignored for device runs)", v => startup_timeout = TimeSpan.FromSeconds (double.Parse (v)) },
 		};
 		
 		try {
@@ -279,6 +288,12 @@ class SimpleListener {
 								var pidstr = e.Data.Substring ("Application launched. PID = ".Length);
 								if (!int.TryParse (pidstr, out pid)) {
 									Console.WriteLine ("Could not parse pid: {0}", pidstr);
+								} else if (startup_timeout.HasValue) {
+									ThreadPool.QueueUserWorkItem ((v2) =>
+										{
+											if (!listener.WaitForConnection (startup_timeout.Value))
+												KillPid (proc, pid, 1000, startup_timeout.Value, "Startup");
+										});
 								}
 							}
 						};
