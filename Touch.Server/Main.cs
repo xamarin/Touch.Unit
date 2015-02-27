@@ -24,6 +24,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 using Mono.Options;
@@ -146,6 +147,7 @@ class SimpleListener {
 		bool autoexit = false;
 		string device_name = String.Empty;
 		string device_type = String.Empty;
+		float? timeout = null;
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -159,6 +161,7 @@ class SimpleListener {
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
+			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = float.Parse (v) },
 		};
 		
 		try {
@@ -244,6 +247,7 @@ class SimpleListener {
 			if (launchsim != null) {
 				ThreadPool.QueueUserWorkItem ((v) => {
 					using (Process proc = new Process ()) {
+						int pid = 0;
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
@@ -264,6 +268,7 @@ class SimpleListener {
 						proc.StartInfo.UseShellExecute = false;
 						proc.StartInfo.RedirectStandardError = true;
 						proc.StartInfo.RedirectStandardOutput = true;
+						proc.StartInfo.RedirectStandardInput = true;
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
 							lock (output) {
 								output.AppendFormat ("[mtouch stderr {0}] ", DateTime.Now.ToLongTimeString ());
@@ -274,6 +279,11 @@ class SimpleListener {
 							lock (output) {
 								output.AppendFormat ("[mtouch stdout {0}] ", DateTime.Now.ToLongTimeString ());
 								output.AppendLine (e.Data);
+								if (e.Data.StartsWith ("Application launched. PID = ")) {
+									var pidstr = e.Data.Substring ("Application launched. PID = ".Length);
+									if (!int.TryParse (pidstr, out pid))
+										Console.WriteLine ("Could not parse pid: {0}", pidstr);
+								}
 							}
 						};
 						if (verbose)
@@ -281,7 +291,28 @@ class SimpleListener {
 						proc.Start ();
 						proc.BeginErrorReadLine ();
 						proc.BeginOutputReadLine ();
-						proc.WaitForExit ();
+						if (timeout.HasValue) {
+							if (!proc.WaitForExit ((int) (timeout.Value * 60 * 1000))) {
+								if (pid != 0) {
+									Console.WriteLine ("Timeout ({1} s) reached, will now send SIGQUIT to the app (PID: {0})", pid, timeout.Value * 60);
+									kill (pid, 3 /* SIGQUIT */); // print managed stack traces.
+									if (!proc.WaitForExit (5000 /* wait for at most 5 seconds to see if something happens */)) {
+										Console.WriteLine ("Timeout ({1} s) reached, will now send SIGABRT to the app (PID: {0})", pid, timeout.Value * 60);
+										kill (pid, 6 /* SIGABRT */); // print native stack traces.
+										if (!proc.WaitForExit (5000 /* wait another 5 seconds */)) {
+											Console.WriteLine ("Timeout ({1} s) reached, will now send SIGKILL to the app (PID: {0})", pid, timeout.Value * 60);
+											kill (pid, 9 /* SIGKILL */); // terminate unconditionally.
+										}
+									}
+								} else {
+									proc.StandardInput.WriteLine (); // this kills as well, but we won't be able to send SIGQUIT to get a stack trace.
+								}
+								if (!proc.WaitForExit (5000 /* wait another 5 seconds for mtouch to finish as well */))
+									Console.WriteLine ("mtouch didn't complete within 5s of killing the simulator app. Touch.Server will exit anyway.");
+							}
+						} else {
+							proc.WaitForExit ();
+						}
 						listener.Cancel ();
 						Console.WriteLine (output.ToString ());
 					}
@@ -297,4 +328,7 @@ class SimpleListener {
 			return 1;
 		}
 	}   
+
+   [DllImport ("libc")]
+   private static extern void kill (int pid, int sig);
 }
