@@ -210,9 +210,9 @@ class SimpleListener {
 						if (!String.IsNullOrEmpty (sdk_root))
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchdev ");
-						procArgs.Append (launchdev);
+						procArgs.Append (Quote (launchdev));
 						if (!String.IsNullOrEmpty (device_name))
-							procArgs.Append (" --devname=").Append (device_name);
+							procArgs.Append (" --devname=").Append (Quote (device_name));
 						procArgs.Append (" -argument=-connection-mode -argument=none");
 						procArgs.Append (" -argument=-app-arg:-autostart");
 						procArgs.Append (" -argument=-app-arg:-autoexit");
@@ -263,7 +263,7 @@ class SimpleListener {
 						if (!String.IsNullOrEmpty (sdk_root))
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
 						procArgs.Append (" --launchsim ");
-						procArgs.Append (launchsim);
+						procArgs.Append (Quote (launchsim));
 						if (!string.IsNullOrEmpty (device_type))
 							procArgs.Append (" --device ").Append (device_type);
 						procArgs.Append (" -argument=-connection-mode -argument=none");
@@ -342,6 +342,25 @@ class SimpleListener {
 				kill (pid, 9 /* SIGKILL */); // terminate unconditionally.
 			}
 		}
+	}
+
+	static string Quote (string f)
+	{
+		if (f.IndexOf (' ') == -1 && f.IndexOf ('\'') == -1)
+			return f;
+
+		var s = new StringBuilder ();
+
+		s.Append ('"');
+		foreach (var c in f){
+			if (c == '"' || c == '\\')
+				s.Append ('\\');
+
+			s.Append (c);
+		}
+		s.Append ('"');
+
+		return s.ToString ();
 	}
 
    [DllImport ("libc")]
