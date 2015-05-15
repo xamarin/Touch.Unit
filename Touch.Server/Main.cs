@@ -201,9 +201,11 @@ class SimpleListener {
 			if (!File.Exists (mtouch))
 				mtouch = Path.Combine (mt_root, "usr", "bin", "mtouch");
 
+			Process proc = null;
 			if (launchdev != null) {
 				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
+					{
+						proc = new Process ();
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
@@ -252,10 +254,16 @@ class SimpleListener {
 					}
 				});
 			}
-			
+
+			var lastErrorDataReceived = new AutoResetEvent (true);
+			var lastOutDataReceived = new AutoResetEvent (true);
 			if (launchsim != null) {
+				lastErrorDataReceived.Reset ();
+				lastOutDataReceived.Reset ();
+
 				ThreadPool.QueueUserWorkItem ((v) => {
-					using (Process proc = new Process ()) {
+					{
+						proc = new Process ();
 						int pid = 0;
 						StringBuilder output = new StringBuilder ();
 						StringBuilder procArgs = new StringBuilder ();
@@ -278,10 +286,21 @@ class SimpleListener {
 						proc.StartInfo.RedirectStandardError = true;
 						proc.StartInfo.RedirectStandardOutput = true;
 						proc.StartInfo.RedirectStandardInput = true;
+
 						proc.ErrorDataReceived += delegate(object sender, DataReceivedEventArgs e) {
+							if (e.Data == null) {
+								Console.WriteLine ("[mtouch stderr EOS]");
+								lastErrorDataReceived.Set ();
+								return;
+							}
 							Console.WriteLine ("[mtouch stderr {0}] {1}", DateTime.Now.ToLongTimeString (), e.Data);
 						};
 						proc.OutputDataReceived += delegate(object sender, DataReceivedEventArgs e) {
+							if (e.Data == null){
+								Console.WriteLine ("[mtouch stdout EOS]");
+								lastOutDataReceived.Set ();
+								return;
+							}
 							Console.WriteLine ("[mtouch stdout {0}] {1}", DateTime.Now.ToLongTimeString (), e.Data);
 
 							if (e.Data.StartsWith ("Application launched. PID = ")) {
@@ -320,7 +339,14 @@ class SimpleListener {
 				});
 			}
 			
-			return listener.Start ();
+			var result = listener.Start ();
+			if (proc != null && !proc.WaitForExit (10000 /* wait another 10 seconds for mtouch to finish as well */))
+				Console.WriteLine ("mtouch didn't complete within 10s of the simulator app exiting. Touch.Server will exit anyway.");
+			// Wait up to 2 seconds to receive the last of the error/output data. This will only be received *after*
+			// mtouch has exited.
+			lastErrorDataReceived.WaitOne (2000);
+			lastOutDataReceived.WaitOne (2000);
+			return result;
 		} catch (OptionException oe) {
 			Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
 			return 1;
