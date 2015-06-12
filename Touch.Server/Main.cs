@@ -19,6 +19,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -156,6 +157,7 @@ class SimpleListener {
 		string device_type = String.Empty;
 		TimeSpan? timeout = null;
 		TimeSpan? startup_timeout = null;
+		var mtouch_arguments = new List<string> ();
 
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
@@ -171,6 +173,7 @@ class SimpleListener {
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
 			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = TimeSpan.FromMinutes (double.Parse (v)) },
 			{ "startup-timeout=", "Specifies a timeout (in seconds) for the simulator app to connect to Touch.Server (ignored for device runs)", v => startup_timeout = TimeSpan.FromSeconds (double.Parse (v)) },
+			{ "mtouch-argument=", "Specifies an extra mtouch argument when launching the application", v => mtouch_arguments.Add (v) },
 		};
 		
 		try {
@@ -221,6 +224,8 @@ class SimpleListener {
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
 						procArgs.Append (" -argument=-app-arg:-hostname:");
+						foreach (var arg in mtouch_arguments)
+							procArgs.Append (" ").Append (arg);
 						var ipAddresses = System.Net.Dns.GetHostEntry (System.Net.Dns.GetHostName ()).AddressList;
 						for (int i = 0; i < ipAddresses.Length; i++) {
 							if (i > 0)
@@ -280,6 +285,8 @@ class SimpleListener {
 						procArgs.Append (" -argument=-app-arg:-enablenetwork");
 						procArgs.Append (" -argument=-app-arg:-hostname:127.0.0.1");
 						procArgs.AppendFormat (" -argument=-app-arg:-hostport:{0}", listener.Port);
+						foreach (var arg in mtouch_arguments)
+							procArgs.Append (" ").Append (arg);
 						proc.StartInfo.FileName = mtouch;
 						proc.StartInfo.Arguments = procArgs.ToString ();
 						proc.StartInfo.UseShellExecute = false;
