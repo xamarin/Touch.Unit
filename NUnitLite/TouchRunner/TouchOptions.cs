@@ -80,7 +80,11 @@ namespace MonoTouch.NUnit.UI {
 		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
+#if TVOS
+			var network = new StringElement (string.Format ("Enabled: {0}", EnableNetwork));
+#else
 			var network = new BooleanElement ("Enable", EnableNetwork);
+#endif
 
 			var host = new EntryElement ("Host Name", "name", HostName);
 			host.KeyboardType = UIKeyboardType.ASCIICapable;
@@ -88,7 +92,11 @@ namespace MonoTouch.NUnit.UI {
 			var port = new EntryElement ("Port", "name", HostPort.ToString ());
 			port.KeyboardType = UIKeyboardType.NumberPad;
 			
+#if TVOS
+			var sort = new StringElement (string.Format ("Sort Names: ", SortNames));
+#else
 			var sort = new BooleanElement ("Sort Names", SortNames);
+#endif
 
 			var root = new RootElement ("Options") {
 				new Section ("Remote Server") { network, host, port },
@@ -97,14 +105,18 @@ namespace MonoTouch.NUnit.UI {
 				
 			var dv = new DialogViewController (root, true) { Autorotate = true };
 			dv.ViewDisappearing += delegate {
+#if !TVOS
 				EnableNetwork = network.Value;
+#endif
 				HostName = host.Value;
 				ushort p;
 				if (UInt16.TryParse (port.Value, out p))
 					HostPort = p;
 				else
 					HostPort = -1;
+#if !TVOS
 				SortNames = sort.Value;
+#endif
 				
 				var defaults = NSUserDefaults.StandardUserDefaults;
 				defaults.SetBool (EnableNetwork, "network.enabled");

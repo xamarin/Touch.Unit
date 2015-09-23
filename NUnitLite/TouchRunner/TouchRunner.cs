@@ -195,11 +195,19 @@ namespace MonoTouch.NUnit.UI {
 			var root = new RootElement ("Credits") {
 				new Section () { title },
 				new Section () {
+#if TVOS
+					new StringElement ("About Xamarin: http://www.xamarin.com"),
+					new StringElement ("About MonoTouch: http://ios.xamarin.com"),
+					new StringElement ("About MonoTouch.Dialog: https://github.com/migueldeicaza/MonoTouch.Dialog"),
+					new StringElement ("About NUnitLite: http://www.nunitlite.org"),
+					new StringElement ("About Font Awesome: http://fortawesome.github.com/Font-Awesome")
+#else
 					new HtmlElement ("About Xamarin", "http://www.xamarin.com"),
 					new HtmlElement ("About MonoTouch", "http://ios.xamarin.com"),
 					new HtmlElement ("About MonoTouch.Dialog", "https://github.com/migueldeicaza/MonoTouch.Dialog"),
 					new HtmlElement ("About NUnitLite", "http://www.nunitlite.org"),
 					new HtmlElement ("About Font Awesome", "http://fortawesome.github.com/Font-Awesome")
+#endif
 				}
 			};
 				
@@ -272,6 +280,10 @@ namespace MonoTouch.NUnit.UI {
 							Writer = new TcpTextWriter (hostname, options.HostPort);
 						}
 						catch (SocketException) {
+#if TVOS
+							Console.WriteLine ("Network error: Cannot connect to {0}:{1}. Continuing on console.", hostname, options.HostPort);
+							Writer = Console.Out;
+#else
 							UIAlertView alert = new UIAlertView ("Network Error", 
 								String.Format ("Cannot connect to {0}:{1}. Continue on console ?", hostname, options.HostPort), 
 								null, "Cancel", "Continue");
@@ -288,6 +300,7 @@ namespace MonoTouch.NUnit.UI {
 								return false;
 							else
 								Writer = Console.Out;
+#endif
 						}
 					}
 				} else {
@@ -443,6 +456,8 @@ namespace MonoTouch.NUnit.UI {
 				} else {
 					Writer.Write ("\t[INFO] ");
 				}
+				Writer.Write (result.Test.FixtureType.Name);
+				Writer.Write (".");
 				Writer.Write (result.Test.Name);
 				
 				string message = result.Message;
