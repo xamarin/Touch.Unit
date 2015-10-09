@@ -28,15 +28,19 @@ namespace MonoTouch.NUnit {
 			
 			HostName = hostName;
 			Port = port;
-			
+
+#if __IOS__
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+#endif
 
 			try {
 				client = new TcpClient (hostName, port);
 				writer = new StreamWriter (client.GetStream ());
 			}
 			catch {
+#if __IOS__
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+#endif
 				throw;
 			}
 		}
@@ -54,7 +58,9 @@ namespace MonoTouch.NUnit {
 
 		public override void Close ()
 		{
+#if __IOS__
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+#endif
 			writer.Close ();
 		}
 		
