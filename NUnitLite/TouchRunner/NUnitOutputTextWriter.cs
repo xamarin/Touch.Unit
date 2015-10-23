@@ -31,7 +31,7 @@ namespace MonoTouch.NUnit {
 
 		bool real_time_reporting;
 
-		public NUnitOutputTextWriter (TouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter)
+		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter)
 		{
 			Runner = runner;
 			BaseWriter = baseWriter ?? Console.Out;
@@ -46,7 +46,7 @@ namespace MonoTouch.NUnit {
 
 		public TextWriter BaseWriter { get; private set; }
 
-		public TouchRunner Runner { get; private set; }
+		public BaseTouchRunner Runner { get; private set; }
 
 		public OutputWriter XmlOutputWriter { get; private set; }
 

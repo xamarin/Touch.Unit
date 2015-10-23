@@ -28,7 +28,9 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 #endif
 
+#if !__WATCHOS__
 using MonoTouch.Dialog;
+#endif
 
 using Mono.Options;
 
@@ -41,11 +43,28 @@ namespace MonoTouch.NUnit.UI {
 		public TouchOptions ()
 		{
 			var defaults = NSUserDefaults.StandardUserDefaults;
+			TerminateAfterExecution = defaults.BoolForKey ("execution.autoexit");
+			AutoStart = defaults.BoolForKey ("execution.autostart");
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = (int)defaults.IntForKey ("network.host.port");
 			SortNames = defaults.BoolForKey ("display.sort");
 			
+			bool b;
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_AUTOEXIT"), out b))
+				TerminateAfterExecution = b;
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_AUTOSTART"), out b))
+				AutoStart = b;
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_ENABLE_NETWORK"), out b))
+				EnableNetwork = b;
+			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_HOSTNAME")))
+				HostName = Environment.GetEnvironmentVariable ("NUNIT_HOSTNAME");
+			int i;
+			if (int.TryParse (Environment.GetEnvironmentVariable ("NUNIT_HOSTPORT"), out i))
+				HostPort = i;
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_SORTNAMES"), out b))
+				SortNames = b;
+
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
 				{ "autostart", "If the app should automatically start running the tests.", v => AutoStart = true },
@@ -77,6 +96,7 @@ namespace MonoTouch.NUnit.UI {
 
 		public bool SortNames { get; set; }
 		
+#if !__WATCHOS__
 		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
@@ -127,5 +147,6 @@ namespace MonoTouch.NUnit.UI {
 			
 			return dv;
 		}
+#endif // !__WATCHOS__
 	}
 }

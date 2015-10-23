@@ -24,7 +24,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 #if XAMCORE_2_0
 using Foundation;
@@ -38,7 +40,9 @@ using MonoTouch.UIKit;
 using Constants = global::MonoTouch.Constants;
 #endif
 
+#if !__WATCHOS__
 using MonoTouch.Dialog;
+#endif
 
 using NUnit.Framework.Api;
 using NUnit.Framework.Internal;
@@ -46,56 +50,44 @@ using NUnit.Framework.Internal.Commands;
 using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
-	
-	public class TouchRunner : ITestListener {
-		
-		UIWindow window;
-		int passed;
-		int failed;
-		int ignored;
-		int inconclusive;
+	public abstract class BaseTouchRunner : ITestListener {
 		TestSuite suite = new TestSuite (String.Empty);
-		ITestFilter filter;
+		ITestFilter filter = TestFilter.Empty;
 
-		[CLSCompliant (false)]
-		public TouchRunner (UIWindow window)
-		{
-			if (window == null)
-				throw new ArgumentNullException ("window");
-			
-			this.window = window;
-			filter = TestFilter.Empty;
+		public int PassedCount { get; private set; }
+		public int FailedCount { get; private set; }
+		public int IgnoredCount { get; private set; }
+		public int InconclusiveCount { get; private set; }
+		public int TestCount {
+			get {
+				return suite.TestCaseCount;
+			}
 		}
-		
+		public TestSuite Suite { get { return suite; } }
+
 		public bool AutoStart {
 			get { return TouchOptions.Current.AutoStart; }
 			set { TouchOptions.Current.AutoStart = value; }
 		}
-		
+
 		public ITestFilter Filter {
 			get { return filter; }
 			set { filter = value; }
 		}
-		
+
 		public bool TerminateAfterExecution {
 			get { return TouchOptions.Current.TerminateAfterExecution; }
 			set { TouchOptions.Current.TerminateAfterExecution = value; }
 		}
-		
-		[CLSCompliant (false)]
-		public UINavigationController NavigationController {
-			get { return (UINavigationController) window.RootViewController; }
-		}
-		
+
 		List<Assembly> assemblies = new List<Assembly> ();
 		List<string> fixtures;
-		ManualResetEvent mre = new ManualResetEvent (false);
-		
+
 		public void Add (Assembly assembly)
 		{
 			if (assembly == null)
 				throw new ArgumentNullException ("assembly");
-			
+
 			assemblies.Add (assembly);
 		}
 
@@ -110,13 +102,322 @@ namespace MonoTouch.NUnit.UI {
 				}
 			}
 		}
+
+		protected virtual void TerminateWithSuccess ()
+		{
+			Console.WriteLine ("TerminateWithSuccess not implemented for this platform.");
+		}
+
+		public Task LoadAsync ()
+		{
+			// Load the tests on a background thread, to make sure
+			// we don't block the main thread during startup
+			// (to not anger any watchdogs).
+			var tcr = new TaskCompletionSource<bool> ();
+
+			var mainScheduler = TaskScheduler.FromCurrentSynchronizationContext ();
+			Task.Factory.StartNew (() => {
+				foreach (Assembly assembly in assemblies)
+					Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } });
+				assemblies.Clear ();
+				tcr.SetResult (true);
+				if (AutoStart) {
+					Task.Factory.StartNew (() => {
+						Run ();
+
+						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
+						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
+						if (TerminateAfterExecution)
+							TerminateWithSuccess ();
+					}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainScheduler);
+				}
+			});
+
+			return tcr.Task;
+		}
+
+		public void Run ()
+		{
+			if (!OpenWriter ("Run Everything"))
+				return;
+			try {
+				Run (suite);
+			} finally {
+				CloseWriter ();
+			}
+		}
+
+#region writer
+
+		public TestResult Result { get; set; }
+
+		public TextWriter Writer { get; set; }
+
+		static string SelectHostName (string[] names, int port)
+		{
+			if (names.Length == 0)
+				return null;
+
+			if (names.Length == 1)
+				return names [0];
+
+			object lock_obj = new object ();
+			string result = null;
+			int failures = 0;
+
+			using (var evt = new ManualResetEvent (false)) {
+				for (int i = names.Length - 1; i >= 0; i--) {
+					var name = names [i];
+					ThreadPool.QueueUserWorkItem ((v) =>
+						{
+							try {
+								var client = new TcpClient (name, port);
+								using (var writer = new StreamWriter (client.GetStream ())) {
+									writer.WriteLine ("ping");
+								}
+								lock (lock_obj) {
+									if (result == null)
+										result = name;
+								}
+								evt.Set ();
+							} catch (Exception) {
+								lock (lock_obj) {
+									failures++;
+									if (failures == names.Length)
+										evt.Set ();
+								}
+							}
+						});
+				}
+
+				// Wait for 1 success or all failures
+				evt.WaitOne ();
+			}
+
+			return result;
+		}
+
+		public bool OpenWriter (string message)
+		{
+			TouchOptions options = TouchOptions.Current;
+			DateTime now = DateTime.Now;
+			// let the application provide it's own TextWriter to ease automation with AutoStart property
+			if (Writer == null) {
+				if (options.ShowUseNetworkLogger) {
+					var hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
+
+					if (hostname != null) {
+						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
+						try {
+							Writer = new TcpTextWriter (hostname, options.HostPort);
+						}
+						catch (SocketException) {
+#if __TVOS__ || __WATCHOS__
+							Console.WriteLine ("Network error: Cannot connect to {0}:{1}. Continuing on console.", hostname, options.HostPort);
+							Writer = Console.Out;
+#else
+							UIAlertView alert = new UIAlertView ("Network Error", 
+								String.Format ("Cannot connect to {0}:{1}. Continue on console ?", hostname, options.HostPort), 
+								null, "Cancel", "Continue");
+							int button = -1;
+							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
+								button = (int)e.ButtonIndex;
+							};
+							alert.Show ();
+							while (button == -1)
+								NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
+							Console.WriteLine (button);
+							Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
+							if (button == 0)
+								return false;
+							else
+								Writer = Console.Out;
+#endif
+						}
+					}
+				} else {
+					Writer = Console.Out;
+				}
+			}
+
+			Writer.WriteLine ("[Runner executing:\t{0}]", message);
+			Writer.WriteLine ("[MonoTouch Version:\t{0}]", Constants.Version);
+			Writer.WriteLine ("[Assembly:\t{0}.dll ({1} bits)]", typeof (NSObject).Assembly.GetName ().Name, IntPtr.Size * 8);
+			Writer.WriteLine ("[GC:\t{0}{1}]", GC.MaxGeneration == 0 ? "Boehm": "sgen", 
+				NSObject.IsNewRefcountEnabled () ? "+NewRefCount" : String.Empty);
+			WriteDeviceInformation (Writer);
+			Writer.WriteLine ("[Device Locale:\t{0}]", NSLocale.CurrentLocale.Identifier);
+			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
+
+			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
+			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
+			PassedCount = 0;
+			IgnoredCount = 0;
+			FailedCount = 0;
+			InconclusiveCount = 0;
+			return true;
+		}
+
+		protected abstract void WriteDeviceInformation (TextWriter writer);
+
+		public void CloseWriter ()
+		{
+			int total = PassedCount + InconclusiveCount + FailedCount; // ignored are *not* run
+			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, PassedCount, InconclusiveCount, FailedCount, IgnoredCount);
+
+			Writer.Close ();
+			Writer = null;
+		}
+
+#endregion
+
+		public void TestStarted (ITest test)
+		{
+			if (test is TestSuite) {
+				Writer.WriteLine ();
+				Writer.WriteLine (test.Name);
+			}
+		}
+
+		public virtual void TestFinished (ITestResult r)
+		{
+			TestResult result = r as TestResult;
+
+			if (result.Test is TestSuite) {
+				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
+					Writer.WriteLine ("\t[INFO] {0}", result.Message);
+
+				string name = result.Test.Name;
+				if (!String.IsNullOrEmpty (name))
+					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
+			} else {
+				if (result.IsSuccess ()) {
+					Writer.Write ("\t[PASS] ");
+					PassedCount++;
+				} else if (result.IsIgnored ()) {
+					Writer.Write ("\t[IGNORED] ");
+					IgnoredCount++;
+				} else if (result.IsFailure ()) {
+					Writer.Write ("\t[FAIL] ");
+					FailedCount++;
+				} else if (result.IsInconclusive ()) {
+					Writer.Write ("\t[INCONCLUSIVE] ");
+					InconclusiveCount++;
+				} else {
+					Writer.Write ("\t[INFO] ");
+				}
+				Writer.Write (result.Test.FixtureType.Name);
+				Writer.Write (".");
+				Writer.Write (result.Test.Name);
+
+				string message = result.Message;
+				if (!String.IsNullOrEmpty (message)) {
+					Writer.Write (" : {0}", message.Replace ("\r\n", "\\r\\n"));
+				}
+				Writer.WriteLine ();
+
+				string stacktrace = result.StackTrace;
+				if (!String.IsNullOrEmpty (result.StackTrace)) {
+					string[] lines = stacktrace.Split (new char [] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+					foreach (string line in lines)
+						Writer.WriteLine ("\t\t{0}", line);
+				}
+			}
+		}
+
+		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
+		Dictionary<string, object> empty = new Dictionary<string, object> ();
+
+		public bool Load (string assemblyName, IDictionary settings)
+		{
+			return AddSuite (builder.Build (assemblyName, settings ?? empty));
+		}
+
+		public bool Load (Assembly assembly, IDictionary settings)
+		{
+			return AddSuite (builder.Build (assembly, settings ?? empty));
+		}
+
+		bool AddSuite (TestSuite ts)
+		{
+			if (ts == null)
+				return false;
+			suite.Add (ts);
+			return true;
+		}
+
+		public TestResult Run (Test test)
+		{
+			PassedCount = 0;
+			IgnoredCount = 0;
+			FailedCount = 0;
+			InconclusiveCount = 0;
+
+			Result = null;
+			TestExecutionContext current = TestExecutionContext.CurrentContext;
+			current.WorkDirectory = Environment.CurrentDirectory;
+			current.Listener = this;
+			WorkItem wi = test.CreateWorkItem (filter);
+			wi.Execute (current);
+			Result = wi.Result;
+			return Result;
+		}
+
+		public ITest LoadedTest {
+			get {
+				return suite;
+			}
+		}
+
+		public void TestOutput (TestOutput testOutput)
+		{
+		}
+	}
+
+#if __WATCHOS__
+	public class WatchOSRunner : BaseTouchRunner {
+		protected override void WriteDeviceInformation (TextWriter writer)
+		{
+			var device = WatchKit.WKInterfaceDevice.CurrentDevice;
+			writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+			writer.WriteLine ("[Device Name:\t{0}]", device.Name);
+		}
+
+		[DllImport ("libc")]
+		static extern void exit (int code);
+		protected override void TerminateWithSuccess ()
+		{
+			// For WatchOS we're terminating the extension, not the watchos app itself.
+			exit (0);
+		}
+	}
+#endif
+	
+#if !__WATCHOS__
+	public class TouchRunner : BaseTouchRunner {
 		
-		static void TerminateWithSuccess ()
+		UIWindow window;
+
+		[CLSCompliant (false)]
+		public TouchRunner (UIWindow window)
+		{
+			if (window == null)
+				throw new ArgumentNullException ("window");
+			
+			this.window = window;
+		}
+				
+		[CLSCompliant (false)]
+		public UINavigationController NavigationController {
+			get { return (UINavigationController) window.RootViewController; }
+		}
+
+		protected override void TerminateWithSuccess ()
 		{
 			Selector selector = new Selector ("terminateWithSuccess");
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
-		
+
 		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
@@ -132,56 +433,29 @@ namespace MonoTouch.NUnit.UI {
 			menu.Add (options);
 
 			// large unit tests applications can take more time to initialize
-			// than what the iOS watchdog will allow them on devices
-			ThreadPool.QueueUserWorkItem (delegate {
-				foreach (Assembly assembly in assemblies)
-					Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } } );
+			// than what the iOS watchdog will allow them on devices, so loading
+			// must be done async.
 
-				window.InvokeOnMainThread (delegate {
-					foreach (TestSuite ts in suite.Tests) {
+			var mainContext = TaskScheduler.FromCurrentSynchronizationContext ();
+			Task.Factory.StartNew (async () => {
+				await LoadAsync ();
+
+				await Task.Factory.StartNew (() => {
+					foreach (TestSuite ts in Suite.Tests) {
 						main.Add (Setup (ts));
 					}
-					mre.Set ();
-					
+
 					main.Caption = null;
 					menu.Reload (main, UITableViewRowAnimation.Fade);
-					
+
 					options.Insert (0, new StringElement ("Run Everything", Run));
 					menu.Reload (options, UITableViewRowAnimation.Fade);
-				});
-				assemblies.Clear ();
-			});
+				}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainContext);
+			}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainContext);
 			
-			var dv = new DialogViewController (menu) { Autorotate = true };
+			return new DialogViewController (menu) { Autorotate = true };
+		}
 
-			// AutoStart running the tests (with either the supplied 'writer' or the options)
-			if (AutoStart) {
-				ThreadPool.QueueUserWorkItem (delegate {
-					mre.WaitOne ();
-					window.BeginInvokeOnMainThread (delegate {
-						Run ();	
-						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
-						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
-						if (TerminateAfterExecution)
-							TerminateWithSuccess ();
-					});
-				});
-			}
-			return dv;
-		}
-		
-		void Run ()
-		{
-			if (!OpenWriter ("Run Everything"))
-				return;
-			try {
-				Run (suite);
-			}
-			finally {
-				CloseWriter ();
-			}
-		}
-				
 		void Options ()
 		{
 			NavigationController.PushViewController (TouchOptions.Current.GetViewController (), true);				
@@ -214,146 +488,7 @@ namespace MonoTouch.NUnit.UI {
 			var dv = new DialogViewController (root, true) { Autorotate = true };
 			NavigationController.PushViewController (dv, true);				
 		}
-		
-		#region writer
-		
-		public TestResult Result { get; set; }
 
-		public TextWriter Writer { get; set; }
-		
-		static string SelectHostName (string[] names, int port)
-		{
-			if (names.Length == 0)
-				return null;
-			
-			if (names.Length == 1)
-				return names [0];
-			
-			object lock_obj = new object ();
-			string result = null;
-			int failures = 0;
-			
-			using (var evt = new ManualResetEvent (false)) {
-				for (int i = names.Length - 1; i >= 0; i--) {
-					var name = names [i];
-					ThreadPool.QueueUserWorkItem ((v) =>
-					{
-						try {
-							var client = new TcpClient (name, port);
-							using (var writer = new StreamWriter (client.GetStream ())) {
-								writer.WriteLine ("ping");
-							}
-							lock (lock_obj) {
-								if (result == null)
-									result = name;
-							}
-							evt.Set ();
-						} catch (Exception) {
-							lock (lock_obj) {
-								failures++;
-								if (failures == names.Length)
-									evt.Set ();
-							}
-						}
-					});
-				}
-				
-				// Wait for 1 success or all failures
-				evt.WaitOne ();
-			}
-			
-			return result;
-		}
-		
-		public bool OpenWriter (string message)
-		{
-			TouchOptions options = TouchOptions.Current;
-			DateTime now = DateTime.Now;
-			// let the application provide it's own TextWriter to ease automation with AutoStart property
-			if (Writer == null) {
-				if (options.ShowUseNetworkLogger) {
-					var hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
-					
-					if (hostname != null) {
-						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
-						try {
-							Writer = new TcpTextWriter (hostname, options.HostPort);
-						}
-						catch (SocketException) {
-#if TVOS
-							Console.WriteLine ("Network error: Cannot connect to {0}:{1}. Continuing on console.", hostname, options.HostPort);
-							Writer = Console.Out;
-#else
-							UIAlertView alert = new UIAlertView ("Network Error", 
-								String.Format ("Cannot connect to {0}:{1}. Continue on console ?", hostname, options.HostPort), 
-								null, "Cancel", "Continue");
-							int button = -1;
-							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
-								button = (int)e.ButtonIndex;
-							};
-							alert.Show ();
-							while (button == -1)
-								NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
-							Console.WriteLine (button);
-							Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
-							if (button == 0)
-								return false;
-							else
-								Writer = Console.Out;
-#endif
-						}
-					}
-				} else {
-					Writer = Console.Out;
-				}
-			}
-			
-			Writer.WriteLine ("[Runner executing:\t{0}]", message);
-			Writer.WriteLine ("[MonoTouch Version:\t{0}]", Constants.Version);
-			Writer.WriteLine ("[Assembly:\t{0}.dll ({1} bits)]", typeof (NSObject).Assembly.GetName ().Name, IntPtr.Size * 8);
-			Writer.WriteLine ("[GC:\t{0}{1}]", GC.MaxGeneration == 0 ? "Boehm": "sgen", 
-				NSObject.IsNewRefcountEnabled () ? "+NewRefCount" : String.Empty);
-			UIDevice device = UIDevice.CurrentDevice;
-			Writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
-			Writer.WriteLine ("[Device Name:\t{0}]", device.Name);
-			Writer.WriteLine ("[Device UDID:\t{0}]", UniqueIdentifier);
-			Writer.WriteLine ("[Device Locale:\t{0}]", NSLocale.CurrentLocale.Identifier);
-			Writer.WriteLine ("[Device Date/Time:\t{0}]", now); // to match earlier C.WL output
-
-			Writer.WriteLine ("[Bundle:\t{0}]", NSBundle.MainBundle.BundleIdentifier);
-			// FIXME: add data about how the app was compiled (e.g. ARMvX, LLVM, GC and Linker options)
-			passed = 0;
-			ignored = 0;
-			failed = 0;
-			inconclusive = 0;
-			return true;
-		}
-
-		[System.Runtime.InteropServices.DllImport ("/usr/lib/libobjc.dylib")]
-		static extern IntPtr objc_msgSend (IntPtr receiver, IntPtr selector);
-
-		// Apple blacklisted `uniqueIdentifier` (for the appstore) but it's still 
-		// something useful to have inside the test logs
-		static string UniqueIdentifier {
-			get {
-				IntPtr handle = UIDevice.CurrentDevice.Handle;
-				if (UIDevice.CurrentDevice.RespondsToSelector (new Selector ("uniqueIdentifier")))
-					return NSString.FromHandle (objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
-				return "unknown";
-			}
-		}
-		
-		public void CloseWriter ()
-		{
-			int total = passed + inconclusive + failed; // ignored are *not* run
-			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, passed, inconclusive, failed, ignored);
-
-			Writer.Close ();
-			Writer = null;
-		}
-		
-		#endregion
-		
 		Dictionary<TestSuite, TouchViewController> suites_dvc = new Dictionary<TestSuite, TouchViewController> ();
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
 		Dictionary<TestMethod, TestCaseElement> case_elements = new Dictionary<TestMethod, TestCaseElement> ();
@@ -410,17 +545,11 @@ namespace MonoTouch.NUnit.UI {
 			case_elements.Add (test, tce);
 			return tce;
 		}
-				
-		public void TestStarted (ITest test)
+
+		public override void TestFinished (ITestResult r)
 		{
-			if (test is TestSuite) {
-				Writer.WriteLine ();
-				Writer.WriteLine (test.Name);
-			}
-		}
-		
-		public void TestFinished (ITestResult r)
-		{
+			base.TestFinished (r);
+
 			TestResult result = r as TestResult;
 			TestSuite ts = result.Test as TestSuite;
 			if (ts != null) {
@@ -432,90 +561,29 @@ namespace MonoTouch.NUnit.UI {
 				if (tc != null)
 					case_elements [tc].Update (result);
 			}
-			
-			if (result.Test is TestSuite) {
-				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
-					Writer.WriteLine ("\t[INFO] {0}", result.Message);
-
-				string name = result.Test.Name;
-				if (!String.IsNullOrEmpty (name))
-					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
-			} else {
-				if (result.IsSuccess ()) {
-					Writer.Write ("\t[PASS] ");
-					passed++;
-				} else if (result.IsIgnored ()) {
-					Writer.Write ("\t[IGNORED] ");
-					ignored++;
-				} else if (result.IsFailure ()) {
-					Writer.Write ("\t[FAIL] ");
-					failed++;
-				} else if (result.IsInconclusive ()) {
-					Writer.Write ("\t[INCONCLUSIVE] ");
-					inconclusive++;
-				} else {
-					Writer.Write ("\t[INFO] ");
-				}
-				Writer.Write (result.Test.FixtureType.Name);
-				Writer.Write (".");
-				Writer.Write (result.Test.Name);
-				
-				string message = result.Message;
-				if (!String.IsNullOrEmpty (message)) {
-					Writer.Write (" : {0}", message.Replace ("\r\n", "\\r\\n"));
-				}
-				Writer.WriteLine ();
-						
-				string stacktrace = result.StackTrace;
-				if (!String.IsNullOrEmpty (result.StackTrace)) {
-					string[] lines = stacktrace.Split (new char [] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-					foreach (string line in lines)
-						Writer.WriteLine ("\t\t{0}", line);
-				}
-			}
 		}
 
-		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
-		Dictionary<string, object> empty = new Dictionary<string, object> ();
-
-		public bool Load (string assemblyName, IDictionary settings)
+		protected override void WriteDeviceInformation (TextWriter writer)
 		{
-			return AddSuite (builder.Build (assemblyName, settings ?? empty));
+			UIDevice device = UIDevice.CurrentDevice;
+			writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+			writer.WriteLine ("[Device Name:\t{0}]", device.Name);
+			writer.WriteLine ("[Device UDID:\t{0}]", UniqueIdentifier);
 		}
 
-		public bool Load (Assembly assembly, IDictionary settings)
-		{
-			return AddSuite (builder.Build (assembly, settings ?? empty));
-		}
+		[System.Runtime.InteropServices.DllImport ("/usr/lib/libobjc.dylib")]
+		static extern IntPtr objc_msgSend (IntPtr receiver, IntPtr selector);
 
-		bool AddSuite (TestSuite ts)
-		{
-			if (ts == null)
-				return false;
-			suite.Add (ts);
-			return true;
-		}
-
-		public TestResult Run (Test test)
-		{
-			Result = null;
-			TestExecutionContext current = TestExecutionContext.CurrentContext;
-			current.WorkDirectory = Environment.CurrentDirectory;
-			current.Listener = this;
-			WorkItem wi = test.CreateWorkItem (filter);
-			wi.Execute (current);
-			Result = wi.Result;
-			return Result;
-		}
-
-		public ITest LoadedTest {
+		// Apple blacklisted `uniqueIdentifier` (for the appstore) but it's still 
+		// something useful to have inside the test logs
+		static string UniqueIdentifier {
 			get {
-				return suite;
+				IntPtr handle = UIDevice.CurrentDevice.Handle;
+				if (UIDevice.CurrentDevice.RespondsToSelector (new Selector ("uniqueIdentifier")))
+					return NSString.FromHandle (objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
+				return "unknown";
 			}
-		}
-
-		public void TestOutput (TestOutput testOutput)
-		{
 		}
 	}
+#endif
 }
