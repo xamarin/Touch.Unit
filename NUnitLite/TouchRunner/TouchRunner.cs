@@ -108,32 +108,13 @@ namespace MonoTouch.NUnit.UI {
 			Console.WriteLine ("TerminateWithSuccess not implemented for this platform.");
 		}
 
-		public Task LoadAsync ()
+		protected abstract void ExecuteOnMainThread (Action action);
+
+		public void LoadSync ()
 		{
-			// Load the tests on a background thread, to make sure
-			// we don't block the main thread during startup
-			// (to not anger any watchdogs).
-			var tcr = new TaskCompletionSource<bool> ();
-
-			var mainScheduler = TaskScheduler.FromCurrentSynchronizationContext ();
-			Task.Factory.StartNew (() => {
-				foreach (Assembly assembly in assemblies)
-					Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } });
-				assemblies.Clear ();
-				tcr.SetResult (true);
-				if (AutoStart) {
-					Task.Factory.StartNew (() => {
-						Run ();
-
-						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
-						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
-						if (TerminateAfterExecution)
-							TerminateWithSuccess ();
-					}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainScheduler);
-				}
-			});
-
-			return tcr.Task;
+			foreach (Assembly assembly in assemblies)
+				Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } });
+			assemblies.Clear ();
 		}
 
 		public void Run ()
@@ -390,6 +371,16 @@ namespace MonoTouch.NUnit.UI {
 			// For WatchOS we're terminating the extension, not the watchos app itself.
 			exit (0);
 		}
+
+		protected override void ExecuteOnMainThread (Action action)
+		{
+			var obj = new NSObject ();
+			obj.BeginInvokeOnMainThread (() => 
+			{
+				action ();
+				obj.Dispose ();
+			});
+		}
 	}
 #endif
 	
@@ -436,11 +427,11 @@ namespace MonoTouch.NUnit.UI {
 			// than what the iOS watchdog will allow them on devices, so loading
 			// must be done async.
 
-			var mainContext = TaskScheduler.FromCurrentSynchronizationContext ();
-			Task.Factory.StartNew (async () => {
-				await LoadAsync ();
+			ThreadPool.QueueUserWorkItem ((v) => {
+				LoadSync ();
 
-				await Task.Factory.StartNew (() => {
+				ExecuteOnMainThread (() =>
+				{
 					foreach (TestSuite ts in Suite.Tests) {
 						main.Add (Setup (ts));
 					}
@@ -450,9 +441,18 @@ namespace MonoTouch.NUnit.UI {
 
 					options.Insert (0, new StringElement ("Run Everything", Run));
 					menu.Reload (options, UITableViewRowAnimation.Fade);
-				}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainContext);
-			}, Task.Factory.CancellationToken, TaskCreationOptions.None, mainContext);
-			
+
+					if (AutoStart) {
+						Run ();
+
+						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
+						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
+						if (TerminateAfterExecution)
+							TerminateWithSuccess ();
+					}
+				});
+			});
+
 			return new DialogViewController (menu) { Autorotate = true };
 		}
 
@@ -583,6 +583,11 @@ namespace MonoTouch.NUnit.UI {
 					return NSString.FromHandle (objc_msgSend (handle, Selector.GetHandle("uniqueIdentifier")));
 				return "unknown";
 			}
+		}
+
+		protected override void ExecuteOnMainThread (Action action)
+		{
+			window.BeginInvokeOnMainThread (() => action ());
 		}
 	}
 #endif
