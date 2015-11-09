@@ -117,6 +117,21 @@ namespace MonoTouch.NUnit.UI {
 			assemblies.Clear ();
 		}
 
+		public void AutoRun ()
+		{
+			if (!AutoStart)
+				return;
+
+			ExecuteOnMainThread (() => {
+				Run ();
+
+				// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
+				// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
+				if (TerminateAfterExecution)
+					TerminateWithSuccess ();
+			});
+		}
+
 		public void Run ()
 		{
 			if (!OpenWriter ("Run Everything"))
@@ -442,14 +457,7 @@ namespace MonoTouch.NUnit.UI {
 					options.Insert (0, new StringElement ("Run Everything", Run));
 					menu.Reload (options, UITableViewRowAnimation.Fade);
 
-					if (AutoStart) {
-						Run ();
-
-						// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
-						// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
-						if (TerminateAfterExecution)
-							TerminateWithSuccess ();
-					}
+					AutoRun ();
 				});
 			});
 
