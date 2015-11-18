@@ -341,21 +341,41 @@ namespace MonoTouch.NUnit.UI {
 			return true;
 		}
 
+		static UnhandledExceptionEventHandler eHandler;
+
 		public TestResult Run (Test test)
 		{
-			PassedCount = 0;
-			IgnoredCount = 0;
-			FailedCount = 0;
-			InconclusiveCount = 0;
+			if (eHandler == null) {
+				eHandler = new UnhandledExceptionEventHandler((s, args) => {
+					Exception e = (Exception) args.ExceptionObject;
+					var msg = "Unhandled exception:" + e.ToString();
+					Console.WriteLine (msg);
+					Writer.WriteLine (msg);
+					Writer.Flush ();
+				});
 
-			Result = null;
-			TestExecutionContext current = TestExecutionContext.CurrentContext;
-			current.WorkDirectory = Environment.CurrentDirectory;
-			current.Listener = this;
-			WorkItem wi = test.CreateWorkItem (filter);
-			wi.Execute (current);
-			Result = wi.Result;
-			return Result;
+				AppDomain.CurrentDomain.UnhandledException += eHandler;
+			}
+
+			try {
+				PassedCount = 0;
+				IgnoredCount = 0;
+				FailedCount = 0;
+				InconclusiveCount = 0;
+
+				Result = null;
+				TestExecutionContext current = TestExecutionContext.CurrentContext;
+				current.WorkDirectory = Environment.CurrentDirectory;
+				current.Listener = this;
+				WorkItem wi = test.CreateWorkItem (filter);
+				wi.Execute (current);
+				Result = wi.Result;
+				return Result;
+			}
+			finally {
+				AppDomain.CurrentDomain.UnhandledException -= eHandler;
+				eHandler = null;
+			}
 		}
 
 		public ITest LoadedTest {
