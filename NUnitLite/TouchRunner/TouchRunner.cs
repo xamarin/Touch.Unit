@@ -266,11 +266,20 @@ namespace MonoTouch.NUnit.UI {
 
 #endregion
 
+		public delegate void OnTestFinished(object sender, ITestResult result);
+		public event OnTestFinished FinishedTest;
+		public delegate void OnTestStarted(object sender, ITest test);
+		public event OnTestStarted StartedTest;
+
 		public void TestStarted (ITest test)
 		{
 			if (test is TestSuite) {
 				Writer.WriteLine ();
 				Writer.WriteLine (test.Name);
+			}
+
+			if (StartedTest != null) {
+				StartedTest (this, test);
 			}
 		}
 
@@ -317,6 +326,10 @@ namespace MonoTouch.NUnit.UI {
 					foreach (string line in lines)
 						Writer.WriteLine ("\t\t{0}", line);
 				}
+			}
+
+			if (FinishedTest != null) {
+				FinishedTest (this, r);
 			}
 		}
 
