@@ -477,17 +477,17 @@ namespace MonoTouch.NUnit.UI {
 				new Section () { title },
 				new Section () {
 #if TVOS
-					new StringElement ("About Xamarin: http://www.xamarin.com"),
-					new StringElement ("About MonoTouch: http://ios.xamarin.com"),
+					new StringElement ("About Xamarin: https://www.xamarin.com"),
+					new StringElement ("About MonoTouch: https://ios.xamarin.com"),
 					new StringElement ("About MonoTouch.Dialog: https://github.com/migueldeicaza/MonoTouch.Dialog"),
 					new StringElement ("About NUnitLite: http://www.nunitlite.org"),
-					new StringElement ("About Font Awesome: http://fortawesome.github.com/Font-Awesome")
+					new StringElement ("About Font Awesome: https://fortawesome.github.com/Font-Awesome")
 #else
-					new HtmlElement ("About Xamarin", "http://www.xamarin.com"),
-					new HtmlElement ("About MonoTouch", "http://ios.xamarin.com"),
+					new HtmlElement ("About Xamarin", "https://www.xamarin.com"),
+					new HtmlElement ("About MonoTouch", "https://ios.xamarin.com"),
 					new HtmlElement ("About MonoTouch.Dialog", "https://github.com/migueldeicaza/MonoTouch.Dialog"),
 					new HtmlElement ("About NUnitLite", "http://www.nunitlite.org"),
-					new HtmlElement ("About Font Awesome", "http://fortawesome.github.com/Font-Awesome")
+					new HtmlElement ("About Font Awesome", "https://fortawesome.github.com/Font-Awesome")
 #endif
 				}
 			};
