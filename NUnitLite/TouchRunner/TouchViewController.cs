@@ -46,6 +46,8 @@ namespace MonoTouch.NUnit.UI {
 		public TouchViewController (RootElement root) : base (root, true)
 		{
 			Autorotate = true;
+			AutoHideSearch = true;
+			EnableSearch = true;
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (5, 0)) {
 				NavigationItem.RightBarButtonItems = new UIBarButtonItem [] {
