@@ -48,6 +48,7 @@ namespace MonoTouch.NUnit.UI {
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = (int)defaults.IntForKey ("network.host.port");
+			Transport = defaults.StringForKey ("network.transport");
 			SortNames = defaults.BoolForKey ("display.sort");
 			
 			bool b;
@@ -64,13 +65,16 @@ namespace MonoTouch.NUnit.UI {
 				HostPort = i;
 			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_SORTNAMES"), out b))
 				SortNames = b;
+			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT")))
+				Transport = Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT");
 
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
 				{ "autostart", "If the app should automatically start running the tests.", v => AutoStart = true },
 				{ "hostname=", "Comma-separated list of host names or IP address to (try to) connect to", v => HostName = v },
-				{ "hostport=", "TCP port to connect to.", v => HostPort = int.Parse (v) },
+				{ "hostport=", "HTTP/TCP port to connect to.", v => HostPort = int.Parse (v) },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
+				{ "transport=", "Select transport method. Either TCP (default) or HTTP.", v => Transport = v },
 			};
 			
 			try {
@@ -90,6 +94,8 @@ namespace MonoTouch.NUnit.UI {
 		
 		public bool TerminateAfterExecution { get; set; }
 		
+		public string Transport { get; set; } = "TCP";
+
 		public bool ShowUseNetworkLogger {
 			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)); }
 		}
