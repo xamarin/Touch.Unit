@@ -127,8 +127,16 @@ namespace MonoTouch.NUnit.UI {
 
 				// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
 				// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
-				if (TerminateAfterExecution)
-					TerminateWithSuccess ();
+				if (TerminateAfterExecution) {
+					if (WriterFinishedTask != null) {
+						Task.Run (async () => {
+							await WriterFinishedTask;
+							TerminateWithSuccess ();
+						});
+					} else {
+						TerminateWithSuccess ();
+					}
+				}
 			});
 		}
 
@@ -148,6 +156,8 @@ namespace MonoTouch.NUnit.UI {
 		public TestResult Result { get; set; }
 
 		public TextWriter Writer { get; set; }
+
+		Task WriterFinishedTask { get; set; }
 
 		static string SelectHostName (string[] names, int port)
 		{
@@ -205,15 +215,34 @@ namespace MonoTouch.NUnit.UI {
 					if (hostname != null) {
 						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
 						try {
-							Writer = new TcpTextWriter (hostname, options.HostPort);
+							WriterFinishedTask = null;
+							switch (options.Transport) {
+							case "HTTP":
+								var w = new HttpTextWriter ()
+								{
+									HostName = hostname,
+									Port = options.HostPort,
+								};
+								w.Open ();
+								Writer = w;
+								WriterFinishedTask = w.FinishedTask;
+								break;
+							default:
+								Console.WriteLine ("Unknown transport '{0}': switching to default (TCP)", options.Transport);
+								goto case "TCP";
+							case "TCP":
+								Writer = new TcpTextWriter (hostname, options.HostPort);
+								break;
+							}
 						}
-						catch (SocketException) {
+						catch (Exception ex) {
 #if __TVOS__ || __WATCHOS__
-							Console.WriteLine ("Network error: Cannot connect to {0}:{1}. Continuing on console.", hostname, options.HostPort);
+							Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}. Continuing on console.", hostname, options.HostPort, ex);
 							Writer = Console.Out;
 #else
+							Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}.", hostname, options.HostPort, ex);
 							UIAlertView alert = new UIAlertView ("Network Error", 
-								String.Format ("Cannot connect to {0}:{1}. Continue on console ?", hostname, options.HostPort), 
+								String.Format ("Cannot connect to {0}:{1}: {2}. Continue on console ?", hostname, options.HostPort, ex.Message), 
 								null, "Cancel", "Continue");
 							int button = -1;
 							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
