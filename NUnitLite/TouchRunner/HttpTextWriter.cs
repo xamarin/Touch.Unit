@@ -50,12 +50,33 @@ namespace MonoTouch.NUnit {
 			});
 		}
 
-		Task SendData (string action, string uploadData)
+
+		Task<bool> SendData (NSUrl url, string uploadData)
 		{
-			var url = NSUrl.FromString ("http://" + HostName + ":" + Port + "/" + action);
+			var tcs = new TaskCompletionSource<bool> ();
 			var request = new NSMutableUrlRequest (url);
 			request.HttpMethod = "POST";
-			return NSUrlSession.SharedSession.CreateUploadTaskAsync (request, NSData.FromString (uploadData));
+			var rv = NSUrlSession.SharedSession.CreateUploadTask (request, NSData.FromString (uploadData), (NSData data, NSUrlResponse response, NSError error) =>
+			{
+				if (error != null) {
+					Console.WriteLine ("Failed to send data to {0}: {1}", url.AbsoluteString, error);
+					tcs.SetResult (false);
+				} else {
+					//Console.WriteLine ("Succeeded sending data to {0}", url.AbsoluteString);
+					tcs.SetResult (true);
+				}
+			});
+			rv.Resume ();
+			return tcs.Task;
+		}
+
+		async Task SendData (string action, string uploadData)
+		{
+			var url = NSUrl.FromString ("http://" + HostName + ":" + Port + "/" + action);
+
+			while (!await SendData (url, uploadData)) {
+				Console.WriteLine ("Resending data: {0} Length: {1} to: {2}", action, uploadData.Length, url.AbsoluteString);
+			};
 		}
 
 		async void SendThread ()
