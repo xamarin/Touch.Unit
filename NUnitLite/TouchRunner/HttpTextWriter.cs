@@ -74,8 +74,13 @@ namespace MonoTouch.NUnit {
 		{
 			var url = NSUrl.FromString ("http://" + HostName + ":" + Port + "/" + action);
 
+			int attempts_left = 10;
 			while (!await SendData (url, uploadData)) {
-				Console.WriteLine ("Resending data: {0} Length: {1} to: {2}", action, uploadData.Length, url.AbsoluteString);
+				if (--attempts_left == 0) {
+					Console.WriteLine ("Not resending data anymore.");
+					throw new Exception ("Failed to send data.");
+				}
+				Console.WriteLine ("Resending data: {0} Length: {1} to: {2} Attempts left: {3}", action, uploadData.Length, url.AbsoluteString, attempts_left);
 			};
 		}
 
