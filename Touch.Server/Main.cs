@@ -347,8 +347,8 @@ class SimpleListener {
 			}
 			
 			var result = listener.Start ();
-			if (proc != null && !proc.WaitForExit (10000 /* wait another 10 seconds for mtouch to finish as well */))
-				Console.WriteLine ("mtouch didn't complete within 10s of the simulator app exiting. Touch.Server will exit anyway.");
+			if (proc != null && !proc.WaitForExit (30000 /* wait another 30 seconds for mtouch to finish as well */))
+				Console.WriteLine ("mtouch didn't complete within 30s of the simulator app exiting. Touch.Server will exit anyway.");
 			// Wait up to 2 seconds to receive the last of the error/output data. This will only be received *after*
 			// mtouch has exited.
 			lastErrorDataReceived.WaitOne (2000);
