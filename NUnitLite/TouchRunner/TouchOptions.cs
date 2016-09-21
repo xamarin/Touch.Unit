@@ -46,6 +46,7 @@ namespace MonoTouch.NUnit.UI {
 			TerminateAfterExecution = defaults.BoolForKey ("execution.autoexit");
 			AutoStart = defaults.BoolForKey ("execution.autostart");
 			EnableNetwork = defaults.BoolForKey ("network.enabled");
+			EnableXml = defaults.BoolForKey ("xml.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = (int)defaults.IntForKey ("network.host.port");
 			Transport = defaults.StringForKey ("network.transport");
@@ -67,6 +68,8 @@ namespace MonoTouch.NUnit.UI {
 				SortNames = b;
 			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT")))
 				Transport = Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT");
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_ENABLE_XML_OUTPUT"), out b))
+				EnableXml = b;
 
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
@@ -75,6 +78,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "hostport=", "HTTP/TCP port to connect to.", v => HostPort = int.Parse (v) },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
 				{ "transport=", "Select transport method. Either TCP (default) or HTTP.", v => Transport = v },
+				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
 			};
 			
 			try {
@@ -85,6 +89,8 @@ namespace MonoTouch.NUnit.UI {
 		}
 		
 		private bool EnableNetwork { get; set; }
+
+		public bool EnableXml { get; set; }
 		
 		public string HostName { get; private set; }
 		

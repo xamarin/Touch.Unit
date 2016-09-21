@@ -216,6 +216,7 @@ namespace MonoTouch.NUnit.UI {
 						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
 						try {
 							WriterFinishedTask = null;
+							TextWriter defaultWriter = null;
 							switch (options.Transport) {
 							case "HTTP":
 								var w = new HttpTextWriter ()
@@ -224,15 +225,21 @@ namespace MonoTouch.NUnit.UI {
 									Port = options.HostPort,
 								};
 								w.Open ();
-								Writer = w;
+								defaultWriter = w;
 								WriterFinishedTask = w.FinishedTask;
 								break;
 							default:
 								Console.WriteLine ("Unknown transport '{0}': switching to default (TCP)", options.Transport);
 								goto case "TCP";
 							case "TCP":
-								Writer = new TcpTextWriter (hostname, options.HostPort);
+								defaultWriter = new TcpTextWriter (hostname, options.HostPort);
 								break;
+							}
+							if (options.EnableXml) {
+								Writer = new NUnitOutputTextWriter (
+									this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow));
+							} else {
+								Writer = defaultWriter;
 							}
 						}
 						catch (Exception ex) {
