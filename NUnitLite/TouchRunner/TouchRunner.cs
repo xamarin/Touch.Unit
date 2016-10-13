@@ -140,14 +140,25 @@ namespace MonoTouch.NUnit.UI {
 			});
 		}
 
+		bool running;
 		public void Run ()
 		{
-			if (!OpenWriter ("Run Everything"))
+			if (running) {
+				Console.WriteLine ("Not running because another test run is already in progress.");
 				return;
+			}
+
+			running = true;
+			if (!OpenWriter ("Run Everything")) {
+				running = false;
+				return;
+			}
+
 			try {
 				Run (suite);
 			} finally {
 				CloseWriter ();
+				running = false;
 			}
 		}
 
