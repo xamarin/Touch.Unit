@@ -307,8 +307,13 @@ namespace MonoTouch.NUnit.UI {
 			int total = PassedCount + InconclusiveCount + FailedCount; // ignored are *not* run
 			Writer.WriteLine ("Tests run: {0} Passed: {1} Inconclusive: {2} Failed: {3} Ignored: {4}", total, PassedCount, InconclusiveCount, FailedCount, IgnoredCount);
 
-			Writer.Close ();
-			Writer = null;
+			// In some cases, the close is not correctly implemented and we might get a InvalidOperationException, we try to close and then null the obj for it to be
+			// GC.
+			try {
+				Writer.Close ();
+			} finally {
+				Writer = null;
+			}
 		}
 
 #endregion
