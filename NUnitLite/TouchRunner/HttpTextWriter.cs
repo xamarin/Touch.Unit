@@ -42,12 +42,14 @@ namespace MonoTouch.NUnit {
 
 		public override void Close ()
 		{
-			closed.SetResult (true);
-			Task.Run (async () =>
-			{
-				await finished.Task;
-				base.Close ();
-			});
+			var valueWasSet = closed.TrySetResult (true);
+			if (valueWasSet) {
+				Task.Run (async () =>
+				{
+					await finished.Task;
+					base.Close ();
+				});
+			}
 		}
 
 
