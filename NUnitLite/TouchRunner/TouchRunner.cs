@@ -252,30 +252,12 @@ namespace MonoTouch.NUnit.UI {
 							} else {
 								Writer = defaultWriter;
 							}
-						}
-						catch (Exception ex) {
-#if __TVOS__ || __WATCHOS__
+						} catch (Exception ex) {
+							if (!ShowConnectionErrorAlert (hostname, options.HostPort, ex))
+								return false;
+
 							Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}. Continuing on console.", hostname, options.HostPort, ex);
 							Writer = Console.Out;
-#else
-							Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}.", hostname, options.HostPort, ex);
-							UIAlertView alert = new UIAlertView ("Network Error", 
-								String.Format ("Cannot connect to {0}:{1}: {2}. Continue on console ?", hostname, options.HostPort, ex.Message), 
-								null, "Cancel", "Continue");
-							int button = -1;
-							alert.Clicked += delegate(object sender, UIButtonEventArgs e) {
-								button = (int)e.ButtonIndex;
-							};
-							alert.Show ();
-							while (button == -1)
-								NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
-							Console.WriteLine (button);
-							Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
-							if (button == 0)
-								return false;
-							else
-								Writer = Console.Out;
-#endif
 						}
 					}
 				} else {
@@ -298,6 +280,38 @@ namespace MonoTouch.NUnit.UI {
 			FailedCount = 0;
 			InconclusiveCount = 0;
 			return true;
+		}
+
+		// returns true if test run should still start
+		bool ShowConnectionErrorAlert (string hostname, int port, Exception ex)
+		{
+#if __TVOS__ || __WATCHOS__
+			return true;
+#else
+			// Don't show any alerts if we're running automated.
+			if (AutoStart)
+				return true;
+
+			// UIAlert is not available for extensions.
+			if (NSBundle.MainBundle.BundlePath.EndsWith (".appex", StringComparison.Ordinal))
+				return true;
+			
+			Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}.", hostname, port, ex);
+			UIAlertView alert = new UIAlertView ("Network Error",
+				String.Format ("Cannot connect to {0}:{1}: {2}. Continue on console ?", hostname, port, ex.Message),
+				null, "Cancel", "Continue");
+			int button = -1;
+			alert.Clicked += delegate (object sender, UIButtonEventArgs e)
+			{
+				button = (int) e.ButtonIndex;
+			};
+			alert.Show ();
+			while (button == -1)
+				NSRunLoop.Current.RunUntil (NSDate.FromTimeIntervalSinceNow (0.5));
+			Console.WriteLine (button);
+			Console.WriteLine ("[Host unreachable: {0}]", button == 0 ? "Execution cancelled" : "Switching to console output");
+			return button != 0;
+#endif
 		}
 
 		protected abstract void WriteDeviceInformation (TextWriter writer);
