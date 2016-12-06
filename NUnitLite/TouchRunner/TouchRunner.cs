@@ -53,6 +53,7 @@ namespace MonoTouch.NUnit.UI {
 	public abstract class BaseTouchRunner : ITestListener {
 		TestSuite suite = new TestSuite (String.Empty);
 		ITestFilter filter = TestFilter.Empty;
+		bool connection_failure;
 
 		public int PassedCount { get; private set; }
 		public int FailedCount { get; private set; }
@@ -76,7 +77,7 @@ namespace MonoTouch.NUnit.UI {
 		}
 
 		public bool TerminateAfterExecution {
-			get { return TouchOptions.Current.TerminateAfterExecution; }
+			get { return TouchOptions.Current.TerminateAfterExecution && !connection_failure; }
 			set { TouchOptions.Current.TerminateAfterExecution = value; }
 		}
 
@@ -253,6 +254,7 @@ namespace MonoTouch.NUnit.UI {
 								Writer = defaultWriter;
 							}
 						} catch (Exception ex) {
+							connection_failure = true;
 							if (!ShowConnectionErrorAlert (hostname, options.HostPort, ex))
 								return false;
 
