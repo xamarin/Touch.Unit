@@ -104,12 +104,23 @@ namespace MonoTouch.NUnit.UI {
 			}
 		}
 
+		[DllImport ("libc")]
+		static extern void exit (int code);
 		protected virtual void TerminateWithSuccess ()
 		{
-			Console.WriteLine ("TerminateWithSuccess not implemented for this platform.");
+			// For WatchOS we're terminating the extension, not the watchos app itself.
+			exit (0);
 		}
 
-		protected abstract void ExecuteOnMainThread (Action action);
+		protected virtual void ExecuteOnMainThread (Action action)
+		{
+			var obj = new NSObject ();
+			obj.BeginInvokeOnMainThread (() =>
+			{
+				action ();
+				obj.Dispose ();
+			});
+		}
 
 		public void LoadSync ()
 		{
@@ -444,24 +455,6 @@ namespace MonoTouch.NUnit.UI {
 			var device = WatchKit.WKInterfaceDevice.CurrentDevice;
 			writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
 			writer.WriteLine ("[Device Name:\t{0}]", device.Name);
-		}
-
-		[DllImport ("libc")]
-		static extern void exit (int code);
-		protected override void TerminateWithSuccess ()
-		{
-			// For WatchOS we're terminating the extension, not the watchos app itself.
-			exit (0);
-		}
-
-		protected override void ExecuteOnMainThread (Action action)
-		{
-			var obj = new NSObject ();
-			obj.BeginInvokeOnMainThread (() => 
-			{
-				action ();
-				obj.Dispose ();
-			});
 		}
 	}
 #endif
