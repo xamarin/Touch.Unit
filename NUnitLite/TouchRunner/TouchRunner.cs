@@ -460,6 +460,15 @@ namespace MonoTouch.NUnit.UI {
 #endif
 	
 #if !__WATCHOS__
+	public class ConsoleRunner : BaseTouchRunner {
+		protected override void WriteDeviceInformation (TextWriter writer)
+		{
+			UIDevice device = UIDevice.CurrentDevice;
+			writer.WriteLine ("[{0}:\t{1} v{2}]", device.Model, device.SystemName, device.SystemVersion);
+			writer.WriteLine ("[Device Name:\t{0}]", device.Name);
+		}
+	}
+
 	public class TouchRunner : BaseTouchRunner {
 		
 		UIWindow window;
