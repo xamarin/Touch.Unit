@@ -70,6 +70,8 @@ namespace MonoTouch.NUnit.UI {
 				Transport = Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT");
 			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_ENABLE_XML_OUTPUT"), out b))
 				EnableXml = b;
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_SKIP_LOG_HEADER"), out b))
+			    SkipLogHeader = b;
 
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
@@ -79,6 +81,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
 				{ "transport=", "Select transport method. Either TCP (default) or HTTP.", v => Transport = v },
 				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
+				{ "skiplogheader", "Do not write extra device related information to the logs (default: false)", v => SkipLogHeader = true },
 			};
 			
 			try {
@@ -91,6 +94,8 @@ namespace MonoTouch.NUnit.UI {
 		private bool EnableNetwork { get; set; }
 
 		public bool EnableXml { get; set; }
+
+		public bool SkipLogHeader { get; set; }
 		
 		public string HostName { get; private set; }
 		
