@@ -312,7 +312,7 @@ namespace MonoTouch.NUnit.UI {
 			Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}.", hostname, port, ex);
 			UIAlertView alert = new UIAlertView ("Network Error",
 				String.Format ("Cannot connect to {0}:{1}: {2}. Continue on console ?", hostname, port, ex.Message),
-				null, "Cancel", "Continue");
+				(IUIAlertViewDelegate) null, "Cancel", "Continue");
 			int button = -1;
 			alert.Clicked += delegate (object sender, UIButtonEventArgs e)
 			{
