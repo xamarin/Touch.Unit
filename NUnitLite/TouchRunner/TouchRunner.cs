@@ -109,6 +109,7 @@ namespace MonoTouch.NUnit.UI {
 		protected virtual void TerminateWithSuccess ()
 		{
 			// For WatchOS we're terminating the extension, not the watchos app itself.
+			Console.WriteLine ("Exiting test run with success");
 			exit (0);
 		}
 
