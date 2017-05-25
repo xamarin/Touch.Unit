@@ -44,6 +44,7 @@ class SimpleListener {
 	string LogPath { get; set; }
 	string LogFile { get; set; }
 	bool AutoExit { get; set; }
+	bool SkipLogHeader { get; set; }
 
 	public bool WaitForConnection (TimeSpan ts)
 	{
@@ -107,12 +108,14 @@ class SimpleListener {
 		connected.Set ();
 
 		using (FileStream fs = File.OpenWrite (logfile)) {
-			// a few extra bits of data only available from this side
-			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
-				Environment.NewLine, DateTime.Now, remote);
-			byte[] array = Encoding.UTF8.GetBytes (header);
-			fs.Write (array, 0, array.Length);
-			fs.Flush ();
+			if (!SkipLogHeader) {
+				// a few extra bits of data only available from this side
+				string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}",
+					Environment.NewLine, DateTime.Now, remote);
+				byte[] array = Encoding.UTF8.GetBytes (header);
+				fs.Write (array, 0, array.Length);
+				fs.Flush ();
+			}
 			// now simply copy what we receive
 			int i;
 			int total = 0;
@@ -150,6 +153,7 @@ class SimpleListener {
 		string port = null;
 		string log_path = ".";
 		string log_file = null;
+		bool skipLogHeader = false;
 		string launchdev = null;
 		string launchsim = null;
 		bool autoexit = false;
@@ -166,6 +170,7 @@ class SimpleListener {
 			{ "port", "TCP port to listen (default: Any)", v => port = v },
 			{ "logpath", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
+			{ "skiplogheader", "Do not write the time and remote address to the log (default: false)", v => skipLogHeader = true },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
@@ -193,6 +198,7 @@ class SimpleListener {
 			
 			listener.LogPath = log_path ?? ".";
 			listener.LogFile = log_file;
+			listener.SkipLogHeader = skipLogHeader;
 			listener.AutoExit = autoexit;
 			listener.Initialize ();
 			
