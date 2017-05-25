@@ -512,6 +512,10 @@ namespace MonoTouch.NUnit.UI {
 			// than what the iOS watchdog will allow them on devices, so loading
 			// must be done async.
 
+			// ensure that the dialog's view has been loaded so we can call Reload later
+			var dialog = new DialogViewController (menu) { Autorotate = true };
+			var dialogView = dialog.View;
+
 			ThreadPool.QueueUserWorkItem ((v) => {
 				LoadSync ();
 
@@ -531,7 +535,7 @@ namespace MonoTouch.NUnit.UI {
 				});
 			});
 
-			return new DialogViewController (menu) { Autorotate = true };
+			return dialog;
 		}
 
 		void Options ()
