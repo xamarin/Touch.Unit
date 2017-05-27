@@ -155,6 +155,7 @@ class SimpleListener {
 		bool autoexit = false;
 		string device_name = String.Empty;
 		string device_type = String.Empty;
+		string sdk_version = null;
 		TimeSpan? timeout = null;
 		TimeSpan? startup_timeout = null;
 		var mtouch_arguments = new List<string> ();
@@ -174,6 +175,7 @@ class SimpleListener {
 			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = TimeSpan.FromMinutes (double.Parse (v)) },
 			{ "startup-timeout=", "Specifies a timeout (in seconds) for the simulator app to connect to Touch.Server (ignored for device runs)", v => startup_timeout = TimeSpan.FromSeconds (double.Parse (v)) },
 			{ "mtouch-argument=", "Specifies an extra mtouch argument when launching the application", v => mtouch_arguments.Add (v) },
+			{ "sdk=", "Specify the sdk version to use with launchsim", v => sdk_version = v},
 		};
 		
 		try {
@@ -275,6 +277,8 @@ class SimpleListener {
 						string sdk_root = Environment.GetEnvironmentVariable ("XCODE_DEVELOPER_ROOT");
 						if (!String.IsNullOrEmpty (sdk_root))
 							procArgs.Append ("--sdkroot ").Append (sdk_root);
+						if (!string.IsNullOrEmpty (sdk_version))
+							procArgs.Append (" --sdk ").Append(sdk_version);
 						procArgs.Append (" --launchsim ");
 						procArgs.Append (Quote (launchsim));
 						if (!string.IsNullOrEmpty (device_type))
