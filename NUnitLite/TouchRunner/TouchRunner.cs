@@ -81,6 +81,8 @@ namespace MonoTouch.NUnit.UI {
 			set { TouchOptions.Current.TerminateAfterExecution = value; }
 		}
 
+		public bool PrintTestStart { get; set; }
+
 		List<Assembly> assemblies = new List<Assembly> ();
 		List<string> fixtures;
 
@@ -350,7 +352,9 @@ namespace MonoTouch.NUnit.UI {
 		{
 			if (test is TestSuite) {
 				Writer.WriteLine ();
-				Writer.WriteLine (test.Name);
+				Writer.WriteLine ("[START] {0}", test.Name);
+			} else if (PrintTestStart) {
+				Writer.WriteLine ("\t[START] {0}.{1}", test.FixtureType.Name, test.Name);
 			}
 		}
 
@@ -364,7 +368,7 @@ namespace MonoTouch.NUnit.UI {
 
 				string name = result.Test.Name;
 				if (!String.IsNullOrEmpty (name))
-					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
+					Writer.WriteLine ("[DONE] {0} : {1} ms", name, result.Duration.TotalMilliseconds);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
