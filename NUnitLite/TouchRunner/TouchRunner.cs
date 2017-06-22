@@ -242,6 +242,12 @@ namespace MonoTouch.NUnit.UI {
 							WriterFinishedTask = null;
 							TextWriter defaultWriter = null;
 							switch (options.Transport) {
+							case "FILE":
+								defaultWriter = new StreamWriter (options.LogFile, true, System.Text.Encoding.UTF8)
+								{
+									AutoFlush = true,
+								};
+								break;
 							case "HTTP":
 								var w = new HttpTextWriter ()
 								{

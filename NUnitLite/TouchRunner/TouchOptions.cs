@@ -51,6 +51,7 @@ namespace MonoTouch.NUnit.UI {
 			HostPort = (int)defaults.IntForKey ("network.host.port");
 			Transport = defaults.StringForKey ("network.transport");
 			SortNames = defaults.BoolForKey ("display.sort");
+			LogFile = defaults.StringForKey ("log.file");
 			
 			bool b;
 			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_AUTOEXIT"), out b))
@@ -70,6 +71,8 @@ namespace MonoTouch.NUnit.UI {
 				Transport = Environment.GetEnvironmentVariable ("NUNIT_TRANSPORT");
 			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_ENABLE_XML_OUTPUT"), out b))
 				EnableXml = b;
+			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE")))
+				LogFile = Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE");
 
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
@@ -77,8 +80,9 @@ namespace MonoTouch.NUnit.UI {
 				{ "hostname=", "Comma-separated list of host names or IP address to (try to) connect to", v => HostName = v },
 				{ "hostport=", "HTTP/TCP port to connect to.", v => HostPort = int.Parse (v) },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
-				{ "transport=", "Select transport method. Either TCP (default) or HTTP.", v => Transport = v },
+				{ "transport=", "Select transport method. Either TCP (default), HTTP or FILE.", v => Transport = v },
 				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
+				{ "logfile=", "A path where output will be saved.", v => LogFile = v },
 			};
 			
 			try {
@@ -102,8 +106,10 @@ namespace MonoTouch.NUnit.UI {
 		
 		public string Transport { get; set; } = "TCP";
 
+		public string LogFile { get; set; }
+
 		public bool ShowUseNetworkLogger {
-			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)); }
+			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0 || Transport == "FILE")); }
 		}
 
 		public bool SortNames { get; set; }
