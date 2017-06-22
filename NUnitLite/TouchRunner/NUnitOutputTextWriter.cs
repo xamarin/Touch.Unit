@@ -30,6 +30,7 @@ namespace MonoTouch.NUnit {
 	public class NUnitOutputTextWriter : TextWriter {
 
 		bool real_time_reporting;
+		StringBuilder extra_data = new StringBuilder ();
 
 		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter)
 		{
@@ -54,12 +55,16 @@ namespace MonoTouch.NUnit {
 		{
 			if (real_time_reporting)
 				BaseWriter.Write (value);
+			else
+				extra_data.Append (value);
 		}
 
 		public override void Write (string value)
 		{
 			if (real_time_reporting)
 				BaseWriter.Write (value);
+			else
+				extra_data.Append (value);
 		}
 
 		public override void Close ()
@@ -67,7 +72,19 @@ namespace MonoTouch.NUnit {
 			if (XmlOutputWriter != null) {
 				// now we want the XML report to write
 				real_time_reporting = true;
-				XmlOutputWriter.WriteResultFile (Runner.Result, BaseWriter);
+				// write to a temporary string, because NUnit2XmlOutputWriter.WriteResultFile closes the stream,
+				// and we need to write more things to it.
+				using (var textWriter = new StringWriter ()) {
+					XmlOutputWriter.WriteResultFile (Runner.Result, textWriter);
+					BaseWriter.WriteLine (textWriter.ToString ());
+				}
+				if (extra_data.Length > 0) {
+					BaseWriter.WriteLine ("<!-- extra output\n ");
+					BaseWriter.WriteLine (extra_data);
+					BaseWriter.WriteLine ("-->");
+				}
+				BaseWriter.WriteLine ("<!-- the end -->");
+				BaseWriter.Close ();
 				real_time_reporting = false;
 			}
 			base.Close ();
