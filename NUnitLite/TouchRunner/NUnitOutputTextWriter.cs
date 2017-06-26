@@ -74,15 +74,25 @@ namespace MonoTouch.NUnit {
 				real_time_reporting = true;
 				// write to a temporary string, because NUnit2XmlOutputWriter.WriteResultFile closes the stream,
 				// and we need to write more things to it.
+				BaseWriter.WriteLine ("<TouchUnitTestRun>");
+				BaseWriter.WriteLine ("<NUnitOutput>");
 				using (var textWriter = new StringWriter ()) {
 					XmlOutputWriter.WriteResultFile (Runner.Result, textWriter);
-					BaseWriter.WriteLine (textWriter.ToString ());
+					var str = textWriter.ToString ();
+					const string xmldecl = "<?xml version=\"1.0\" encoding=\"utf-16\" standalone=\"no\"?>";
+					if (str.StartsWith (xmldecl, StringComparison.Ordinal))
+						str = str.Substring (xmldecl.Length);
+					
+					BaseWriter.WriteLine (str);
 				}
+				BaseWriter.WriteLine ("</NUnitOutput>");
 				if (extra_data.Length > 0) {
-					BaseWriter.WriteLine ("<!-- extra output\n ");
-					BaseWriter.WriteLine (extra_data);
-					BaseWriter.WriteLine ("-->");
+					BaseWriter.Write ("<TouchUnitExtraData><![CDATA[");
+					BaseWriter.Write (extra_data);
+					BaseWriter.WriteLine ("]]>");
+					BaseWriter.WriteLine ("</TouchUnitExtraData>");
 				}
+				BaseWriter.WriteLine ("</TouchUnitTestRun>");
 				BaseWriter.WriteLine ("<!-- the end -->");
 				BaseWriter.Close ();
 				real_time_reporting = false;
