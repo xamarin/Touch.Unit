@@ -267,7 +267,7 @@ namespace MonoTouch.NUnit.UI {
 							}
 							if (options.EnableXml) {
 								Writer = new NUnitOutputTextWriter (
-									this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow));
+									this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow), options.XmlMode);
 							} else {
 								Writer = defaultWriter;
 							}

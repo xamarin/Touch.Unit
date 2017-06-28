@@ -31,14 +31,16 @@ namespace MonoTouch.NUnit {
 
 		bool real_time_reporting;
 		StringBuilder extra_data = new StringBuilder ();
+		XmlMode mode;
 
-		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter)
+		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter, XmlMode xmlMode = XmlMode.Default)
 		{
 			Runner = runner;
 			BaseWriter = baseWriter ?? Console.Out;
 			XmlOutputWriter = xmlWriter;
 			// do not send real-time test results on the writer sif XML reports are enabled
 			real_time_reporting = (xmlWriter == null);
+			mode = xmlMode;
 		}
 
 		public override Encoding Encoding {
@@ -74,25 +76,41 @@ namespace MonoTouch.NUnit {
 				real_time_reporting = true;
 				// write to a temporary string, because NUnit2XmlOutputWriter.WriteResultFile closes the stream,
 				// and we need to write more things to it.
-				BaseWriter.WriteLine ("<TouchUnitTestRun>");
-				BaseWriter.WriteLine ("<NUnitOutput>");
+				var wrapped = mode == XmlMode.Wrapped;
+
+				if (wrapped) {
+					BaseWriter.WriteLine ("<TouchUnitTestRun>");
+					BaseWriter.WriteLine ("<NUnitOutput>");
+				}
 				using (var textWriter = new StringWriter ()) {
 					XmlOutputWriter.WriteResultFile (Runner.Result, textWriter);
 					var str = textWriter.ToString ();
-					const string xmldecl = "<?xml version=\"1.0\" encoding=\"utf-16\" standalone=\"no\"?>";
-					if (str.StartsWith (xmldecl, StringComparison.Ordinal))
-						str = str.Substring (xmldecl.Length);
-					
+					if (wrapped) {
+						const string xmldecl = "<?xml version=\"1.0\" encoding=\"utf-16\" standalone=\"no\"?>";
+						if (str.StartsWith (xmldecl, StringComparison.Ordinal))
+							str = str.Substring (xmldecl.Length);
+					}
 					BaseWriter.WriteLine (str);
 				}
-				BaseWriter.WriteLine ("</NUnitOutput>");
+				if (wrapped)
+					BaseWriter.WriteLine ("</NUnitOutput>");
 				if (extra_data.Length > 0) {
-					BaseWriter.Write ("<TouchUnitExtraData><![CDATA[");
+					if (wrapped) {
+						BaseWriter.Write ("<TouchUnitExtraData><![CDATA[");
+					} else {
+						BaseWriter.Write ("<!--");
+					}
+
 					BaseWriter.Write (extra_data);
-					BaseWriter.WriteLine ("]]>");
-					BaseWriter.WriteLine ("</TouchUnitExtraData>");
+					if (wrapped) {
+						BaseWriter.WriteLine ("]]>");
+						BaseWriter.WriteLine ("</TouchUnitExtraData>");
+					} else {
+						BaseWriter.Write ("-->");
+					}
 				}
-				BaseWriter.WriteLine ("</TouchUnitTestRun>");
+				if (wrapped)
+					BaseWriter.WriteLine ("</TouchUnitTestRun>");
 				BaseWriter.WriteLine ("<!-- the end -->");
 				BaseWriter.Close ();
 				real_time_reporting = false;
