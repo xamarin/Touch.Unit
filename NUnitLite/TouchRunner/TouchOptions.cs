@@ -78,7 +78,7 @@ namespace MonoTouch.NUnit.UI {
 				EnableXml = b;
 			var xml_mode = Environment.GetEnvironmentVariable ("NUNIT_ENABLE_XML_MODE");
 			if (!string.IsNullOrEmpty (xml_mode))
-				XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), xml_mode, false);
+				XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), xml_mode, true);
 			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE")))
 				LogFile = Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE");
 
