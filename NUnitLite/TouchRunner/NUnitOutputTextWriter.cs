@@ -78,39 +78,37 @@ namespace MonoTouch.NUnit {
 				// and we need to write more things to it.
 				var wrapped = mode == XmlMode.Wrapped;
 
-				if (wrapped) {
-					BaseWriter.WriteLine ("<TouchUnitTestRun>");
-					BaseWriter.WriteLine ("<NUnitOutput>");
-				}
-				using (var textWriter = new StringWriter ()) {
-					XmlOutputWriter.WriteResultFile (Runner.Result, textWriter);
-					var str = textWriter.ToString ();
-					if (wrapped) {
-						const string xmldecl = "<?xml version=\"1.0\" encoding=\"utf-16\" standalone=\"no\"?>";
-						if (str.StartsWith (xmldecl, StringComparison.Ordinal))
-							str = str.Substring (xmldecl.Length);
-					}
-					BaseWriter.WriteLine (str);
-				}
-				if (wrapped)
-					BaseWriter.WriteLine ("</NUnitOutput>");
-				if (extra_data.Length > 0) {
-					if (wrapped) {
-						BaseWriter.Write ("<TouchUnitExtraData><![CDATA[");
-					} else {
+				if (!wrapped) {
+					XmlOutputWriter.WriteResultFile (Runner.Result, BaseWriter);
+					if (extra_data.Length > 0) {
 						BaseWriter.Write ("<!--");
-					}
-
-					BaseWriter.Write (extra_data);
-					if (wrapped) {
-						BaseWriter.WriteLine ("]]>");
-						BaseWriter.WriteLine ("</TouchUnitExtraData>");
-					} else {
+						BaseWriter.Write (extra_data);
 						BaseWriter.Write ("-->");
 					}
-				}
-				if (wrapped)
+				} else {
+					BaseWriter.WriteLine ("<TouchUnitTestRun>");
+					BaseWriter.WriteLine ("<NUnitOutput>");
+
+					using (var textWriter = new StringWriter ()) {
+						XmlOutputWriter.WriteResultFile (Runner.Result, textWriter);
+						var str = textWriter.ToString ();
+						// Remove any xml declarations, since we're embedding this inside a different xml document.
+						if (str.StartsWith ("<?xml", StringComparison.Ordinal)) {
+							var closing = str.IndexOf ('>');
+							if (closing > 0)
+								str = str.Substring (closing + 1);
+						}
+						BaseWriter.WriteLine (str);
+					}
+					BaseWriter.WriteLine ("</NUnitOutput>");
+					if (extra_data.Length > 0) {
+						BaseWriter.Write ("<TouchUnitExtraData><![CDATA[");
+						BaseWriter.Write (extra_data);
+						BaseWriter.WriteLine ("]]>");
+						BaseWriter.WriteLine ("</TouchUnitExtraData>");
+					}
 					BaseWriter.WriteLine ("</TouchUnitTestRun>");
+				}
 				BaseWriter.WriteLine ("<!-- the end -->");
 				BaseWriter.Close ();
 				real_time_reporting = false;
