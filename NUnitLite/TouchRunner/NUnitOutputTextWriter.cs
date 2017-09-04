@@ -82,8 +82,9 @@ namespace MonoTouch.NUnit {
 					XmlOutputWriter.WriteResultFile (Runner.Result, BaseWriter);
 					if (extra_data.Length > 0) {
 						BaseWriter.Write ("<!--");
+						extra_data.Replace ("--", "- - ");
 						BaseWriter.Write (extra_data);
-						BaseWriter.Write ("-->");
+						BaseWriter.Write (" -->");
 					}
 				} else {
 					BaseWriter.WriteLine ("<TouchUnitTestRun>");
