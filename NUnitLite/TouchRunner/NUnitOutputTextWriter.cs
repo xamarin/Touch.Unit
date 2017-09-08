@@ -33,7 +33,12 @@ namespace MonoTouch.NUnit {
 		StringBuilder extra_data = new StringBuilder ();
 		XmlMode mode;
 
-		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter, XmlMode xmlMode = XmlMode.Default)
+		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter)
+			: this (runner, baseWriter, xmlWriter, XmlMode.Default)
+		{
+		}
+
+		public NUnitOutputTextWriter (BaseTouchRunner runner, TextWriter baseWriter, OutputWriter xmlWriter, XmlMode xmlMode)
 		{
 			Runner = runner;
 			BaseWriter = baseWriter ?? Console.Out;
