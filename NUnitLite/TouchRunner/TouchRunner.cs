@@ -234,56 +234,63 @@ namespace MonoTouch.NUnit.UI {
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
 				if (options.ShowUseNetworkLogger) {
-					var hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
-
-					if (hostname != null) {
-						Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
-						try {
-							WriterFinishedTask = null;
-							TextWriter defaultWriter = null;
-							switch (options.Transport) {
-							case "FILE":
-								defaultWriter = new StreamWriter (options.LogFile, true, System.Text.Encoding.UTF8)
-								{
-									AutoFlush = true,
-								};
+					try {
+						string hostname = null;
+						WriterFinishedTask = null;
+						TextWriter defaultWriter = null;
+						switch (options.Transport) {
+						case "FILE":
+							Console.WriteLine ("[{0}] Sending '{1}' results to the file {2}", now, message, options.LogFile);
+							defaultWriter = new StreamWriter (options.LogFile, true, System.Text.Encoding.UTF8)
+							{
+								AutoFlush = true,
+							};
+							break;
+						case "HTTP":
+							var hostnames = options.HostName.Split (',');
+							hostname = hostnames [0];
+							if (hostnames.Length > 1)
+								Console.WriteLine ("[{0}] Found multiple host names ({1}); will only try sending to the first ({2})", now, options.HostName, hostname);
+							Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
+							var w = new HttpTextWriter ()
+							{
+								HostName = hostname,
+								Port = options.HostPort,
+							};
+							w.Open ();
+							defaultWriter = w;
+							WriterFinishedTask = w.FinishedTask;
+							break;
+						default:
+							Console.WriteLine ("Unknown transport '{0}': switching to default (TCP)", options.Transport);
+							goto case "TCP";
+						case "TCP":
+							hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
+							if (string.IsNullOrEmpty (hostname))
 								break;
-							case "HTTP":
-								var w = new HttpTextWriter ()
-								{
-									HostName = hostname,
-									Port = options.HostPort,
-								};
-								w.Open ();
-								defaultWriter = w;
-								WriterFinishedTask = w.FinishedTask;
-								break;
-							default:
-								Console.WriteLine ("Unknown transport '{0}': switching to default (TCP)", options.Transport);
-								goto case "TCP";
-							case "TCP":
-								defaultWriter = new TcpTextWriter (hostname, options.HostPort);
-								break;
-							}
-							if (options.EnableXml) {
-								Writer = new NUnitOutputTextWriter (
-									this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow), options.XmlMode);
-							} else {
-								Writer = defaultWriter;
-							}
-						} catch (Exception ex) {
-							connection_failure = true;
-							if (!ShowConnectionErrorAlert (hostname, options.HostPort, ex))
-								return false;
-
-							Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}. Continuing on console.", hostname, options.HostPort, ex);
-							Writer = Console.Out;
+							Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
+							defaultWriter = new TcpTextWriter (hostname, options.HostPort);
+							break;
 						}
+						if (options.EnableXml) {
+							Writer = new NUnitOutputTextWriter (
+								this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow), options.XmlMode);
+						} else {
+							Writer = defaultWriter;
+						}
+					} catch (Exception ex) {
+						connection_failure = true;
+						if (!ShowConnectionErrorAlert (options.HostName, options.HostPort, ex))
+							return false;
+
+						Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}. Continuing on console.", options.HostName, options.HostPort, ex);
+						Writer = Console.Out;
 					}
-				} else {
-					Writer = Console.Out;
 				}
 			}
+
+			if (Writer == null)
+				Writer = Console.Out;
 
 			Writer.WriteLine ("[Runner executing:\t{0}]", message);
 			Writer.WriteLine ("[MonoTouch Version:\t{0}]", Constants.Version);
