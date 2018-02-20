@@ -445,7 +445,7 @@ namespace MonoTouch.NUnit.UI {
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
-			WorkItem wi = test.CreateWorkItem (filter, new FinallyDelegate ());
+			WorkItem wi = test.CreateWorkItem (filter, null);
 			wi.Execute (current);
 			Result = wi.Result;
 			return Result;
