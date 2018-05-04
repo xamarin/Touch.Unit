@@ -88,7 +88,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "hostname=", "Comma-separated list of host names or IP address to (try to) connect to", v => HostName = v },
 				{ "hostport=", "HTTP/TCP port to connect to.", v => HostPort = int.Parse (v) },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
-				{ "transport=", "Select transport method. Either TCP (default), HTTP or FILE.", v => Transport = v },
+				{ "transport=", "Select transport method. Either TCP (default), INCOMING-TCP, HTTP or FILE.", v => Transport = v },
 				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
 				{ "xmlmode", "The xml mode.", v => XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), v, false) },
 				{ "logfile=", "A path where output will be saved.", v => LogFile = v },

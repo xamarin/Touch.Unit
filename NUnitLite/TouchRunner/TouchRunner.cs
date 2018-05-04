@@ -271,6 +271,10 @@ namespace MonoTouch.NUnit.UI {
 							Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
 							defaultWriter = new TcpTextWriter (hostname, options.HostPort);
 							break;
+						case "INCOMING-TCP":
+							Console.WriteLine ("[{0}] Waiting for connection on port {1} to transmit results", now, options.HostPort);
+							defaultWriter = new IncomingTcpTextWriter (options.HostPort);
+							break;
 						}
 						if (options.EnableXml) {
 							Writer = new NUnitOutputTextWriter (
