@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -17,6 +18,7 @@ namespace MonoTouch.NUnit {
 		TcpListener listener;
 		TcpClient client;
 		StreamWriter writer;
+		BlockingCollection<Tuple<SendType, object>> queue = new BlockingCollection<Tuple<SendType, object>> ();
 		ManualResetEvent connected = new ManualResetEvent (false);
 
 		public IncomingTcpTextWriter (int port)
@@ -29,6 +31,9 @@ namespace MonoTouch.NUnit {
 #if __IOS__
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 #endif
+			new Thread (ProcessThread) {
+				IsBackground = true,
+			}.Start ();
 
 			try {
 				listener = new TcpListener (IPAddress.Loopback, port);
@@ -71,56 +76,114 @@ namespace MonoTouch.NUnit {
 #if __IOS__
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 #endif
-			WaitForConnection ();
-			writer.Close ();
-			client.Close ();
+			Enqueue (SendType.Close);
 		}
 
 		protected override void Dispose (bool disposing)
 		{
-			WaitForConnection ();
-			writer.Dispose ();
-			client.Dispose ();
+			Enqueue (SendType.Dispose);
+			queue.CompleteAdding ();
 		}
 
 		public override void Flush ()
 		{
-			WaitForConnection ();
-			writer.Flush ();
+			Enqueue (SendType.Flush);
+		}
+
+		void ProcessThread ()
+		{
+			try {
+				WaitForConnection ();
+				while (queue.TryTake (out var data, TimeSpan.FromDays (1))) {
+					var type = data.Item1;
+					var obj = data.Item2;
+					switch (type) {
+					case SendType.Write:
+						switch (obj) {
+						case char char_data:
+							writer.Write (char_data);
+							break;
+						case string string_data:
+							writer.Write (string_data);
+							break;
+						default:
+							throw new NotImplementedException ();
+						}
+						break;
+					case SendType.WriteLine:
+						if (obj != null)
+							throw new NotImplementedException ();
+						writer.WriteLine ();
+						writer.Flush ();
+						break;
+					case SendType.Flush:
+						if (obj != null)
+							throw new NotImplementedException ();
+						writer.Flush ();
+						break;
+					case SendType.Dispose:
+						writer.Dispose ();
+						client.Dispose ();
+						break;
+					case SendType.Close:
+						writer.Close ();
+						client.Close ();
+						break;
+					default:
+						throw new NotImplementedException ();
+					}
+				}
+			} catch (Exception e) {
+				Console.WriteLine ("Exception in IncomingTcpTextWriter:ProcessThread: {0}", e);
+			}
+		}
+
+		void Enqueue (SendType type, object obj = null)
+		{
+			queue.Add (new Tuple<SendType, object> (type, obj));
 		}
 
 		// minimum to override - see http://msdn.microsoft.com/en-us/library/system.io.textwriter.aspx
 		public override void Write (char value)
 		{
-			WaitForConnection ();
-			writer.Write (value);
+			Enqueue (SendType.Write, value);
+			Console.Write (value);
 		}
 
 		public override void Write (char [] buffer)
 		{
-			WaitForConnection ();
-			writer.Write (buffer);
+			// make a string of the buffer, since the buffer contents can change
+			Enqueue (SendType.Write, new string (buffer));
+			Console.Write (buffer);
 		}
 
 		public override void Write (char [] buffer, int index, int count)
 		{
-			WaitForConnection ();
-			writer.Write (buffer, index, count);
+			// make a string of the buffer, since the buffer contents can change
+			Enqueue (SendType.Write, new string (buffer, index, count));
+			Console.Write (buffer, index, count);
 		}
 
 		public override void Write (string value)
 		{
-			WaitForConnection ();
-			writer.Write (value);
+			Enqueue (SendType.Write, value);
+			Console.Write (value);
 		}
 
 		// special extra override to ensure we flush data regularly
 
 		public override void WriteLine ()
 		{
-			WaitForConnection ();
-			writer.WriteLine ();
-			writer.Flush ();
+			Enqueue (SendType.WriteLine);
+			Console.WriteLine ();
+		}
+
+		enum SendType {
+			Write,
+			WriteLine,
+			Flush,
+			Dispose,
+			Close,
 		}
 	}
 }
