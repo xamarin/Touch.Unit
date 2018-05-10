@@ -55,11 +55,12 @@ namespace MonoTouch.NUnit {
 			Console.WriteLine ("[{0}] Successful connection from {1}", DateTime.Now, client.Client.RemoteEndPoint);
 		}
 
-		void WaitForConnection ()
+		bool WaitForConnection (TimeSpan? timeout = null)
 		{
-			if (connected.WaitOne (0))
-				return;
-			connected.WaitOne ();
+			if (timeout.HasValue)
+				return connected.WaitOne (timeout.Value);
+
+			return connected.WaitOne ();
 		}
 
 		public int Port { get; private set; }
@@ -76,6 +77,8 @@ namespace MonoTouch.NUnit {
 #if __IOS__
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 #endif
+			if (!WaitForConnection (TimeSpan.FromSeconds (30)))
+				Console.WriteLine ("[{0}] Waited 30 seconds for an incoming connection, but nobody called. The test run will now exit.", DateTime.Now);
 			Enqueue (SendType.Close);
 		}
 
