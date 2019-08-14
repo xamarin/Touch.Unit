@@ -212,7 +212,7 @@ namespace MonoTouch.NUnit.UI {
 								evt.Set ();
 							} catch (Exception e) {
 								lock (lock_obj) {
-									Console.WriteLine ("TCP connection failed when selecting 'hostname': {0}", e);
+									Console.WriteLine ("TCP connection failed when selecting 'hostname': {0} and 'port': {1}. {2}", name, port, e);
 									failures++;
 									if (failures == names.Length)
 										evt.Set ();
