@@ -210,8 +210,9 @@ namespace MonoTouch.NUnit.UI {
 										result = name;
 								}
 								evt.Set ();
-							} catch (Exception) {
+							} catch (Exception e) {
 								lock (lock_obj) {
+									Console.WriteLine ("TCP connection failed when selecting 'hostname': {0} and 'port': {1}. {2}", name, port, e);
 									failures++;
 									if (failures == names.Length)
 										evt.Set ();
@@ -266,8 +267,10 @@ namespace MonoTouch.NUnit.UI {
 							goto case "TCP";
 						case "TCP":
 							hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
-							if (string.IsNullOrEmpty (hostname))
+							if (string.IsNullOrEmpty (hostname)) {
+								Console.WriteLine ("Couldn't establish a TCP connection with any of the hostnames: {0}", options.HostName);
 								break;
+							}
 							Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
 							defaultWriter = new TcpTextWriter (hostname, options.HostPort);
 							break;
