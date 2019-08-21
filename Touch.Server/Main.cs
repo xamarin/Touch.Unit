@@ -198,7 +198,7 @@ class SimpleListener {
 			
 			string mt_root = Environment.GetEnvironmentVariable ("MONOTOUCH_ROOT");
 			if (String.IsNullOrEmpty (mt_root))
-				mt_root = "/Developer/MonoTouch";
+				mt_root = "/Library/Frameworks/Xamarin.iOS.framework/Versions/Current";
 
 			string mtouch = Path.Combine (mt_root, "bin", "mtouch");
 			if (!File.Exists (mtouch))
