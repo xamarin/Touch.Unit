@@ -35,7 +35,7 @@ namespace MonoTouch.NUnit.UI {
 
 	abstract class TestElement : StyledMultilineElement {
 		
-		static internal UIColor DarkGreen = UIColor.FromRGB (0x00, 0x77, 0x00);
+		static internal UIColor DarkGreen = UIColor.SystemGreenColor;
 	
 		private TestResult result;
 		
@@ -46,7 +46,8 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("test");
 			if (runner == null)
 				throw new ArgumentNullException ("runner");
-		
+
+			TextColor = UIColor.LabelColor;
 			Test = test;
 			Runner = runner;
 		}

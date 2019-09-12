@@ -84,7 +84,7 @@ namespace MonoTouch.NUnit.UI {
 		{
 			if (Result.IsIgnored ()) {
 				Value = Result.GetMessage ();
-				DetailColor = UIColor.Orange;
+				DetailColor = UIColor.SystemOrangeColor;
 			} else if (Result.IsSuccess () || Result.IsInconclusive ()) {
 				int counter = Result.AssertCount;
 				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
@@ -94,7 +94,7 @@ namespace MonoTouch.NUnit.UI {
 				DetailColor = DarkGreen;
 			} else if (Result.IsFailure ()) {
 				Value = Result.GetMessage ();
-				DetailColor = UIColor.Red;
+				DetailColor = UIColor.SystemRedColor;
 			} else {
 				// Assert.Ignore falls into this
 				Value = Result.GetMessage ();
