@@ -48,7 +48,7 @@ namespace MonoTouch.NUnit.UI {
 					runner.Show (Suite);
 				};
 			} else {
-				DetailColor = UIColor.SystemOrangeColor;
+				DetailColor = Orange;
 				Value = "No test was found inside this suite";
 			}
 		}
