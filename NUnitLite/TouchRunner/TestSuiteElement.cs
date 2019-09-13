@@ -48,7 +48,7 @@ namespace MonoTouch.NUnit.UI {
 					runner.Show (Suite);
 				};
 			} else {
-				DetailColor = UIColor.Orange;
+				DetailColor = Orange;
 				Value = "No test was found inside this suite";
 			}
 		}
@@ -75,7 +75,7 @@ namespace MonoTouch.NUnit.UI {
 				if (positive > 1)
 					sb.Append ('s');
 			} else {
-				DetailColor = UIColor.Red;
+				DetailColor = Red;
 				if (positive > 0)
 					sb.Append (positive).Append (" success");
 				if (sb.Length > 0)

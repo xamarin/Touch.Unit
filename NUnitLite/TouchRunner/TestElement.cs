@@ -35,7 +35,9 @@ namespace MonoTouch.NUnit.UI {
 
 	abstract class TestElement : StyledMultilineElement {
 		
-		static internal UIColor DarkGreen = UIColor.FromRGB (0x00, 0x77, 0x00);
+		static internal UIColor DarkGreen = UIDevice.CurrentDevice.CheckSystemVersion (13, 0) ? UIColor.SystemGreenColor : UIColor.FromRGB (0x00, 0x77, 0x00);
+		static internal UIColor Orange = UIDevice.CurrentDevice.CheckSystemVersion (13, 0) ? UIColor.SystemOrangeColor : UIColor.Orange;
+		static internal UIColor Red = UIDevice.CurrentDevice.CheckSystemVersion (13, 0) ? UIColor.SystemRedColor : UIColor.Red;
 	
 		private TestResult result;
 		
@@ -46,7 +48,10 @@ namespace MonoTouch.NUnit.UI {
 				throw new ArgumentNullException ("test");
 			if (runner == null)
 				throw new ArgumentNullException ("runner");
-		
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (13, 0)) {
+				TextColor = UIColor.LabelColor;
+			}
 			Test = test;
 			Runner = runner;
 		}
