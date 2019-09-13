@@ -75,7 +75,7 @@ namespace MonoTouch.NUnit.UI {
 				if (positive > 1)
 					sb.Append ('s');
 			} else {
-				DetailColor = UIColor.SystemRedColor;
+				DetailColor = Red;
 				if (positive > 0)
 					sb.Append (positive).Append (" success");
 				if (sb.Length > 0)
