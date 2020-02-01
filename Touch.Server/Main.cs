@@ -72,7 +72,7 @@ class SimpleListener {
 		Console.WriteLine ("Touch.Unit Simple Server listening on: {0}:{1}", Address, Port);
 	}
 	
-	public int Start ()
+	public int Start (bool skipheader = false)
 	{
 		bool processed;
 
@@ -80,7 +80,7 @@ class SimpleListener {
 			
 			do {
 				using (TcpClient client = server.AcceptTcpClient ()) {
-					processed = Processing (client);
+					processed = Processing (client, skipheader);
 				}
 			} while (!AutoExit || !processed);
 		}
@@ -99,7 +99,7 @@ class SimpleListener {
 		return 0;
 	}
 
-	public bool Processing (TcpClient client)
+	public bool Processing (TcpClient client, bool skipHeader = false)
 	{
 		string logfile = Path.Combine (LogPath, LogFile ?? DateTime.UtcNow.Ticks.ToString () + ".log");
 		string remote = client.Client.RemoteEndPoint.ToString ();
@@ -107,12 +107,15 @@ class SimpleListener {
 		connected.Set ();
 
 		using (FileStream fs = File.OpenWrite (logfile)) {
-			// a few extra bits of data only available from this side
-			string header = String.Format ("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}", 
-				Environment.NewLine, DateTime.Now, remote);
-			byte[] array = Encoding.UTF8.GetBytes (header);
-			fs.Write (array, 0, array.Length);
-			fs.Flush ();
+			if (!skipHeader)
+			{
+                // a few extra bits of data only available from this side
+                string header = String.Format("[Local Date/Time:\t{1}]{0}[Remote Address:\t{2}]{0}",
+                    Environment.NewLine, DateTime.Now, remote);
+                byte[] array = Encoding.UTF8.GetBytes(header);
+                fs.Write(array, 0, array.Length);
+                fs.Flush();
+            }
 			// now simply copy what we receive
 			int i;
 			int total = 0;
@@ -153,6 +156,7 @@ class SimpleListener {
 		string launchdev = null;
 		string launchsim = null;
 		bool autoexit = false;
+		bool skipheader = false;
 		string device_name = String.Empty;
 		string device_type = String.Empty;
 		TimeSpan? timeout = null;
@@ -169,6 +173,7 @@ class SimpleListener {
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
 			{ "launchsim=", "Run the specified app on the simulator (specify using path to *.app directory)", v => launchsim = v },
 			{ "autoexit", "Exit the server once a test run has completed (default: false)", v => autoexit = true },
+			{ "skipheader", "Exclude the header from the logfile (default: false)", v => skipheader = true },
 			{ "devname=", "Specify the device to connect to", v => device_name = v},
 			{ "device=", "Specifies the device type to launch the simulator", v => device_type = v },
 			{ "timeout=", "Specifies a timeout (in minutes), after which the simulator app will be killed (ignored for device runs)", v => timeout = TimeSpan.FromMinutes (double.Parse (v)) },
@@ -346,7 +351,7 @@ class SimpleListener {
 				});
 			}
 			
-			var result = listener.Start ();
+			var result = listener.Start (skipheader);
 			if (proc != null && !proc.WaitForExit (30000 /* wait another 30 seconds for mtouch to finish as well */))
 				Console.WriteLine ("mtouch didn't complete within 30s of the simulator app exiting. Touch.Server will exit anyway.");
 			// Wait up to 2 seconds to receive the last of the error/output data. This will only be received *after*
