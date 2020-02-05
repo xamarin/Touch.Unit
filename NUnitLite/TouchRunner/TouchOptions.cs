@@ -41,6 +41,11 @@ namespace MonoTouch.NUnit.UI {
 		Wrapped = 1,
 	}
 
+	public enum XmlVersion {
+		NUnitV2 = 0,
+		NUnitV3 = 1,
+	}
+
 	public class TouchOptions {
 
 		static public TouchOptions Current = new TouchOptions ();
@@ -79,6 +84,9 @@ namespace MonoTouch.NUnit.UI {
 			var xml_mode = Environment.GetEnvironmentVariable ("NUNIT_ENABLE_XML_MODE");
 			if (!string.IsNullOrEmpty (xml_mode))
 				XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), xml_mode, true);
+			var xml_version = Environment.GetEnvironmentVariable ("NUNIT_XML_VERSION");
+			if (!string.IsNullOrEmpty (xml_version))
+				XmlVersion = (XmlVersion)Enum.Parse (typeof (XmlVersion), xml_version, true);
 			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE")))
 				LogFile = Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE");
 
@@ -91,6 +99,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "transport=", "Select transport method. Either TCP (default), HTTP or FILE.", v => Transport = v },
 				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
 				{ "xmlmode", "The xml mode.", v => XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), v, false) },
+				{ "xmlversion", "The xml version.", v => XmlVersion = (XmlVersion) Enum.Parse (typeof (XmlVersion), v, false) },
 				{ "logfile=", "A path where output will be saved.", v => LogFile = v },
 			};
 			
@@ -104,6 +113,8 @@ namespace MonoTouch.NUnit.UI {
 		private bool EnableNetwork { get; set; }
 
 		public XmlMode XmlMode { get; set; }
+
+		public XmlVersion XmlVersion { get; set; } = XmlVersion.NUnitV2;
 
 		public bool EnableXml { get; set; }
 		
