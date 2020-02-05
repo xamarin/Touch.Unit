@@ -276,8 +276,17 @@ namespace MonoTouch.NUnit.UI {
 							break;
 						}
 						if (options.EnableXml) {
+							NUnitLite.Runner.OutputWriter formatter;
+							switch (options.XmlVersion) {
+							case XmlVersion.NUnitV3:
+								formatter = new NUnitLite.Runner.NUnit3XmlOutputWriter (DateTime.UtcNow);
+								break;
+							default:
+								formatter = new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow);
+								break;
+							}
 							Writer = new NUnitOutputTextWriter (
-								this, defaultWriter, new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow), options.XmlMode);
+								this, defaultWriter, formatter, options.XmlMode);
 						} else {
 							Writer = defaultWriter;
 						}
