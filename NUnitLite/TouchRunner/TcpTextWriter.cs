@@ -39,6 +39,7 @@ namespace MonoTouch.NUnit {
 			try {
 				if (isTunnel) {
 					server = new TcpListener (IPAddress.Any, Port);
+					server.Server.ReceiveTimeout = 5000; // timeout after 5s
 					server.Start ();
 					client = server.AcceptTcpClient ();
 					// block until we have the ping from the client side
