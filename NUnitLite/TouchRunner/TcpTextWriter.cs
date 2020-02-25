@@ -21,7 +21,7 @@ namespace MonoTouch.NUnit {
 		TcpListener server;
 		private StreamWriter writer;
 
-		public TcpTextWriter (string hostName, int port, bool isTunnel = true)
+		public TcpTextWriter (string hostName, int port, bool isTunnel = false)
 		{
 			if (hostName == null)
 				throw new ArgumentNullException ("hostName");
