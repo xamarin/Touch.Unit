@@ -59,6 +59,7 @@ namespace MonoTouch.NUnit.UI {
 			EnableXml = defaults.BoolForKey ("xml.enabled");
 			HostName = defaults.StringForKey ("network.host.name");
 			HostPort = (int)defaults.IntForKey ("network.host.port");
+			UseTcpTunnel = defaults.BoolForKey ("execution.usetcptunnel");
 			Transport = defaults.StringForKey ("network.transport");
 			SortNames = defaults.BoolForKey ("display.sort");
 			LogFile = defaults.StringForKey ("log.file");
@@ -72,6 +73,8 @@ namespace MonoTouch.NUnit.UI {
 				EnableNetwork = b;
 			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_HOSTNAME")))
 				HostName = Environment.GetEnvironmentVariable ("NUNIT_HOSTNAME");
+			if (bool.TryParse (Environment.GetEnvironmentVariable ("USE_TCP_TUNNEL"), out b))
+				UseTcpTunnel = b;
 			int i;
 			if (int.TryParse (Environment.GetEnvironmentVariable ("NUNIT_HOSTPORT"), out i))
 				HostPort = i;
@@ -95,6 +98,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "autostart", "If the app should automatically start running the tests.", v => AutoStart = true },
 				{ "hostname=", "Comma-separated list of host names or IP address to (try to) connect to", v => HostName = v },
 				{ "hostport=", "HTTP/TCP port to connect to.", v => HostPort = int.Parse (v) },
+				{ "use-tcp-tunnel", "Use a TCP tunnel to connect to the host.", v => UseTcpTunnel = true },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
 				{ "transport=", "Select transport method. Either TCP (default), HTTP or FILE.", v => Transport = v },
 				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
@@ -121,6 +125,8 @@ namespace MonoTouch.NUnit.UI {
 		public string HostName { get; private set; }
 		
 		public int HostPort { get; private set; }
+
+		public bool UseTcpTunnel { get; set; } = true;
 		
 		public bool AutoStart { get; set; }
 		
@@ -145,12 +151,13 @@ namespace MonoTouch.NUnit.UI {
 #else
 			var network = new BooleanElement ("Enable", EnableNetwork);
 #endif
-
 			var host = new EntryElement ("Host Name", "name", HostName);
 			host.KeyboardType = UIKeyboardType.ASCIICapable;
 			
 			var port = new EntryElement ("Port", "name", HostPort.ToString ());
 			port.KeyboardType = UIKeyboardType.NumberPad;
+
+			var useTunnel = new BooleanElement ("Use TCP Tunnel", UseTcpTunnel);
 			
 #if TVOS
 			var sort = new StringElement (string.Format ("Sort Names: ", SortNames));
@@ -159,7 +166,7 @@ namespace MonoTouch.NUnit.UI {
 #endif
 
 			var root = new RootElement ("Options") {
-				new Section ("Remote Server") { network, host, port },
+				new Section ("Remote Server") { network, host, port, useTunnel },
 				new Section ("Display") { sort }
 			};
 				
@@ -174,6 +181,7 @@ namespace MonoTouch.NUnit.UI {
 					HostPort = p;
 				else
 					HostPort = -1;
+				UseTcpTunnel = useTunnel.Value;
 #if !TVOS
 				SortNames = sort.Value;
 #endif
@@ -183,6 +191,7 @@ namespace MonoTouch.NUnit.UI {
 				defaults.SetString (HostName ?? String.Empty, "network.host.name");
 				defaults.SetInt (HostPort, "network.host.port");
 				defaults.SetBool (SortNames, "display.sort");
+				defaults.SetBool (UseTcpTunnel, "execution.usetcptunnel");
 			};
 			
 			return dv;

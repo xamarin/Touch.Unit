@@ -3,6 +3,7 @@
 
 using System;
 using System.IO;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
@@ -17,16 +18,18 @@ namespace MonoTouch.NUnit {
 	public class TcpTextWriter : TextWriter {
 		
 		private TcpClient client;
+		TcpListener server;
 		private StreamWriter writer;
 
-		public TcpTextWriter (string hostName, int port)
+		public TcpTextWriter (string hostName, int port, bool isTunnel = false)
 		{
 			if (hostName == null)
 				throw new ArgumentNullException ("hostName");
 			if ((port < 0) || (port > UInt16.MaxValue))
 				throw new ArgumentException ("port");
-			
-			HostName = hostName;
+			if (!isTunnel)
+				HostName = hostName;
+
 			Port = port;
 
 #if __IOS__
@@ -34,7 +37,23 @@ namespace MonoTouch.NUnit {
 #endif
 
 			try {
-				client = new TcpClient (hostName, port);
+				if (isTunnel) {
+					server = new TcpListener (IPAddress.Any, Port);
+					server.Server.ReceiveTimeout = 5000; // timeout after 5s
+					server.Start ();
+					client = server.AcceptTcpClient ();
+					// block until we have the ping from the client side
+					int i;
+					byte [] buffer = new byte [16 * 1024];
+					var stream = client.GetStream ();
+					while ((i = stream.Read (buffer, 0, buffer.Length)) != 0) {
+						var message = Encoding.UTF8.GetString (buffer);
+						if (message.Contains ("ping"))
+							break;
+					}
+				} else {
+					client = new TcpClient (HostName, port);
+				}
 				writer = new StreamWriter (client.GetStream ());
 			}
 			catch {

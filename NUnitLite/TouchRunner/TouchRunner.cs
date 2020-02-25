@@ -266,13 +266,19 @@ namespace MonoTouch.NUnit.UI {
 							Console.WriteLine ("Unknown transport '{0}': switching to default (TCP)", options.Transport);
 							goto case "TCP";
 						case "TCP":
-							hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
+							if (!options.UseTcpTunnel)
+								hostname = SelectHostName (options.HostName.Split (','), options.HostPort);
+							else
+								hostname = "localhost";
 							if (string.IsNullOrEmpty (hostname)) {
 								Console.WriteLine ("Couldn't establish a TCP connection with any of the hostnames: {0}", options.HostName);
 								break;
 							}
-							Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
-							defaultWriter = new TcpTextWriter (hostname, options.HostPort);
+							if (!options.UseTcpTunnel)
+								Console.WriteLine ("[{0}] Sending '{1}' results to {2}:{3}", now, message, hostname, options.HostPort);
+							else
+								Console.WriteLine ("[{0}] Sending '{1}' results to {2} over a tcp tunnel", now, message, options.HostPort);
+							defaultWriter = new TcpTextWriter (hostname, options.HostPort, options.UseTcpTunnel);
 							break;
 						}
 						if (options.EnableXml) {
