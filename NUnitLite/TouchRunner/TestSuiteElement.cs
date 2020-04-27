@@ -21,11 +21,7 @@
 using System;
 using System.Text;
 
-#if XAMCORE_2_0
 using UIKit;
-#else
-using MonoTouch.UIKit;
-#endif
 
 using MonoTouch.Dialog;
 
