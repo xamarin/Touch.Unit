@@ -143,7 +143,6 @@ namespace MonoTouch.NUnit.UI {
 		public bool SortNames { get; set; }
 		
 #if !__WATCHOS__
-		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
 #if TVOS
