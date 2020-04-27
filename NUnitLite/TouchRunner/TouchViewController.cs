@@ -40,7 +40,6 @@ using CGSize = global::System.Drawing.SizeF;
 
 namespace MonoTouch.NUnit.UI {
 
-	[CLSCompliant (false)]
 	public partial class TouchViewController : DialogViewController {
 
 		public TouchViewController (RootElement root) : base (root, true)

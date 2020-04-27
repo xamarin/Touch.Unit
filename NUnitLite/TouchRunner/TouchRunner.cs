@@ -505,7 +505,6 @@ namespace MonoTouch.NUnit.UI {
 		
 		UIWindow window;
 
-		[CLSCompliant (false)]
 		public TouchRunner (UIWindow window)
 		{
 			if (window == null)
@@ -514,7 +513,6 @@ namespace MonoTouch.NUnit.UI {
 			this.window = window;
 		}
 				
-		[CLSCompliant (false)]
 		public UINavigationController NavigationController {
 			get { return (UINavigationController) window.RootViewController; }
 		}
@@ -525,7 +523,6 @@ namespace MonoTouch.NUnit.UI {
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
 
-		[CLSCompliant (false)]
 		public UIViewController GetViewController ()
 		{
 			var menu = new RootElement ("Test Runner");
