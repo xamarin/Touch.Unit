@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "monotouch.tests", "monotouc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch.Server", "Touch.Server\Touch.Server.csproj", "{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch.Client", "Touch.Client\Touch.Client.csproj", "{F611ED96-54B5-4975-99BB-12F50AF95936}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -84,6 +86,22 @@ Global
 		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhone.Build.0 = Release|iPhone
 		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
 		{A1303AE1-2693-4DF7-A17B-20C2ABA1E2ED}.Release|iPhoneSimulator.Build.0 = Release|iPhone
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.Release|iPhone.Build.0 = Release|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AdHoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AdHoc|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AdHoc|iPhone.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AdHoc|iPhone.Build.0 = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{F611ED96-54B5-4975-99BB-12F50AF95936}.AppStore|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Touch.Unit.csproj

@@ -22,7 +22,11 @@ using System;
 using System.IO;
 using System.Text;
 
+#if NUNITLITE_NUGET
+using NUnitLite;
+#else
 using NUnitLite.Runner;
+#endif
 using MonoTouch.NUnit.UI;
 
 namespace MonoTouch.NUnit {
