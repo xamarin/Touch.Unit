@@ -22,21 +22,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-#if XAMCORE_2_0
 using CoreGraphics;
 using Foundation;
 using UIKit;
-#else
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-#endif
 
 using MonoTouch.Dialog;
-
-#if !XAMCORE_2_0
-using CGSize = global::System.Drawing.SizeF;
-#endif
 
 namespace MonoTouch.NUnit.UI {
 

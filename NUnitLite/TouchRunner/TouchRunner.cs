@@ -28,17 +28,10 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-#if XAMCORE_2_0
 using Foundation;
 using ObjCRuntime;
 using UIKit;
 using Constants = global::ObjCRuntime.Constants;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
-using Constants = global::MonoTouch.Constants;
-#endif
 
 #if !__WATCHOS__
 using MonoTouch.Dialog;
