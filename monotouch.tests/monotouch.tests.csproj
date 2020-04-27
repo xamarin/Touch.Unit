@@ -6,7 +6,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{20E71273-1306-477D-964D-A7FAFE20196D}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>monotouch.tests</RootNamespace>
     <AssemblyName>monotouch.tests</AssemblyName>
@@ -19,7 +19,6 @@
     <DefineConstants>DEBUG;NET_4_0;CLR_4_0;NUNITLITE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -27,15 +26,13 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <DefineConstants>NET_4_5;CLR_4_0;NUNITLITE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
     <Reference Include="System.Xml" />
     <Reference Include="System" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\NUnitLite\MonoTouch.NUnitLite.csproj">
       <Project>{9A9B24AF-1103-43D4-8EC0-9EC0155322FC}</Project>
@@ -44,502 +41,502 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestTest.cs" />
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Api\ResultStateTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Api\ResultStateTests.cs">
       <Link>tests\Api\ResultStateTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\ArrayEqualsFailureMessageFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\ArrayEqualsFailureMessageFixture.cs">
       <Link>tests\Assertions\ArrayEqualsFailureMessageFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\ArrayEqualsFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\ArrayEqualsFixture.cs">
       <Link>tests\Assertions\ArrayEqualsFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\ArrayNotEqualFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\ArrayNotEqualFixture.cs">
       <Link>tests\Assertions\ArrayNotEqualFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertFailTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertFailTests.cs">
       <Link>tests\Assertions\AssertFailTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertIgnoreTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertIgnoreTests.cs">
       <Link>tests\Assertions\AssertIgnoreTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertInconclusiveTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertInconclusiveTests.cs">
       <Link>tests\Assertions\AssertInconclusiveTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertPassTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertPassTests.cs">
       <Link>tests\Assertions\AssertPassTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertThatTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertThatTests.cs">
       <Link>tests\Assertions\AssertThatTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssertThrowsTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssertThrowsTests.cs">
       <Link>tests\Assertions\AssertThrowsTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AssumeThatTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AssumeThatTests.cs">
       <Link>tests\Assertions\AssumeThatTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\AsyncThrowsTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\AsyncThrowsTests.cs">
       <Link>tests\Assertions\AsyncThrowsTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\CollectionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\CollectionTests.cs">
       <Link>tests\Assertions\CollectionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\ConditionAssertTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\ConditionAssertTests.cs">
       <Link>tests\Assertions\ConditionAssertTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\EqualsFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\EqualsFixture.cs">
       <Link>tests\Assertions\EqualsFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\MessageChecker.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\MessageChecker.cs">
       <Link>tests\Assertions\MessageChecker.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\NotEqualFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\NotEqualFixture.cs">
       <Link>tests\Assertions\NotEqualFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\NotSameFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\NotSameFixture.cs">
       <Link>tests\Assertions\NotSameFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\NullableTypesTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\NullableTypesTests.cs">
       <Link>tests\Assertions\NullableTypesTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Assertions\SameFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Assertions\SameFixture.cs">
       <Link>tests\Assertions\SameFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\ApplyToTestTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\ApplyToTestTests.cs">
       <Link>tests\Attributes\ApplyToTestTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\AttributeInheritanceTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\AttributeInheritanceTests.cs">
       <Link>tests\Attributes\AttributeInheritanceTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\CategoryAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\CategoryAttributeTests.cs">
       <Link>tests\Attributes\CategoryAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\CombinatorialTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\CombinatorialTests.cs">
       <Link>tests\Attributes\CombinatorialTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\DatapointTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\DatapointTests.cs">
       <Link>tests\Attributes\DatapointTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\DescriptionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\DescriptionTests.cs">
       <Link>tests\Attributes\DescriptionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\ExpectedExceptionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\ExpectedExceptionTests.cs">
       <Link>tests\Attributes\ExpectedExceptionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\FixtureSetUpTearDownTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\FixtureSetUpTearDownTests.cs">
       <Link>tests\Attributes\FixtureSetUpTearDownTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\MaxTimeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\MaxTimeTests.cs">
       <Link>tests\Attributes\MaxTimeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\PairwiseTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\PairwiseTests.cs">
       <Link>tests\Attributes\PairwiseTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\ParameterizedTestFixtureTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\ParameterizedTestFixtureTests.cs">
       <Link>tests\Attributes\ParameterizedTestFixtureTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\PropertyAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\PropertyAttributeTests.cs">
       <Link>tests\Attributes\PropertyAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\RepeatedTestTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\RepeatedTestTests.cs">
       <Link>tests\Attributes\RepeatedTestTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\SetCultureAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\SetCultureAttributeTests.cs">
       <Link>tests\Attributes\SetCultureAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TestCaseAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TestCaseAttributeTests.cs">
       <Link>tests\Attributes\TestCaseAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TestCaseSourceTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TestCaseSourceTests.cs">
       <Link>tests\Attributes\TestCaseSourceTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TestDummy.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TestDummy.cs">
       <Link>tests\Attributes\TestDummy.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TestFixtureAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TestFixtureAttributeTests.cs">
       <Link>tests\Attributes\TestFixtureAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TheoryTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TheoryTests.cs">
       <Link>tests\Attributes\TheoryTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\TimeoutTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\TimeoutTests.cs">
       <Link>tests\Attributes\TimeoutTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\ValueSourceTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\ValueSourceTests.cs">
       <Link>tests\Attributes\ValueSourceTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Attributes\ValuesAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Attributes\ValuesAttributeTests.cs">
       <Link>tests\Attributes\ValuesAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AllItemsConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AllItemsConstraintTests.cs">
       <Link>tests\Constraints\AllItemsConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AndConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AndConstraintTests.cs">
       <Link>tests\Constraints\AndConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AssignableFromConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AssignableFromConstraintTests.cs">
       <Link>tests\Constraints\AssignableFromConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AssignableToConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AssignableToConstraintTests.cs">
       <Link>tests\Constraints\AssignableToConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AsyncDelayedConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AsyncDelayedConstraintTests.cs">
       <Link>tests\Constraints\AsyncDelayedConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\AttributeExistsConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\AttributeExistsConstraintTests.cs">
       <Link>tests\Constraints\AttributeExistsConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\BasicConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\BasicConstraintTests.cs">
       <Link>tests\Constraints\BasicConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\BinarySerializableTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\BinarySerializableTest.cs">
       <Link>tests\Constraints\BinarySerializableTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\CollectionContainsConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\CollectionContainsConstraintTests.cs">
       <Link>tests\Constraints\CollectionContainsConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\CollectionEquivalentConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\CollectionEquivalentConstraintTests.cs">
       <Link>tests\Constraints\CollectionEquivalentConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\CollectionOrderedConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\CollectionOrderedConstraintTests.cs">
       <Link>tests\Constraints\CollectionOrderedConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\CollectionSubsetConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\CollectionSubsetConstraintTests.cs">
       <Link>tests\Constraints\CollectionSubsetConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ComparisonConstraintTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ComparisonConstraintTest.cs">
       <Link>tests\Constraints\ComparisonConstraintTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ConstraintTestBase.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ConstraintTestBase.cs">
       <Link>tests\Constraints\ConstraintTestBase.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\DelayedConstraintTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\DelayedConstraintTest.cs">
       <Link>tests\Constraints\DelayedConstraintTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\EmptyConstraintTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\EmptyConstraintTest.cs">
       <Link>tests\Constraints\EmptyConstraintTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\EndsWithConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\EndsWithConstraintTests.cs">
       <Link>tests\Constraints\EndsWithConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\EqualConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\EqualConstraintTests.cs">
       <Link>tests\Constraints\EqualConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ExactCountConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ExactCountConstraintTests.cs">
       <Link>tests\Constraints\ExactCountConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ExactTypeConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ExactTypeConstraintTests.cs">
       <Link>tests\Constraints\ExactTypeConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\FloatingPointNumericsTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\FloatingPointNumericsTest.cs">
       <Link>tests\Constraints\FloatingPointNumericsTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\GreaterThanConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\GreaterThanConstraintTests.cs">
       <Link>tests\Constraints\GreaterThanConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\GreaterThanOrEqualConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\GreaterThanOrEqualConstraintTests.cs">
       <Link>tests\Constraints\GreaterThanOrEqualConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\InstanceOfTypeConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\InstanceOfTypeConstraintTests.cs">
       <Link>tests\Constraints\InstanceOfTypeConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\LessThanConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\LessThanConstraintTests.cs">
       <Link>tests\Constraints\LessThanConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\LessThanOrEqualConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\LessThanOrEqualConstraintTests.cs">
       <Link>tests\Constraints\LessThanOrEqualConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\MessageWriterTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\MessageWriterTests.cs">
       <Link>tests\Constraints\MessageWriterTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\MsgUtilTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\MsgUtilTests.cs">
       <Link>tests\Constraints\MsgUtilTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\NUnitComparerTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\NUnitComparerTests.cs">
       <Link>tests\Constraints\NUnitComparerTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\NUnitEqualityComparerTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\NUnitEqualityComparerTests.cs">
       <Link>tests\Constraints\NUnitEqualityComparerTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\NotConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\NotConstraintTests.cs">
       <Link>tests\Constraints\NotConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\NumericsTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\NumericsTest.cs">
       <Link>tests\Constraints\NumericsTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\OrConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\OrConstraintTests.cs">
       <Link>tests\Constraints\OrConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\PathConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\PathConstraintTests.cs">
       <Link>tests\Constraints\PathConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\PredicateConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\PredicateConstraintTests.cs">
       <Link>tests\Constraints\PredicateConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\PropertyTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\PropertyTests.cs">
       <Link>tests\Constraints\PropertyTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\RangeConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\RangeConstraintTests.cs">
       <Link>tests\Constraints\RangeConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\RangeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\RangeTests.cs">
       <Link>tests\Constraints\RangeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ReusableConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ReusableConstraintTests.cs">
       <Link>tests\Constraints\ReusableConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\SameAsTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\SameAsTest.cs">
       <Link>tests\Constraints\SameAsTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\StartsWithConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\StartsWithConstraintTests.cs">
       <Link>tests\Constraints\StartsWithConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\SubstringConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\SubstringConstraintTests.cs">
       <Link>tests\Constraints\SubstringConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\TestDelegates.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\TestDelegates.cs">
       <Link>tests\Constraints\TestDelegates.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ThrowsConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ThrowsConstraintTests.cs">
       <Link>tests\Constraints\ThrowsConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\ToStringTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\ToStringTests.cs">
       <Link>tests\Constraints\ToStringTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\UniqueItemsConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\UniqueItemsConstraintTests.cs">
       <Link>tests\Constraints\UniqueItemsConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Constraints\XmlSerializableTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Constraints\XmlSerializableTest.cs">
       <Link>tests\Constraints\XmlSerializableTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Framework\StackFilterTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Framework\StackFilterTest.cs">
       <Link>tests\Framework\StackFilterTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Framework\SyntaxTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Framework\SyntaxTests.cs">
       <Link>tests\Framework\SyntaxTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Framework\TestContextTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Framework\TestContextTests.cs">
       <Link>tests\Framework\TestContextTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Framework\TestResultTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Framework\TestResultTests.cs">
       <Link>tests\Framework\TestResultTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\AssemblyHelperTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\AssemblyHelperTests.cs">
       <Link>tests\Internal\AssemblyHelperTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\AsyncTestMethodTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\AsyncTestMethodTests.cs">
       <Link>tests\Internal\AsyncTestMethodTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\CultureSettingAndDetectionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\CultureSettingAndDetectionTests.cs">
       <Link>tests\Internal\CultureSettingAndDetectionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\DeduceTypeArgsFromArgs.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\DeduceTypeArgsFromArgs.cs">
       <Link>tests\Internal\DeduceTypeArgsFromArgs.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\GenericTestFixtureTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\GenericTestFixtureTests.cs">
       <Link>tests\Internal\GenericTestFixtureTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\GenericTestMethodTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\GenericTestMethodTests.cs">
       <Link>tests\Internal\GenericTestMethodTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\NUnitTestCaseBuilderTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\NUnitTestCaseBuilderTests.cs">
       <Link>tests\Internal\NUnitTestCaseBuilderTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\PlatformDetectionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\PlatformDetectionTests.cs">
       <Link>tests\Internal\PlatformDetectionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\PropertyBagTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\PropertyBagTests.cs">
       <Link>tests\Internal\PropertyBagTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\RandomGeneratorTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\RandomGeneratorTests.cs">
       <Link>tests\Internal\RandomGeneratorTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\RandomizerTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\RandomizerTests.cs">
       <Link>tests\Internal\RandomizerTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\RuntimeFrameworkTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\RuntimeFrameworkTests.cs">
       <Link>tests\Internal\RuntimeFrameworkTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\SetUpTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\SetUpTest.cs">
       <Link>tests\Internal\SetUpTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\SimpleGenericMethods.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\SimpleGenericMethods.cs">
       <Link>tests\Internal\SimpleGenericMethods.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TestExecutionContextTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TestExecutionContextTests.cs">
       <Link>tests\Internal\TestExecutionContextTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TestFixtureTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TestFixtureTests.cs">
       <Link>tests\Internal\TestFixtureTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TestMethodSignatureTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TestMethodSignatureTests.cs">
       <Link>tests\Internal\TestMethodSignatureTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TestResultTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TestResultTests.cs">
       <Link>tests\Internal\TestResultTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TestXmlTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TestXmlTests.cs">
       <Link>tests\Internal\TestXmlTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TextMessageWriterTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TextMessageWriterTests.cs">
       <Link>tests\Internal\TextMessageWriterTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Internal\TypeParameterUsedWithTestMethod.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Internal\TypeParameterUsedWithTestMethod.cs">
       <Link>tests\Internal\TypeParameterUsedWithTestMethod.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\AfterTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\AfterTests.cs">
       <Link>tests\Syntax\AfterTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\ArbitraryConstraintMatching.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\ArbitraryConstraintMatching.cs">
       <Link>tests\Syntax\ArbitraryConstraintMatching.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\CollectionTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\CollectionTests.cs">
       <Link>tests\Syntax\CollectionTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\ComparisonTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\ComparisonTests.cs">
       <Link>tests\Syntax\ComparisonTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\EqualityTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\EqualityTests.cs">
       <Link>tests\Syntax\EqualityTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\OperatorOverrides.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\OperatorOverrides.cs">
       <Link>tests\Syntax\OperatorOverrides.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\OperatorTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\OperatorTests.cs">
       <Link>tests\Syntax\OperatorTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\PathConstraintTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\PathConstraintTests.cs">
       <Link>tests\Syntax\PathConstraintTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\PropertyTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\PropertyTests.cs">
       <Link>tests\Syntax\PropertyTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\SerializableConstraints.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\SerializableConstraints.cs">
       <Link>tests\Syntax\SerializableConstraints.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\SimpleConstraints.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\SimpleConstraints.cs">
       <Link>tests\Syntax\SimpleConstraints.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\StringConstraints.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\StringConstraints.cs">
       <Link>tests\Syntax\StringConstraints.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\SyntaxTest.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\SyntaxTest.cs">
       <Link>tests\Syntax\SyntaxTest.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\ThrowsTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\ThrowsTests.cs">
       <Link>tests\Syntax\ThrowsTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Syntax\TypeConstraints.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Syntax\TypeConstraints.cs">
       <Link>tests\Syntax\TypeConstraints.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\ResultSummary.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\ResultSummary.cs">
       <Link>tests\TestUtilities\ResultSummary.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\TestAssert.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\TestAssert.cs">
       <Link>tests\TestUtilities\TestAssert.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\TestBuilder.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\TestBuilder.cs">
       <Link>tests\TestUtilities\TestBuilder.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\TestComparer.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\TestComparer.cs">
       <Link>tests\TestUtilities\TestComparer.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\TestDelegates.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\TestDelegates.cs">
       <Link>tests\TestUtilities\TestDelegates.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\TestFinder.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\TestFinder.cs">
       <Link>tests\TestUtilities\TestFinder.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\UniqueValues.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\UniqueValues.cs">
       <Link>tests\TestUtilities\UniqueValues.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\Collections\SimpleObjectCollection.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\Collections\SimpleObjectCollection.cs">
       <Link>tests\TestUtilities\Collections\SimpleObjectCollection.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\Collections\SimpleObjectList.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\Collections\SimpleObjectList.cs">
       <Link>tests\TestUtilities\Collections\SimpleObjectList.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\AlwaysEqualComparer.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\AlwaysEqualComparer.cs">
       <Link>tests\TestUtilities\Comparers\AlwaysEqualComparer.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\SimpleEqualityComparer.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\SimpleEqualityComparer.cs">
       <Link>tests\TestUtilities\Comparers\SimpleEqualityComparer.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\SimpleObjectComparer.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\TestUtilities\Comparers\SimpleObjectComparer.cs">
       <Link>tests\TestUtilities\Comparers\SimpleObjectComparer.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AssemblyInfo.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AssemblyInfo.cs">
       <Link>testdata\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AssertCountFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AssertCountFixture.cs">
       <Link>testdata\AssertCountFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AssertFailFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AssertFailFixture.cs">
       <Link>testdata\AssertFailFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AssertIgnoreData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AssertIgnoreData.cs">
       <Link>testdata\AssertIgnoreData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AsyncDummyFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AsyncDummyFixture.cs">
       <Link>testdata\AsyncDummyFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AsyncRealFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AsyncRealFixture.cs">
       <Link>testdata\AsyncRealFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\AttributeInheritanceData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\AttributeInheritanceData.cs">
       <Link>testdata\AttributeInheritanceData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\CategoryAttributeData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\CategoryAttributeData.cs">
       <Link>testdata\CategoryAttributeData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\CultureAttributeData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\CultureAttributeData.cs">
       <Link>testdata\CultureAttributeData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\DatapointFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\DatapointFixture.cs">
       <Link>testdata\DatapointFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\DescriptionFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\DescriptionFixture.cs">
       <Link>testdata\DescriptionFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\ExpectedExceptionData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\ExpectedExceptionData.cs">
       <Link>testdata\ExpectedExceptionData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\FixtureSetUpTearDownData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\FixtureSetUpTearDownData.cs">
       <Link>testdata\FixtureSetUpTearDownData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\MaxTimeFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\MaxTimeFixture.cs">
       <Link>testdata\MaxTimeFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\ParameterizedTestFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\ParameterizedTestFixture.cs">
       <Link>testdata\ParameterizedTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\PropertyAttributeTests.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\PropertyAttributeTests.cs">
       <Link>testdata\PropertyAttributeTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\RepeatedTestFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\RepeatedTestFixture.cs">
       <Link>testdata\RepeatedTestFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\SetUpData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\SetUpData.cs">
       <Link>testdata\SetUpData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TestCaseAttributeFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TestCaseAttributeFixture.cs">
       <Link>testdata\TestCaseAttributeFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TestCaseSourceAttributeFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TestCaseSourceAttributeFixture.cs">
       <Link>testdata\TestCaseSourceAttributeFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TestContextData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TestContextData.cs">
       <Link>testdata\TestContextData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TestFixtureData.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TestFixtureData.cs">
       <Link>testdata\TestFixtureData.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TestMethodSignatureFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TestMethodSignatureFixture.cs">
       <Link>testdata\TestMethodSignatureFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TheoryFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TheoryFixture.cs">
       <Link>testdata\TheoryFixture.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\NUnitLite-1.0.0\src\testdata\TimeoutFixture.cs">
+    <Compile Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\testdata\TimeoutFixture.cs">
       <Link>testdata\TimeoutFixture.cs</Link>
     </Compile>
   </ItemGroup>
@@ -548,11 +545,12 @@
     <Folder Include="testdata\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Properties\AppManifest.xml">
+    <None Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Properties\AppManifest.xml">
       <Link>tests\Properties\AppManifest.xml</Link>
     </None>
-    <None Include="..\..\NUnitLite\NUnitLite-1.0.0\src\tests\Properties\OutOfBrowserSettings.xml">
+    <None Include="..\..\mono\external\nunit-lite\NUnitLite-1.0.0\src\tests\Properties\OutOfBrowserSettings.xml">
       <Link>tests\Properties\OutOfBrowserSettings.xml</Link>
     </None>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

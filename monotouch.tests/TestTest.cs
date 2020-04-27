@@ -16,8 +16,8 @@
 
 using System;
 using System.Threading.Tasks;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using ObjCRuntime;
 using NUnit.Framework;
 
 namespace MonoTouchFixtures.Test {
