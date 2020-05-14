@@ -60,7 +60,9 @@ namespace MonoTouch.NUnit.UI {
 					};
 					var dvc = new DialogViewController (root, true) { Autorotate = true };
 					runner.NavigationController.PushViewController (dvc, true);
-				} else if (GetContainerTableView () != null) {
+				}
+				// we still need to update our current element
+				if (GetContainerTableView () != null) {
 					var root = GetImmediateRootElement ();
 					root.Reload (this, UITableViewRowAnimation.Fade);
 				}
