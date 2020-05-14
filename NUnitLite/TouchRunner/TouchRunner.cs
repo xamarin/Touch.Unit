@@ -653,17 +653,19 @@ namespace MonoTouch.NUnit.UI {
 		{
 			base.TestFinished (r);
 
-			TestResult result = r as TestResult;
-			TestSuite ts = result.Test as TestSuite;
-			if (ts != null) {
-				TestSuiteElement tse;
-				if (suite_elements.TryGetValue (ts, out tse))
-					tse.Update (result);
-			} else {
-				TestMethod tc = result.Test as TestMethod;
-				if (tc != null)
-					case_elements [tc].Update (result);
-			}
+			ExecuteOnMainThread (() => {
+				TestResult result = r as TestResult;
+				TestSuite ts = result.Test as TestSuite;
+				if (ts != null) {
+					TestSuiteElement tse;
+					if (suite_elements.TryGetValue (ts, out tse))
+						tse.Update (result);
+				} else {
+					TestMethod tc = result.Test as TestMethod;
+					if (tc != null)
+						case_elements [tc].Update (result);
+				}
+			});
 		}
 
 		protected override void WriteDeviceInformation (TextWriter writer)
