@@ -85,7 +85,7 @@ namespace MonoTouch.NUnit.UI {
 				int counter = Result.AssertCount;
 				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
 					Result.IsInconclusive () ? "Inconclusive." : "Success!",
-					Result.Duration.TotalMilliseconds, counter,
+					Result.GetDuration ().TotalMilliseconds, counter,
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;
 			} else if (Result.IsFailure ()) {

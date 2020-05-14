@@ -18,6 +18,8 @@
 // limitations under the License.
 //
 
+using System;
+
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Api;
@@ -57,6 +59,11 @@ namespace MonoTouch.NUnit {
 			if (!m.StartsWith (NUnitFrameworkExceptionPrefix))
 				return m;
 			return m.Substring (m.IndexOf (" : ") + 3);
+		}
+
+		static public TimeSpan GetDuration (this TestResult result)
+		{
+			return result.Duration;
 		}
 	}
 }

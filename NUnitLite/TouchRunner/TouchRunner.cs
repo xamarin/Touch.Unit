@@ -388,7 +388,7 @@ namespace MonoTouch.NUnit.UI {
 
 				string name = result.Test.Name;
 				if (!String.IsNullOrEmpty (name))
-					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
+					Writer.WriteLine ("{0} : {1} ms", name, result.GetDuration ().TotalMilliseconds);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
