@@ -19,8 +19,8 @@
 //
 
 using System.Reflection;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.NUnit.UI;
 
 namespace MonoTouch.NUnit {
