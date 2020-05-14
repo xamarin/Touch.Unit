@@ -44,7 +44,7 @@ using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
 	public abstract class BaseTouchRunner : ITestListener {
-		TestSuite suite = new TestSuite (String.Empty);
+		TestSuite suite = new TestSuite ("TestSuite");
 		ITestFilter filter = TestFilter.Empty;
 		bool connection_failure;
 
