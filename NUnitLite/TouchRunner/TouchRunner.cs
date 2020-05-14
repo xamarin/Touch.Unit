@@ -40,11 +40,24 @@ using MonoTouch.Dialog;
 using NUnit.Framework.Api;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
+#if NUNITLITE_NUGET
+using NUnitLite;
+using NUnit.Framework.Interfaces;
+using NUnit.Framework.Internal.Execution;
+#else
+using NUnitLite.Runner;
 using NUnit.Framework.Internal.WorkItems;
+#endif
+
+#if NUNITLITE_NUGET
+using SettingsDictionary = System.Collections.Generic.IDictionary<string, object>;
+#else
+using SettingsDictionary = System.Collections.IDictionary;
+#endif
 
 namespace MonoTouch.NUnit.UI {
 	public abstract class BaseTouchRunner : ITestListener {
-		TestSuite suite = new TestSuite (String.Empty);
+		TestSuite suite = new TestSuite ("TestSuite");
 		ITestFilter filter = TestFilter.Empty;
 		bool connection_failure;
 
@@ -119,7 +132,7 @@ namespace MonoTouch.NUnit.UI {
 		public void LoadSync ()
 		{
 			foreach (Assembly assembly in assemblies)
-				Load (assembly, fixtures == null ? null : new Dictionary<string, IList<string>> () { { "LOAD", fixtures } });
+				Load (assembly);
 			assemblies.Clear ();
 		}
 
@@ -275,13 +288,21 @@ namespace MonoTouch.NUnit.UI {
 							break;
 						}
 						if (options.EnableXml) {
-							NUnitLite.Runner.OutputWriter formatter;
+							OutputWriter formatter;
 							switch (options.XmlVersion) {
 							case XmlVersion.NUnitV3:
-								formatter = new NUnitLite.Runner.NUnit3XmlOutputWriter (DateTime.UtcNow);
+#if NUNITLITE_NUGET
+								formatter = new NUnit3XmlOutputWriter ();
+#else
+								formatter = new NUnit3XmlOutputWriter (DateTime.UtcNow);
+#endif
 								break;
 							default:
-								formatter = new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow);
+#if NUNITLITE_NUGET
+								formatter = new NUnit2XmlOutputWriter ();
+#else
+								formatter = new NUnit2XmlOutputWriter (DateTime.UtcNow);
+#endif
 								break;
 							}
 							Writer = new NUnitOutputTextWriter (
@@ -388,7 +409,7 @@ namespace MonoTouch.NUnit.UI {
 
 				string name = result.Test.Name;
 				if (!String.IsNullOrEmpty (name))
-					Writer.WriteLine ("{0} : {1} ms", name, result.Duration.TotalMilliseconds);
+					Writer.WriteLine ("{0} : {1} ms", name, result.GetDuration ().TotalMilliseconds);
 			} else {
 				if (result.IsSuccess ()) {
 					Writer.Write ("\t[PASS] ");
@@ -405,7 +426,11 @@ namespace MonoTouch.NUnit.UI {
 				} else {
 					Writer.Write ("\t[INFO] ");
 				}
+#if NUNITLITE_NUGET
+				Writer.Write (result.Test.FullName);
+#else
 				Writer.Write (result.Test.FixtureType.Name);
+#endif
 				Writer.Write (".");
 				Writer.Write (result.Test.Name);
 
@@ -424,18 +449,55 @@ namespace MonoTouch.NUnit.UI {
 			}
 		}
 
+		Dictionary<string, object> default_settings = new Dictionary<string, object> () {
+#if NUNITLITE_NUGET
+			{ "RunOnMainThread", true },
+#endif
+		};
+
+		SettingsDictionary CreateSettings (SettingsDictionary settings)
+		{
+			if (fixtures == null && (settings == null || settings.Count == 0))
+				return default_settings;
+
+			var dict = new Dictionary<string, object> (default_settings);
+
+			if (settings != null) {
+				foreach (var key in settings.Keys)
+					dict [key?.ToString ()] = settings [key];
+			}
+
+			if (fixtures != null)
+				dict ["LOAD"] = fixtures;
+			
+			return dict;
+		}
+
+#if NUNITLITE_NUGET
+		NUnitTestAssemblyRunner runner = new NUnitTestAssemblyRunner (new DefaultTestAssemblyBuilder ());
+
+		public bool Load (string assemblyName, IDictionary<string, object> settings = null)
+		{
+			return AddSuite ((TestSuite) runner.Load (assemblyName, CreateSettings (settings)));
+		}
+
+		public bool Load (Assembly assembly, IDictionary<string, object> settings = null)
+		{
+			return AddSuite ((TestSuite) runner.Load (assembly, CreateSettings (settings)));
+		}
+#else
 		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
-		Dictionary<string, object> empty = new Dictionary<string, object> ();
 
-		public bool Load (string assemblyName, IDictionary settings)
+		public bool Load (string assemblyName, SettingsDictionary settings = null)
 		{
-			return AddSuite (builder.Build (assemblyName, settings ?? empty));
+			return AddSuite (builder.Build (assemblyName, CreateSettings (settings)));
 		}
 
-		public bool Load (Assembly assembly, IDictionary settings)
+		public bool Load (Assembly assembly, SettingsDictionary settings = null)
 		{
-			return AddSuite (builder.Build (assembly, settings ?? empty));
+			return AddSuite (builder.Build (assembly, CreateSettings (settings)));
 		}
+#endif
 
 		bool AddSuite (TestSuite ts)
 		{
@@ -453,12 +515,34 @@ namespace MonoTouch.NUnit.UI {
 			InconclusiveCount = 0;
 
 			Result = null;
+
+#if NUNITLITE_NUGET
+			runner.Run (this, new MatchTestFilter { MatchTest = test });
+
+			// The TestResult we get back from the runner is for the top-most test suite,
+			// which isn't necessarily the test that we ran. So look for the TestResult
+			// for the test we ran.
+			ITestResult find_result (ITestResult tr)
+			{
+				if (tr.Test == test)
+					return tr;
+				foreach (var child in tr.Children) {
+					var r = find_result (child);
+					if (r != null)
+						return r;
+				}
+				return null;
+			}
+
+			Result = (TestResult) (find_result (runner.Result) ?? runner.Result);
+#else
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
 			current.Listener = this;
 			WorkItem wi = test.CreateWorkItem (filter, new FinallyDelegate ());
 			wi.Execute (current);
 			Result = wi.Result;
+#endif
 			return Result;
 		}
 
@@ -471,6 +555,13 @@ namespace MonoTouch.NUnit.UI {
 		public void TestOutput (TestOutput testOutput)
 		{
 		}
+
+#if NUNITLITE_NUGET
+		public void SendMessage (TestMessage message)
+		{
+			Writer.WriteLine (message.ToString ());
+		}
+#endif
 	}
 
 #if __WATCHOS__
@@ -696,4 +787,37 @@ namespace MonoTouch.NUnit.UI {
 		}
 	}
 #endif
+
+	// A filter that matches a specific test
+	class MatchTestFilter : TestFilter {
+		public ITest MatchTest;
+
+#if NUNITLITE_NUGET
+		public override TNode AddToXml (TNode parentNode, bool recursive)
+		{
+			throw new NotImplementedException ();
+		}
+#endif
+
+		public override bool Match (ITest test)
+		{
+			return IsMatch (test, MatchTest);
+		}
+
+		static bool IsMatch (ITest test, ITest match)
+		{
+			if (test == match)
+				return true;
+
+			if (match.HasChildren) {
+				foreach (var child in match.Tests) {
+					if (IsMatch (test, child))
+						return true;
+				}
+			}
+
+			return false;
+
+		}
+	}
 }

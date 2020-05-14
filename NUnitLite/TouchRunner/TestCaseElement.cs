@@ -27,7 +27,11 @@ using MonoTouch.Dialog;
 
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+#if NUNITLITE_NUGET
+using NUnit.Framework.Interfaces;
+#else
 using NUnit.Framework.Api;
+#endif
 
 namespace MonoTouch.NUnit.UI {
 	
@@ -43,12 +47,16 @@ namespace MonoTouch.NUnit.UI {
 					return;
 
 				var suite = (testCase.Parent as TestSuite);
+#if NUNITLITE_NUGET
+				Run ();
+#else
 				var context = TestExecutionContext.CurrentContext;
 				context.TestObject = Reflect.Construct (testCase.Method.ReflectedType, null);
 
 				suite.GetOneTimeSetUpCommand ().Execute (context);
 				Run ();
 				suite.GetOneTimeTearDownCommand ().Execute (context);
+#endif
 
 				Runner.CloseWriter ();
 				// display more details on (any) failure (but not when ignored)
@@ -87,7 +95,7 @@ namespace MonoTouch.NUnit.UI {
 				int counter = Result.AssertCount;
 				Value = String.Format ("{0} {1} ms for {2} assertion{3}",
 					Result.IsInconclusive () ? "Inconclusive." : "Success!",
-					Result.Duration.TotalMilliseconds, counter,
+					Result.GetDuration ().TotalMilliseconds, counter,
 					counter == 1 ? String.Empty : "s");
 				DetailColor = DarkGreen;
 			} else if (Result.IsFailure ()) {

@@ -25,7 +25,11 @@ using UIKit;
 using MonoTouch.Dialog;
 
 using NUnit.Framework.Internal;
+#if NUNITLITE_NUGET
+using NUnit.Framework.Interfaces;
+#else
 using NUnit.Framework.Api;
+#endif
 
 namespace MonoTouch.NUnit.UI {
 

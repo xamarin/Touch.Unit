@@ -18,9 +18,17 @@
 // limitations under the License.
 //
 
+using System;
+using System.IO;
+
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+#if NUNITLITE_NUGET
+using NUnitLite;
+using NUnit.Framework.Interfaces;
+#else
 using NUnit.Framework.Api;
+#endif
 
 namespace MonoTouch.NUnit {
 	
@@ -58,5 +66,21 @@ namespace MonoTouch.NUnit {
 				return m;
 			return m.Substring (m.IndexOf (" : ") + 3);
 		}
+
+		static public TimeSpan GetDuration (this TestResult result)
+		{
+#if NUNITLITE_NUGET
+			return TimeSpan.FromSeconds (result.Duration);
+#else
+			return result.Duration;
+#endif
+		}
+
+#if NUNITLITE_NUGET
+		static public void WriteResultFile (this NUnitLite.OutputWriter @this, ITestResult result, TextWriter writer)
+		{
+			@this.WriteResultFile (result, writer, null, null);
+		}
+#endif
 	}
 }

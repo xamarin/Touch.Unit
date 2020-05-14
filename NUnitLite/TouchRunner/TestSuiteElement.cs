@@ -67,7 +67,7 @@ namespace MonoTouch.NUnit.UI {
 			StringBuilder sb = new StringBuilder ();
 			if (failure == 0) {
 				DetailColor = DarkGreen;
-				sb.Append ("Success! ").Append (Result.Duration.TotalMilliseconds).Append (" ms for ").Append (positive).Append (" test");
+				sb.Append ("Success! ").Append (Result.GetDuration ().TotalMilliseconds).Append (" ms for ").Append (positive).Append (" test");
 				if (positive > 1)
 					sb.Append ('s');
 			} else {
