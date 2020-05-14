@@ -40,6 +40,7 @@ using MonoTouch.Dialog;
 using NUnit.Framework.Api;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
+using NUnitLite.Runner;
 using NUnit.Framework.Internal.WorkItems;
 
 namespace MonoTouch.NUnit.UI {
@@ -275,13 +276,13 @@ namespace MonoTouch.NUnit.UI {
 							break;
 						}
 						if (options.EnableXml) {
-							NUnitLite.Runner.OutputWriter formatter;
+							OutputWriter formatter;
 							switch (options.XmlVersion) {
 							case XmlVersion.NUnitV3:
-								formatter = new NUnitLite.Runner.NUnit3XmlOutputWriter (DateTime.UtcNow);
+								formatter = new NUnit3XmlOutputWriter (DateTime.UtcNow);
 								break;
 							default:
-								formatter = new NUnitLite.Runner.NUnit2XmlOutputWriter (DateTime.UtcNow);
+								formatter = new NUnit2XmlOutputWriter (DateTime.UtcNow);
 								break;
 							}
 							Writer = new NUnitOutputTextWriter (
