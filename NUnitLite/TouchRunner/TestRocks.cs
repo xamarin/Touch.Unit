@@ -79,7 +79,7 @@ namespace MonoTouch.NUnit {
 #if NUNITLITE_NUGET
 		static public void WriteResultFile (this NUnitLite.OutputWriter @this, ITestResult result, TextWriter writer)
 		{
-			@this.WriteResultFile (result, writer, null, null);
+			@this.WriteResultFile (result, writer, null, TestFilter.Empty);
 		}
 #endif
 	}
