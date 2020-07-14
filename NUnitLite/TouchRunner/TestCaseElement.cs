@@ -46,10 +46,10 @@ namespace MonoTouch.NUnit.UI {
 				if (!Runner.OpenWriter (Test.FullName))
 					return;
 
-				var suite = (testCase.Parent as TestSuite);
 #if NUNITLITE_NUGET
 				Run ();
 #else
+				var suite = (testCase.Parent as TestSuite);
 				var context = TestExecutionContext.CurrentContext;
 				context.TestObject = Reflect.Construct (testCase.Method.ReflectedType, null);
 
