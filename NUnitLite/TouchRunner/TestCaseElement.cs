@@ -73,7 +73,7 @@ namespace MonoTouch.NUnit.UI {
 			Runner.Run (TestCase);
 		}
 		
-		public override void Update ()
+		public override void TestFinished ()
 		{
 			if (Result.IsIgnored ()) {
 				Value = Result.GetMessage ();
