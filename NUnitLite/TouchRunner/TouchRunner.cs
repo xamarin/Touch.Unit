@@ -507,7 +507,7 @@ namespace MonoTouch.NUnit.UI {
 			return true;
 		}
 
-		public TestResult Run (Test test)
+		public void Run (Test test)
 		{
 			PassedCount = 0;
 			IgnoredCount = 0;
@@ -543,7 +543,6 @@ namespace MonoTouch.NUnit.UI {
 			wi.Execute (current);
 			Result = wi.Result;
 #endif
-			return Result;
 		}
 
 		public ITest LoadedTest {
