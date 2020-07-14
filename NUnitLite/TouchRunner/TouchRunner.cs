@@ -494,6 +494,10 @@ namespace MonoTouch.NUnit.UI {
 					Writer.Write (" : {0}", message.Replace ("\r\n", "\\r\\n"));
 				}
 				Writer.WriteLine ();
+#if NUNITLITE_NUGET
+				if (!string.IsNullOrEmpty (result.Output))
+					Writer.WriteLine (result.Output);
+#endif
 
 				string stacktrace = result.StackTrace;
 				if (!String.IsNullOrEmpty (result.StackTrace)) {
