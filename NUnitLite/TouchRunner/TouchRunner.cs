@@ -474,15 +474,21 @@ namespace MonoTouch.NUnit.UI {
 		}
 
 #if NUNITLITE_NUGET
-		NUnitTestAssemblyRunner runner = new NUnitTestAssemblyRunner (new DefaultTestAssemblyBuilder ());
+		// we need one runner per test assembly
+		DefaultTestAssemblyBuilder builder = new DefaultTestAssemblyBuilder ();
+		List<NUnitTestAssemblyRunner> runners = new List<NUnitTestAssemblyRunner> ();
 
 		public bool Load (string assemblyName, IDictionary<string, object> settings = null)
 		{
+			var runner = new NUnitTestAssemblyRunner (builder);
+			runners.Add (runner);
 			return AddSuite ((TestSuite) runner.Load (assemblyName, CreateSettings (settings)));
 		}
 
 		public bool Load (Assembly assembly, IDictionary<string, object> settings = null)
 		{
+			var runner = new NUnitTestAssemblyRunner (builder);
+			runners.Add (runner);
 			return AddSuite ((TestSuite) runner.Load (assembly, CreateSettings (settings)));
 		}
 #else
@@ -517,7 +523,9 @@ namespace MonoTouch.NUnit.UI {
 			Result = null;
 
 #if NUNITLITE_NUGET
-			runner.Run (this, new MatchTestFilter { MatchTest = test });
+			var filter = new MatchTestFilter { MatchTest = test };
+			foreach (var runner in runners)
+				runner.Run (this, filter);
 
 			// The TestResult we get back from the runner is for the top-most test suite,
 			// which isn't necessarily the test that we ran. So look for the TestResult
@@ -534,7 +542,13 @@ namespace MonoTouch.NUnit.UI {
 				return null;
 			}
 
-			Result = (TestResult) (find_result (runner.Result) ?? runner.Result);
+			var tsr = new TestSuiteResult (suite);
+			foreach (var runner in runners) {
+				var rv = (TestResult) (find_result (runner.Result) ?? runner.Result);
+				if (rv != null)
+					tsr.AddResult (rv);
+			}
+			Result = tsr;
 #else
 			TestExecutionContext current = TestExecutionContext.CurrentContext;
 			current.WorkDirectory = Environment.CurrentDirectory;
