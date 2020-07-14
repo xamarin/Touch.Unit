@@ -395,7 +395,11 @@ namespace MonoTouch.NUnit.UI {
 		{
 			if (test is TestSuite) {
 				Writer.WriteLine ();
+#if NUNITLITE_NUGET
+				Writer.WriteLine (test.FullName);
+#else
 				Writer.WriteLine (test.Name);
+#endif
 			}
 		}
 
@@ -407,7 +411,11 @@ namespace MonoTouch.NUnit.UI {
 				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
 					Writer.WriteLine ("\t[INFO] {0}", result.Message);
 
+#if NUNITLITE_NUGET
+				string name = result.Test.FullName;
+#else
 				string name = result.Test.Name;
+#endif
 				if (!String.IsNullOrEmpty (name))
 					Writer.WriteLine ("{0} : {1} ms", name, result.GetDuration ().TotalMilliseconds);
 			} else {
@@ -427,12 +435,12 @@ namespace MonoTouch.NUnit.UI {
 					Writer.Write ("\t[INFO] ");
 				}
 #if NUNITLITE_NUGET
-				Writer.Write (result.Test.FullName);
+				Writer.Write (result.Test.Name);
 #else
 				Writer.Write (result.Test.FixtureType.Name);
-#endif
 				Writer.Write (".");
 				Writer.Write (result.Test.Name);
+#endif
 
 				string message = result.Message;
 				if (!String.IsNullOrEmpty (message)) {
