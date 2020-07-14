@@ -136,10 +136,53 @@ namespace MonoTouch.NUnit.UI {
 			assemblies.Clear ();
 		}
 
+		public void SelectLastTestSuite ()
+		{
+			var lastSuite = NSUserDefaults.StandardUserDefaults.StringForKey ("CurrentTest");
+
+			if (string.IsNullOrEmpty (lastSuite))
+				return;
+
+			var hierarchy = new List<ITest> ();
+			var test = Find (suite, lastSuite, hierarchy);
+			if (hierarchy.Count < 2)
+				return;
+			// Remove the last one, that's the main test suite
+			hierarchy.RemoveAt (hierarchy.Count - 1);
+			for (var i = hierarchy.Count - 1; i >= 0; i--) {
+				if (hierarchy [i] is TestSuite ts) {
+					Show (ts);
+				} else {
+					break;
+				}
+			}
+		}
+
+		ITest Find (ITest parent, string fullname, List<ITest> hierarchy)
+		{
+			if (parent.FullName == fullname) {
+				hierarchy.Add (parent);
+				return parent;
+			}
+
+			foreach (var test in parent.Tests) {
+				var rv = Find (test, fullname, hierarchy);
+				if (rv != null) {
+					hierarchy.Add (parent);
+					return test;
+				}
+			}
+
+			return null;
+		}
+		
+
 		public void AutoRun ()
 		{
-			if (!AutoStart)
+			if (!AutoStart) {
+				SelectLastTestSuite ();
 				return;
+			}
 
 			ExecuteOnMainThread (() => {
 				Run ();
@@ -375,6 +418,10 @@ namespace MonoTouch.NUnit.UI {
 
 		protected abstract void WriteDeviceInformation (TextWriter writer);
 
+		public virtual void Show (TestSuite suite)
+		{
+		}
+
 		public void CloseWriter ()
 		{
 			int total = PassedCount + InconclusiveCount + FailedCount; // ignored are *not* run
@@ -552,6 +599,11 @@ namespace MonoTouch.NUnit.UI {
 			}
 		}
 
+		public void NotifySelectedTest (ITest test)
+		{
+			NSUserDefaults.StandardUserDefaults.SetString (test.FullName, "CurrentTest");
+		}
+
 		public void TestOutput (TestOutput testOutput)
 		{
 		}
@@ -687,7 +739,7 @@ namespace MonoTouch.NUnit.UI {
 		Dictionary<TestSuite, TestSuiteElement> suite_elements = new Dictionary<TestSuite, TestSuiteElement> ();
 		Dictionary<TestMethod, TestCaseElement> case_elements = new Dictionary<TestMethod, TestCaseElement> ();
 		
-		public void Show (TestSuite suite)
+		public override void Show (TestSuite suite)
 		{
 			NavigationController.PushViewController (suites_dvc [suite], true);
 		}
@@ -729,7 +781,11 @@ namespace MonoTouch.NUnit.UI {
 				root.Add (options);
 			}
 
-			suites_dvc.Add (suite, new TouchViewController (root));
+			var tvc = new TouchViewController (root);
+			tvc.ViewAppearing += (object sender, EventArgs ea) => {
+				NotifySelectedTest (suite);
+			};
+			suites_dvc.Add (suite, tvc);
 			return tse;
 		}
 		
