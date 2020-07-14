@@ -1,8 +1,0 @@
-<Project>
-
-  <PropertyGroup>
-    <BaseIntermediateOutputPath>obj\$(_PlatformName)\</BaseIntermediateOutputPath>
-    <OutputPath>bin\$(_PlatformName)\$(Configuration)</OutputPath>
-  </PropertyGroup>
-
-</Project>
