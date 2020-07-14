@@ -65,13 +65,13 @@ namespace MonoTouch.NUnit.UI {
 		
 		protected ITest Test { get; private set; }
 		
-		public void Update (TestResult result)
+		public void TestFinished (TestResult result)
 		{
 			Result = result;
 			
-			Update ();
+			TestFinished ();
 		}
 		
-		abstract public void Update ();
+		abstract public void TestFinished ();
 	}
 }

@@ -58,7 +58,7 @@ namespace MonoTouch.NUnit.UI {
 			Runner.Run (Suite);
 		}
 		
-		public override void Update ()
+		public override void TestFinished ()
 		{
 			int positive = Result.PassCount + Result.InconclusiveCount;
 			int failure = Result.FailCount;

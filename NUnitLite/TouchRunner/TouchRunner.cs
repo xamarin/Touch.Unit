@@ -829,11 +829,11 @@ namespace MonoTouch.NUnit.UI {
 				if (ts != null) {
 					TestSuiteElement tse;
 					if (suite_elements.TryGetValue (ts, out tse))
-						tse.Update (result);
+						tse.TestFinished (result);
 				} else {
 					TestMethod tc = result.Test as TestMethod;
 					if (tc != null)
-						case_elements [tc].Update (result);
+						case_elements [tc].TestFinished (result);
 				}
 			});
 		}
