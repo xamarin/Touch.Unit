@@ -716,18 +716,16 @@ namespace MonoTouch.NUnit.UI {
 		
 			root.Add (section);
 			
-			if (section.Count > 1) {
-				Section options = new Section () {
-					new StringElement ("Run all", delegate () {
-						if (OpenWriter (suite.Name)) {
-							Run (suite);
-							CloseWriter ();
-							suites_dvc [suite].Filter ();
-						}
-					})
-				};
-				root.Add (options);
-			}
+			Section options = new Section () {
+				new StringElement ("Run all", delegate () {
+					if (OpenWriter (suite.Name)) {
+						Run (suite);
+						CloseWriter ();
+						suites_dvc [suite].Filter ();
+					}
+				})
+			};
+			root.Add (options);
 
 			suites_dvc.Add (suite, new TouchViewController (root));
 			return tse;
