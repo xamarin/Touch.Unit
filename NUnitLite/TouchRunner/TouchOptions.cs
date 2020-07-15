@@ -19,11 +19,14 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 using Foundation;
+#if !__MACOS__
 using UIKit;
+#endif
 
-#if !__WATCHOS__
+#if !__WATCHOS__ && !__MACOS__
 using MonoTouch.Dialog;
 #endif
 
@@ -43,9 +46,19 @@ namespace MonoTouch.NUnit.UI {
 
 	public class TouchOptions {
 
-		static public TouchOptions Current = new TouchOptions ();
+		static TouchOptions current;
+		static public TouchOptions Current {
+			get {
+				if (current == null)
+					current = new TouchOptions ();
+				return current;
+			}
+			set {
+				current = value;
+			}
+		}
 		
-		public TouchOptions ()
+		public TouchOptions (IList<string> arguments)
 		{
 			var defaults = NSUserDefaults.StandardUserDefaults;
 			TerminateAfterExecution = defaults.BoolForKey ("execution.autoexit");
@@ -103,10 +116,15 @@ namespace MonoTouch.NUnit.UI {
 			};
 			
 			try {
-				os.Parse (Environment.GetCommandLineArgs ());
+				os.Parse (arguments);
 			} catch (OptionException oe) {
 				Console.WriteLine ("{0} for options '{1}'", oe.Message, oe.OptionName);
 			}
+		}
+
+		public TouchOptions ()
+			: this (Environment.GetCommandLineArgs ())
+		{
 		}
 		
 		private bool EnableNetwork { get; set; }
@@ -137,7 +155,7 @@ namespace MonoTouch.NUnit.UI {
 
 		public bool SortNames { get; set; }
 		
-#if !__WATCHOS__
+#if !__WATCHOS__ && !__MACOS__
 		public UIViewController GetViewController ()
 		{
 #if TVOS
