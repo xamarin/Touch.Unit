@@ -96,9 +96,9 @@ namespace MonoTouch.NUnit.UI {
 				{ "use-tcp-tunnel", "Use a TCP tunnel to connect to the host.", v => UseTcpTunnel = true },
 				{ "enablenetwork", "Enable the network reporter.", v => EnableNetwork = true },
 				{ "transport=", "Select transport method. Either TCP (default), HTTP or FILE.", v => Transport = v },
-				{ "enablexml", "Enable the xml reported.", v => EnableXml = false },
-				{ "xmlmode", "The xml mode.", v => XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), v, false) },
-				{ "xmlversion", "The xml version.", v => XmlVersion = (XmlVersion) Enum.Parse (typeof (XmlVersion), v, false) },
+				{ "enablexml:", "Enable the xml reported.", v => EnableXml = string.IsNullOrEmpty (v) ? true : bool.Parse (v) },
+				{ "xmlmode=", "The xml mode.", v => XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), v, true) },
+				{ "xmlversion=", "The xml version.", v => XmlVersion = (XmlVersion) Enum.Parse (typeof (XmlVersion), v, true) },
 				{ "logfile=", "A path where output will be saved.", v => LogFile = v },
 			};
 			
