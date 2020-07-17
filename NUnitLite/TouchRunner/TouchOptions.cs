@@ -132,7 +132,7 @@ namespace MonoTouch.NUnit.UI {
 		public string LogFile { get; set; }
 
 		public bool ShowUseNetworkLogger {
-			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0 || Transport == "FILE")); }
+			get { return (EnableNetwork && !String.IsNullOrWhiteSpace (HostName) && (HostPort > 0)) || Transport == "FILE"; }
 		}
 
 		public bool SortNames { get; set; }
