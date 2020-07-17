@@ -30,10 +30,12 @@ using System.Threading.Tasks;
 
 using Foundation;
 using ObjCRuntime;
+#if !__MACOS__
 using UIKit;
+#endif
 using Constants = global::ObjCRuntime.Constants;
 
-#if !__WATCHOS__
+#if !__WATCHOS__ && !__MACOS__
 using MonoTouch.Dialog;
 #endif
 
@@ -200,6 +202,12 @@ namespace MonoTouch.NUnit.UI {
 					}
 				}
 			});
+		}
+
+		public Task RunAsync ()
+		{
+			Run ();
+			return Task.CompletedTask;
 		}
 
 		bool running;
@@ -387,7 +395,7 @@ namespace MonoTouch.NUnit.UI {
 		// returns true if test run should still start
 		bool ShowConnectionErrorAlert (string hostname, int port, Exception ex)
 		{
-#if __TVOS__ || __WATCHOS__
+#if __TVOS__ || __WATCHOS__ || __MACOS__
 			return true;
 #else
 			// Don't show any alerts if we're running automated.
@@ -652,7 +660,7 @@ namespace MonoTouch.NUnit.UI {
 	}
 #endif
 	
-#if !__WATCHOS__
+#if !__WATCHOS__ && !__MACOS__
 	public class ConsoleRunner : BaseTouchRunner {
 		protected override void WriteDeviceInformation (TextWriter writer)
 		{

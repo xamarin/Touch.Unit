@@ -7,7 +7,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
+#if __IOS__
 using UIKit;
+#endif
 
 namespace MonoTouch.NUnit {
 
