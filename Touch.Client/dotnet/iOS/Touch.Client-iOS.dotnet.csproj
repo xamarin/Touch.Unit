@@ -12,40 +12,40 @@
     <Compile Include="..\..\..\NUnitLite\TouchRunner\ExcludedCategoryFilter.cs">
       <Link>ExcludedCategoryFilter.cs</Link>
     </Compile>
-    <Compile Include="..\NUnitLite\TouchRunner\HttpTextWriter.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\HttpTextWriter.cs">
       <Link>HttpTextWriter.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\NUnitOutputTextWriter.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\NUnitOutputTextWriter.cs">
       <Link>NUnitOutputTextWriter.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\Options.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\Options.cs">
       <Link>Options.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TcpTextWriter.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TcpTextWriter.cs">
       <Link>TcpTextWriter.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TestCaseElement.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TestCaseElement.cs">
       <Link>TestCaseElement.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TestElement.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TestElement.cs">
       <Link>TestElement.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TestResultElement.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TestResultElement.cs">
       <Link>TestResultElement.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TestRocks.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TestRocks.cs">
       <Link>TestRocks.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TestSuiteElement.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TestSuiteElement.cs">
       <Link>TestSuiteElement.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TouchOptions.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TouchOptions.cs">
       <Link>TouchOptions.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TouchRunner.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TouchRunner.cs">
       <Link>TouchRunner.cs</Link>
     </Compile>
-    <Compile Include="..\..\NUnitLite\TouchRunner\TouchViewController.cs">
+    <Compile Include="..\..\..\NUnitLite\TouchRunner\TouchViewController.cs">
       <Link>TouchViewController.cs</Link>
     </Compile>
   </ItemGroup>
