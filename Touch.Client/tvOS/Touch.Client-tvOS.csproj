@@ -41,6 +41,9 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\NUnitLite\TouchRunner\ExcludedCategoryFilter.cs">
+      <Link>ExcludedCategoryFilter.cs</Link>
+    </Compile>
     <Compile Include="..\..\NUnitLite\TouchRunner\HttpTextWriter.cs">
       <Link>HttpTextWriter.cs</Link>
     </Compile>

@@ -23,6 +23,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -83,6 +84,8 @@ namespace MonoTouch.NUnit.UI {
 			get { return filter; }
 			set { filter = value; }
 		}
+
+		public HashSet<string> ExcludedCategories { get; set; }
 
 		public bool TerminateAfterExecution {
 			get { return TouchOptions.Current.TerminateAfterExecution && !connection_failure; }
@@ -591,6 +594,10 @@ namespace MonoTouch.NUnit.UI {
 
 #if NUNITLITE_NUGET
 			var filter = new MatchTestFilter { MatchTest = test };
+			if (this.filter != null)
+				filter.AndFilters.Add (this.filter);
+			if (ExcludedCategories != null)
+				filter.AndFilters.Add (new ExcludeCategoryFilter (ExcludedCategories));
 			foreach (var runner in runners)
 				runner.Run (this, filter);
 
@@ -878,6 +885,7 @@ namespace MonoTouch.NUnit.UI {
 	// A filter that matches a specific test
 	class MatchTestFilter : TestFilter {
 		public ITest MatchTest;
+		public List<ITestFilter> AndFilters = new List<ITestFilter> ();
 
 #if NUNITLITE_NUGET
 		public override TNode AddToXml (TNode parentNode, bool recursive)
@@ -888,6 +896,12 @@ namespace MonoTouch.NUnit.UI {
 
 		public override bool Match (ITest test)
 		{
+			if (AndFilters != null) {
+				// If any of the And filters returns false, then return false too.
+				if (AndFilters.Any ((v) => !v.Pass (test)))
+					return false;
+			}
+
 			return IsMatch (test, MatchTest);
 		}
 
