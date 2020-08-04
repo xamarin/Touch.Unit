@@ -595,7 +595,7 @@ namespace MonoTouch.NUnit.UI {
 #if NUNITLITE_NUGET
 			var filter = new MatchTestFilter { MatchTest = test };
 			if (this.filter != null)
-				filter.AndFilters.Add (this.filter);
+				filter.AndFilters.Add ((TestFilter) this.filter);
 			if (ExcludedCategories != null)
 				filter.AndFilters.Add (new ExcludeCategoryFilter (ExcludedCategories));
 			foreach (var runner in runners)
@@ -885,7 +885,7 @@ namespace MonoTouch.NUnit.UI {
 	// A filter that matches a specific test
 	class MatchTestFilter : TestFilter {
 		public ITest MatchTest;
-		public List<ITestFilter> AndFilters = new List<ITestFilter> ();
+		public List<TestFilter> AndFilters = new List<TestFilter> ();
 
 #if NUNITLITE_NUGET
 		public override TNode AddToXml (TNode parentNode, bool recursive)
@@ -898,7 +898,7 @@ namespace MonoTouch.NUnit.UI {
 		{
 			if (AndFilters != null) {
 				// If any of the And filters returns false, then return false too.
-				if (AndFilters.Any ((v) => !v.Pass (test)))
+				if (AndFilters.Any ((v) => !v.Match (test)))
 					return false;
 			}
 
