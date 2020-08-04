@@ -9,13 +9,31 @@ using Foundation;
 
 namespace MonoTouch.NUnit.UI {
 	public class MacRunner : BaseTouchRunner {
-		public static async Task<int> MainAsync (IList<string> arguments, params Assembly[] assemblies)
+		// The exitProcess callback must not return. The boolean parameter specifies whether the test run succeeded or not.
+		public static async Task<int> MainAsync (IList<string> arguments, bool requiresNSApplicationRun, Action<int> exitProcess, params Assembly[] assemblies)
 		{
+			var success = false;
+
 			NSApplication.Init ();
 
 			var options = new TouchOptions (arguments);
 			TouchOptions.Current = options;
-			return await RunTestsAsync (options, assemblies) ? 0 : 1;
+
+			if (requiresNSApplicationRun) {
+				var app = NSApplication.SharedApplication;
+				app.InvokeOnMainThread (async () => {
+					success = await RunTestsAsync (options, assemblies);
+					// The only reliable way to stop NSApplication.Run is to call NSApplication.Terminate, which will
+					// terminate the app, but won't allow us to specify the exit code. So we need an callback that will
+					// exit the process
+					exitProcess (success ? 0 : 1);
+				});
+				app.Run ();
+			} else {
+				success = await RunTestsAsync (options, assemblies);
+			}
+
+			return success ? 0 : 1;
 		}
 
 		static async Task<bool> RunTestsAsync (TouchOptions options, Assembly[] assemblies)
