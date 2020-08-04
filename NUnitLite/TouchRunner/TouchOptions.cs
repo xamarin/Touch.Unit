@@ -71,6 +71,7 @@ namespace MonoTouch.NUnit.UI {
 			Transport = defaults.StringForKey ("network.transport");
 			SortNames = defaults.BoolForKey ("display.sort");
 			LogFile = defaults.StringForKey ("log.file");
+			TestName = defaults.StringForKey ("test.name");
 			
 			bool b;
 			if (bool.TryParse (Environment.GetEnvironmentVariable ("NUNIT_AUTOEXIT"), out b))
@@ -100,6 +101,7 @@ namespace MonoTouch.NUnit.UI {
 				XmlVersion = (XmlVersion)Enum.Parse (typeof (XmlVersion), xml_version, true);
 			if (!string.IsNullOrEmpty (Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE")))
 				LogFile = Environment.GetEnvironmentVariable ("NUNIT_LOG_FILE");
+			TestName = Environment.GetEnvironmentVariable ("NUNIT_TEST_NAME");
 
 			var os = new OptionSet () {
 				{ "autoexit", "If the app should exit once the test run has completed.", v => TerminateAfterExecution = true },
@@ -113,6 +115,7 @@ namespace MonoTouch.NUnit.UI {
 				{ "xmlmode=", "The xml mode.", v => XmlMode = (XmlMode) Enum.Parse (typeof (XmlMode), v, true) },
 				{ "xmlversion=", "The xml version.", v => XmlVersion = (XmlVersion) Enum.Parse (typeof (XmlVersion), v, true) },
 				{ "logfile=", "A path where output will be saved.", v => LogFile = v },
+				{ "test=", "A test to run. Only applicable if autostart is true.", v => TestName = v },
 			};
 			
 			try {
@@ -155,6 +158,8 @@ namespace MonoTouch.NUnit.UI {
 
 		public bool SortNames { get; set; }
 		
+		public string TestName { get; set; }
+
 #if !__WATCHOS__ && !__MACOS__
 		public UIViewController GetViewController ()
 		{
