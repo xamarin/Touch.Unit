@@ -598,6 +598,8 @@ namespace MonoTouch.NUnit.UI {
 				filter.AndFilters.Add ((TestFilter) this.filter);
 			if (ExcludedCategories != null)
 				filter.AndFilters.Add (new ExcludeCategoryFilter (ExcludedCategories));
+			if (!string.IsNullOrEmpty (TouchOptions.Current.TestName))
+				filter.AndFilters.Add (TestFilter.FromXml ($"<filter><test>{TouchOptions.Current.TestName.Replace ("&", "&amp").Replace ("<", "&lt;")}</test></filter>"));
 			foreach (var runner in runners)
 				runner.Run (this, filter);
 
