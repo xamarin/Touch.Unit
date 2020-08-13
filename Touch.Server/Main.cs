@@ -204,9 +204,9 @@ class SimpleListener {
 			if (String.IsNullOrEmpty (mt_root))
 				mt_root = "/Library/Frameworks/Xamarin.iOS.framework/Versions/Current";
 
-			string mtouch = Path.Combine (mt_root, "bin", "mtouch");
+			string mtouch = Path.Combine (mt_root, "bin", "mlaunch");
 			if (!File.Exists (mtouch))
-				mtouch = Path.Combine (mt_root, "usr", "bin", "mtouch");
+				mtouch = Path.Combine (mt_root, "usr", "bin", "mlaunch");
 
 			Process proc = null;
 			if (launchdev != null) {
