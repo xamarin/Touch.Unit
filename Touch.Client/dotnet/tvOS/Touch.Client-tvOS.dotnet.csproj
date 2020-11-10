@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-tvos</TargetFramework>
+    <TargetFramework>net6.0-tvos</TargetFramework>
     <DefineConstants>NUNITLITE_NUGET</DefineConstants>
     <LangVersion>latest</LangVersion>
     <!-- Currently, NuGet is not able to restore existing Xamarin.TVOS packages for a .NET 5 project, so use AssetTargetFallback to tell NuGet that the existing packages work -->
