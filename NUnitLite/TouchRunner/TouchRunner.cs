@@ -679,6 +679,7 @@ namespace MonoTouch.NUnit.UI {
 		}
 	}
 
+	[CLSCompliant (false)]
 	public class TouchRunner : BaseTouchRunner {
 		
 		UIWindow window;
