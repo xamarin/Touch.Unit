@@ -44,6 +44,7 @@ namespace MonoTouch.NUnit.UI {
 		NUnitV3 = 1,
 	}
 
+	[CLSCompliant (false)]
 	public class TouchOptions {
 
 		static TouchOptions current;
