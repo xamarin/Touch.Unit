@@ -165,8 +165,8 @@ class SimpleListener {
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "verbose", "Display verbose output", v => verbose = true },
-			{ "ip=", "IP address to listen (default: Any)", v => ipAddress = IPAddress.Parse(v) },
-			{ "port=", "TCP port to listen (default: Any)", v => port = ushort.Parse(v) },
+			{ "ip=", "IP address to listen (default: Any)", v => ipAddress = IPAddress.Parse (v) },
+			{ "port=", "TCP port to listen (default: Any)", v => port = ushort.Parse (v) },
 			{ "logpath=", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
