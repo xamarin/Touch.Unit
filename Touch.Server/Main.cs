@@ -148,8 +148,8 @@ class SimpleListener {
 		
 		bool help = false;
 		bool verbose = false;
-		string address = null;
-		string port = null;
+		IPAddress ipAddress = IPAddress.Any;
+		ushort port = 0;
 		string log_path = ".";
 		string log_file = null;
 		string launchdev = null;
@@ -165,8 +165,8 @@ class SimpleListener {
 		var os = new OptionSet () {
 			{ "h|?|help", "Display help", v => help = true },
 			{ "verbose", "Display verbose output", v => verbose = true },
-			{ "ip", "IP address to listen (default: Any)", v => address = v },
-			{ "port", "TCP port to listen (default: Any)", v => port = v },
+			{ "ip=", "IP address to listen (default: Any)", v => ipAddress = IPAddress.Parse(v) },
+			{ "port=", "TCP port to listen (default: Any)", v => port = ushort.Parse(v) },
 			{ "logpath=", "Path to save the log files (default: .)", v => log_path = v },
 			{ "logfile=", "Filename to save the log to (default: automatically generated)", v => log_file = v },
 			{ "launchdev=", "Run the specified app on a device (specify using bundle identifier)", v => launchdev = v },
@@ -187,14 +187,8 @@ class SimpleListener {
 			
 			var listener = new SimpleListener ();
 			
-			IPAddress ip;
-			if (String.IsNullOrEmpty (address) || !IPAddress.TryParse (address, out ip))
-				listener.Address = IPAddress.Any;
-			
-			ushort p;
-			if (UInt16.TryParse (port, out p))
-				listener.Port = p;
-			
+			listener.Address = ipAddress;
+			listener.Port = port;
 			listener.LogPath = log_path ?? ".";
 			listener.LogFile = log_file;
 			listener.AutoExit = autoexit;
