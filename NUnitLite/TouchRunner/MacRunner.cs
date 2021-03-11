@@ -36,7 +36,7 @@ namespace MonoTouch.NUnit.UI {
 						// First try to stop the app nicely. This only works if the app is showing a window.
 						app.Stop (app);
 						// Stopping the run loop only works something else is processed by the run loop, so add an event.
-						app.PostEvent (NSEvent.OtherEvent (NSEventType.ApplicationDefined, CoreGraphics.CGPoint.Empty, (NSEventModifierMask) 0, 0, 0, null, 0, 0, 0), true);
+						app.PostEvent (NSEvent.OtherEvent (NSEventType.ApplicationDefined, CGPoint.Empty, (NSEventModifierMask) 0, 0, 0, null, 0, 0, 0), true);
 						// And try something else too in case the application-defined event doesn't work.
 						app.AbortModal ();
 					});
