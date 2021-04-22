@@ -45,7 +45,11 @@ namespace MonoTouch.NUnit.UI {
 				};
 			} else {
 				DetailColor = Orange;
-				Value = "No test was found inside this suite";
+				var skip = test.Properties ["_SKIPREASON"];
+				if (skip.Count > 0)
+					Value = skip [0].ToString ();
+				else
+					Value = "No test was found inside this suite";
 			}
 		}
 		

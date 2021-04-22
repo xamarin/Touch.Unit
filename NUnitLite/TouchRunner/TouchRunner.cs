@@ -468,6 +468,9 @@ namespace MonoTouch.NUnit.UI {
 			if (result.Test is TestSuite) {
 				if (!result.IsFailure () && !result.IsSuccess () && !result.IsInconclusive () && !result.IsIgnored ())
 					Writer.WriteLine ("\t[INFO] {0}", result.Message);
+				var skip = result.Test.Properties ["_SKIPREASON"];
+				if (skip.Count > 0)
+					Writer.WriteLine ("\t[SKIPREASON] {0}", skip [0]);
 
 #if NUNITLITE_NUGET
 				string name = result.Test.FullName;
