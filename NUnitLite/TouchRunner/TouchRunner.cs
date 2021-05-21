@@ -26,6 +26,7 @@ using System.Net.Sockets;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -294,6 +295,7 @@ namespace MonoTouch.NUnit.UI {
 			DateTime now = DateTime.Now;
 			// let the application provide it's own TextWriter to ease automation with AutoStart property
 			if (Writer == null) {
+				var writers = new List<TextWriter> ();
 				if (options.ShowUseNetworkLogger) {
 					try {
 						string hostname = null;
@@ -359,10 +361,10 @@ namespace MonoTouch.NUnit.UI {
 #endif
 								break;
 							}
-							Writer = new NUnitOutputTextWriter (
-								this, defaultWriter, formatter, options.XmlMode);
+							writers.Add (new NUnitOutputTextWriter (
+								this, defaultWriter, formatter, options.XmlMode));
 						} else {
-							Writer = defaultWriter;
+							writers.Add (defaultWriter);
 						}
 					} catch (Exception ex) {
 						connection_failure = true;
@@ -370,9 +372,10 @@ namespace MonoTouch.NUnit.UI {
 							return false;
 
 						Console.WriteLine ("Network error: Cannot connect to {0}:{1}: {2}. Continuing on console.", options.HostName, options.HostPort, ex);
-						Writer = Console.Out;
 					}
 				}
+				writers.Add (Console.Out);
+				Writer = new MultiplexedTextWriter (writers);
 			}
 
 			if (Writer == null)
@@ -925,6 +928,50 @@ namespace MonoTouch.NUnit.UI {
 
 			return false;
 
+		}
+	}
+
+	class MultiplexedTextWriter : TextWriter {
+		List<TextWriter> writers = new List<TextWriter> ();
+
+		public MultiplexedTextWriter (IEnumerable<TextWriter> writers)
+		{
+			this.writers.AddRange (writers);
+		}
+
+		public void Add (TextWriter writer)
+		{
+			writers.Add (writer);
+		}
+
+		public override Encoding Encoding {
+			get {
+				return Encoding.UTF8;
+			}
+		}
+
+		public override void Close ()
+		{
+			foreach (var writer in writers)
+				writer.Close ();
+		}
+
+		public override void Write (char value)
+		{
+			foreach (var writer in writers)
+				writer.Write (value);
+		}
+
+		public override void Write (char [] buffer)
+		{
+			foreach (var writer in writers)
+				writer.Write (buffer);
+		}
+
+		public override void WriteLine (string value)
+		{
+			foreach (var writer in writers)
+				writer.WriteLine (value);
 		}
 	}
 }
