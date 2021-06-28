@@ -61,6 +61,5 @@
     <PackageReference Include="NUnit.Extension.NUnitV2ResultWriter">
       <Version>3.6.0</Version>
     </PackageReference>
-    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
 </Project>
