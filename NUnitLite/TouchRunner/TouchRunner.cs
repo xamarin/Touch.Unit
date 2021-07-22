@@ -376,7 +376,7 @@ namespace MonoTouch.NUnit.UI {
 							}
 							writers.Add (new NUnitOutputTextWriter (
 								this, defaultWriter, formatter, options.XmlMode));
-						} else {
+						} else if (defaultWriter != null) {
 							writers.Add (defaultWriter);
 						}
 					} catch (Exception ex) {
