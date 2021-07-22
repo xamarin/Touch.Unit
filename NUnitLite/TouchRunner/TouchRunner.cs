@@ -193,7 +193,7 @@ namespace MonoTouch.NUnit.UI {
 
 		public void AutoRun ()
 		{
-			Console.WriteLine ("AutoRun ()");
+			TraceLine ("AutoRun ()");
 			if (!AutoStart) {
 				SelectLastTestSuite ();
 				return;
