@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Versioning;
 using System.Threading.Tasks;
 
 using AppKit;
@@ -9,6 +10,9 @@ using Foundation;
 using CoreGraphics;
 
 namespace MonoTouch.NUnit.UI {
+#if NET
+	[SupportedOSPlatform ("macos10.11")]
+#endif
 	public class MacRunner : BaseTouchRunner {
 		// The exitProcess callback must not return. The boolean parameter specifies whether the test run succeeded or not.
 		public static async Task<int> MainAsync (IList<string> arguments, bool requiresNSApplicationRun, Action<int> exitProcess, params Assembly[] assemblies)
