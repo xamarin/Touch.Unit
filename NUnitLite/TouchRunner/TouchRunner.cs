@@ -27,6 +27,7 @@ using System.Net.Sockets;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -59,6 +60,13 @@ using NUnit.Framework.Internal.WorkItems;
 using SettingsDictionary = System.Collections.Generic.IDictionary<string, object>;
 #else
 using SettingsDictionary = System.Collections.IDictionary;
+#endif
+
+#if NET
+[assembly: SupportedOSPlatform ("ios10.0")]
+[assembly: SupportedOSPlatform ("tvos10.0")]
+[assembly: SupportedOSPlatform ("macos10.14")]
+[assembly: SupportedOSPlatform ("maccatalyst13.0")]
 #endif
 
 namespace MonoTouch.NUnit.UI {
