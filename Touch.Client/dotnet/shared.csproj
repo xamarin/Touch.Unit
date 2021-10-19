@@ -68,10 +68,6 @@
     <AssetTargetFallback>xamarintvos10;$(AssetTargetFallback)</AssetTargetFallback>
   </PropertyGroup>
   <ItemGroup Condition="$(TargetFramework.EndsWith('-ios')) Or $(TargetFramework.EndsWith('-tvos')) Or $(TargetFramework.EndsWith('-maccatalyst'))">
-    <PackageReference Include="MonoTouch.Dialog" CopyLocal="true" IncludeAssets="all">
-      <Version>2.0.0-pre1</Version>
-      <IncludeAssets>all</IncludeAssets>
-      <CopyLocal>true</CopyLocal>
-    </PackageReference>
+    <ProjectReference Include="../../../../MonoTouch.Dialog/MonoTouch.Dialog/dotnet/$(_PlatformName)/MonoTouch.Dialog.csproj" />
   </ItemGroup>
 </Project>
