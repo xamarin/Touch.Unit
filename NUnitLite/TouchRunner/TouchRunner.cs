@@ -741,9 +741,6 @@ namespace MonoTouch.NUnit.UI {
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
 
-		[DllImport ("/usr/lib/libobjc.dylib")]
-		static extern nint objc_msgSend (IntPtr handle, IntPtr sel, int p0);
-
 		public UIViewController GetViewController ()
 		{
 			var menu = new RootElement ("Test Runner");
