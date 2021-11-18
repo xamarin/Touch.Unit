@@ -135,6 +135,16 @@ namespace MonoTouch.NUnit.UI {
 			exit (0);
 		}
 
+		protected virtual void TerminateWithExitCode (int exitCode)
+		{
+			if (exitCode == 0) {
+				TerminateWithSuccess ();
+			} else {
+				Console.WriteLine ($"Exiting test run with code {exitCode}");
+				exit (exitCode);
+			}
+		}
+
 		protected virtual void ExecuteOnMainThread (Action action)
 		{
 			var obj = new NSObject ();
@@ -214,16 +224,17 @@ namespace MonoTouch.NUnit.UI {
 				Run ();
 				TraceLine ("AutoRun (): completed test run on main thread");
 
+				var status = FailedCount == 0 ? 0 : 1;
 				// optionally end the process, e.g. click "Touch.Unit" -> log tests results, return to springboard...
 				// http://stackoverflow.com/questions/1978695/uiapplication-sharedapplication-terminatewithsuccess-is-not-there
 				if (TerminateAfterExecution) {
 					if (WriterFinishedTask != null) {
 						Task.Run (async () => {
 							await WriterFinishedTask;
-							TerminateWithSuccess ();
+							TerminateWithExitCode (status);
 						});
 					} else {
-						TerminateWithSuccess ();
+						TerminateWithExitCode (status);
 					}
 				}
 			});
@@ -725,9 +736,13 @@ namespace MonoTouch.NUnit.UI {
 
 		protected override void TerminateWithSuccess ()
 		{
+			Console.WriteLine ($"Exiting test run with success");
 			Selector selector = new Selector ("terminateWithSuccess");
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
+
+		[DllImport ("/usr/lib/libobjc.dylib")]
+		static extern nint objc_msgSend (IntPtr handle, IntPtr sel, int p0);
 
 		public UIViewController GetViewController ()
 		{
