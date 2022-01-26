@@ -250,7 +250,11 @@ namespace MonoTouch.NUnit.UI {
 			// https://developer.apple.com/library/ios/#documentation/UserExperience/Conceptual/MobileHIG/IconsImages/IconsImages.html
 			// http://tirania.org/blog/archive/2010/Jul-20-2.html
 			float size = 20f;
+#if NET6_0 && !NET7_0
+			UIGraphics.BeginImageContextWithOptions (new CGSize (size, size), false, new NFloat (0));
+#else
 			UIGraphics.BeginImageContextWithOptions (new CGSize (size, size), false, 0);
+#endif
 			using (var c = UIGraphics.GetCurrentContext ()) {
 				c.SetFillColor (1.0f, 1.0f, 1.0f, 1.0f);
 				c.SetStrokeColor (1.0f, 1.0f, 1.0f, 1.0f);

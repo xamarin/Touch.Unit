@@ -51,6 +51,7 @@
     <Compile Include="..\..\..\NUnitLite\TouchRunner\TouchViewController.cs">
       <Link>TouchViewController.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\..\..\tests\common\DotNetGlobals.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NUnitLite">
