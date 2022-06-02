@@ -126,17 +126,25 @@ namespace MonoTouch.NUnit.UI {
 			}
 		}
 
+		protected void FlushConsole ()
+		{
+			Console.Out.Flush ();
+			Console.Error.Flush ();
+		}
+
 		[DllImport ("libc")]
 		static extern void exit (int code);
 		protected virtual void TerminateWithSuccess ()
 		{
 			// For WatchOS we're terminating the extension, not the watchos app itself.
 			Console.WriteLine ("Exiting test run with success");
+			FlushConsole ();
 			exit (0);
 		}
 
 		protected virtual void TerminateWithExitCode (int exitCode)
 		{
+			FlushConsole ();
 			if (exitCode == 0) {
 				TerminateWithSuccess ();
 			} else {
@@ -737,6 +745,7 @@ namespace MonoTouch.NUnit.UI {
 		protected override void TerminateWithSuccess ()
 		{
 			Console.WriteLine ($"Exiting test run with success");
+			FlushConsole ();
 			Selector selector = new Selector ("terminateWithSuccess");
 			UIApplication.SharedApplication.PerformSelector (selector, UIApplication.SharedApplication, 0);						
 		}
