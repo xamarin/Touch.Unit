@@ -166,7 +166,7 @@ namespace MonoTouch.NUnit.UI {
 		public void LoadSync ()
 		{
 			foreach (Assembly assembly in assemblies)
-				Load (assembly);
+				Load (assembly.GetName().Name);
 			assemblies.Clear ();
 		}
 
