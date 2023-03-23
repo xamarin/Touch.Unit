@@ -166,7 +166,7 @@ namespace MonoTouch.NUnit.UI {
 		public void LoadSync ()
 		{
 			foreach (Assembly assembly in assemblies)
-				Load (assembly.GetName().Name);
+				Load (assembly);
 			assemblies.Clear ();
 		}
 
@@ -603,9 +603,7 @@ namespace MonoTouch.NUnit.UI {
 
 		public bool Load (Assembly assembly, IDictionary<string, object> settings = null)
 		{
-			var runner = new NUnitTestAssemblyRunner (builder);
-			runners.Add (runner);
-			return AddSuite ((TestSuite) runner.Load (assembly, CreateSettings (settings)));
+			return Load (assembly.GetName ().Name, settings);
 		}
 #else
 		NUnitLiteTestAssemblyBuilder builder = new NUnitLiteTestAssemblyBuilder ();
