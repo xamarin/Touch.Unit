@@ -491,6 +491,9 @@ namespace Mono.Options
 			this.option = optionName;
 		}
 
+#if NET
+		[Obsolete]
+#endif
 		protected OptionException (SerializationInfo info, StreamingContext context)
 			: base (info, context)
 		{
@@ -502,6 +505,9 @@ namespace Mono.Options
 		}
 
 		//[SecurityPermission (SecurityAction.LinkDemand, SerializationFormatter = true)]
+#if NET
+		[Obsolete]
+#endif
 		public override void GetObjectData (SerializationInfo info, StreamingContext context)
 		{
 			base.GetObjectData (info, context);
