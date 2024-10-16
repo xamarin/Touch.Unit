@@ -8,6 +8,8 @@
     <NoWarn>$(NoWarn);CA1416</NoWarn>
     <!-- warning CA1422: This call site is reachable on: '...'. '...' is obsoleted on: '...'. -->
     <NoWarn>$(NoWarn);CA1422</NoWarn>
+    <!-- Disable features that aren't trimmer safe -->
+    <DefineConstants>$(DefineConstants);NOTYPECONVERTER</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\..\NUnitLite\TouchRunner\ExcludedCategoryFilter.cs">
